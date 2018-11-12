@@ -9,7 +9,7 @@ function report($sql)
 
     $res = mssql_query($sql);
     $table = "<table>";
-    while ($db = mssql_fetch_array($res))
+    while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
     {
 	$row = "<tr>";
 	if (!$hdr)
