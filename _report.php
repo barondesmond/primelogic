@@ -2,6 +2,10 @@
 
 function report($sql)
 {
+	$table = '';
+	$row = '';
+	$head = '';
+	$hdr = '';
 
     $res = mssql_query($sql);
     $table = "<table>";
