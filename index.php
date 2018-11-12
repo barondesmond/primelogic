@@ -7,4 +7,5 @@ $row = mysql_fetch_array($version);
 
 echo $row[0];
 
+mssql_free_result($version);
 ?>
