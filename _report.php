@@ -46,5 +46,20 @@ return $table;
 if ($argv[1])
 {
 	include("_db_config.php");
-	echo report($argv[1]);
+	
+	$rep =  report($argv[1]);
+	if ($argv[2])
+	{
+		$headers[] = 'MIME-Version: 1.0';
+		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+		$headers[] = "To: $argv[2] <$argv[2]>";
+		$headers[] = 'From: baron@desmond.com';
+		$headers[] = 'Bcc: baron@desmond.com';
+		mail($argv[2], $argv[1], $rep, implode("\r\n", $headers));
+
+	}
+	else
+	{
+		echo $rep;
+	}
 }
