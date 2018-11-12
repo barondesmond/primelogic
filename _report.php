@@ -34,6 +34,7 @@ function report($sql)
 		$hdr = $head;
 		$table .= $hdr;
 	}
+	$table .= $row;
 	unset($row);
 
     }
