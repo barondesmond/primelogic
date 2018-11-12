@@ -2,6 +2,9 @@
 include("_db_config.php");
 echo "test";
 
-print_r($db);
+$version  = mssql_query('SELEECT @@VERSION');
+$row = mysql_fetch_array($version)
+
+echo $row[0];
 
 ?>
