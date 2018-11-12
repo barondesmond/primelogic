@@ -11,10 +11,10 @@ function report($sql)
     $table = "<table>";
     while ($db = mssql_fetch_array($res))
     {
-	$row .= "<tr>";
+	$row = "<tr>";
 	if (!$hdr)
 	{
-		$head .= "<tr>";
+		$head = "<tr>";
 	}	
 	foreach ($db as $key=> $value)
 	{
