@@ -1,0 +1,3 @@
+SELECT * FROM Receivab ORDER BY InvDate DESC;
+Service	dbo	Receivab	BASE TABLE CustNo Invoice InvDate PaidOff 
+

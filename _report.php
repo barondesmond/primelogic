@@ -16,13 +16,14 @@ function report($sql)
 	{
 		$head = "<tr>";
 	}	
+
 	foreach ($db as $key=> $value)
 	{
 		if (!$hdr)
 		{
 			$head .= "<td>$key</td>";
 		}	
-		$row .= "<td>$value</td>";
+		$row .= "<td>" . htmlentities($value) . "</td>";
 	}
 	if (!$hdr)
 	{
