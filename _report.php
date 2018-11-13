@@ -3,6 +3,8 @@
 
 function report($sql, $subject = '')
 {
+	setlocale(LC_MONETARY, 'en_US.UTF-8');
+
 	$html = "<html>
 <head>
   <title>$subject</title>
@@ -29,7 +31,11 @@ function report($sql, $subject = '')
 		{
 			$head .= "<td>$key</td>";
 		}	
-		$row .= "<td align=right>" . htmlentities($value) . "</td>";
+		if ($key == 'Amts' || $key == 'Paids')
+		{
+			$value = money_format('%.2n', $value);
+		}
+		$row .= "<td align=right>" . ($value) . "</td>";
 	}
 	if (!$hdr)
 	{
