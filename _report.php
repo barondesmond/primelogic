@@ -1,7 +1,13 @@
 <?php
 
-function report($sql)
+
+function report($sql, $subject = '')
 {
+	$html = '<html>
+<head>
+  <title>$subject</title>
+</head>
+<body>";
 	$table = '';
 	$row = '';
 	$head = '';
@@ -42,26 +48,8 @@ function report($sql)
     }
      $table .= "</table>\r\n";
 
-return $table;
+	$html .= $table;
+	$html .= "</body>";
+return $html;
 }     
 
-if (isset($argv[1]))
-{
-	include("_db_config.php");
-	
-	$rep =  report($argv[1]);
-	if (isset($argv[2]))
-	{
-		$headers[] = 'MIME-Version: 1.0';
-		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-		$headers[] = "To: $argv[2] <$argv[2]>";
-		$headers[] = 'From: baron@desmond.com';
-		$headers[] = 'Bcc: baron@desmond.com';
-		mail($argv[2], $argv[1], $rep, implode("\r\n", $headers));
-
-	}
-	else
-	{
-		echo $rep;
-	}
-}
