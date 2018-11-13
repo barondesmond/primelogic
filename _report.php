@@ -39,7 +39,7 @@ function report($sql)
 	unset($row);
 
     }
-     $table .= "</table>";
+     $table .= "</table>\r\n";
 
 return $table;
 }     
