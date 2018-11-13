@@ -9,7 +9,7 @@ WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and Due
 */
 //CONVERT(decimal(10,2), R) AS decimal;
 
-$sql = "SELECT Sales.Invoice, Sales.CustNo, Sales.Dept, Terms, Sales.DueDate, CONVERT(decimal(10,2), Receivab.Paid) as Paid, CONVERT(decimal(10,2), InvAmt) as InvAmt, Customer.LastName, phone1  FROM Sales, Receivab, Customer, Employee
+$sql = "SELECT Sales.Invoice, Sales.CustNo, Sales.Dept, Terms, Sales.DueDate, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts, Customer.LastName, phone1  FROM Sales, Receivab, Customer, Employee
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL and Sales.Salesman = Employee.EmpNo";
 
 $subject = "Ar Report Current";
