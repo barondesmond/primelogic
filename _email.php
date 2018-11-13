@@ -3,11 +3,6 @@
 function email_report($to, $subject, $message, $from = 'administrator@plisolutions.com', $reply = 'barondesmond@gmail.com', $bcc = 'barondesmond@gmail.com')
 {
 
-$headers = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:  ' . $fromName . ' <' . $fromEmail .'>' . " \r\n" .
-            'Reply-To: '.  $fromEmail . "\r\n" .
-
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 		$headers[] = "To: $argv[2]";
