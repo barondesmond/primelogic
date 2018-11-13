@@ -7,7 +7,6 @@ $headers = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $headers .= 'From:  ' . $fromName . ' <' . $fromEmail .'>' . " \r\n" .
             'Reply-To: '.  $fromEmail . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
 
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
@@ -15,6 +14,8 @@ $headers .= 'From:  ' . $fromName . ' <' . $fromEmail .'>' . " \r\n" .
 		$headers[] = "From: $from";
 		$headers[] = "Reply-To: $reply";
 		$headers[] = "Bcc: $bcc";
+        $headers[] = 'X-Mailer: PHP/' . phpversion();
+
 		mail($to, $subject, $message, implode("\r\n", $headers));
 
 }

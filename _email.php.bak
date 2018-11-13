@@ -1,6 +1,6 @@
 <?php
 
-function email_report($to, $subject, $message, $from, $reply, $bcc)
+function email_report($to, $subject, $message, $from = 'administrator@plisolutions.com', $reply = 'barondesmond@gmail.com', $bcc = 'barondesmond@gmail.com')
 {
 
 $headers = 'MIME-Version: 1.0' . "\r\n";
