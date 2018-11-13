@@ -3,7 +3,7 @@
 
 function report($sql, $subject = '')
 {
-	$html = '<html>
+	$html = "<html>
 <head>
   <title>$subject</title>
 </head>
