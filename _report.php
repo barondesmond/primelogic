@@ -31,7 +31,7 @@ function report($sql, $subject = '')
 		{
 			$head .= "<td>$key</td>";
 		}	
-		if ($key == 'Amts' || $key == 'Paids')
+		if ($key == 'InvAmts' || $key == 'Paids')
 		{
 			$value = money_format('%.2n', $value);
 		}

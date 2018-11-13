@@ -19,11 +19,11 @@ WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and Due
 
 $sql2 = "SELECT CONVERT(decimal(12,2), SUM(InvAmt-Paid)) as Amt  FROM Sales, Receivab, Customer, Employee
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL and Sales.Salesman = Employee.EmpNo";
-$res2 = mssql_query($sql);
+$res2 = mssql_query($sql2);
 $db = mssql_fetch_array($res2);
 
 
-$subject = "Ar Report 0-30 \t\t\t$db[Amt]";
+$subject = "Ar Report 0-30 \t\t\t $db[Amt]";
 
 $html = report($sql, $subject);
 
