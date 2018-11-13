@@ -14,7 +14,7 @@ function report($sql, $subject = '')
 	$hdr = '';
 
     $res = mssql_query($sql);
-    $table = "<table><tr><td colspan='0'><h1>$subject</h1></td></tr>";
+    $table = "<table><tr><td colspan='100'><h1>$subject</h1></td></tr>";
     while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
     {
 	$row = "<tr>";
