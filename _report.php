@@ -44,12 +44,12 @@ function report($sql)
 return $table;
 }     
 
-if ($argv[1])
+if (isset($argv[1]))
 {
 	include("_db_config.php");
 	
 	$rep =  report($argv[1]);
-	if ($argv[2])
+	if (isset($argv[2]))
 	{
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
