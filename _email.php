@@ -37,16 +37,16 @@ function email_alias($days='', $dept = '', $salesman = '')
 	$dp[70] = 'arthur@plisolutions.com';
 	
 
-	if (isset($da[$days])
+	if (isset($da[$days]))
 	{
 		return $da[$days];
 	}
 
-	if (isset($sm[$salesman])
+	if (isset($sm[$salesman]))
 	{
 		return $sm[$salesman];
 	}
-	if (isset($dp[$dept])
+	if (isset($dp[$dept]))
 	{
 		return $dp[$dept];
 	}
