@@ -29,7 +29,7 @@ function report($sql, $subject = '')
 		{
 			$head .= "<td>$key</td>";
 		}	
-		$row .= "<td>" . htmlentities($value) . "</td>";
+		$row .= "<td align=right>" . htmlentities($value) . "</td>";
 	}
 	if (!$hdr)
 	{
