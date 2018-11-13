@@ -8,7 +8,7 @@ WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and Due
 ";
 $subject = "Ar Report Current";
 
-$html = report($sql), $subject);
+$html = report($sql, $subject);
 
 $email = email_alias('0');
 
