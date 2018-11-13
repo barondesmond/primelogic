@@ -14,7 +14,7 @@ WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and Due
 //move last name between inv and cust
 
 
-$sql = "SELECT Sales.Invoice, Customer.LastName, Sales.CustNo, Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts,  phone1  FROM Sales, Receivab, Customer, Employee
+$sql = "SELECT Sales.Invoice, Customer.LastName, Sales.CustNo, Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts,  CONCAT(phone1, IFNULL(phone1, phone2)) as phone  FROM Sales, Receivab, Customer, Employee
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL and Sales.Salesman = Employee.EmpNo;";
 
 $sql2 = "SELECT CONVERT(decimal(12,2), SUM(InvAmt-Paid)) as Amt  FROM Sales, Receivab, Customer, Employee
@@ -22,8 +22,9 @@ WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and Due
 $res2 = mssql_query($sql2);
 $db = mssql_fetch_array($res2);
 
+	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
-$subject = "Ar Report 0-30 \t\t\t $db[Amt]";
+$subject = "Ar Report 0-30 " . money_format('%.2n', $db[Amt]);
 
 $html = report($sql, $subject);
 
