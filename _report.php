@@ -15,7 +15,7 @@ function report($sql, $subject = '')
 	$head = '';
 	$hdr = '';
 	$CCusNo = '';
-
+	$chdr = '';
     $res = mssql_query($sql);
     $table = "<table><tr><td colspan='100'><h1>$subject</h1></td></tr>";
     while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
@@ -25,6 +25,7 @@ function report($sql, $subject = '')
 	{
 		$head = "<tr>";
 		$cushead = "<tr>";
+	
 	}	
 $cus = array('CustNo', 'LastName', 'phone');
 	foreach ($db as $key=> $value)
@@ -38,7 +39,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 		{
 			$cc = $value;
 		}
-		if (in_array($key, $cus))
+		if (in_array($key, $cus) && $cc != $CCusNo)
 		{
 	
 			//$cushead .= "<td>$key</td>";
