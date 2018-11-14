@@ -8,7 +8,7 @@ function finchg($CustNo, $day)
 	$sql = "SELECT Invoice, Dept, '' as Terms, InvDate, Paid, InvAmt FROM Receivab WHERE CustNo=" . $CustNo . "
 	and InvDate < DATEADD(DD, " . $day1 . ", getdate()) and InvDate > DATEADD(DD, " . $day2 . ", getdate()) 
 	
-	ORDER BY [Date] DESC;";
+	ORDER BY InvDate DESC;";
 	echo $sql;
 	
 	//exit;
