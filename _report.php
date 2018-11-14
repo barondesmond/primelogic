@@ -66,6 +66,8 @@ $cus = array('CustNo', 'LastName', 'phone');
 	}
 	if ($cc != $CCusNo && $cc != '')
 	{
+		//echo $cushead
+		echo "CC = $cc and CCusNo = $CCusNo\r\n";
 		$table .= $cushead . "</tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
@@ -81,7 +83,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 
 	$html .= $table;
 	$html .= "</body>";
-	echo $html;
+	//echo $html;
 return $html;
 }     
 
