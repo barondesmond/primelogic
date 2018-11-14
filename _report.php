@@ -34,6 +34,10 @@ $cus = array('CustNo', 'LastName', 'phone');
 			$head .= "<td>$key</td>";
 		
 		}
+		if ($key == 'CustNo')
+		{
+			$cc = $value;
+		}
 		if (in_array($key, $cus))
 		{
 	
@@ -60,11 +64,11 @@ $cus = array('CustNo', 'LastName', 'phone');
 		$hdr = $head;
 	
 	}
-	if ($db['CustNo'] != $CCusNo)
+	if ($cc != $CCusNo)
 	{
 		$table .= $cushead . "</tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
-		$CCusNo = $db['CustNo'];
+		$CCusNo = $cc;
 		$cushead = "<tr>";
 		$table .= $hdr;
 		$table .= "\r\n";
