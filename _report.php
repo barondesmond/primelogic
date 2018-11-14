@@ -1,7 +1,53 @@
 <?php
+function notes($CustNo, $day)
+{
+
+	$sql = "SELECT * FROM Collectn WHERE CustNo= '0000040'
+and Date < DATEADD(DD, " . $day * -1 . ", getdate() and Date > DATEADD(DD, " . $day * -1 - 30 . ", getdate()) 
+ORDER BY Date DESC;"
+	
+	$res = mssql_query($sql);
+
+	$table = '';
+	$row = '';
+	$head = '';
+	$hdr = '';
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+		$row  = '<tr>';
+		if (!$hdr)
+		{
+			$head = '<tr>';
+		}
+		foreach ($db as $key=> $value)
+		{
+			if (!$hdr && !in_array($key, $cus))
+			{
+				$head .= "<td>$key</td>";
+			}
+
+			$row .= "<td align=right>" . htmlentities($value) . "</td>";
+		}
+	if (!$hdr)
+	{
+		$head .= "</tr>";
+	}
+	$row .= "</tr>";
+	
+	if ($head && !$hdr)
+	{
+		$hdr = $head;
+		$table .= $head;
+	}
+	$table .= $row;
+
+	}
+	$table .= "</table";
+
+return $table;
 
 
-function report($sql, $subject = '')
+function report($sql, $subject = '', $day = '0')
 {
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
@@ -69,7 +115,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= $cushead . "</tr>\r\n";
+		$table .= $cushead . "<td>>" . notes($cc, $day) . "/td></tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = "<tr>";

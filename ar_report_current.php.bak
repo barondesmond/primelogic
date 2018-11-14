@@ -24,7 +24,7 @@ $db = mssql_fetch_array($res2);
 $subject = "Ar Report 0-30 " . money_format('%.2n', $db[Amt]);
 
 
-$sql = "SELECT Sales.Invoice, Customer.LastName, Customer.CustNo, Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts,  ISNULL(phone1, phone2) as phone  
+$sql = "SELECT Customer.CustNo, Sales.Invoice, Customer.LastName, Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts,  ISNULL(phone1, phone2) as phone  
 FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
 and DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL 
