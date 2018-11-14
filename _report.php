@@ -5,7 +5,7 @@ function finchg($CustNo, $day)
 
 	$day1 = $day * -1;
 	$day2 = $day1 - 30;
-	$sql = "SELECT Invoice, Dept, Terms, InvDate, Paid, InvAmt FROM Receivab WHERE CustNo=" . $CustNo . "
+	$sql = "SELECT Invoice, Dept, '' as Terms, InvDate, Paid, InvAmt FROM Receivab WHERE CustNo=" . $CustNo . "
 	and InvDate < DATEADD(DD, " . $day1 . ", getdate()) and InvDate > DATEADD(DD, " . $day2 . ", getdate()) 
 	
 	ORDER BY [Date] DESC;";
