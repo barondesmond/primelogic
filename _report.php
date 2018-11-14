@@ -74,7 +74,7 @@ function report($sql, $subject = '', $day = '0')
 	$CCusNo = '';
 	$chdr = '';
     $res = mssql_query($sql);
-    $table = "<table><tr><td colspan='10'><h1>$subject</h1></td></tr>";
+    $table = "<table><tr><td colspan='5'><h1>$subject</h1></td></tr>";
     while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
     {
 	$row = "<tr>";
@@ -126,7 +126,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= $cushead . "<td colspan='4'>" . notes($cc, $day) . "</td></tr>\r\n";
+		$table .= $cushead . "<td colspan='5'>" . notes($cc, $day) . "</td></tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = "<tr>";
