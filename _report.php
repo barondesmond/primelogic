@@ -65,8 +65,10 @@ return $table;
 function notes($CustNo, $day)
 {
 
-	$day1 = $day * -1;
-	$day2 = $day1 - 30;
+	//$day1 = $day * -1;
+	//$day2 = $day1 - 30;
+	$day1 = '0';
+	$day2 = '-60';
 	$sql = "SELECT note FROM Collectn WHERE CustNo=" . $CustNo . "
 	
 	and [Date] < DATEADD(DD, " . $day1 . ", getdate()) and [Date] > DATEADD(DD, " . $day2 . ", getdate()) 
@@ -118,7 +120,7 @@ function notes($CustNo, $day)
 			//echo $table;
 		//exit;
 	}
-return wordwrap($row, 75, "<BR>\r\n");
+return wordwrap($row, 65, "<BR>\r\n");
 }
 
 function report($sql, $subject = '', $day = '0')
@@ -165,7 +167,9 @@ $cus = array('CustNo', 'LastName', 'phone');
 			//$cushead .= "<td>$key</td>";
 			if ($key != 'CustNo')
 			{
-				$cushead .= "<td><b>$value</b></td>";
+				$cushead .= '<td><div style=
+   "border: solid 0 #060; border-top-width:2px; padding-left:0.5ex">
+    two</div><b>' . $value . '</b></td>';
 			}
 		}
 		if ($key == 'InvAmts' || $key == 'Paids')
