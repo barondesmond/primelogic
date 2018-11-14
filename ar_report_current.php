@@ -22,7 +22,7 @@ $db = mssql_fetch_array($res2);
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
 $subject = "Ar Report 0-30 " . money_format('%.2n', $db[Amt]);
-
+$subject2 = "<td align=left>Ar Report 0-30</td><td align=right>" . money_format('%.2n', $db[Amt]) . "</td>";
 
 $sql = "SELECT Customer.CustNo, Sales.Invoice, ISNULL(Receivab.JobNumber, Dispatch) as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
 FROM Sales, Receivab, Customer
@@ -44,7 +44,7 @@ INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
 WHERE  DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL  
 ORDER BY Customer.CustNo
 */
-$html = report($sql, $subject, '0');
+$html = report($sql, $subject2, '0');
 
 $email = email_alias('0');
 
