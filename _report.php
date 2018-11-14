@@ -193,10 +193,12 @@ $cus = array('CustNo', 'LastName', 'phone');
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = "<th>";
+		$table .= "</table><table>";
+
 		$table .= $hdr;
 		$table .= "\r\n";
+
 		$table .= finchg($cc, $day);
-		$table .= "</table><table>";
 	}
 	$table .= $row . "\r\n";
 	unset($row);
