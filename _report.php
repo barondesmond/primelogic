@@ -34,7 +34,7 @@ $cus = array('CusNo', 'LastName', 'phone');
 			$head .= "<td>$key</td>";
 		
 		}
-		if (!$chdr && in_array($key, $cus))
+		if (in_array($key, $cus))
 		{
 	
 			//$cushead .= "<td>$key</td>";
@@ -66,6 +66,7 @@ $cus = array('CusNo', 'LastName', 'phone');
 		$table .= $cushead . "</tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $db['CustNo'];
+		unset($cushead);
 	}
 	$table .= $row . "\r\n";
 	unset($row);
