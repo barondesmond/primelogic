@@ -20,7 +20,7 @@ function finchg($CustNo, $day)
 	$hdr = '';
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		//$row  = '<tr>';
+		$row  = '<tr>';
 		if (!$hdr)
 		{
 			$head = '<tr>';
@@ -47,6 +47,7 @@ function finchg($CustNo, $day)
 			//$table .= $head;
 		}
 		$table .= $row;
+		
 
 	}
 	//if ($table != '')
