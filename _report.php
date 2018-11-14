@@ -168,8 +168,8 @@ $cus = array('CustNo', 'LastName', 'phone');
 			if ($key != 'CustNo')
 			{
 				$cushead .= '<td><div style=
-   "border: solid 0 #060; border-top-width:2px; padding-left:0.5ex">
-    two</div><b>' . $value . '</b></td>';
+   "border: solid 0 #060; border-top-width:2px; ">
+    <b>' . $value . '</b></div></td>';
 			}
 		}
 		if ($key == 'InvAmts' || $key == 'Paids')
