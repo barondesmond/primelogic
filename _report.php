@@ -46,8 +46,8 @@ function notes($CustNo, $day)
 	if ($table != '')
 	{
 		$table = "<table>" . $table . "</table>";
-			echo $table;
-		exit;
+			//echo $table;
+		//exit;
 	}
 return $table;
 }
