@@ -58,8 +58,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	if ($head && !$hdr)
 	{
 		$hdr = $head;
-		$table .= $hdr;
-		$table .= "\r\n";
+	
 	}
 	if ($db['CustNo'] != $CCusNo)
 	{
@@ -67,6 +66,8 @@ $cus = array('CustNo', 'LastName', 'phone');
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $db['CustNo'];
 		$cushead = "<tr>";
+		$table .= $hdr;
+		$table .= "\r\n";
 	}
 	$table .= $row . "\r\n";
 	unset($row);
