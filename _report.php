@@ -29,23 +29,26 @@ function notes($CustNo, $day)
 
 			$row .= "<td align=right>" . htmlentities($value) . "</td>";
 		}
-	if (!$hdr)
-	{
-		$head .= "</tr>";
-	}
-	$row .= "</tr>";
+		if (!$hdr)
+		{
+			$head .= "</tr>";
+		}
+		$row .= "</tr>";
 	
-	if ($head && !$hdr)
-	{
-		$hdr = $head;
-		$table .= $head;
-	}
-	$table .= $row;
+		if ($head && !$hdr)
+		{
+			$hdr = $head;
+			$table .= $head;
+		}
+		$table .= $row;
 
 	}
-	$table .= "</table";
-	echo $table;
-	exit;
+	if ($table != '')
+	{
+		$table = "<table>" . $table . "</table>";
+			echo $table;
+		exit;
+	}
 return $table;
 }
 
