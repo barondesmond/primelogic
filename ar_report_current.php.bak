@@ -44,7 +44,7 @@ INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
 WHERE  DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL  
 ORDER BY Customer.CustNo
 */
-$html = report($sql, $subject);
+$html = report($sql, $subject, '0');
 
 $email = email_alias('0');
 
