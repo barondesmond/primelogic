@@ -161,9 +161,12 @@ $cus = array('CustNo', 'LastName', 'phone');
 		}
 		if (in_array($key, $cus) && $cc != $CCusNo)
 		{
-	
+			
 			//$cushead .= "<td>$key</td>";
-			$cushead .= "<td>" . htmlentities($value) . "</td>";
+			if ($key != 'CustNo')
+			{
+				$cushead .= "<td>" . htmlentities($value) . "</td>";
+			}
 		}
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
@@ -189,7 +192,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= $cushead . "<td colspan='3'>" . notes($cc, $day) . "</td></tr>\r\n";
+		$table .= $cushead . "<td colspan='4'>" . notes($cc, $day) . "</td></tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = "<tr>";
