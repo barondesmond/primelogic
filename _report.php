@@ -5,9 +5,8 @@ function finchg($CustNo, $day)
 
 	$day1 = $day * -1;
 	$day2 = $day1 - 30;
-	$sql = "SELECT Invoice, Dept, '' as Terms, InvDate, Paid, InvAmt FROM Receivab WHERE CustNo=" . $CustNo . " and Type = 'F'
+	$sql = "SELECT Invoice, Dept, '' as Terms, CONVERT(varchar(10), Sales.DueDate, 101) as InvDates, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts FROM Receivab WHERE CustNo=" . $CustNo . " and Type = 'F'
 	and InvDate < DATEADD(DD, " . $day1 . ", getdate()) and InvDate > DATEADD(DD, " . $day2 . ", getdate()) 
-	
 	ORDER BY InvDate DESC;";
 	echo $sql;
 	
@@ -31,7 +30,10 @@ function finchg($CustNo, $day)
 			{
 				$head .= "<td>$key</td>";
 			}
-
+			if ($key == 'InvAmts' || $key == 'Paids')
+			{
+				$value = money_format('%.2n', $value);
+			}
 			$row .= "<td align=right>" . htmlentities($value) . "</td>";
 			//$row .= $value . "<BR>\r\n";
 		}
