@@ -23,7 +23,7 @@ function report($sql, $subject = '')
 	if (!$hdr)
 	{
 		$head = "<tr>";
-		$cushead .= "<tr>";
+		$cushead = "<tr>";
 	}	
 	$CCusNo = '';
 $cus = array('CusNo', 'LastName', 'phone');
