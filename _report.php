@@ -1,4 +1,64 @@
 <?php
+
+function finchg($CustNo, $day)
+{
+
+	$day1 = $day * -1;
+	$day2 = $day1 - 30;
+	$sql = "SELECT Invoice, Dept, Terms, InvDate, Paid, InvAmt FROM Receivab WHERE CustNo=" . $CustNo . "
+	and InvDate < DATEADD(DD, " . $day1 . ", getdate()) and InvDate > DATEADD(DD, " . $day2 . ", getdate()) 
+	
+	ORDER BY [Date] DESC;";
+	echo $sql;
+	*/
+	//exit;
+	$res = mssql_query($sql);
+
+	$table = '';
+	$row = '';
+	$head = '';
+	$hdr = '';
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+		//$row  = '<tr>';
+		if (!$hdr)
+		{
+			$head = '<tr>';
+		}
+		foreach ($db as $key=> $value)
+		{
+			if (!$hdr)
+			{
+				$head .= "<td>$key</td>";
+			}
+
+			$row .= "<td align=right>" . htmlentities($value) . "</td>";
+			//$row .= $value . "<BR>\r\n";
+		}
+		if (!$hdr)
+		{
+			$head .= "</tr>";
+		}
+		$row .= "</tr>";
+	
+		if ($head && !$hdr)
+		{
+			$hdr = $head;
+			//$table .= $head;
+		}
+		$table .= $row;
+
+	}
+	//if ($table != '')
+	//{
+		//$table = "<table>" . $table . "</table>";
+			//echo $table;
+		//exit;
+	//}
+
+return $table;
+
+
 function notes($CustNo, $day)
 {
 
@@ -132,6 +192,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 		$cushead = "<tr>";
 		$table .= $hdr;
 		$table .= "\r\n";
+		$table .= finchg($cc, $day);
 	}
 	$table .= $row . "\r\n";
 	unset($row);
