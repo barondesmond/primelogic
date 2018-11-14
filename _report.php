@@ -4,7 +4,7 @@ function notes($CustNo, $day)
 
 	$day1 = $day * -1;
 	$day2 = $day1 - 30;
-	$sql = "SELECT * FROM Collectn WHERE CustNo=" . $CustNo . " and [Date] < DATEADD(DD, " . $day1 . ", getdate()) and [Date] > DATEADD(DD, " . $day2 . ", getdate()) ORDER BY [Date] DESC;";
+	$sql = "SELECT note FROM Collectn WHERE CustNo=" . $CustNo . " and [Date] < DATEADD(DD, " . $day1 . ", getdate()) and [Date] > DATEADD(DD, " . $day2 . ", getdate()) ORDER BY [Date] DESC;";
 	echo $sql;
 	//exit;
 	$res = mssql_query($sql);
