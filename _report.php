@@ -14,6 +14,7 @@ function report($sql, $subject = '')
 	$row = '';
 	$head = '';
 	$hdr = '';
+	$CCusNo = '';
 
     $res = mssql_query($sql);
     $table = "<table><tr><td colspan='100'><h1>$subject</h1></td></tr>";
@@ -25,7 +26,6 @@ function report($sql, $subject = '')
 		$head = "<tr>";
 		$cushead = "<tr>";
 	}	
-	$CCusNo = '';
 $cus = array('CustNo', 'LastName', 'phone');
 	foreach ($db as $key=> $value)
 	{
