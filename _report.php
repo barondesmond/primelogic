@@ -194,8 +194,8 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= '<tr><td colspan="6"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
-		$table .= $cushead . "<td colspan='5'>"  . notes($cc, $day) . "</td></tr>\r\n";
+		$table .= '<tr><td colspan="7"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
+		$table .= $cushead . "<td colspan='6'>"  . notes($cc, $day) . "</td></tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = '<tr>';
