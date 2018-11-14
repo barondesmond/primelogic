@@ -120,7 +120,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= $cushead . "<td>>" . notes($cc, $day) . "/td></tr>\r\n";
+		$table .= $cushead . "<td>>" . notes($cc, $day) . "</td></tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = "<tr>";
