@@ -44,7 +44,8 @@ function notes($CustNo, $day)
 
 	}
 	$table .= "</table";
-
+	echo $table;
+	exit;
 return $table;
 }
 
