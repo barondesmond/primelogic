@@ -22,7 +22,7 @@ function notes($CustNo, $day)
 		}
 		foreach ($db as $key=> $value)
 		{
-			if (!$hdr\)
+			if (!$hdr)
 			{
 				$head .= "<td>$key</td>";
 			}
