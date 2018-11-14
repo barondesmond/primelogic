@@ -22,7 +22,7 @@ $db = mssql_fetch_array($res2);
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
 $subject = "<Ar Report 0-30 " . money_format('%.2n', $db[Amt]);
-$subject2 = "<td align=left colspan'3'><h1>Ar Report 0-30</H1></td><td align=right colspan='3'><h1>" . money_format('%.2n', $db[Amt]) . "</h1></td>";
+$subject2 = "<td align=left colspan'3'><h1>Ar Report 0-30</H1></td><td align=right colspan='4'><h1>" . money_format('%.2n', $db[Amt]) . "</h1></td>";
 
 $sql = "SELECT Customer.CustNo, Sales.Invoice, ISNULL(Receivab.JobNumber, Dispatch) as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
 FROM Sales, Receivab, Customer
