@@ -10,7 +10,7 @@ function finchg($CustNo, $day)
 	
 	ORDER BY [Date] DESC;";
 	echo $sql;
-	*/
+	
 	//exit;
 	$res = mssql_query($sql);
 
