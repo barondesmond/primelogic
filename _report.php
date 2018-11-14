@@ -127,7 +127,7 @@ function report($sql, $subject = '', $day = '0')
 
 	$html = '<html>
 <head>
-  <title>' . $subject . '</title>
+  
 </head>
 <body><font size="-1">';
 	$table = '';
@@ -137,7 +137,7 @@ function report($sql, $subject = '', $day = '0')
 	$CCusNo = '';
 	$chdr = '';
     $res = mssql_query($sql);
-    $table = "<table><tr><td colspan='3'><h1>$subject</h1></td></tr>";
+    $table = "<table><tr>$subject</td></tr>";
     while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
     {
 	$row = "<tr>";
