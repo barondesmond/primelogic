@@ -45,7 +45,7 @@ ORDER BY Date DESC;";
 	$table .= "</table";
 
 return $table;
-
+}
 
 function report($sql, $subject = '', $day = '0')
 {
