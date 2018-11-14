@@ -189,11 +189,11 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= $cushead . "<td colspan='3'>" . notes($cc, $day) . "</td></th>\r\n";
+		$table .= $cushead . "<td colspan='2'>" . notes($cc, $day) . "</td></th>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
 		$cushead = "<th>";
-		$table .= "</table><table>";
+		//$table .= "</table><table>";
 
 		$table .= $hdr;
 		$table .= "\r\n";
