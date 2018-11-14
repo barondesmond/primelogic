@@ -26,7 +26,7 @@ function report($sql, $subject = '')
 		$cushead = "<tr>";
 	}	
 	$CCusNo = '';
-$cus = array('CusNo', 'LastName', 'phone');
+$cus = array('CustNo', 'LastName', 'phone');
 	foreach ($db as $key=> $value)
 	{
 		if (!$hdr && !in_array($key, $cus))
