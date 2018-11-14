@@ -118,7 +118,7 @@ function notes($CustNo, $day)
 			//echo $table;
 		//exit;
 	}
-return wordwrap($row, 50);
+return wordwrap($row, 25);
 }
 
 function report($sql, $subject = '', $day = '0')
