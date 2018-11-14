@@ -20,7 +20,7 @@ function notes($CustNo, $day)
 	$hdr = '';
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		$row  = '<tr>';
+		//$row  = '<tr>';
 		if (!$hdr)
 		{
 			$head = '<tr>';
@@ -32,29 +32,30 @@ function notes($CustNo, $day)
 				$head .= "<td>$key</td>";
 			}
 
-			$row .= "<td align=right>" . htmlentities($value) . "</td>";
+			//$row .= "<td align=right>" . htmlentities($value) . "</td>";
+			$row .= $value . "<BR>\r\n";
 		}
 		if (!$hdr)
 		{
 			$head .= "</tr>";
 		}
-		$row .= "</tr>";
+		//$row .= "</tr>";
 	
 		if ($head && !$hdr)
 		{
 			$hdr = $head;
-			$table .= $head;
+			//$table .= $head;
 		}
-		$table .= $row;
+		//$table .= $row;
 
 	}
 	if ($table != '')
 	{
-		$table = "<table>" . $table . "</table>";
+		//$table = "<table>" . $table . "</table>";
 			//echo $table;
 		//exit;
 	}
-return $table;
+return $row;
 }
 
 function report($sql, $subject = '', $day = '0')
