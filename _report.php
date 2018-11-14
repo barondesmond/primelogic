@@ -152,7 +152,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		if (!$hdr && !in_array($key, $cus))
 		{
-			$head .= "<td>$key</td>";
+			$head .= "<td align=right>$key</td>";
 		
 		}
 		if ($key == 'CustNo')
