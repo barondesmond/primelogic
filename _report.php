@@ -66,7 +66,7 @@ $cus = array('CusNo', 'LastName', 'phone');
 		$table .= $cushead . "</tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $db['CustNo'];
-		unset($cushead);
+		$cushead = "<tr>";
 	}
 	$table .= $row . "\r\n";
 	unset($row);
