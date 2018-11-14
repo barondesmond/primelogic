@@ -62,11 +62,11 @@ function report($sql, $subject = '', $day = '0')
 {
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
-	$html = "<html>
+	$html = '<html>
 <head>
-  <title>$subject</title>
+  <title>' . $subject . '</title>
 </head>
-<body><font size="-1">";
+<body><font size="-1">';
 	$table = '';
 	$row = '';
 	$head = '';
