@@ -144,7 +144,7 @@ function report($sql, $subject = '', $day = '0')
 	if (!$hdr)
 	{
 		$head = "<tr>";
-		$cushead = "<th>";
+		$cushead = "<tr>";
 	
 	}	
 $cus = array('CustNo', 'LastName', 'phone');
@@ -189,10 +189,10 @@ $cus = array('CustNo', 'LastName', 'phone');
 	{
 		//echo $cushead
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
-		$table .= $cushead . "<td colspan='2'>" . notes($cc, $day) . "</td></th>\r\n";
+		$table .= $cushead . "<td colspan='2'>" . notes($cc, $day) . "</td></tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $cc;
-		$cushead = "<th>";
+		$cushead = "<tr>";
 		//$table .= "</table><table>";
 
 		$table .= $hdr;
