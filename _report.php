@@ -81,6 +81,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 
 	$html .= $table;
 	$html .= "</body>";
+	echo $html;
 return $html;
 }     
 
