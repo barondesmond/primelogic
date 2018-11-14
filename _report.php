@@ -23,30 +23,49 @@ function report($sql, $subject = '')
 	if (!$hdr)
 	{
 		$head = "<tr>";
+		$cushead .= "<tr>";
 	}	
-
+	$CCusNo = '';
+$cus = array('CusNo', 'LastName', 'phone');
 	foreach ($db as $key=> $value)
 	{
-		if (!$hdr)
+		if (!$hdr && !in_array($key, $cus)
 		{
 			$head .= "<td>$key</td>";
-		}	
+		
+		}
+		if (!$chdr && in_array($key, $cus))
+		{
+	
+			$cushead .= "<td>$key</td>";
+			$cusrow .= "<td>" . htmlentities($value) . "</td>";
+		}
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
 			$value = money_format('%.2n', $value);
 		}
-		$row .= "<td align=right>" . ($value) . "</td>";
+		if (!in_array($key, $cus))
+		{		
+			$row .= "<td align=right>" . htmlentities($value) . "</td>";
+		}
 	}
 	if (!$hdr)
 	{
 		$head .= "</tr>";
 	}
 	$row .= "</tr>";
+	
 	if ($head && !$hdr)
 	{
 		$hdr = $head;
 		$table .= $hdr;
 		$table .= "\r\n";
+	}
+	if ($db['CustNo'] != $CCusNo)
+	{
+		$table .= $cushead . "</tr>\r\n";
+		$table .= $cusrow . "</tr>\r\n";
+		$CCusNo = $db['CustNo'];
 	}
 	$table .= $row . "\r\n";
 	unset($row);
