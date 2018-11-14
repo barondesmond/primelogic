@@ -5,7 +5,8 @@ function notes($CustNo, $day)
 	$sql = "SELECT * FROM Collectn WHERE CustNo= '0000040'
 and Date < DATEADD(DD, " . $day * -1 . ", getdate() and Date > DATEADD(DD, " . $day * -1 - 30 . ", getdate()) 
 ORDER BY Date DESC;";
-	
+	echo $sql;
+	exit;
 	$res = mssql_query($sql);
 
 	$table = '';
