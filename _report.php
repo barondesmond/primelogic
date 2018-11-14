@@ -64,7 +64,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 		$hdr = $head;
 	
 	}
-	if ($cc != $CCusNo)
+	if ($cc != $CCusNo && $cc != '')
 	{
 		$table .= $cushead . "</tr>\r\n";
 		//$table .= $cusrow . "</tr>\r\n";
