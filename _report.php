@@ -57,7 +57,7 @@ function finchg($CustNo, $day)
 	//}
 
 return $table;
-
+}
 
 function notes($CustNo, $day)
 {
