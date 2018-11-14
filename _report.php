@@ -29,7 +29,7 @@ function report($sql, $subject = '')
 $cus = array('CusNo', 'LastName', 'phone');
 	foreach ($db as $key=> $value)
 	{
-		if (!$hdr && !in_array($key, $cus)
+		if (!$hdr && !in_array($key, $cus))
 		{
 			$head .= "<td>$key</td>";
 		
@@ -37,8 +37,8 @@ $cus = array('CusNo', 'LastName', 'phone');
 		if (!$chdr && in_array($key, $cus))
 		{
 	
-			$cushead .= "<td>$key</td>";
-			$cusrow .= "<td>" . htmlentities($value) . "</td>";
+			//$cushead .= "<td>$key</td>";
+			$cushead .= "<td>" . htmlentities($value) . "</td>";
 		}
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
@@ -64,7 +64,7 @@ $cus = array('CusNo', 'LastName', 'phone');
 	if ($db['CustNo'] != $CCusNo)
 	{
 		$table .= $cushead . "</tr>\r\n";
-		$table .= $cusrow . "</tr>\r\n";
+		//$table .= $cusrow . "</tr>\r\n";
 		$CCusNo = $db['CustNo'];
 	}
 	$table .= $row . "\r\n";
