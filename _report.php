@@ -66,7 +66,7 @@ function report($sql, $subject = '', $day = '0')
 <head>
   <title>$subject</title>
 </head>
-<body>";
+<body><font size="-1">";
 	$table = '';
 	$row = '';
 	$head = '';
@@ -140,7 +140,7 @@ $cus = array('CustNo', 'LastName', 'phone');
      $table .= "</table>\r\n";
 
 	$html .= $table;
-	$html .= "</body>";
+	$html .= "</font></body>";
 	//echo $html;
 return $html;
 }     
