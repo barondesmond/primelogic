@@ -8,7 +8,7 @@ $dept = '';
 
 if ($argv[1])
 {
-	$email = $argv[1];
+	$email[] = $argv[1];
 }
 else
 {
@@ -38,7 +38,11 @@ foreach ($da as $day=> $emails)
 	{
 		$email_send = $email;
 	}
-	report_basis($day, $day2, $emp, $dept, $email_send);
+	foreach ($email_send as $send)
+	{
+		echo "Email = $send \n";
+		//report_basis($day, $day2, $emp, $dept, $email_send);
+	}
 }
 
 foreach ($sm as $emp => $emails)
@@ -53,7 +57,11 @@ foreach ($sm as $emp => $emails)
 	{
 		$email_send = $email;
 	}
-	report_basis($day, $day2, $emp, $dept, $email_send);
+	foreach ($email_send as $send)
+	{
+		echo "Email = $send \n";
+		//report_basis($day, $day2, $emp, $dept, $email_send);
+	}
 }
 unset($emp);
 
@@ -69,7 +77,11 @@ foreach ($dp as $dept => $emails)
 	{
 		$email_send = $email;
 	}
-	report_basis($day, $day2, $emp, $dept, $email_send);
+	foreach ($email_send as $send)
+	{
+		echo "Email = $send \n";
+		//report_basis($day, $day2, $emp, $dept, $email_send);
+	}
 }
 
 

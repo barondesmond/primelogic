@@ -41,7 +41,7 @@ foreach ($da as $day=> $emails)
 	foreach ($email_send as $send)
 	{
 		echo "Email = $send \n";
-		//report_basis($day, $day2, $emp, $dept, $email_send);
+		report_basis($day, $day2, $emp, $dept, $email_send);
 	}
 }
 
@@ -60,7 +60,7 @@ foreach ($sm as $emp => $emails)
 	foreach ($email_send as $send)
 	{
 		echo "Email = $send \n";
-		//report_basis($day, $day2, $emp, $dept, $email_send);
+		report_basis($day, $day2, $emp, $dept, $email_send);
 	}
 }
 unset($emp);
@@ -80,7 +80,7 @@ foreach ($dp as $dept => $emails)
 	foreach ($email_send as $send)
 	{
 		echo "Email = $send \n";
-		//report_basis($day, $day2, $emp, $dept, $email_send);
+		report_basis($day, $day2, $emp, $dept, $email_send);
 	}
 }
 
