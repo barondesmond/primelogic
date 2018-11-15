@@ -241,7 +241,7 @@ ORDER BY Sales.CustNo ASC;";
 
 $html = report($sql, $subject2[$day], $day);
 
-if (isset($email)
+if (isset($email))
 {
 	$email = email_alias($day, $emp, $dept);
 }
