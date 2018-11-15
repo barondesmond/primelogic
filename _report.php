@@ -218,3 +218,32 @@ $cus = array('CustNo', 'LastName', 'phone');
 return $html;
 }     
 
+function report_basis($day='0', $day2='30', $emp='', $dept='', $email = '')
+{
+
+
+$sql2 = "SELECT CONVERT(decimal(12,2), SUM(InvAmt-Paid)) as Amt  FROM Sales, Receivab 
+WHERE Sales.Invoice = Receivab.Invoice and  DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate())  and PaidOff is NULL ";
+$res2 = mssql_query($sql2);
+$db = mssql_fetch_array($res2);
+
+	setlocale(LC_MONETARY, 'en_US.UTF-8');
+
+$subject = "Ar Report " . $day . '-' . $day2 . " $emp $dept " . money_format('%.2n', $db[Amt]);
+$subject2 = "<td align=left colspan'3'><h1>Ar Report ' . $day . '-' . $day2 . " $emp $dept " . '</H1></td><td align=right colspan='4'><h1>" . money_format('%.2n', $db[Amt]) . "</h1></td>";
+
+$sql = "SELECT Customer.CustNo, Sales.Invoice, ISNULL(Receivab.JobNumber, Dispatch) as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
+FROM Sales, Receivab, Customer
+WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
+and DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL 
+ORDER BY Sales.CustNo ASC;";
+
+
+$html = report($sql, $subject2[$day], $day);
+
+if (isset($email)
+{
+	$email = email_alias($day, $emp, $dept);
+}
+
+email_report($email, $subject, $html);
