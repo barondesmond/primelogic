@@ -165,7 +165,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 			//$cushead .= "<td>$key</td>";
 			if ($key != 'CustNo')
 			{
-				$cushead .= '<b>' . $value . '</b></td>';
+				$cushead .= '<td><b>' . $value . '</b></td>';
 			}
 		}
 		if ($key == 'InvAmts' || $key == 'Paids')
