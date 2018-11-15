@@ -249,7 +249,7 @@ echo $sql;
 
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
-$subject = "Ar Report " . $day1 . $day2 . " $emp $dept " . money_format('%.2n', $db[Amt]);
+$subject = "Ar Report " . $day . $day2 . " $emp $dept " . money_format('%.2n', $db[Amt]);
 $subject2 = "<td align=left colspan'3'><h1>Ar Report " . $day .  $day2 . " $emp $dept " . "</H1></td><td align=right colspan='4'><h1>" . money_format('%.2n', $db[Amt]) . "</h1></td>";
 
 
