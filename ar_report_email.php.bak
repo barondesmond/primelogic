@@ -19,8 +19,8 @@ else
 	$da[60] = 'gwen@plisolutions.com, nicole@plisolutions.com';
 	$da[90] = 'gwen@plisolutions.com, shannon@plisolutions.com, arthur@plisolutions.com';
 	//Salesman
-	$sm[0003] = 'david@plisolutions.com';
-	$sm[0057] = 'beau@plisolutions.com';
+	$sm['0003'] = 'david@plisolutions.com';
+	$sm['0057'] = 'beau@plisolutions.com';
 	//Dept
 	$dp[30] = 'arthur@plisolutions.com';
 	$dp[40] = 'arthur@plisolutions.com';
