@@ -240,7 +240,7 @@ $db = mssql_fetch_array($res2);
 $sql = "SELECT Customer.CustNo, Sales.Invoice, ISNULL(Receivab.JobNumber, Dispatch) as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
 FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
-and DueDate < DATEADD(DD, " . $day . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL $empsql $deptsql
+and DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL $empsql $deptsql
 ORDER BY Sales.CustNo ASC;";
 echo $sql;
 
