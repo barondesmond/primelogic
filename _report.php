@@ -245,7 +245,7 @@ $subject2 = "<td align=left colspan'3'><h1>Ar Report " . $day . '-' . $day2 . " 
 
 
 
-$html = report($sql, $subject2[$day], $day);
+$html = report($sql, $subject2, $day);
 
 if (isset($email))
 {
