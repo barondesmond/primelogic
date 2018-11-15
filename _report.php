@@ -1,10 +1,8 @@
 <?php
 
-function finchg($CustNo, $day)
+function finchg($CustNo, $day1, $day2)
 {
 
-	$day1 = $day * -1;
-	$day2 = $day1 - 30;
 	$sql = "SELECT Invoice, '' as JB, Dept, '' as Terms, CONVERT(varchar(10), InvDate, 101) as InvDates, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts FROM Receivab WHERE CustNo=" . $CustNo . " and Type = 'F'
 	and InvDate < DATEADD(DD, " . $day1 . ", getdate()) and InvDate > DATEADD(DD, " . $day2 . ", getdate()) 
 	ORDER BY InvDate DESC;";
@@ -123,7 +121,7 @@ function notes($CustNo, $day)
 return wordwrap($row, 65, "<BR>\r\n");
 }
 
-function report($sql, $subject = '', $day = '0')
+function report($sql, $subject = '', $day1, $day2)
 {
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
 
@@ -204,7 +202,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 		$table .= $hdr;
 		$table .= "\r\n";
 
-		$table .= finchg($cc, $day);
+		$table .= finchg($cc, $day1, $day2);
 	}
 	$table .= $row . "\r\n";
 	unset($row);
@@ -224,11 +222,11 @@ function report_basis($day='0', $day2='30', $emp='', $dept='', $email = '')
 $day1 = $day * -1;
 $day2 = $day2 * -1;
 
-	if ($emp != '')
+	if (isset($emp) && $emp != '' )
 	{
 		$empsql = " and Salesman = '$emp' ";
 	}
-	if ($dept != '')
+	if (if (isset($dept) && $dept != '')
 	{
 		$deptsql = " and Receivab.Dept = '$dept' ";
 	}
@@ -254,7 +252,7 @@ $subject2 = "<td align=left colspan'3'><h1>Ar Report " . $day .  $day2 . " $emp 
 
 
 
-$html = report($sql, $subject2, $day);
+$html = report($sql, $subject2, $day1, $day2);
 
 email_report($email, $subject, $html);
 
