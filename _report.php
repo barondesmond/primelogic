@@ -226,7 +226,7 @@ $day2 = $day2 * -1;
 	{
 		$empsql = " and Salesman = '$emp' ";
 	}
-	if (if (isset($dept) && $dept != '')
+	if (isset($dept) && $dept != '')
 	{
 		$deptsql = " and Receivab.Dept = '$dept' ";
 	}
