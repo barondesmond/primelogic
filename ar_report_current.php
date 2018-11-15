@@ -20,12 +20,12 @@ if (isset($argv[1]))
  }
  if (isset($argv[3]))
  {
-	 $emp = $argv[2];
+	 $emp = $argv[3];
  }
 
  if (isset($argv[4]))
  {
-	 $dept = $argv[3];
+	 $dept = $argv[4];
  }
 
  echo report_basis($day, $day2, $emp, $dept, $email);
