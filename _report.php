@@ -246,4 +246,6 @@ if (isset($email))
 	$email = email_alias($day, $emp, $dept);
 }
 
-email_report($email, $subject, $html);
+return email_report($email, $subject, $html);
+
+}

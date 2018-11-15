@@ -28,7 +28,7 @@ if (isset($argv[1]))
 	 $dept = $argv[3];
  }
 
- report_basis($day, $day2, $emp, $dept, $email);
+ echo report_basis($day, $day2, $emp, $dept, $email);
 
 
 ?>
