@@ -223,7 +223,7 @@ function report_basis($day='0', $day2='30', $emp='', $dept='', $email = '')
 
 
 $sql2 = "SELECT CONVERT(decimal(12,2), SUM(InvAmt-Paid)) as Amt  FROM Sales, Receivab 
-WHERE Sales.Invoice = Receivab.Invoice and  DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate())  and PaidOff is NULL ";
+WHERE Sales.Invoice = Receivab.Invoice and  DueDate < DATEADD(DD, " . $day . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate())  and PaidOff is NULL ";
 $res2 = mssql_query($sql2);
 $db = mssql_fetch_array($res2);
 
@@ -235,7 +235,7 @@ $subject2 = "<td align=left colspan'3'><h1>Ar Report " . $day . '-' . $day2 . " 
 $sql = "SELECT Customer.CustNo, Sales.Invoice, ISNULL(Receivab.JobNumber, Dispatch) as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
 FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
-and DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL 
+and DueDate < DATEADD(DD, " . $day . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL 
 ORDER BY Sales.CustNo ASC;";
 
 
@@ -246,6 +246,7 @@ if (isset($email))
 	$email = email_alias($day, $emp, $dept);
 }
 
-return email_report($email, $subject, $html);
+email_report($email, $subject, $html);
 
+return $html
 }
