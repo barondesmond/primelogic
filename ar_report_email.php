@@ -32,7 +32,7 @@ foreach ($da as $day=> $emails)
 {
 	if ($day == '90')
 	{
-		$da2 = '1095';
+		$day2 = '1095';
 	}
 	elseif ($day == '60')
 	{
@@ -51,6 +51,7 @@ foreach ($sm as $emp => $emails)
 	$day2 = '60';
 	report_basis($day, $day2, $emp, $dept, $email);
 }
+unset($emp);
 
 foreach ($dp as $dept => $emails)
 {
