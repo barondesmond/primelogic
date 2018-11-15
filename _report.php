@@ -224,6 +224,7 @@ function report_basis($day='0', $day2='30', $emp='', $dept='', $email = '')
 
 $sql2 = "SELECT CONVERT(decimal(12,2), SUM(InvAmt-Paid)) as Amt  FROM Sales, Receivab 
 WHERE Sales.Invoice = Receivab.Invoice and  DueDate < DATEADD(DD, " . $day . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate())  and PaidOff is NULL ";
+echo $sql2
 $res2 = mssql_query($sql2);
 $db = mssql_fetch_array($res2);
 
@@ -237,7 +238,7 @@ FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
 and DueDate < DATEADD(DD, " . $day . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL 
 ORDER BY Sales.CustNo ASC;";
-
+echo $sql;
 
 $html = report($sql, $subject2[$day], $day);
 
