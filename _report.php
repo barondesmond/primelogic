@@ -242,7 +242,7 @@ FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
 and DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL $empsql $deptsql
 ORDER BY Sales.CustNo ASC;";
-echo $sql;
+//echo $sql;
 
 
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
