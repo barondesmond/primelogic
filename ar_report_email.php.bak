@@ -30,14 +30,30 @@ foreach ($da as $day=> $emails)
 	{
 		$day2 = $day + 30;
 	}
-	report_basis($day, $day2, $emp, $dept, $email);
+	if (!isset($email))
+	{
+		$email_send = $emails;
+	}
+	else
+	{
+		$email_send = $email;
+	}
+	report_basis($day, $day2, $emp, $dept, $email_send);
 }
 
 foreach ($sm as $emp => $emails)
 {
 	$day = '31';
 	$day2 = '60';
-	report_basis($day, $day2, $emp, $dept, $email);
+	if (!isset($email))
+	{
+		$email_send = $emails;
+	}
+	else
+	{
+		$email_send = $email;
+	}
+	report_basis($day, $day2, $emp, $dept, $email_send);
 }
 unset($emp);
 
@@ -45,7 +61,15 @@ foreach ($dp as $dept => $emails)
 {
 	$day = '31';
 	$day2 = '60';
-	report_basis($day, $day2, $emp, $dept, $email);
+	if (!isset($email))
+	{
+		$email_send = $emails;
+	}
+	else
+	{
+		$email_send = $email;
+	}
+	report_basis($day, $day2, $emp, $dept, $email_send);
 }
 
 

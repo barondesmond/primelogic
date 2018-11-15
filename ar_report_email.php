@@ -12,7 +12,7 @@ if ($argv[1])
 }
 else
 {
-	$email = 'barondesmond@gmail.com';
+	//$email = 'barondesmond@gmail.com';
 }
 
 	
