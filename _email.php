@@ -10,7 +10,7 @@ require 'PHPMailer/src/SMTP.php';
 	//days (0 current, 60 = 60-75, 90 = 90+)
 	$da[0][] = 'service@plisolutions.com';
 	$da[0][] = 'dispatch@plisolutions.com';
-	$da[60][] = 'gwen@plisolutions.com'
+	$da[60][] = 'gwen@plisolutions.com';
 	$da[60][] = 'nicole@plisolutions.com';
 	$da[90][] = 'gwen@plisolutions.com';
 	$da[90][] = 'shannon@plisolutions.com';
