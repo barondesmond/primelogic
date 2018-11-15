@@ -248,5 +248,5 @@ if (isset($email))
 
 email_report($email, $subject, $html);
 
-return $html
+return $html;
 }
