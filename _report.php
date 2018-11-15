@@ -256,11 +256,6 @@ $subject2 = "<td align=left colspan'3'><h1>Ar Report " . $day .  $day2 . " $emp 
 
 $html = report($sql, $subject2, $day);
 
-if (isset($email))
-{
-	$email = email_alias($day, $emp, $dept);
-}
-
 email_report($email, $subject, $html);
 
 return $html;
