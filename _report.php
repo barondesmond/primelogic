@@ -224,12 +224,11 @@ function report_basis($day='0', $day2='30', $emp='', $dept='', $email = '')
 $day1 = $day * -1;
 $day2 = $day2 * -1;
 
-	if (isset($emp))
+	if ($emp != '')
 	{
 		$empsql = " and Salesman = '$emp' ";
-
 	}
-	if (isset($dept))
+	if ($dept != '')
 	{
 		$deptsql = " and Receivab.Dept = '$dept' ";
 	}
