@@ -6,8 +6,8 @@ include("_email.php");
 
 $day = '0';
 $day2 = '30';
-$emp = ' ';
-$dept = ' ';
+$emp = '';
+$dept = '';
 $email = 'barondesmond@gmail.com';
 
 if (isset($argv[1]))
@@ -20,7 +20,7 @@ if (isset($argv[1]))
  }
  if (isset($argv[3]))
  {
-	 	 $emp = $argv[2];
+	 $emp = $argv[2];
  }
 
  if (isset($argv[4]))
