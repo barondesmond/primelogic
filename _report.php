@@ -369,6 +369,8 @@ function location_no_email($arr)
 		{
 			$head = '<tr>';
 		}
+		print_r($db);
+		echo "hello here";
 		foreach ($db as $key=> $value)
 		{
 			if (!$hdr)
