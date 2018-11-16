@@ -351,7 +351,7 @@ $res = mssql_query($sql);
 	print_r($curInv);
 	echo "No Email Invoices";
 	print_r($noemail);
-	$table = location_no_email
+	$table = location_no_email($noemail);
 	echo $table;
 	unset($noemai);
 }
