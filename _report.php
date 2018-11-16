@@ -261,7 +261,7 @@ return $html;
 
 
 
-function location_basis();
+function location_basis()
 {
 $sql = "
 SELECT  LocName, 
