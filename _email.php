@@ -27,7 +27,7 @@ require 'PHPMailer/src/SMTP.php';
 	$dp[70][] = 'arthur@plisolutions.com';
 
 
-function email_report($email, $subject, $body)
+function email_report($email, $subject, $body, $filename='', $cid='', $name='' )
 {
 
 	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -49,7 +49,11 @@ try {
     $mail->addReplyTo('baron@desmond.com');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
-
+	if (isset($filename) && isset($cid) && isset($name))
+	{
+		$mail->AddEmbeddedImage($filename, $cid, $name);
+	}
+	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
     //Attachments
     //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name

@@ -24,7 +24,7 @@ require 'PHPMailer/src/SMTP.php';
 	$dp[50][] = 'arthur@plisolutions.com';
 	$dp[60][] = 'clint@plisolutions.com';
 	$dp[60][] = 'shannon@plisolutions.com';
-	$dp[70] = 'arthur@plisolutions.com';
+	$dp[70][] = 'arthur@plisolutions.com';
 
 
 function email_report($email, $subject, $body)
