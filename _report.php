@@ -258,3 +258,54 @@ email_report($email, $subject, $html);
 
 return $html;
 }
+
+
+
+function location_basis();
+{
+$sql = "
+SELECT  LocName, 
+ Case
+ WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailTasks1 = '2' or EmailTasks2 = '255')  THEN Email
+ WHEN (Email2 not like '%[^a-z,0-9,@,.]%' and Email2 like '%_@_%_.__%') and (EmailTasks2 = '2' or EmailTasks2 = '255') THEN Email2
+ WHEN (Email3 not like '%[^a-z,0-9,@,.]%' and Email3 like '%_@_%_.__%') and (EmailTasks3 = '2' or EmailTasks3 = '255') THEN Email3
+ WHEN (Email4 not like '%[^a-z,0-9,@,.]%' and Email4 like '%_@_%_.__%') and (EmailTasks4 = '2' or EmailTasks4 = '255') THEN Email4
+ WHEN (Email5 not like '%[^a-z,0-9,@,.]%' and Email5 like '%_@_%_.__%') and (EmailTasks5 = '2' or EmailTasks5 = '255') THEN Email5
+ WHEN (Email6 not like '%[^a-z,0-9,@,.]%' and Email6 like '%_@_%_.__%') and (EmailTasks6 = '2' or EmailTasks6 = '255') THEN Email6
+ ELSE 'No Email' 
+ END
+ as Emailer, Receivab.Invoice, CASE WHEN Sales.JobNumber != '' THEN Sales.JobNumber ELSE Dispatch END as JobDispatch, Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates, 
+ DATEDIFF ( dd , DueDate , getdate() ) as DaysPastDue, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts 
+
+FROM Customer
+INNER JOIN Sales ON Customer.CustNo = Sales.CustNo
+INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
+INNER JOIN Location ON Receivab.CustNo = Location.CustNo and Receivab.LocNo = Location.LocNo
+WHERE 
+(EmailTasks1 = '2' 
+or EmailTasks2 = '2' 
+or EmailTasks3 = '2'
+or EmailTasks4 = '2'
+or EmailTasks5 = '2'
+or EmailTasks6 = '2'
+or EmailTasks1 = '255'
+or EmailTasks2 = '255'
+or EmailTasks3 = '255'
+or EmailTasks4 = '255'
+or EmailTasks5 = '255'
+or EmailTasks6 = '255'
+)
+and LocationInactive = '0'
+and CustomerInactive = '0'
+and Paid < InvAmt and InvAmt > 0 and PaidOff is NULL
+ORDER BY Customer.CustNo, Emailer, Location.LocNo;";
+
+$res = mssql_query($sql);
+	while ($db = mssql_fetch_assoc($res, MSSQL_ASSOC)
+	{
+	print_r($db);
+	}
+
+}
+
+?>
