@@ -51,7 +51,7 @@ try {
     //$mail->addBCC('bcc@example.com');
 	if (isset($filename) && isset($cid) && isset($name))
 	{
-		$mail->AddEmbeddedImage($filename, $cid, $name);
+		$mail->AddEmbeddedImage($filename, $cid, $name, 'base64', 'image/png');
 		echo "$filename $cid $name";
 		exit;
 	}
