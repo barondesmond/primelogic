@@ -52,6 +52,8 @@ try {
 	if (isset($filename) && isset($cid) && isset($name))
 	{
 		$mail->AddEmbeddedImage($filename, $cid, $name);
+		echo "$filename $cid $name";
+		exit;
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
     //Attachments
