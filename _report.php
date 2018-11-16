@@ -315,7 +315,7 @@ $res = mssql_query($sql);
 		}
 		else
 		{	
-			if ($db['CustNo'] != $curCustNo || ($db['CustNo'] == $curCustNo && $db['emailer'] != $curEmailer))
+			if ($db['CustNo'] != $curCustNo || ($db['CustNo'] == $curCustNo && $db['Emailer'] != $curEmailer))
 			{
 				//queue email if exists
 				//start email
