@@ -358,7 +358,7 @@ $res = mssql_query($sql);
 
 function location_no_email($arr)
 {
-	$table = '';
+	$table = '<table>';
 	$row = '';
 	$head = '';
 	$hdr = '';
@@ -384,9 +384,9 @@ function location_no_email($arr)
 		}
 		if (!$hdr)
 		{
-			$head .= "</tr>";
+			$head .= "</tr>\r\n";
 		}
-		$row .= "</tr>";
+		$row .= "</tr>\r\n";
 	
 		if ($head && !$hdr)
 		{
@@ -397,7 +397,7 @@ function location_no_email($arr)
 		
 
 	}
-
+	$table = '</table>';
 return $table;
 }
 
