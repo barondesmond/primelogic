@@ -237,7 +237,7 @@ echo $sql2;
 $res2 = mssql_query($sql2);
 $db = mssql_fetch_array($res2);
 
-$sql = "SELECT Customer.CustNo, Sales.Invoice, ISNULL(Receivab.JobNumber, Dispatch) as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
+$sql = "SELECT Customer.CustNo, Sales.Invoice, CASE WHEN Sales.JobNumber != '' THEN Sales.JobNumber ELSE Sales.Dispatch END  as JobDispatch, CONCAT(Customer.LastName, '<BR>', ISNULL(phone1, phone2)) as LastName , Sales.Dept, Terms, CONVERT(varchar(10), Sales.DueDate, 101) as DueDates , CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts  
 FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
 and DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL and Paid != InvAmt $empsql $deptsql
