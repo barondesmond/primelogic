@@ -314,7 +314,7 @@ $res = mssql_query($sql);
 			$noemail[] = $db;
 		}
 		else
-		{
+		{	
 			if ($db[CustNo] != $curCustNo || ($db[CustNo] == $curCustNo && $db[emailer] != $curEmailer))
 			{
 				//queue email if exists
@@ -335,12 +335,13 @@ $res = mssql_query($sql);
 			if ($db[DaysPastDue] >0)
 			{
 				$pastInv[] = $db;
+			}
 			else
 			{
 				$curInv[] = $db;
 			}
 				print_r($db);
-
+		}
 	}
 	
 	print_r($noemail);
