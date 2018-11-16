@@ -342,7 +342,7 @@ $res = mssql_query($sql);
 			{
 				$curInv[] = $db;
 			}
-				print_r($db);
+				//print_r($db);
 		}
 	}
 	echo "Past Invoices ";
