@@ -328,7 +328,9 @@ $res = mssql_query($sql);
 			if ($curLocNo != $db['LocNo'])
 			{
 				//Location Table
+				echo "Past Invoices";
 				print_r($pastInv);
+				echo "Cur Invoices";
 				print_r($curInv);
 				//unset $curInv && pastInv
 			}
@@ -343,7 +345,11 @@ $res = mssql_query($sql);
 				print_r($db);
 		}
 	}
-	
+	echo "Past Invoices ";
+	print_r($pastInv);
+	echo "Cur Invoices ";
+	print_r($curInv);
+	echo "No Email Invoices";
 	print_r($noemail);
 	unset($noemai);
 }	
