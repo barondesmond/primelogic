@@ -399,6 +399,7 @@ function location_no_email($arr)
 			$hdr = $head;
 			//$table .= $head;
 		}
+		unset($db);
 		$table .= $row;
 		
 
