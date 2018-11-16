@@ -309,7 +309,7 @@ $res = mssql_query($sql);
 
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		if ($db['emailer'] == 'No Email')
+		if ($db['Emailer'] == 'No Email')
 		{
 			$noemail[] = $db;
 		}
@@ -321,8 +321,8 @@ $res = mssql_query($sql);
 				//start email
 				//logo
 				//finance charge
-				$curCustNo = $db['custNo'];
-				$curEmailer = $db['emailer'];
+				$curCustNo = $db['CustNo'];
+				$curEmailer = $db['Emailer'];
 				$curLocNo = $db['LocNo'];
 			}
 			if ($curLocNo != $db['LocNo'])
