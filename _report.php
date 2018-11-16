@@ -365,6 +365,10 @@ function location_no_email($arr)
 	for ($i=0; $i < count ($arr); $i++) 
 	{
 		$db = $arr[$i];
+		if (is_array($db))
+		{
+			print_r($db);
+		}
 		$row  = '<tr>';
 		if (!$hdr)
 		{
