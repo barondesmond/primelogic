@@ -309,30 +309,30 @@ $res = mssql_query($sql);
 
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		if ($db[emailer] == 'No Email')
+		if ($db['emailer'] == 'No Email')
 		{
 			$noemail[] = $db;
 		}
 		else
 		{	
-			if ($db[CustNo] != $curCustNo || ($db[CustNo] == $curCustNo && $db[emailer] != $curEmailer))
+			if ($db['CustNo'] != $curCustNo || ($db['CustNo'] == $curCustNo && $db['emailer'] != $curEmailer))
 			{
 				//queue email if exists
 				//start email
 				//logo
 				//finance charge
-				$curCustNo = $db[custNo];
-				$curEmailer = $db[emailer];
-				$curLocNo = $db[LocNo];
+				$curCustNo = $db['custNo'];
+				$curEmailer = $db['emailer'];
+				$curLocNo = $db['LocNo'];
 			}
-			if ($curLocNo != $db[LocNo])
+			if ($curLocNo != $db['LocNo'])
 			{
 				//Location Table
 				print_r($pastInv);
 				print_r($curInv);
 				//unset $curInv && pastInv
 			}
-			if ($db[DaysPastDue] >0)
+			if ($db['DaysPastDue'] >0)
 			{
 				$pastInv[] = $db;
 			}
