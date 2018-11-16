@@ -351,7 +351,54 @@ $res = mssql_query($sql);
 	print_r($curInv);
 	echo "No Email Invoices";
 	print_r($noemail);
+	$table = location_no_email
+	echo $table;
 	unset($noemai);
-}	
+}
+
+function location_no_email($arr)
+{
+	$table = '';
+	$row = '';
+	$head = '';
+	$hdr = '';
+	foreach ($arr as $db)
+	{
+		$row  = '<tr>';
+		if (!$hdr)
+		{
+			$head = '<tr>';
+		}
+		foreach ($db as $key=> $value)
+		{
+			if (!$hdr)
+			{
+				$head .= "<td>$key</td>";
+			}
+			if ($key == 'InvAmts' || $key == 'Paids')
+			{
+				$value = money_format('%.2n', $value);
+			}
+			$row .= "<td align=right>" . htmlentities($value) . "</td>";
+			//$row .= $value . "<BR>\r\n";
+		}
+		if (!$hdr)
+		{
+			$head .= "</tr>";
+		}
+		$row .= "</tr>";
+	
+		if ($head && !$hdr)
+		{
+			$hdr = $head;
+			//$table .= $head;
+		}
+		$table .= $row;
+		
+
+	}
+
+return $table;
+}
 
 ?>
