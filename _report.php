@@ -362,7 +362,7 @@ function location_no_email($arr)
 	$row = '';
 	$head = '';
 	$hdr = '';
-	foreach ($arr as $num => $db)
+	while (list($num, $db) = each ($arr)) 
 	{
 		$row  = '<tr>';
 		if (!$hdr)
