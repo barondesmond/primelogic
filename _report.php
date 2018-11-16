@@ -263,8 +263,13 @@ return $html;
 
 function location_basis()
 {
+
+	$noemail = array('');
+	$curCustNo = '';
+	$curEmailer = '';
+	$curLocNo = '';
 $sql = "
-SELECT  LocName, 
+SELECT  Customer.CustNo, Location.LocNo, Location.LocName, 
  Case
  WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailTasks1 = '2' or EmailTasks2 = '255')  THEN Email
  WHEN (Email2 not like '%[^a-z,0-9,@,.]%' and Email2 like '%_@_%_.__%') and (EmailTasks2 = '2' or EmailTasks2 = '255') THEN Email2
@@ -301,11 +306,45 @@ and Paid < InvAmt and InvAmt > 0 and PaidOff is NULL
 ORDER BY Customer.CustNo, Emailer, Location.LocNo;";
 
 $res = mssql_query($sql);
+
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-	print_r($db);
-	}
+		if ($db[emailer] == 'No Email')
+		{
+			$noemail[] = $db;
+		}
+		else
+		{
+			if ($db[CustNo] != $curCustNo || ($db[CustNo] == $curCustNo && $db[emailer] != $curEmailer))
+			{
+				//queue email if exists
+				//start email
+				//logo
+				//finance charge
+				$curCustNo = $db[custNo];
+				$curEmailer = $db[emailer];
+				$curLocNo = $db[LocNo];
+			}
+			if ($curLocNo != $db[LocNo])
+			{
+				//Location Table
+				print_r($pastInv);
+				print_r($curInv);
+				//unset $curInv && pastInv
+			}
+			if ($db[DaysPastDue] >0)
+			{
+				$pastInv[] = $db;
+			else
+			{
+				$curInv[] = $db;
+			}
+				print_r($db);
 
-}
+	}
+	
+	print_r($noemail);
+	unset($noemai);
+}	
 
 ?>
