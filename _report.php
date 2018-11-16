@@ -301,7 +301,7 @@ and Paid < InvAmt and InvAmt > 0 and PaidOff is NULL
 ORDER BY Customer.CustNo, Emailer, Location.LocNo;";
 
 $res = mssql_query($sql);
-	while ($db = mssql_fetch_assoc($res, MSSQL_ASSOC)
+	while ($db = mssql_fetch_assoc($res, MSSQL_ASSOC))
 	{
 	print_r($db);
 	}
