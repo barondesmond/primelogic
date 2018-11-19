@@ -346,8 +346,14 @@ $res = mssql_query($sql);
 					$html .= '</table>';
 					$html .= html_foot();
 					echo $html;
-					email_report("shannon@plisolutions.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
-					exit;
+					email_report("barondesmond@gmail.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
+					unset $html;
+					unset($ll);
+					$CurCustNo = '';
+					$ct['InvAmts'] = '0';
+					$pt['InvAmts'] = '0';
+					
+
 				}
 				if ($curCustNo == '')
 				{
@@ -387,7 +393,7 @@ $res = mssql_query($sql);
 				$ci .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-
+				
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
 			{
@@ -405,6 +411,9 @@ $res = mssql_query($sql);
 					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 
 					$html .= table_row($pt, $ik);
+					$pi = '';
+					$pt['InvAmts'] = '0';
+
 				}
 				if ($ci != '')
 				{
@@ -415,12 +424,27 @@ $res = mssql_query($sql);
 					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 
 					$html .= table_row($ct, $ik);
+					$ci = '';
+					$ct['InvAmts'] = '0';
 				}
 				$curLocNo = $db['LocNo'];
 
 			}
 		}
 	}
+
+		if ($html != '')
+		{
+					$html .= '</table>';
+					$html .= html_foot();
+					echo $html;
+					email_report("barondesmond@gmail.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
+					unset $html;
+					unset($ll);
+					$CurCustNo = '';
+					$ct['InvAmts'] = '0';
+					$pt['InvAmts'] = '0';					
+		}
 
 return $noe;
 }
