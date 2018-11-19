@@ -15,6 +15,10 @@ function finchg($CustNo, $day1='0', $day2 = '-1096')
 	$row = '';
 	$head = '';
 	$hdr = '';
+	if (mssql_num_rows($res) == 0)
+	{
+		return '';
+	}
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		$row  = '<tr>';
@@ -340,12 +344,17 @@ $res = mssql_query($sql);
 				}
 				if ($curCustNo == '')
 				{
+					$finchrg = finchg($db['CustNo']);
+
 					$cl = substr($db['LastName'], 0,1);
 					$html = "<table>" . html_head($cl);
-					$t['fnchg'] = 'Finance Charges';
-					$html .= table_hd($t, '', '', count($ik));				
-					$html .= finchg($db['CustNo']);
-					$html .= "\r\n";
+					if ($finchrg != '')
+					{
+
+						$t['fnchg'] = 'Finance Charges';
+						$html .= table_hd($t, '', '', count($ik));				
+						$html .= "\r\n";
+					}
 					//unset($t);					
 				}
 			    if ($curCustNo != '')
