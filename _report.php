@@ -402,6 +402,8 @@ $res = mssql_query($sql);
 					$html .= table_hd($p, $p, 'red', count($ik));
 					$html .= table_hd($ik, $ik, 'grey');
 					$html .= $pi;
+					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
+
 					$html .= table_row($pt, $ik);
 				}
 				if ($ci != '')
@@ -410,6 +412,8 @@ $res = mssql_query($sql);
 					$html .= table_hd($c, $c, 'blue', count($ik));
 					$html .= table_hd($ik, $ik, 'grey');
 					$html .= $ci;
+					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
+
 					$html .= table_row($ct, $ik);
 				}
 				$curLocNo = $db['LocNo'];
