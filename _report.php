@@ -391,7 +391,7 @@ $res = mssql_query($sql);
 				{
 					$c['ci'] = 'Current Invoices';
 					$html .= table_hd($c, '', '#yellow', count($ik));
-					$html .= table_hd($id, $ik, '#green');
+					$html .= table_hd($ik, $ik, '#green');
 					$html .= $ci;
 				}
 				$curLocNo = $db['LocNo'];
