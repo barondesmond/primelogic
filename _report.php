@@ -355,7 +355,8 @@ $res = mssql_query($sql);
 					$curLocNo = '';
 					$ct['InvAmts'] = '0';
 					$pt['InvAmts'] = '0';
-					
+					unset($loc);
+					unset($x);
 
 				}
 				if ($curCustNo == '')
@@ -372,6 +373,9 @@ $res = mssql_query($sql);
 						$html .= table_hd($t, '', '', count($ik));				
 						$html .= "\r\n";
 					}
+					$loc = $db['LastName'] . "<BR>Location " . $db['LocName'];
+					$x[$loc] = $loc;
+
 					//unset($t);					
 				}
 				$curCustNo = $db['CustNo'];
@@ -393,12 +397,9 @@ $res = mssql_query($sql);
 				$ct['DaysPastDue'] = 'Total Current Due';
 				
 			}
-			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
+			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo;)
 			{
-				echo "hello people";
-				$loc = $db['LastName'] . "<BR>Location " . $db['LocName'];
-				$x[$loc] = $loc;
-
+	
 				$html .= table_hd($x, $x, '', count($ik));
 				if ($pi != '')
 				{
