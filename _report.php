@@ -317,7 +317,7 @@ $res = mssql_query($sql);
 		print_r($db);
 		if ($db['Emailer'] == 'No Email')
 		{
-			$noe .= table_row($db, $ik);
+			$noe .= table_row($db);
 		}
 		else
 		{	
