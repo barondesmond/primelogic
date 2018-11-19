@@ -451,7 +451,7 @@ function table_hd($arr, $keys= '', $color = '', $colspan = '')
 			
 		$row .= "<td align=right $col2>" . $key . "</td>";
 	}
-	$row .= '</tr>' . "/r/n";
+	$row .= '</tr>' . "\r\n";
 
 return $row;
 }
