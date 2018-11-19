@@ -346,7 +346,7 @@ $res = mssql_query($sql);
 					$html .= '</table>';
 					$html .= html_foot();
 					echo $html;
-					email_report("barondesmond@gmail.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
+					email_report("shannon@plisolutions.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
 					exit;
 				}
 				if ($curCustNo == '')
