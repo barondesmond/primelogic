@@ -340,6 +340,7 @@ $res = mssql_query($sql);
 					$t['fnchg'] = 'Finance Charges';
 					$html .= table_hd($t, '', '', count($ik));				
 					$html .= finchg($db['CustNo']);
+					$html .= "\r\n";
 					//unset($t);					
 				}
 			    if ($curCustNo != '')
