@@ -363,6 +363,7 @@ $res = mssql_query($sql);
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
 			{
+				echo "hello people";
 				$html .= table_hd($x['Loc'] = $db['LastName'] . "<BR>" . $db[Location], '', '', count($ik));
 				if ($pi != '')
 				{
