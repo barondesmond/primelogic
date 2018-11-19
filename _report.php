@@ -425,7 +425,6 @@ $res = mssql_query($sql);
 					$ci = '';
 					$ct['InvAmts'] = '0';
 				}
-				$curLocNo = $db['LocNo'];
 
 			}
 		}
