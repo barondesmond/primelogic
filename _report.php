@@ -264,7 +264,7 @@ return $html;
 function location_basis()
 {
 
-	$noemail = array('');
+	//$noemail = array('');
 	$curCustNo = '';
 	$curEmailer = '';
 	$curLocNo = '';
