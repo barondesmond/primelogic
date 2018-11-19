@@ -457,7 +457,7 @@ function table_hd($arr, $keys= '', $color = '', $colspan = '')
 	}
 	if (isset($color))
 	{
-		$col = 'bgcolor=' . $color . 'red"';
+		$col = 'bgcolor="' . $color . '"';
 	}
 	$row = "<tr $col>";
 	foreach ($keys as $num =>$key)
