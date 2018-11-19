@@ -403,7 +403,7 @@ function table_row($arr, $keys='')
 	{
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
-			$value = money_format('%.2n', $value);
+			$arr[$key] = money_format('%.2n', $arr[$key]);
 		}
 		$row .= "<td align=right>" . htmlentities($arr[$key]) . "</td>";
 	}
