@@ -396,6 +396,7 @@ function table_row($arr, $keys='')
 
 	if (!$keys)
 	{
+		print_r($table_row);
 		$keys = array_keys($arr);
 		print_r($keys);
 		exit;
