@@ -385,14 +385,14 @@ $res = mssql_query($sql);
 				if ($pi != '')
 				{
 					$p['Past Due Invoices'] = 'pd';
-					$html .= table_hd($p, '', 'red', count($ik));
+					$html .= table_hd($p, $p, 'red', count($ik));
 					$html .= table_hd($ik, $ik, 'green', count($ik));
 					$html .= $pi;
 				}
 				if ($ci != '')
 				{
 					$c['Current Invoices'] = 'ci';
-					$html .= table_hd($c, '', 'yellow', count($ik));
+					$html .= table_hd($c, $c, 'yellow', count($ik));
 					$html .= table_hd($ik, $ik, 'green', count($ik));
 					$html .= $ci;
 				}
