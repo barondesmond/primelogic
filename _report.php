@@ -313,6 +313,7 @@ $res = mssql_query($sql);
 
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
+		print_r($db);
 		if ($db['Emailer'] == 'No Email')
 		{
 			$noe .= table_row($db, $ik);
