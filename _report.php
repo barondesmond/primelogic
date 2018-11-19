@@ -331,12 +331,17 @@ $res = mssql_query($sql);
 				//start email
 				//logo
 				//finance charge
-				$table = '<table>';
-
+				if ($html != '')
+				{
+					$html .= '</table>';
+					$html .= html_foot();
+					email_report("barondesmond@gmail.com", "test invoice", $html);
+					exit;
+				}
 				if ($curCustNo == '')
 				{
 					$cl = substr($db['LastName'], 0,1);
-					$html = html_head($cl);
+					$html = "<table>" . html_head($cl);
 					$t['fnchg'] = 'Finance Charges';
 					$html .= table_hd($t, '', '', count($ik));				
 					$html .= finchg($db['CustNo']);
