@@ -12,6 +12,6 @@ EmailTasks(1-6) 2,255
 
 $html = location_basis();
 //echo $html;
-email_report("barondesmond@gmail.com", "test Location No Email", $html);
+//email_report("barondesmond@gmail.com", "test Location No Email", $html);
 ?>
 
