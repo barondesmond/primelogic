@@ -475,9 +475,9 @@ function table_row($arr, $keys='')
 
 	if (!$keys)
 	{
-		print_r($keys);
+		
 		$keys = array_keys($arr);
-		print_r($keys);
+		
 		//exit;
 	}
 	$row = '<tr>';
