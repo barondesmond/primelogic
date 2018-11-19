@@ -10,7 +10,7 @@ ReceiveNotifications -1
 EmailTasks(1-6) 2,255
 */
 
-location_basis();
-
+$html = location_basis();
+echo $html;
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-function finchg($CustNo, $day1, $day2)
+function finchg($CustNo, $day1'=0', $day2 = '-1096')
 {
 
 	$sql = "SELECT Invoice, '' as JB, Dept, '' as Terms, CONVERT(varchar(10), InvDate, 101) as InvDates, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts FROM Receivab WHERE CustNo=" . $CustNo . " and Type = 'F'
@@ -268,6 +268,10 @@ function location_basis()
 	$curCustNo = '';
 	$curEmailer = '';
 	$curLocNo = '';
+	$ik = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'Paids', 'InvAmts');
+	$ci = '';
+	$pi = '';
+
 $sql = "
 SELECT  Customer.CustNo, Location.LocNo, Location.LocName, 
  Case
@@ -311,7 +315,7 @@ $res = mssql_query($sql);
 	{
 		if ($db['Emailer'] == 'No Email')
 		{
-			$noemail[] = $db;
+			$noe .= table_row($db, $ik);
 		}
 		else
 		{	
@@ -321,91 +325,115 @@ $res = mssql_query($sql);
 				//start email
 				//logo
 				//finance charge
+				$table = '<table>';
+
+				if ($curCustNo == '')
+				{
+					$cl = substr($db['LastName'), 0,1);
+					$html = html_head($cl);
+					$html .= table_row($t['fnchg'] = 'Finance Charges', '', '', count($ik));				
+					$html .= finchg($db['CustNo'])
+					unset($t);					
+				}
+				
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
 				$curLocNo = $db['LocNo'];
+
 			}
-			if ($curLocNo != $db['LocNo'])
-			{
-				//Location Table
-				echo "Past Invoices";
-				print_r($pastInv);
-				echo "Cur Invoices";
-				print_r($curInv);
-				//unset $curInv && pastInv
-			}
+	
 			if ($db['DaysPastDue'] >0)
 			{
-				$pastInv[] = $db;
+				$pi .= table_row($db, $ik);
 			}
 			else
 			{
-				$curInv[] = $db;
+				$ci .= table_row($db, $ik);
 			}
-				//print_r($db);
+			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
+			{
+				$html .= table_hd($x['Loc'] = $db['LastName'] . "<BR>" . $db[Location], '', '', count($ik));
+				if ($pi != '')
+				{
+					$html .= table_hd($p['pd'] = "Past Due Invoices", '', '#red', count($ik));
+					$html .= table_hd($ik, $ik, '#green');
+					$html .= $pi;
+				}
+				if ($ci != '')
+				{
+					$html .= table_hd($c['ci'] = 'Current Invoices', '', '#yellow', count($ik));
+					$html .= table_hd($id, $ik, '#green');
+					$html .= $ci;
+				}
+
+			}
 		}
 	}
-	echo "Past Invoices ";
-	print_r($pastInv);
-	echo "Cur Invoices ";
-	print_r($curInv);
-	echo "No Email Invoices";
-	//print_r($noemail);
-	$table = location_no_email($noemail);
-	echo $table;
-	unset($noemail);
+
+return $html
+}
+function html_head($cl='*');
+{
+	$html = '<html><head><body>';
+
+	if ($cl = '*')
+	{		
+		$html .= '<img src="cid:my-attach">', '/var/www/html/primelogic/PLIClogo.png', 'my-attach', 'PLIC logo-1.png' 
+	}
+
+return $html;
+}
+function html_foot()
+{
+	$html = '<a href=#>Unsubscribe</a>';
+
+return $html;
 }
 
-function location_no_email($arr)
+function table_row($arr, $keys='')
 {
-	$table = '<table>';
-	$row = '';
-	$head = '';
-	$hdr = '';
-	for ($i=0; $i < count ($arr); $i++) 
-	{
-		$db = $arr[$i];
-		if (is_array($db))
-		{
-			print_r($db);
-		}
-		$row  = '<tr>';
-		if (!$hdr)
-		{
-			$head = '<tr>';
-		}
-		//print_r($db);
-		while (list ($key, $value) = each ($db))
-		{
-			if (!$hdr)
-			{
-				$head .= "<td>$key</td>";
-			}
-			if ($key == 'InvAmts' || $key == 'Paids')
-			{
-				$value = money_format('%.2n', $value);
-			}
-			$row .= "<td align=right>" . htmlentities($value) . "</td>";
-			//$row .= $value . "<BR>\r\n";
-		}
-		if (!$hdr)
-		{
-			$head .= "</tr>\r\n";
-		}
-		$row .= "</tr>\r\n";
-	
-		if ($head && !$hdr)
-		{
-			$hdr = $head;
-			//$table .= $head;
-		}
-		unset($db);
-		$table .= $row;
-		
 
+	if (!$keys)
+	{
+		$keys = array_keys($arr);
 	}
-	$table = '</table>';
-return $table;
+	$row = '<tr>';
+	foreach ($keys = each ($num, $key)
+	{
+		if ($key == 'InvAmts' || $key == 'Paids')
+		{
+			$value = money_format('%.2n', $value);
+		}
+		$row .= "<td align=right>" . htmlentities($arr[$key]) . "</td>";
+	}
+	$row .= '</tr>';
+return $row;
+}
+
+
+function table_hd($arr, $keys= '', $color = '', $colspan = '')
+{
+	if (!$keys)
+	{
+		$keys = array_keys($arr);
+	}
+	if (isset($color))
+	{
+		$col = 'color="' . $color . '"';
+	}
+	$row = "<tr $col>";
+	foreach ($keys = each ($num, $key)
+	{
+		if (isset($colspan))
+		{
+			$col2 = 'colspan="' . $colspan . '"';
+		}
+			
+		$row .= "<td align=right $col2>" . $key . "</td>";
+	}
+	$row .= '</tr>';
+
+return $row;
 }
 
 ?>
