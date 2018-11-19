@@ -276,12 +276,12 @@ function location_basis()
 	$ci = '';
 	$pi = '';
 	$noe = '';
-	$p['Total Past Due'] = '0';
-	$c['Total Current Due'] = '0'
+	$pt['Total Past Due'] = '0';
+	$ct['Total Current Due'] = '0';
 	for ($i=0; $i < count($ik); $i++)
 	{
-		$p[$ik[$i]] = '';
-		$c[$ik[$i]] = '';
+		$pt[$ik[$i]] = '';
+		$ct[$ik[$i]] = '';
 	}
 $sql = "
 SELECT  Customer.CustNo, Location.LocNo, Customer.LastName, Location.LocName, 
