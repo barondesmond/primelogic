@@ -324,7 +324,6 @@ $res = mssql_query($sql);
 
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		print_r($db);
 		if ($db['Emailer'] == 'No Email')
 		{
 			if ($noe == '')
@@ -335,6 +334,8 @@ $res = mssql_query($sql);
 		}
 		else
 		{	
+			print_r($db);
+
 			if ($db['CustNo'] != $curCustNo || ($db['CustNo'] == $curCustNo && $db['Emailer'] != $curEmailer))
 			{
 				//queue email if exists
@@ -429,20 +430,7 @@ $res = mssql_query($sql);
 		}
 	}
 
-		if ($html != '')
-		{
-					$html .= '</table>';
-					$html .= html_foot();
-					echo $html;
-					$i++;
-					email_report("barondesmond@gmail.com", "test invoice $i", $html, $ll['filename'], $ll['cid'], $ll['name']);
-					unset($html);
-					unset($ll);
-					$CurCustNo = '';
-					$ct['InvAmts'] = '0';
-					$pt['InvAmts'] = '0';					
-		}
-
+	
 return $noe;
 }
 function html_head($cl='*')
