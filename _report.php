@@ -271,6 +271,7 @@ function location_basis()
 	$ik = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'Paids', 'InvAmts');
 	$ci = '';
 	$pi = '';
+	$noe = '';
 
 $sql = "
 SELECT  Customer.CustNo, Location.LocNo, Customer.LastName, Location.LocName, 
