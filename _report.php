@@ -317,6 +317,10 @@ $res = mssql_query($sql);
 		print_r($db);
 		if ($db['Emailer'] == 'No Email')
 		{
+			if ($noe == '')
+			{
+				$noe = table_hd($db);
+			}
 			$noe .= table_row($db);
 		}
 		else
