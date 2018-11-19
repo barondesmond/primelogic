@@ -437,7 +437,7 @@ function location_logo($LocName='')
 
 	}
 return $ll;
-
+}
 function html_foot()
 {
 	$html = '<a href=#>Unsubscribe</a>';
