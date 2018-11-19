@@ -352,6 +352,7 @@ $res = mssql_query($sql);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
+					$curLocNo = '';
 					$ct['InvAmts'] = '0';
 					$pt['InvAmts'] = '0';
 					
