@@ -381,18 +381,18 @@ $res = mssql_query($sql);
 				echo "hello people";
 				$x['Loc'] = $db['LastName'] . "<BR>Location " . $db['LocName'];
 
-				$html .= table_hd($x, $x, '', count($ik));
+				$html .= table_hd($x, '', '', count($ik));
 				if ($pi != '')
 				{
 					$p['Past Due Invoices'] = 'pd';
-					$html .= table_hd($p, $p, 'red', count($ik));
+					$html .= table_hd($p, 'red', count($ik));
 					$html .= table_hd($ik, $ik, 'green', count($ik();
 					$html .= $pi;
 				}
 				if ($ci != '')
 				{
 					$c['Current Invoices'] = 'ci';
-					$html .= table_hd($c, $ci, 'yellow', count($ik));
+					$html .= table_hd($c, '', 'yellow', count($ik));
 					$html .= table_hd($ik, $ik, 'green', count($ik));
 					$html .= $ci;
 				}
@@ -455,7 +455,7 @@ function table_hd($arr, $keys= '', $color = '', $colspan = '')
 	}
 	if (isset($color))
 	{
-		$col = 'style="background-color:' . $color . 'red"';
+		$col = 'bgcolor=' . $color . 'red"';
 	}
 	$row = "<tr $col>";
 	foreach ($keys as $num =>$key)
