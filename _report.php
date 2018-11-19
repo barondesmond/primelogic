@@ -348,7 +348,7 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					//email_report("barondesmond@gmail.com", "test invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name']);
+					email_report(EMAIL_SEND, "test invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name']);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
@@ -392,11 +392,9 @@ $res = mssql_query($sql);
 			else
 			{
 				$ci .= table_row($db, $ik);
-				print_r($db);
-				print_r($ct);	
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				print_r($ct);
+				
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo)
 			{
@@ -422,7 +420,7 @@ $res = mssql_query($sql);
 					$html .= table_hd($ik, $ik, 'grey');
 					$html .= $ci;
 					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
-					print_r($ct);
+	
 					$html .= table_row($ct, $ik);
 					$ci = '';
 					$ct['InvAmts'] = '0';
@@ -439,7 +437,7 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					//email_report("barondesmond@gmail.com", "test invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name']);
+					email_report(EMAIL_SEND, "test invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name']);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
