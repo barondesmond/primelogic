@@ -276,7 +276,13 @@ function location_basis()
 	$ci = '';
 	$pi = '';
 	$noe = '';
-
+	$p['Total Past Due'] = '0';
+	$c['Total Current Due'] = '0'
+	for ($i=0; $i < count($ik); $i++)
+	{
+		$p[$ik[$i]] = '';
+		$c[$ik[$i]] = '';
+	}
 $sql = "
 SELECT  Customer.CustNo, Location.LocNo, Customer.LastName, Location.LocName, 
  Case
@@ -372,10 +378,15 @@ $res = mssql_query($sql);
 			if ($db['DaysPastDue'] >0)
 			{
 				$pi .= table_row($db, $ik);
+				$p['DaysPastDue'] = 'Total Past Due';
+				$p['InvAmts'] = $p['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 			}
 			else
 			{
 				$ci .= table_row($db, $ik);
+				$c['InvAmts'] = $p['InvAmts'] + $db['InvAmts'] - $db['Paids'];
+				$c['DaysPastDue'] = 'Total Current Due';
+
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
 			{
@@ -386,17 +397,19 @@ $res = mssql_query($sql);
 				$html .= table_hd($x, $x, '', count($ik));
 				if ($pi != '')
 				{
-					$p['Past Due Invoices'] = 'Past Due Invoices';
-					$html .= table_hd($p, $p, 'red', count($ik));
+					$pt['Past Due Invoices'] = 'Past Due Invoices';
+					$html .= table_hd($pt, $pt, 'red', count($ik));
 					$html .= table_hd($ik, $ik, 'green');
 					$html .= $pi;
+					$html .= table_row($p, $ik);
 				}
 				if ($ci != '')
 				{
-					$c['Current Invoices'] = 'Current Invoices';
-					$html .= table_hd($c, $c, 'yellow', count($ik));
+					$ct['Current Invoices'] = 'Current Invoices';
+					$html .= table_hd($ct, $ct, 'yellow', count($ik));
 					$html .= table_hd($ik, $ik, 'green');
 					$html .= $ci;
+					$html .= table_row($c, $ik);
 				}
 				$curLocNo = $db['LocNo'];
 
