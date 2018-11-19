@@ -342,7 +342,11 @@ $res = mssql_query($sql);
 					$html .= finchg($db['CustNo']);
 					//unset($t);					
 				}
-				
+			    if ($curCustNo != '')
+				{
+					echo $html;
+					exit;
+				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
 				$curLocNo = $db['LocNo'];
