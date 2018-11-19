@@ -1,6 +1,6 @@
 <?php
 
-function finchg($CustNo, $day1'=0', $day2 = '-1096')
+function finchg($CustNo, $day1='0', $day2 = '-1096')
 {
 
 	$sql = "SELECT Invoice, '' as JB, Dept, '' as Terms, CONVERT(varchar(10), InvDate, 101) as InvDates, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts FROM Receivab WHERE CustNo=" . $CustNo . " and Type = 'F'
