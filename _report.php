@@ -347,7 +347,7 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					email_report("barondesmond@gmail.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
-					unset $html;
+					unset($html);
 					unset($ll);
 					$CurCustNo = '';
 					$ct['InvAmts'] = '0';
