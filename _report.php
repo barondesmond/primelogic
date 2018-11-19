@@ -394,9 +394,11 @@ $res = mssql_query($sql);
 			else
 			{
 				$ci .= table_row($db, $ik);
+				print_r($db);
+				print_r($ct);	
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				print_r($ct);				
+				print_r($ct);
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo)
 			{
