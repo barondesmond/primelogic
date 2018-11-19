@@ -372,7 +372,7 @@ $res = mssql_query($sql);
 
 return $html;
 }
-function html_head($cl='*');
+function html_head($cl='*')
 {
 	$html = '<html><head><body>';
 
