@@ -388,14 +388,14 @@ $res = mssql_query($sql);
 				{
 					$p['Past Due Invoices'] = 'pd';
 					$html .= table_hd($p, $p, 'red', count($ik));
-					$html .= table_hd($ik, $ik, 'green', count($ik));
+					$html .= table_hd($ik, $ik, 'green');
 					$html .= $pi;
 				}
 				if ($ci != '')
 				{
 					$c['Current Invoices'] = 'ci';
 					$html .= table_hd($c, $c, 'yellow', count($ik));
-					$html .= table_hd($ik, $ik, 'green', count($ik));
+					$html .= table_hd($ik, $ik, 'green');
 					$html .= $ci;
 				}
 				$curLocNo = $db['LocNo'];
