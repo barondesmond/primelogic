@@ -429,12 +429,24 @@ return $html;
 
 function location_logo($LocName='')
 {
-	if (substr($LocName, 0, 1)  == '*' || $LockName == '')
+	if (substr($LocName, 0, 1)  == '*')
 	{		
 		$ll['filename'] .= '/var/www/html/primelogic/PLIClogo.png';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'PLIClogo';
 
+	}
+	elseif (substr($LocName, 0, 1)  == '#')
+	{		
+		$ll['filename'] .= '/var/www/html/primelogic/NMT.png';
+		$ll['cid'] = 'my-attach';
+		$ll['name'] = 'NMTlogo';
+	}
+	else
+	{
+		$ll['filename'] .= '/var/www/html/primelogic/PLIS.png';
+		$ll['cid'] = 'my-attach';
+		$ll['name'] = 'PLISlogo';
 	}
 return $ll;
 }
