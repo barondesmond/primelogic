@@ -437,7 +437,7 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					email_report('barondesmond@gmail.com, "test invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name']);
+					email_report('barondesmond@gmail.com', "test invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name']);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
