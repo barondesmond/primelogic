@@ -397,7 +397,7 @@ $res = mssql_query($sql);
 				$ct['DaysPastDue'] = 'Total Current Due';
 				
 			}
-			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo;)
+			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo)
 			{
 	
 				$html .= table_hd($x, $x, '', count($ik));
