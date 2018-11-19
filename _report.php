@@ -349,7 +349,7 @@ $res = mssql_query($sql);
 					email_report("barondesmond@gmail.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
 					unset($html);
 					unset($ll);
-					$CurCustNo = '';
+					$curCustNo = '';
 					$ct['InvAmts'] = '0';
 					$pt['InvAmts'] = '0';
 					
