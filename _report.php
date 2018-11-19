@@ -371,11 +371,6 @@ $res = mssql_query($sql);
 					}
 					//unset($t);					
 				}
-			    if ($curCustNo != '')
-				{
-					echo $html;
-					exit;
-				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
 				
