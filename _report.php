@@ -422,7 +422,7 @@ return $noe;
 }
 function html_head($cl='*')
 {
-	$html = '<html><head><body><img src="cid:my-attach">';
+	$html = '<html><head><body><img src="cid:my-attach" width=200>';
 	
 return $html;
 }
