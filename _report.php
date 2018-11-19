@@ -372,7 +372,7 @@ $res = mssql_query($sql);
 						$html .= table_hd($t, '', '', count($ik));				
 						$html .= "\r\n";
 					}
-					$loc = $db['LastName'] . "<BR>Location " . $db['LocName'];
+					$loc = '<b>' . $db['LastName'] .'</b>' . . "<BR>Location: " . $db['LocName'];
 					$x[$loc] = $loc;
 
 					//unset($t);					
