@@ -396,7 +396,7 @@ $res = mssql_query($sql);
 				$ci .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				
+				print_r($ct);				
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo)
 			{
@@ -422,7 +422,7 @@ $res = mssql_query($sql);
 					$html .= table_hd($ik, $ik, 'grey');
 					$html .= $ci;
 					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
-
+					print_r($ct);
 					$html .= table_row($ct, $ik);
 					$ci = '';
 					$ct['InvAmts'] = '0';
