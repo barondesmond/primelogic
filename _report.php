@@ -375,11 +375,12 @@ return $html;
 function html_head($cl='*')
 {
 	$html = '<html><head><body>';
-
+	
 	if ($cl = '*')
 	{		
-		$html .= '<img src="cid:my-attach">', '/var/www/html/primelogic/PLIClogo.png', 'my-attach', 'PLIC logo-1.png' 
+		$html .= '<img src="/var/www/html/primelogic/PLIClogo.png">'; 
 	}
+	
 
 return $html;
 }
