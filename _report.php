@@ -472,9 +472,14 @@ function table_row($arr, $keys='')
 	{
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
-			$arr[$key] = money_format('%.2n', $arr[$key]);
+			setlocale(LC_MONETARY, 'en_US.UTF-8');
+			$row .= "<td align=right>" . money_format('%.2n', $arr[$key]) . "</td>";
+
 		}
-		$row .= "<td align=right>" . htmlentities($arr[$key]) . "</td>";
+		else
+		{
+			$row .= "<td align=right>" . htmlentities($arr[$key]) . "</td>";
+
 	}
 	$row .= '</tr>' . "\r\n";
 return $row;
