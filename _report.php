@@ -378,14 +378,14 @@ $res = mssql_query($sql);
 			if ($db['DaysPastDue'] >0)
 			{
 				$pi .= table_row($db, $ik);
-				$p['DaysPastDue'] = 'Total Past Due';
-				$p['InvAmts'] = $p['InvAmts'] + $db['InvAmts'] - $db['Paids'];
+				$pt['DaysPastDue'] = 'Total Past Due';
+				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 			}
 			else
 			{
 				$ci .= table_row($db, $ik);
-				$c['InvAmts'] = $p['InvAmts'] + $db['InvAmts'] - $db['Paids'];
-				$c['DaysPastDue'] = 'Total Current Due';
+				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
+				$ct['DaysPastDue'] = 'Total Current Due';
 
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
