@@ -353,6 +353,7 @@ $res = mssql_query($sql);
 					unset($ll);
 					$curCustNo = '';
 					$curLocNo = '';
+					$curEmailer = '';
 					$ct['InvAmts'] = '0';
 					$pt['InvAmts'] = '0';
 					unset($loc);
