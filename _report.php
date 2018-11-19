@@ -334,7 +334,7 @@ $res = mssql_query($sql);
 					$cl = substr($db['LastName'], 0,1);
 					$html = html_head($cl);
 					$t['fnchg'] = 'Finance Charges';
-					$html .= table_row($t, '', '', count($ik));				
+					$html .= table_hd($t, '', '', count($ik));				
 					$html .= finchg($db['CustNo']);
 					//unset($t);					
 				}
@@ -404,7 +404,7 @@ function table_row($arr, $keys='')
 		print_r($keys);
 		$keys = array_keys($arr);
 		print_r($keys);
-		exit;
+		//exit;
 	}
 	$row = '<tr>';
 	foreach ($keys as $num => $key)
