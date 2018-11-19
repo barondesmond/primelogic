@@ -354,8 +354,6 @@ $res = mssql_query($sql);
 					$curCustNo = '';
 					$curLocNo = '';
 					$curEmailer = '';
-					$ct['InvAmts'] = '0';
-					$pt['InvAmts'] = '0';
 					unset($loc);
 					unset($x);
 
@@ -446,8 +444,6 @@ $res = mssql_query($sql);
 					unset($ll);
 					$curCustNo = '';
 					$curLocNo = '';
-					$ct['InvAmts'] = '0';
-					$pt['InvAmts'] = '0';
 					
 
 				}
