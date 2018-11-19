@@ -332,7 +332,8 @@ $res = mssql_query($sql);
 			}
 			if (!isset($y[$db[CustNo]][$db[LocNo]]))
 			{
-				$noe .= table_row($db);
+				$no = array('LastName', 'LocNo', 'Emailer');
+				$noe .= table_row($db, $no);
 				$y[$db[CustNo]][$db[LocNo]] = $db;
 			}
 		}
