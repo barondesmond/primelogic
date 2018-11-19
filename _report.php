@@ -463,7 +463,7 @@ function table_hd($arr, $keys= '', $color = '', $colspan = '')
 			$col2 = 'colspan="' . $colspan . '"';
 		}
 			
-		$row .= "<td align=right $col2>" . $key . "</td>";
+		$row .= "<td $col2>" . $key . "</td>";
 	}
 	$row .= '</tr>' . "\r\n";
 
