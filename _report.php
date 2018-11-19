@@ -347,7 +347,7 @@ $res = mssql_query($sql);
 					$finchrg = finchg($db['CustNo']);
 
 					$cl = substr($db['LastName'], 0,1);
-					$html = "<table>" . html_head($cl);
+					$html = html_head($cl) , 'table>';
 					if ($finchrg != '')
 					{
 
