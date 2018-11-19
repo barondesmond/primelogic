@@ -399,7 +399,7 @@ function table_row($arr, $keys='')
 		$keys = array_keys($arr);
 	}
 	$row = '<tr>';
-	foreach ($keys = each ($num, $key)
+	foreach ($keys as $num => $key)
 	{
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
@@ -423,7 +423,7 @@ function table_hd($arr, $keys= '', $color = '', $colspan = '')
 		$col = 'color="' . $color . '"';
 	}
 	$row = "<tr $col>";
-	foreach ($keys = each ($num, $key)
+	foreach ($keys as $num =>$key)
 	{
 		if (isset($colspan))
 		{
