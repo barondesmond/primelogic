@@ -333,7 +333,7 @@ $res = mssql_query($sql);
 					$html = html_head($cl);
 					$html .= table_row($t['fnchg'] = 'Finance Charges', '', '', count($ik));				
 					$html .= finchg($db['CustNo'])
-					unset($t);					
+					//unset($t);					
 				}
 				
 				$curCustNo = $db['CustNo'];
