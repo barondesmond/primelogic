@@ -349,7 +349,7 @@ $res = mssql_query($sql);
 				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
-				$curLocNo = $db['LocNo'];
+				
 
 			}
 	
@@ -378,6 +378,7 @@ $res = mssql_query($sql);
 					$html .= table_hd($id, $ik, '#green');
 					$html .= $ci;
 				}
+				$curLocNo = $db['LocNo'];
 
 			}
 		}
