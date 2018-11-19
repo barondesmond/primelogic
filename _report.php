@@ -346,15 +346,16 @@ $res = mssql_query($sql);
 					$html .= '</table>';
 					$html .= html_foot();
 					echo $html;
-					email_report("barondesmond@gmail.com", "test invoice", $html);
+					email_report("barondesmond@gmail.com", "test invoice", $html, $ll['filename'], $ll['cid'], $ll['name']);
 					exit;
 				}
 				if ($curCustNo == '')
 				{
 					$finchrg = finchg($db['CustNo']);
 
-					$cl = substr($db['LastName'], 0,1);
 					$html = html_head($cl) . '<table>';
+					$ll = location_logo($db['LastName']);
+
 					if ($finchrg != '')
 					{
 
@@ -421,16 +422,22 @@ return $noe;
 }
 function html_head($cl='*')
 {
-	$html = '<html><head><body>';
+	$html = '<html><head><body><img src="cid:my-attach">';
 	
-	if ($cl = '*')
-	{		
-		$html .= '<img src="/var/www/html/primelogic/PLIClogo.png">'; 
-	}
-	
-
 return $html;
 }
+
+function location_logo($LocName='')
+{
+	if (substr($LocName, 0, 1)  == '*' || $LockName == '')
+	{		
+		$ll['filename'] .= '<img src="/var/www/html/primelogic/PLIClogo.png">';
+		$ll['cid'] = 'my-attach';
+		$ll['name'] = 'PLIClogo';
+
+	}
+return $ll;
+
 function html_foot()
 {
 	$html = '<a href=#>Unsubscribe</a>';
