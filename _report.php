@@ -425,7 +425,7 @@ function table_row($arr, $keys='')
 		}
 		$row .= "<td align=right>" . htmlentities($arr[$key]) . "</td>";
 	}
-	$row .= '</tr>';
+	$row .= '</tr>' . "\r\n";
 return $row;
 }
 
@@ -450,7 +450,7 @@ function table_hd($arr, $keys= '', $color = '', $colspan = '')
 			
 		$row .= "<td align=right $col2>" . $key . "</td>";
 	}
-	$row .= '</tr>';
+	$row .= '</tr>' . "/r/n";
 
 return $row;
 }
