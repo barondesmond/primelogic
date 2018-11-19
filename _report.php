@@ -397,19 +397,19 @@ $res = mssql_query($sql);
 				$html .= table_hd($x, $x, '', count($ik));
 				if ($pi != '')
 				{
-					$pt['Past Due Invoices'] = 'Past Due Invoices';
-					$html .= table_hd($pt, $pt, 'red', count($ik));
+					$p['Past Due Invoices'] = 'Past Due Invoices';
+					$html .= table_hd($p, $p, 'red', count($ik));
 					$html .= table_hd($ik, $ik, 'green');
 					$html .= $pi;
-					$html .= table_row($p, $ik);
+					$html .= table_row($pt, $ik);
 				}
 				if ($ci != '')
 				{
-					$ct['Current Invoices'] = 'Current Invoices';
-					$html .= table_hd($ct, $ct, 'yellow', count($ik));
+					$c['Current Invoices'] = 'Current Invoices';
+					$html .= table_hd($c, $c, 'yellow', count($ik));
 					$html .= table_hd($ik, $ik, 'green');
 					$html .= $ci;
-					$html .= table_row($c, $ik);
+					$html .= table_row($ct, $ik);
 				}
 				$curLocNo = $db['LocNo'];
 
