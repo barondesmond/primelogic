@@ -375,7 +375,7 @@ $res = mssql_query($sql);
 		}
 	}
 
-return $html;
+return $noe;
 }
 function html_head($cl='*')
 {
