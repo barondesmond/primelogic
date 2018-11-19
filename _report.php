@@ -339,6 +339,7 @@ $res = mssql_query($sql);
 				{
 					$html .= '</table>';
 					$html .= html_foot();
+					echo $html;
 					email_report("barondesmond@gmail.com", "test invoice", $html);
 					exit;
 				}
