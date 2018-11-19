@@ -479,7 +479,7 @@ function table_row($arr, $keys='')
 		else
 		{
 			$row .= "<td align=right>" . htmlentities($arr[$key]) . "</td>";
-
+		}
 	}
 	$row .= '</tr>' . "\r\n";
 return $row;
