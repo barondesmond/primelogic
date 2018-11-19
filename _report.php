@@ -379,9 +379,10 @@ $res = mssql_query($sql);
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != ''))
 			{
 				echo "hello people";
-				$x['Loc'] = $db['LastName'] . "<BR>Location " . $db['LocName'];
+				$loc = $db['LastName'] . "<BR>Location " . $db['LocName'];
+				$x[$loc] = $loc;
 
-				$html .= table_hd($x, '', '', count($ik));
+				$html .= table_hd($x, $x, '', count($ik));
 				if ($pi != '')
 				{
 					$p['Past Due Invoices'] = 'pd';
