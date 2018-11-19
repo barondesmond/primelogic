@@ -273,7 +273,7 @@ function location_basis()
 	$pi = '';
 
 $sql = "
-SELECT  Customer.CustNo, Location.LocNo, Location.LocName, 
+SELECT  Customer.CustNo, Location.LocNo, Customer.LastName, Location.LocName, 
  Case
  WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailTasks1 = '2' or EmailTasks2 = '255')  THEN Email
  WHEN (Email2 not like '%[^a-z,0-9,@,.]%' and Email2 like '%_@_%_.__%') and (EmailTasks2 = '2' or EmailTasks2 = '255') THEN Email2
