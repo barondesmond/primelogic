@@ -332,7 +332,7 @@ $res = mssql_query($sql);
 					$cl = substr($db['LastName'], 0,1);
 					$html = html_head($cl);
 					$html .= table_row($t['fnchg'] = 'Finance Charges', '', '', count($ik));				
-					$html .= finchg($db['CustNo'])
+					$html .= finchg($db['CustNo']);
 					//unset($t);					
 				}
 				
