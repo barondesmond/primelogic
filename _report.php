@@ -397,6 +397,8 @@ function table_row($arr, $keys='')
 	if (!$keys)
 	{
 		$keys = array_keys($arr);
+		print_r($keys);
+		exit;
 	}
 	$row = '<tr>';
 	foreach ($keys as $num => $key)
