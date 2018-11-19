@@ -431,7 +431,7 @@ function location_logo($LocName='')
 {
 	if (substr($LocName, 0, 1)  == '*' || $LockName == '')
 	{		
-		$ll['filename'] .= '<img src="/var/www/html/primelogic/PLIClogo.png">';
+		$ll['filename'] .= '/var/www/html/primelogic/PLIClogo.png'';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'PLIClogo';
 
