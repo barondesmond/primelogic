@@ -330,7 +330,11 @@ $res = mssql_query($sql);
 			{
 				$noe = table_hd($db);
 			}
-			$noe .= table_row($db);
+			if (!isset($y[$db[CustNo]][$db[LocNo]]))
+			{
+				$noe .= table_row($db);
+				$y[$db[CustNo]][$db[LocNo]] = $db;
+			}
 		}
 		else
 		{	
@@ -404,7 +408,7 @@ $res = mssql_query($sql);
 				{
 					$p['Past Due Invoices'] = 'Past Due Invoices';
 					$html .= table_hd($p, $p, 'red', count($ik));
-					$html .= table_hd($ik, $ik, 'grey');
+					$html .= table_hd($ik, $ik, '#b3b3b3');
 					$html .= $pi;
 					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 
