@@ -333,7 +333,8 @@ $res = mssql_query($sql);
 				{
 					$cl = substr($db['LastName'], 0,1);
 					$html = html_head($cl);
-					$html .= table_row($t['fnchg'] = 'Finance Charges', '', '', count($ik));				
+					$t['fnchg'] = 'Finance Charges';
+					$html .= table_row($t, '', '', count($ik));				
 					$html .= finchg($db['CustNo']);
 					//unset($t);					
 				}
@@ -357,13 +358,15 @@ $res = mssql_query($sql);
 				$html .= table_hd($x['Loc'] = $db['LastName'] . "<BR>" . $db[Location], '', '', count($ik));
 				if ($pi != '')
 				{
-					$html .= table_hd($p['pd'] = "Past Due Invoices", '', '#red', count($ik));
+					$p['pd'] = 'Past Due Invoices';
+					$html .= table_hd($p, '', '#red', count($ik));
 					$html .= table_hd($ik, $ik, '#green');
 					$html .= $pi;
 				}
 				if ($ci != '')
 				{
-					$html .= table_hd($c['ci'] = 'Current Invoices', '', '#yellow', count($ik));
+					$c['ci'] = 'Current Invoices';
+					$html .= table_hd($c, '', '#yellow', count($ik));
 					$html .= table_hd($id, $ik, '#green');
 					$html .= $ci;
 				}
