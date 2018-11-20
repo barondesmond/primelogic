@@ -326,17 +326,8 @@ $res = mssql_query($sql);
 	{
 		if ($db['Emailer'] == 'No Email')
 		{
-			$no = array('LastName', 'LocNo', 'Emailer');
-
-			if ($noe == '')
-			{
-				$noe = table_hd($db, $no);
-			}
-			if (!isset($y[$db[CustNo]][$db[LocNo]]))
-			{
-				$noe .= table_row($db, $no);
-				$y[$db[CustNo]][$db[LocNo]] = $db;
-			}
+	
+			//do nothing
 		}
 		else
 		{	
