@@ -1,4 +1,8 @@
 <?php
+
+require 'pdfcrowd/pdfcrowd.php';
+
+
 /*
 
 invoice tables
@@ -9,33 +13,60 @@ WHERE COLUMN_NAME = 'Invoice'
 Invoice	Dispatch Notes
 Invoice	XLogRec useless
 Invoice	Equip empty
-Invoice	EquipAtt
-Invoice	HistLed
-Invoice	History
-Invoice	RecDel
-Invoice	Receivab
-Invoice	RecLed
-Invoice	Sales
-Invoice	SalesEmp
-Invoice	SalesFRP
-Invoice	SalesLed
-Invoice	ViewListDispatches
-Invoice	ViewListEquipment
-Invoice	ViewListInvoices
-Invoice	ViewListHistory
-Invoice	ViewReportJobReportQuotes
-Invoice	ViewReportJobReportIncome
-Invoice	ViewListDispatchesNoDetail
-Invoice	InvSign
-Invoice	ViewTableSales
+Invoice	EquipAtt empty
+Invoice	HistLed history notes
+Invoice	History useless
+Invoice	RecDel empty
+Invoice	Receivab 
+Invoice	RecLed empty
+Invoice	Sales CustNo, LocNo, Invoice,InvDate, EntDate, ShipName, ShipAddr1, ShipAddr2, ShipCSZ, PONum, InvAmt, DueDate
+Invoice	SalesEmp useless
+Invoice	SalesFRP empty
+Invoice	SalesLed sales notes
+Invoice	ViewListDispatches dispatch notes
+Invoice	ViewListEquipment empty
+Invoice	ViewListInvoices  Department, SalesSort
+Invoice	ViewListHistory more notes
+Invoice	ViewReportJobReportQuotes empty
+Invoice	ViewReportJobReportIncome empty
+Invoice	ViewListDispatchesNoDetail more sales info
+Invoice	InvSign empty
+Invoice	ViewTableSales sales stuff
 Invoice	EmailInv
-Invoice	ViewTableSalesEmp
+Invoice	ViewTableSalesEmp nothing useful
 Invoice	ViewEquipmentDispatchInvoiceHistory
 Invoice	RecAge
 
 Description/Notes
-SELECT * FROM Dispatch WHERE Invoice = '0000019928'
 
-SELECT * FROM EquipAtt WHERE Invoice = '0000019928'
 
+
+SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate
+FROM Sales
+WHERE Invoice = '0000011928';
+
+SELECT Paid, InvAmt-Paid as TotalDue
+FROM  Receivab
+WHERE Invoice = '0000019928';
+
+SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
+$hml = '
+<style> table.invoice-table { background: url("/var/www/html/primelogic/PL_INVOICE-construction-1.png");  </style> <table class="invoice-table"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table>';
+
+try
+{
+    // create the API client instance
+    $client = new \Pdfcrowd\HtmlToPdfClient("your_username", "your_apikey");
+
+    // run the conversion and write the result to a file
+    $client->convertStringToFile("<html><body><h1>Hello World!</h1></body></html>", "HelloWorld.pdf");
+}
+catch(\Pdfcrowd\Error $why)
+{
+    // report the error
+    error_log("Pdfcrowd Error: {$why}\n");
+
+    // handle the exception here or rethrow and handle it at a higher level
+    throw $why;
+}
