@@ -413,7 +413,7 @@ $res = mssql_query($sql);
 				if ($ci != '')
 				{
 					$c['Current Invoices'] = 'Current Invoices';
-					$html .= table_hd($c, $c, 'blue', count($ik));
+					$html .= table_hd($c, $c, '#4d7db3', count($ik));
 					$html .= table_hd($ik, $ik, '#b3b3b3');
 					$html .= $ci;
 					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
