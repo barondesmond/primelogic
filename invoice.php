@@ -69,7 +69,7 @@ $pdf_options = array(
   "source_type" => 'html',
   "source" => $my_html,
   "action" => 'save',
-  "save_directory" => '',
+  "save_directory" => '/var/www/html/pdf/',
   "file_name" => 'html_01.pdf');
 
 // CALL THE phpToPDF FUNCTION WITH THE OPTIONS SET ABOVE
