@@ -30,7 +30,7 @@ WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailT
 )
 ";
 $res = mssql_query($sql);
-while ($db = msssql_fetch_array($res, MSSQL_ASSOC))
+while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 			$no = array('LastName', 'LocNo');
 

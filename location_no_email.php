@@ -38,11 +38,11 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 			{
 				$noe = table_hd($db, $no);
 			}
-			if (!isset($y[$db[CustNo]][$db[LocNo]]))
-			{
+			//if (!isset($y[$db[CustNo]][$db[LocNo]]))
+			//{
 				$noe .= table_row($db, $no);
 				$y[$db[CustNo]][$db[LocNo]] = $db;
-			}
+			//}
 }
 			$html = html_head() . '<table>';
 			$html .= $noe;
