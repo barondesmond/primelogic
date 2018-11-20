@@ -49,6 +49,6 @@ while ($db = msssql_fetch_array($res, MSSQL_ASSOC))
 			$html .= "</table></body>";
 $ll = location_logo();
 
-email_report("barondesmond@gmail.com", "test Location No Email", $html, $ll['filename'], $ll['cid'], $ll['name']);
+email_report("barondesmond@gmail.com", "Fix Email Tasks Billing Email", $html, $ll['filename'], $ll['cid'], $ll['name']);
 ?>
 
