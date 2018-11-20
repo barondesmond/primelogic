@@ -1,0 +1,41 @@
+<?php
+/*
+
+invoice tables
+SELECT COLUMN_NAME, TABLE_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE COLUMN_NAME = 'Invoice'
+
+Invoice	Dispatch Notes
+Invoice	XLogRec useless
+Invoice	Equip empty
+Invoice	EquipAtt
+Invoice	HistLed
+Invoice	History
+Invoice	RecDel
+Invoice	Receivab
+Invoice	RecLed
+Invoice	Sales
+Invoice	SalesEmp
+Invoice	SalesFRP
+Invoice	SalesLed
+Invoice	ViewListDispatches
+Invoice	ViewListEquipment
+Invoice	ViewListInvoices
+Invoice	ViewListHistory
+Invoice	ViewReportJobReportQuotes
+Invoice	ViewReportJobReportIncome
+Invoice	ViewListDispatchesNoDetail
+Invoice	InvSign
+Invoice	ViewTableSales
+Invoice	EmailInv
+Invoice	ViewTableSalesEmp
+Invoice	ViewEquipmentDispatchInvoiceHistory
+Invoice	RecAge
+
+Description/Notes
+SELECT * FROM Dispatch WHERE Invoice = '0000019928'
+
+SELECT * FROM EquipAtt WHERE Invoice = '0000019928'
+
+*/
