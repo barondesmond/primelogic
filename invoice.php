@@ -53,8 +53,7 @@ SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
  
 
 // PUT YOUR HTML IN A VARIABLE
-$html='<HTML><head></head><style type="text/css">table { background: url("URL to image") no-repeat; } </style> 
-<table class="background" style="width:400px;height:500px;><tr><td>Top of the Table to You</td></tr></table></body> ';
+$html='<html><body><table background="/var/www/html/primelogic/PLIS.png"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table></body></html>';
 $file = htmlpdf($html, 'test.pdf');
 echo $file;
 
