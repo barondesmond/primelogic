@@ -327,7 +327,17 @@ $res = mssql_query($sql);
 		if ($db['Emailer'] == 'No Email')
 		{
 	
-			//do nothing
+			$no = array('LastName', 'LocNo');
+
+			if ($noe == '')
+			{
+				$noe = table_hd($db, $no);
+			}
+			if (!isset($y[$db[CustNo]][$db[LocNo]]))
+			{
+				$noe .= table_row($db, $no);
+				$y[$db[CustNo]][$db[LocNo]] = $db;
+			}
 		}
 		else
 		{	
@@ -476,7 +486,7 @@ return $ll;
 }
 function html_foot()
 {
-	$html = '<a href=#>Unsubscribe</a>';
+	$html = 'Please contact Office at 662-841-1390 to no longer receive invoice email';
 
 return $html;
 }
