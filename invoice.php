@@ -1,5 +1,5 @@
 <?php
-require ('mpdf/src/mpdf.php');
+require ('mpdf/src/Mpdf.php');
 
 
 /*
@@ -50,3 +50,10 @@ WHERE Invoice = '0000019928';
 
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
+
+
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->WriteHTML('<h1>Hello world!</h1>');
+$mpdf->Output();
+
+?>

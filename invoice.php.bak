@@ -1,6 +1,5 @@
 <?php
-
-require 'pdfcrowd/pdfcrowd.php';
+require ('mpdf/src/Mpdf.php');
 
 
 /*
@@ -51,22 +50,3 @@ WHERE Invoice = '0000019928';
 
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
-$hml = '
-<style> table.invoice-table { background: url("/var/www/html/primelogic/PL_INVOICE-construction-1.png");  </style> <table class="invoice-table"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table>';
-
-try
-{
-    // create the API client instance
-    $client = new \Pdfcrowd\HtmlToPdfClient("your_username", "your_apikey");
-
-    // run the conversion and write the result to a file
-    $client->convertStringToFile("<html><body><h1>Hello World!</h1></body></html>", "HelloWorld.pdf");
-}
-catch(\Pdfcrowd\Error $why)
-{
-    // report the error
-    error_log("Pdfcrowd Error: {$why}\n");
-
-    // handle the exception here or rethrow and handle it at a higher level
-    throw $why;
-}
