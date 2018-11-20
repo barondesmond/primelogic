@@ -1,7 +1,7 @@
 <?php
 require ('_pdf.php');
 require ('_email.php');
-
+require ('_db_config.php');
 /*
 
 invoice tables
