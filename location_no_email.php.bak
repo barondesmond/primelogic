@@ -27,7 +27,7 @@ WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailT
  WHEN (Email6 not like '%[^a-z,0-9,@,.]%' and Email6 like '%_@_%_.__%') and (EmailTasks6 = '2'  ) THEN Email6
  ELSE 'No Email'
  END) = 'No Email'
-)
+) ORDER BY CustNo, LocNo
 ";
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
@@ -38,11 +38,11 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 			{
 				$noe = table_hd($db, $no);
 			}
-			if (!isset($y[$db[CustNo]][$db[LocNo]]))
-			{
+			//if (!isset($y[$db[CustNo]][$db[LocNo]]))
+			//{
 				$noe .= table_row($db, $no);
 				$y[$db[CustNo]][$db[LocNo]] = $db;
-			}
+			//}
 }
 			$html = html_head() . '<table>';
 			$html .= $noe;

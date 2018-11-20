@@ -27,7 +27,7 @@ WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailT
  WHEN (Email6 not like '%[^a-z,0-9,@,.]%' and Email6 like '%_@_%_.__%') and (EmailTasks6 = '2'  ) THEN Email6
  ELSE 'No Email'
  END) = 'No Email'
-)
+) ORDER BY Location.CustNo, Location.LocNo
 ";
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
