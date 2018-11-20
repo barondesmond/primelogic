@@ -58,6 +58,6 @@ $html='<HTML><head></head><style type="text/css">table { background: url("URL to
 $file = htmlpdf($html, 'test.pdf');
 echo $file;
 
-email_report("barondesmond@gmail.com", "test pdf", "this is a pdf test", '', '', '', $file);
+email_report("barondesmond@gmail.com", "test pdf", $html, '', '', '', $file);
 
 ?>
