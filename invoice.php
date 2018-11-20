@@ -1,6 +1,6 @@
 <?php
 require ('_pdf.php');
-
+require ('_email.php');
 
 /*
 
@@ -57,5 +57,7 @@ $html='<HTML><head></head><style type="text/css">table { background: url("URL to
 <table class="background" style="width:400px;height:500px;><tr><td>Top of the Table to You</td></tr></table></body> ';
 $file = htmlpdf($html, 'test.pdf');
 echo $file;
+
+email_report("barondesmond@gmail.com", "test pdf", "this is a pdf test", '', '', '', $file);
 
 ?>
