@@ -50,9 +50,7 @@ WHERE Invoice = '0000019928';
 
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
-
-
-require("phpToPDF.php"); 
+ 
 
 // PUT YOUR HTML IN A VARIABLE
 $my_html="<HTML>
