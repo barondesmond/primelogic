@@ -23,7 +23,7 @@ $html='<html><head></head><body style="margin: 0px;">
   <td width="210" align="left">Service Location<BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555</b></td>
 
  </tr>
- <tr><td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td><td>
+ <tr><td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td><td colspan="3" width="699">
  <table><tr><td>Service Labor Lead Tech</td><td>2.5</td>79.50<td></td><td>198.75</td></tr></table></td></tr>
  </table>
 
