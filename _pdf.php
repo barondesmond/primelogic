@@ -1,7 +1,7 @@
 <?php
 require ('tcpdf/tcpdf.php');
 
-function htmlpdf($html, $pdf)
+function htmlpdf($html, $fpdf)
 {
 
 
@@ -36,10 +36,10 @@ $html = '<<<EOD' . $html . 'EOD;'
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
-$file = '/var/www/pdf/' . $pdf;
+$file = '/var/www/pdf/' . $fpdf;
 $pdf->Output($file, 'F');
 
-return $pdf;
+return $file;
 
 }
 ?>
