@@ -56,7 +56,8 @@ SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 // PUT YOUR HTML IN A VARIABLE
 $ll = location_logo();
 print_r($ll);
-$html='<html><head></head><body>
+$html='<html><head></head><body>';
+/*
 <style>
 body {
 
@@ -72,7 +73,8 @@ padding: 0;
 
 }
 </style>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table><img src="cid:my-attach"></body></html>';
+*/
+$html .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table><img src="cid:my-attach"></body></html>';
 //$file = htmlpdf($html, 'test.pdf');
 echo $file;
 

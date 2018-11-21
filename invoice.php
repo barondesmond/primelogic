@@ -75,9 +75,9 @@ padding: 0;
 </style>
 */
 $html .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table><img src="cid:my-attach"></body></html>';
-//$file = htmlpdf($html, 'test.pdf');
+$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
-email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
+//email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
 
 ?>
