@@ -14,7 +14,7 @@
 div.top1 {
     position: absolute;
     top: 200px;
-    right: 600;
+    left: 100px;
     width: 100px;
     height: 200px;
     border: 0px;
@@ -31,14 +31,14 @@ Lafayette Co. Chancery Clerk<BR>
 PO BOX 1240<BR>
 Oxford MS 38655<BR>
 </div>
-<div align="right">
+<!div align="right">
 0000019928<BR>
 10/8/2018<BR>
 10/23/2018<BR>
 10/2/2018<BR>
 104905<BR>
 </div>
-<div align="right">
+<!div align="right">
 Service Location<BR>
 Lafayette Co. Chancery Clerk<BR>
 300 North Lamar Street<BR>
