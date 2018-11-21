@@ -14,7 +14,7 @@
 div.top1 {
     position: absolute;
     top: 200px;
-    left: 100;
+    right: 600;
     width: 100px;
     height: 200px;
     border: 0px;
