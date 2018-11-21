@@ -5,7 +5,7 @@ $html='<html><head></head><body style="margin: 0px;">
  table.first {
         color: black;
         font-family: helvetica;
-        font-size: 12pt;
+        font-size: 10pt;
         border-left: 3px solid red;
         border-right: 3px solid #FF00FF;
         border-top: 3px solid green;
