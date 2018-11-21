@@ -10,7 +10,6 @@ $html='<html><head></head><body style="margin: 0px;">
 }
 
 div.top1 {
-	background-image: url("PL_INVOICE-service-1.png");
 	color: black;
     position: relative;
 	z-index: 2;
