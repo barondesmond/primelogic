@@ -76,6 +76,6 @@ padding: 0;
 //$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
-email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['my-attach'], $ll['name'], $file);
+email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
 
 ?>
