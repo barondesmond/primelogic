@@ -12,9 +12,9 @@ $html='<html><head></head><body style="margin: 0px;">
         border-bottom: 3px solid blue;
     }
 </style>
-<table class="first" cellpadding="4" cellspacing="6">
+<table class="first" cellpadding="0" cellspacing="0" border="1">
  <tr>
-  <td width="30" align="center"><b>No.</b></td>
+  <td width="30" height="200" align="center"><b>No.</b></td>
   <td width="140" align="center"><b>XXXX</b></td>
   <td width="140" align="center"><b>XXXX</b></td>
   <td width="80" align="center"> <b>XXXX</b></td>
