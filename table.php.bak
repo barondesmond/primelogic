@@ -34,5 +34,5 @@ Oxford MS 38655<BR>
 //echo $html;
 
 $file = htmlpdf($html, 'test.pdf');
-echo $file;
+//echo $file;
 ?>
