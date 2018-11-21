@@ -16,8 +16,8 @@ $html='<html><head></head><body style="margin: 0px;">
  <tr>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
-  <td width="200" align="right">0000000<BR><BR>12/12/1970<BR><BR>12/12/12<BR><BR>11/11/11<BR><BR>324234<BR><BR></td>
-  <td width="100" align="right"><BR><BR><BR><BR><BR></td>
+  <td width="250" align="right">0000000<BR><BR>12/12/1970<BR><BR>12/12/12<BR><BR>11/11/11<BR><BR>324234<BR><BR></td>
+  <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>
   <td width="200" align="center">1.</td>
