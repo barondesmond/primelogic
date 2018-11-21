@@ -17,11 +17,14 @@ $pdf->SetAuthor('Baron Desmond');
 $pdf->SetTitle('pdf');
 $pdf->SetSubject('pdf');
 $pdf->SetKeywords('pdf');
+/*
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001'
 , PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+
 $pdf->setFooterData(array(0,64,0), array(0,64,128));
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+*.
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
