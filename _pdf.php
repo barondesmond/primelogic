@@ -37,6 +37,7 @@ $pdf->SetFont('helvetica', '', 14, '', true);
 
 //$html = '<<<EOD' . $html . 'EOD;';
 */
+$pdf->AddPage();
 $pdf->writeHTML($html);
 
 $file = '/var/www/pdf/' . $fpdf;
