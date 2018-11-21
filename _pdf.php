@@ -65,7 +65,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('helvetica', '', 13);
+$pdf->SetFont('helvetica', '', 12);
 
 // --- example with background set on page ---
 
