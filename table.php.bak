@@ -16,7 +16,7 @@ $html='<html><head></head><body style="margin: 0px;">
 <table class="first" cellpadding="0" cellspacing="0" border="1" >
  <tr>
   <td width="600"  align="center" colpsan="3"><BR><BR><BR><BR><BR></td>
-  <td width="200" align="right">Invoice</td>
+  <td width="100" align="right">Invoice</td>
  </tr>
  <tr>
   <td width="200" align="center">1.</td>
@@ -25,18 +25,18 @@ $html='<html><head></head><body style="margin: 0px;">
 PO BOX 1240<BR>
 Oxford MS 38655<BR></b></td>
   <td width="200">XXXX<br />XXXX</td>
-  <td width="200">XXXX<br />XXXX</td>
+  <td width="100">XXXX<br />XXXX</td>
  </tr>
  <tr>
   <td width="200" align="center" rowspan="3">2.</td>
   <td width="200" rowspan="3">XXXX<br />XXXX</td>
   <td width="200">XXXX<br /></td>
-  <td width="200">XXXX<br />XXXX</td>
+  <td width="100">XXXX<br />XXXX</td>
  </tr>
  <tr>
   <td width="200">XXXX<br />XXXX<br />XXXX<br />XXXX</td>
   <td width="200">XXXX<br />XXXX</td>
-  <td align="center" width="400" colspan="2">XXXX<br />XXXX</td>
+  <td align="center" width=300" colspan="2">XXXX<br />XXXX</td>
  </tr>
 </table>
 

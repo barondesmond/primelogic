@@ -10,7 +10,6 @@ $html='<html><head></head><body style="margin: 0px;">
         border-right: 3px solid #FF00FF;
         border-top: 3px solid green;
         border-bottom: 3px solid blue;
-		height: %100;
     }
 </style>
 <table class="first" cellpadding="0" cellspacing="0" border="1" >
