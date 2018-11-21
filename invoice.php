@@ -55,8 +55,8 @@ SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 
 // PUT YOUR HTML IN A VARIABLE
 $ll = location_logo();
-$html='<html><body><table width="100%" border="0" cellspacing="0" cellpadding="20" background="' . $ll['filename'] . '"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table></body></html>';
-$file = htmlpdf($html, 'test.pdf');
+$html='<html><body><table width="100%" border="0" cellspacing="0" cellpadding="20" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table></body></html>';
+//$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
 email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['my-attach'], $ll['name'], $file);
