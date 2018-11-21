@@ -8,7 +8,7 @@ div.top1 {
 	color: black;
     position: absolute;
 	z-index: 1;
-	top: 100;
+	top: 200;
 	left: 100;
 }
 </style>

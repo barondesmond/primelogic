@@ -9,7 +9,7 @@ div.top1 {
     position: absolute;
 	z-index: 1;
 	top: 200;
-	left: 100;
+	left: 200;
 }
 </style>
 
