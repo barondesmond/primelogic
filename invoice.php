@@ -55,6 +55,7 @@ SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 
 // PUT YOUR HTML IN A VARIABLE
 $ll = location_logo();
+print_r($ll);
 $html='<html><head></head><body>
 <style>
 body {
