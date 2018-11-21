@@ -37,7 +37,7 @@ $pdf->AddPage();
 
 //$html = '<<<EOD' . $html . 'EOD;';
 
-$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+$pdf->writeHTML($html);
 
 $file = '/var/www/pdf/' . $fpdf;
 $pdf->Output($file, 'I');
