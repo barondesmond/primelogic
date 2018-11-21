@@ -72,7 +72,7 @@ padding: 0;
 
 }
 </style>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table></body></html>';
+<table width="100%" border="0" cellspacing="0" cellpadding="0" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table><img src="cid:my-attach"></body></html>';
 //$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
