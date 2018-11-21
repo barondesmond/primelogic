@@ -1,5 +1,8 @@
 <html><head></head><body>
 <style>
+@page {
+    margin: 0.0cm;
+}
 #my-bg {
   position: absolute;
   top: 0;

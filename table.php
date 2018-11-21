@@ -1,3 +1,6 @@
+<?php
+include("_phpToPDF.php");
+$html='
 <html><head></head><body>
 <style>
 @page {
@@ -28,4 +31,15 @@ Oxford MS 38655<BR>
 </b>
 </div>
 
-</body></html>
+</body></html>';
+echo $html;
+$pdf_options = array(
+  "source_type" => 'html',
+  "source" => $html,
+  "action" => 'save',
+  "save_directory" => '/var/www/html/primelogic/',
+  "file_name" => 'test.pdf');
+
+phptopdf($pdf_options);
+
+?>
