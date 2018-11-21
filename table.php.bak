@@ -20,8 +20,8 @@ $html='<html><head></head><body style="margin: 0px;">
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>
-  <td width="50" align="center">1.</td>
-  <td width="350" ><b>Lafayette Co. Chancery Clerk<BR>
+  <td width="50" align="center"></td>
+  <td width="350" ><color="grey">Billing Address:</color><BR><b>Lafayette Co. Chancery Clerk<BR>
 300 North Lama Street<BR>
 PO BOX 1240<BR>
 Oxford MS 38655<BR></b></td>
