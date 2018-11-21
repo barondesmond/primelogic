@@ -18,7 +18,7 @@ div.top1 {
 }
 </style>
 <div class="test" width="200" height="200"></div>
-<div class="top1">
+<div class="test" width="100" height="100">
 <b>
 Lafayette Co. Chancery Clerk<BR>
 300 North Lama Street<BR>
