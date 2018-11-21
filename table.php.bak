@@ -20,7 +20,7 @@ div.top1 {
 	left: 125;
 }
 </style>
-<img src="PL_INVOICE-service-1.png" id="my-bg" width="678" height="820" />
+<img src="PL_INVOICE-service-1.png" id="my-bg" width="200" height="300" />
 <div class="top1">
 <b>
 Lafayette Co. Chancery Clerk<BR>
