@@ -40,6 +40,6 @@ $pdf_options = array(
   "save_directory" => '/var/www/html/primelogic/',
   "file_name" => 'test.pdf');
 
-$file = phptopdf($pdf_options);
+//$file = phptopdf($pdf_options);
 
 ?>
