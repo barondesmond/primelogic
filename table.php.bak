@@ -8,14 +8,15 @@
 }
 
 div.top1 {
-	color: grey;
+	color: black;
     position: relative;
-	z-index: 2;	
+	z-index: 2;
+	top: 50;
+	left: 50;
 }
 </style>
   <img src="PL_INVOICE-NMT-1.png" id="my-bg" width="678" height="872" />
 <div class="top1">
-Billing Address<BR>
 Lafayette Co. Chancery Clerk<BR>
 300 North Lama Street<BR>
 PO BOX 1240<BR>

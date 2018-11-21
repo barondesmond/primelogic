@@ -11,7 +11,7 @@ div.top1 {
 	color: black;
     position: relative;
 	z-index: 2;
-	top: 50;
+	top: 150;
 	left: 50;
 }
 </style>
