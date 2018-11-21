@@ -1,5 +1,5 @@
 <?php
-require_once('tcpdf/tcpdf_include.php');
+require_once('../tcpdf/tcpdf.php');
 
 
 function htmlpdf($html, $fpdf)
