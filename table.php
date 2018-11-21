@@ -1,7 +1,6 @@
 <?php
 include("_pdf.php");
-$html='
-<html><head></head><body>
+$html='<html><head></head><body>
 <style>
 @page {
     margin: 0.0cm;
@@ -32,8 +31,8 @@ Oxford MS 38655<BR>
 </div>
 
 </body></html>';
-echo $html;
+//echo $html;
 
 $file = htmlpdf($html, 'test.pdf');
-
+//echo $file;
 ?>

@@ -1,7 +1,6 @@
 <?php
 include("_pdf.php");
-$html='
-<html><head></head><body>
+$html='<html><head></head><body>
 <style>
 @page {
     margin: 0.0cm;
@@ -32,14 +31,8 @@ Oxford MS 38655<BR>
 </div>
 
 </body></html>';
-echo $html;
-$pdf_options = array(
-  "source_type" => 'html',
-  "source" => $html,
-  "action" => 'save',
-  "save_directory" => '/var/www/html/primelogic/pdf/',
-  "file_name" => 'test.pdf');
+//echo $html;
 
 $file = htmlpdf($html, 'test.pdf');
-
+echo $file;
 ?>
