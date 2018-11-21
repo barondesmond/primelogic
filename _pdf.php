@@ -95,7 +95,7 @@ $pdf->setPageMark();
 
 
 // Print a text
-$html = '<span style="color:white;text-align:center;font-weight:bold;font-size:80pt;">PAGE 3</span>';
+//$html = '<span style="color:white;text-align:center;font-weight:bold;font-size:80pt;">PAGE 3</span>';
 $pdf->writeHTML($html, true, false, true, false, '');
 
 // ---------------------------------------------------------
