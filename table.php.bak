@@ -3,7 +3,7 @@ include("_pdf.php");
 $html='<html><head></head><body style="margin: 0px;">
 <style>
  table.first {
-        color: #003300;
+        
         font-family: helvetica;
         font-size: 8pt;
         border-left: 3px solid red;
