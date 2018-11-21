@@ -9,7 +9,7 @@ $html='<html><head></head><body style="margin: 0px;">
 
     }
 </style>
-<table class="first" cellpadding="0" cellspacing="0" border="0" >
+<table class="first" cellpadding="0" cellspacing="0" border="1" >
  <tr>
   <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR<BR><BR>>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
