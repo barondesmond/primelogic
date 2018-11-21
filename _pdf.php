@@ -32,7 +32,7 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('helvetica', '', 14, '', true);
 $pdf->AddPage();
 
-$html = '<<<EOD' . $html . 'EOD;'
+$html = '<<<EOD' . $html . 'EOD;';
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
