@@ -16,8 +16,8 @@ div.top1 {
 	color: black;
     position: relative;
 	z-index: 2;
-	top: 180;
-	left: 125;
+	top: 0;
+	left: 0;
 }
 </style>
 <img src="PL_INVOICE-service-1.png" id="my-bg" width="500" />
