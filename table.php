@@ -13,8 +13,8 @@
 }
 div.top1 {
     position: absolute;
-    top: 0px;
-    left: 0;
+    top: 200px;
+    right: 100;
     width: 100px;
     height: 200px;
     border: 0px;

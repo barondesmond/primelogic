@@ -11,11 +11,20 @@
   position: relative;
   z-index: 2;
 }
+div.top1 {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100px;
+    height: 200px;
+    border: 0px;
+	
+}
 </style>
   <img src="PL_INVOICE-NMT-1.png" id="my-bg" width="678" height="872" />
     <p id="my-text">
 
-<div align="left">
+<div class="top1">
 Billing Address<BR>
 Lafayette Co. Chancery Clerk<BR>
 300 North Lama Street<BR>
