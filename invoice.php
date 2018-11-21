@@ -53,10 +53,10 @@ SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
  
 
 // PUT YOUR HTML IN A VARIABLE
-$html='<html><body><table background="/var/www/html/primelogic/PLIS.png"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table></body></html>';
+$html='<html><body><table background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table></body></html>';
 $file = htmlpdf($html, 'test.pdf');
 echo $file;
 
-email_report("barondesmond@gmail.com", "test pdf", $html, '', '', '', $file);
+email_report("barondesmond@gmail.com", "test pdf", $html, '/var/www/html/primelogic/PLIS.png', 'my-attach', 'PLIS.png', $file);
 
 ?>
