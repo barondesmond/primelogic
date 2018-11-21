@@ -37,7 +37,7 @@ $pdf_options = array(
   "source_type" => 'html',
   "source" => $html,
   "action" => 'save',
-  "save_directory" => '/var/www/html/primelogic/',
+  "save_directory" => '/var/www/html/primelogic/pdf/',
   "file_name" => 'test.pdf');
 
 $file = phptopdf($pdf_options);

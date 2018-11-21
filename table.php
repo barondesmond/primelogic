@@ -1,5 +1,5 @@
 <?php
-include("_phpToPDF.php");
+include("_pdf.php");
 $html='
 <html><head></head><body>
 <style>
@@ -40,6 +40,6 @@ $pdf_options = array(
   "save_directory" => '/var/www/html/primelogic/pdf/',
   "file_name" => 'test.pdf');
 
-$file = phptopdf($pdf_options);
+$file = htmlpdf($html, 'test.pdf');
 
 ?>
