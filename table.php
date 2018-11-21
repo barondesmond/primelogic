@@ -11,8 +11,8 @@ div.top1 {
 	color: black;
     position: relative;
 	z-index: 2;
-	top: 200;
-	left: 150;
+	top: 300;
+	left: 125;
 }
 </style>
   <img src="PL_INVOICE-construction-1.png" id="my-bg" width="1080" height="1350" />
