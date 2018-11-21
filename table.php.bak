@@ -8,7 +8,7 @@
 }
 
 div.top1 {
-	color: white;
+	color: grey;
     position: relative;
 	z-index: 2;	
 }
