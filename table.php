@@ -11,16 +11,18 @@ div.top1 {
 	color: black;
     position: relative;
 	z-index: 2;
-	top: 300;
+	top: 280;
 	left: 125;
 }
 </style>
   <img src="PL_INVOICE-construction-1.png" id="my-bg" width="1080" height="1350" />
 <div class="top1">
+<b>
 Lafayette Co. Chancery Clerk<BR>
 300 North Lama Street<BR>
 PO BOX 1240<BR>
 Oxford MS 38655<BR>
+</b>
 </div>
 
 </body></html>
