@@ -10,6 +10,7 @@ $html='<html><head></head><body style="margin: 0px;">
 }
 
 div.top1 {
+	background-image: url('PL_INVOICE-service-1.png')
 	color: black;
     position: relative;
 	z-index: 2;
@@ -17,7 +18,7 @@ div.top1 {
 	left: 0;
 }
 </style>
-<img src="PL_INVOICE-service-1.png" id="my-bg" width="500" />
+<!img src="PL_INVOICE-service-1.png" id="my-bg" width="500" />
 <div class="top1">
 <b>
 Lafayette Co. Chancery Clerk<BR>

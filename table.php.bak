@@ -2,9 +2,6 @@
 include("_pdf.php");
 $html='<html><head></head><body style="margin: 0px;">
 <style>
-@page {
-    margin: 0.0cm;
-}
 #my-bg {
   position: absolute;
   top: 0;
