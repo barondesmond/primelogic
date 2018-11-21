@@ -15,7 +15,7 @@ $html='<html><head></head><body style="margin: 0px;">
 </style>
 <table class="first" cellpadding="0" cellspacing="0" border="1" >
  <tr>
-  <td width="600"  align="center" colpsan="2"><BR><BR><BR><BR><BR></td>
+  <td width="600"  align="center" colpsan="3"><BR><BR><BR><BR><BR></td>
   <td width="200" align="right">Invoice</td>
  </tr>
  <tr>
