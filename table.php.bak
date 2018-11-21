@@ -2,20 +2,16 @@
 include("_pdf.php");
 $html='<html><head></head><body style="margin: 0px;">
 <style>
- div.test {
-        color: #CC0000;
-        background-color: #FFFF66;
+ table.first {
+        color: #003300;
         font-family: helvetica;
-        font-size: 10pt;
-        border-style: solid solid solid solid;
-        border-width: 2px 2px 2px 2px;
-        border-color: green #FF00FF blue red;
-        text-align: center;
+        font-size: 8pt;
+        border-left: 3px solid red;
+        border-right: 3px solid #FF00FF;
+        border-top: 3px solid green;
+        border-bottom: 3px solid blue;
+        background-color: #ccffcc;
     }
-
-div.top1 {
-	color: black;
-}
 </style>
 <table class="first" cellpadding="4" cellspacing="6">
  <tr>
