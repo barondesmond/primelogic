@@ -12,7 +12,7 @@ $html='<html><head></head><body style="margin: 0px;">
         border-bottom: 3px solid blue;
     }
 </style>
-<table class="first" cellpadding="0" cellspacing="0" border="1">
+<table class="first" cellpadding="0" cellspacing="0" border="1" height="1000">
  <tr>
   <td width="600"  align="center" colpsan="2"><b>No.</b></td>
   <td width="200" align="right">Invoice</td>
