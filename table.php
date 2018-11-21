@@ -8,8 +8,8 @@ div.top1 {
 	color: black;
     position: absolute;
 	z-index: 1;
-	top: 200;
-	left: 200;
+	top: 200px;
+	left: 200px;
 }
 </style>
 
