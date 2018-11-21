@@ -2,22 +2,17 @@
 include("_pdf.php");
 $html='<html><head></head><body style="margin: 0px;">
 <style>
-#my-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
+
 
 div.top1 {
 	color: black;
-    position: relative;
-	z-index: 2;
-	top: 0;
-	left: 0;
+    position: absolute;
+	z-index: 1;
+	top: 100;
+	left: 100;
 }
 </style>
-<!img src="PL_INVOICE-service-1.png" id="my-bg" width="500" />
+
 <div class="top1">
 <b>
 Lafayette Co. Chancery Clerk<BR>
