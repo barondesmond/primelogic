@@ -6,17 +6,14 @@ $html='<html><head></head><body style="margin: 0px;">
         color: black;
         font-family: helvetica;
         font-size: 10pt;
-        border-left: 3px solid red;
-        border-right: 3px solid #FF00FF;
-        border-top: 3px solid green;
-        border-bottom: 3px solid blue;
+
     }
 </style>
-<table class="first" cellpadding="0" cellspacing="0" border="1" >
+<table class="first" cellpadding="0" cellspacing="0" border="0" >
  <tr>
-  <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
+  <td width="200" align="left" color="grey"><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
-  <td width="250" align="right">0000000<BR><BR>12/12/1970<BR><BR>12/12/12<BR><BR>11/11/11<BR><BR>324234<BR><BR></td>
+  <td width="250" align="right">0000000<BR>12/12/1970<BR>12/12/12<BR>11/11/11<BR>324234<BR></td>
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>
