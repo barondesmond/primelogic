@@ -12,7 +12,7 @@ div.top1 {
     position: relative;
 	z-index: 2;
 	top: 150;
-	left: 50;
+	left: 100;
 }
 </style>
   <img src="PL_INVOICE-NMT-1.png" id="my-bg" width="678" height="872" />
