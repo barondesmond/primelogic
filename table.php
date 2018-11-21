@@ -23,21 +23,9 @@ $html='<html><head></head><body style="margin: 0px;">
   <td width="210" align="left">Service Location<BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555</b></td>
 
  </tr>
- <tr>
-  <td width="200" align="center" rowspan="3">2.</td>
-  <td width="200" rowspan="3">XXXX<br />XXXX</td>
-  <td width="200">XXXX<br /></td>
-  <td width="100">XXXX<br />XXXX</td>
- </tr>
- <tr>
-  <td width="200">XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="200">XXXX<br />XXXX</td>
-  <td align="center" width=300" colspan="2">XXXX<br />XXXX</td>
- </tr>
-</table>
-
-
-</div>
+ <tr><td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td><td>
+ <table><tr><td>Service Labor Lead Tech</td><td>2.5</td>79.50<td></td><td>198.75</td></tr></table></td></tr>
+ </table>
 
 </body></html>';
 //echo $html;
