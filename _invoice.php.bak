@@ -20,7 +20,15 @@ function invoice_row($db = '', $key = '')
 		{
 			foreach ($key as $kd)
 			{
-				$db2[] = $db[$kd];
+				if ($db[$kd] != '0')
+				{
+					$db2[] = $db[$kd];
+				}
+				else
+				{
+					$db2[] = '';
+				}
+				
 			}
 		}
 

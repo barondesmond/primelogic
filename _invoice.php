@@ -1,5 +1,45 @@
 <?php
 
+function invoice_db_key($dbs = '', $db = '', $dk='')
+{
+
+		$dbs[$dk] = '';
+		foreach ($key as $k)
+		{
+			$dbs[$dk] . $db[$k] . '<BR>';
+		}
+
+return $dbs;
+}
+
+function invoice_service_location($dbs='', $db='')
+{
+	$key = array('LocName', 'Add1', 'Add2', 'City', 'State', 'Zip');
+	if ($db == '')
+	{
+		$dbs['loc'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555';
+	}
+	else
+	{
+		$dbs = invoice_db_key($dbs, $key, 'loc');
+	}
+
+return $dbs;
+}
+
+function invoice_billing($dbs='', $db='')
+{
+	$key = array('ShipName', 'ShipAddr1', 'ShipAddr2', 'ShipCSZ');
+	if ($db == '')
+	{
+		$dbs['billing'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555';
+	}
+	else
+	{
+		$dbs = invoice_db_key($dbs, $db, 'billing');
+	}
+return $dbs;
+}
 function invoice_row($db = '', $key = '')
 {
 	if ($db == '')
@@ -92,14 +132,34 @@ function invoice_blank()
 	return invoice_row($db);
 }
 
+function invoice_init($dbs='', $db='')
+{
+	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PO');
+
+		$dbs['Invoice'] = '000000';
+		$dbs['InvDate'] = '12/12/1970';
+		$dbs['DueDate'] = '12/12/12';
+		$dbs['ServiceDate'] = '11/11/11';
+		$dbs['PO'] = '324234';
+	if ($db != '' && is_array($db))
+	{
+		foreach($key as $k)
+		{
+			if ($db[$k])
+			{
+				$dbs[$k] = $db[$k];
+			}
+		}
+	}
+return $dbs;
+}
+
+
 function invoice_html($arrays = '')
 {
-	$dbs['Invoice'] = '000000';
-	$dbs['InvDate'] = '12/12/1970';
-	$dbs['DueDate'] = '12/12/12';
-	$dbs['ServiceDate'] = '11/11/11';
-	$dbs['PO'] = '324234';
-	$dbs['loc'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555';
+	$dbs = invoice_init($dbs, $arrays[0]);
+	$dbs = invoice_service_location($dbs, $arrays[0]);
+
 	$dbs['billing'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lama Street<BR>PO BOX 1240<BR>Oxford MS 38655<BR>';
 
 	$html='<html><head></head><body style="margin: 0px;">
@@ -187,9 +247,10 @@ function invoice($invoice = '')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*
+	$sql = "SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*, Location.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
+INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
 WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
