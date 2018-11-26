@@ -152,13 +152,9 @@ function invoice_init($dbs='', $db='')
 	{
 		foreach($key as $k)
 		{
-			if ($db[$k] != '' && $k != 'InvDate' && $k != 'DueDate')
+			if ($db[$k] != '')
 			{
 				$dbs[$k] = $db[$k];
-			}
-			elseif ($db[$k] != '')
-			{
-				$dbs[$k] = date('d/m/Y', $db[$k]);
 			}
 		}
 	}
@@ -258,7 +254,7 @@ function invoice($invoice = '')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*, Location.*
+	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*, Location.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
