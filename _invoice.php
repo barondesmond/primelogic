@@ -187,7 +187,7 @@ WHERE Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
 		$res = mssql_query($sql);
-		while ($db = mssql_fetch_array($res, MSSQL_ASSOC)
+		while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 		{
 			$arrays[] = $db;
 		}

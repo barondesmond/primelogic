@@ -175,7 +175,10 @@ return $html;
 
 function invoice($invoice = '')
 {
-	$arrays = '';
+	if ($invoice == '')
+	{
+		$arrays = '';
+	}
 	$sql = "SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
