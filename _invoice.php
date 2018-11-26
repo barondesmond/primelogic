@@ -191,6 +191,7 @@ function invoice_html($arrays = '')
         color: black;
         font-family: helvetica;
         font-size: 10pt;
+		table-layout: fixed;
     }
 </style>
 <table class="first">

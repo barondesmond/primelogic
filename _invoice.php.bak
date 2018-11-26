@@ -148,10 +148,10 @@ function invoice_total_due_by($db = '')
 
 function invoice_blank()
 {
-	$db[0] = '';
-	$db[1] = '';
-	$db[2] = '';
-	$db[3] = '';
+	$db[0] = ' ';
+	$db[1] = ' ';
+	$db[2] = ' ';
+	$db[3] = ' ';
 	return invoice_row($db);
 }
 
