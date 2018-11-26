@@ -41,40 +41,14 @@ Description/Notes
 
 
 
-SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate
-FROM Sales
-WHERE Invoice = '0000011928';
 
-SELECT Paid, InvAmt-Paid as TotalDue
-FROM  Receivab
-WHERE Invoice = '0000019928';
 
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
  
+$html = invoice($_GET['Invoice']);
 
-// PUT YOUR HTML IN A VARIABLE
-$ll = location_logo();
-print_r($ll);
-$html='<html><head></head><body>';
-/*
-<style>
-body {
 
-background-image: url("cid:my-attach");
-
-background-repeat: repeat-y no-repeat;
-
-background-color: #333;
-
-margin: 0;
-
-padding: 0;
-
-}
-</style>
-*/
-$html .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" background="cid:my-attach"> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> <tr><td>First column</td><td>Second column</td><td>Third column</td></tr> </table><img src="cid:my-attach"></body></html>';
 $file = htmlpdf($html, 'test.pdf');
 echo $file;
 
