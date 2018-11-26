@@ -89,8 +89,8 @@ function invoice_html($arrays = '')
  </tr>';
  
  $html .= '<tr>
-	<td width="1"></td>
-	<td colspan="3" width="699">whatever';
+	<td width="1">whatever</td>
+	<td colspan="3" width="699">';
 	
 $html .='<table class="first">';
 	if ($arrays != '' && is_array($arrays))
