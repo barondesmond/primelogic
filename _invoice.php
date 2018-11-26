@@ -97,7 +97,7 @@ return $row;
 
 function invoice_tax_due($db = '')
 {
-	$key = array('', '','', 'TaxDue');
+	$key = array('', '','', 'Tax1');
 
 	if ($db== '')
 	{
