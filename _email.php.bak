@@ -52,6 +52,10 @@ try {
 
 		$mail->AddEmbeddedImage($filename, $cid, $name);
 		echo "$filename $cid $name";
+		if (file_exists($filename))
+		{
+			"apache can read it why not you phpmailer $filename";
+		}
 		//exit;
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
