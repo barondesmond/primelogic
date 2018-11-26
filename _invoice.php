@@ -165,7 +165,7 @@ $html .='<table class="first">';
 	$thml .= '
 	<tr>
 		<td align="left" width="400" colspan="2">' . $dbs['billing'] . '</td>
-		<td width="400" align="right" colsoan="2">' . $dbs['TotalDue'] . '</td>
+		<td width="400" align="right" colspan="2">' . $dbs['TotalDue'] . '</td>
 	</tr>';	
 	$html .= '</table>
 	</body></html>';
