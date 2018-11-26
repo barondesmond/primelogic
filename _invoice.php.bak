@@ -74,7 +74,7 @@ function invoice_html($arrays = '')
 
     }
 </style>
-<table class="first">
+<table border="1">
  <tr>
   <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
