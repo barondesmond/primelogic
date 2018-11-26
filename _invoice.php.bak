@@ -6,7 +6,14 @@ function invoice_db_key($dbs = '', $db = '', $key, $dk='')
 		$dbs[$dk] = '';
 		foreach ($key as $k)
 		{
-			$dbs[$dk] .= $db[$k] . '<BR>';
+			if ($k != 'City' && $k != 'State')
+			{
+				$dbs[$dk] .= $db[$k] . '<BR>';
+			}
+			else
+			{
+				$dbs[$dk] .= $db[$k] . ' ';
+			}
 		}
 
 return $dbs;
