@@ -95,8 +95,10 @@ function invoice_row($db = '', $key = '')
 return $row;
 }
 
-function invoice_tax_due($db = '', $key='')
+function invoice_tax_due($db = '')
 {
+	$key = array('', '','', 'TaxDue');
+
 	if ($db== '')
 	{
 		$db[0] = '';
@@ -115,8 +117,10 @@ function invoice_tax_due($db = '', $key='')
 	return invoice_row($db);
 }
 
-function invoice_total_due_by($db = '', $key='')
+function invoice_total_due_by($db = '')
 {
+	$key = array('', '', 'InvDate', 'InvAmt');
+
 	if ($db== '')
 	{
 		$db[0] = '';
@@ -237,9 +241,9 @@ $html .='<table class="first">';
 		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
 		<td colspan="3" width="699">
 			<table class="first">';
-	$html .= invoice_tax_due();
+	$html .= invoice_tax_due($dbs);
 	$html .= invoice_blank();
-	$html .= invoice_total_due_by();
+	$html .= invoice_total_due_by($dbs);
 	$html .= '</table>';
 	
 	$html .= '</td></tr>';
@@ -260,7 +264,7 @@ function invoice($invoice = '')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*, Location.*
+	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, SalesLed.*, Location.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
