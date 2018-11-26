@@ -97,9 +97,13 @@ $html .='<table class="first">';
 	{
 		foreach ($arrays as $db)
 		{
+			$i++;
 			$html .= invoice_row($db); 
 		}
-
+		for ($j=$i; $j < 10; $j++)
+		{
+			$html .= invoice_blank();
+		}
 	}
 	else
 	{

@@ -107,7 +107,10 @@ $html .='<table class="first">';
 	}
 	else
 	{
-		$html .= invoice_row();
+		for ($i=0; $i < 10; $i++)
+		{
+			$html .= invoice_row();
+		}
 	}
 	$html .= '</table></td></tr>
 	<tr>
