@@ -25,7 +25,17 @@ function invoice_row($db = '', $key = '')
 	}
 }
 
-invoice_html($arrays = '');
+function invoice_total_due($db = '')
+{
+	return invoice_row($db);
+}
+
+function invoice_total_due_by($db = '')
+{
+	return invoice_row($db);
+}
+
+function invoice_html($arrays = '');
 {
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
@@ -56,8 +66,17 @@ invoice_html($arrays = '');
 	{
 		foreach ($arrays as $db)
 		{
-			invoice_row($db) . 
+			$html .= invoice_row($db); 
 		}
+		$html .= invoice_total_due($arrays[0]);
+		$html .= invoice_total_due_by($arrays[0]);
+
+	}
+	else
+	{
+		$html .- invoice_row();
+		$html .= invoice_total_due();
+		$html .= invoice_total_due_by();
 	}
 	$html .= '</table></td></tr>
  <tr>
@@ -76,7 +95,7 @@ return $html;
 function invoice($invoice = '')
 {
 
-return invoice_html();
+return invoice_html($invoice);
 
 }
 
