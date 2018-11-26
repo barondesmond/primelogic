@@ -180,7 +180,7 @@ function invoice($invoice = '')
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
-WHERE Invoice = '$invoice'" and SalesLed.NoPrint = '0';
+WHERE Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
 		$res = mssql_query($sql);
