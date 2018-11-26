@@ -146,7 +146,7 @@ function invoice_init($dbs='', $db='')
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
 		$dbs['DueDate'] = '12/12/12';
-		$dbs['ServiceDate'] = '11/11/11';
+		$dbs['EntDate'] = '11/11/11';
 		$dbs['PONum'] = '324234';
 	if ($db != '' && is_array($db))
 	{
