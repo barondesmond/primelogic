@@ -132,10 +132,11 @@ $html .='<table class="first">';
 	$max = 24;
 	if ($arrays != '' && is_array($arrays))
 	{
+		$key = array('Desc', 'Quan', 'Price', 'Amount');
 		foreach ($arrays as $db)
 		{
 			$i++;
-			$html .= invoice_row($db); 
+			$html .= invoice_row($db, $key); 
 		}
 		for ($j=$i; $j < $max; $j++)
 		{

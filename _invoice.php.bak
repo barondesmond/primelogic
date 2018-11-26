@@ -179,11 +179,11 @@ function invoice($invoice = '')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue
+	$sql = "SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
-WHERE Invoice = '$invoice' and SalesLed.NoPrint = '0'";
+WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
 		echo $Invoice;
