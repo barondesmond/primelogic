@@ -1,6 +1,6 @@
 <?php
 
-function invoice_db_key($dbs = '', $db = '', $dk='')
+function invoice_db_key($dbs = '', $db = '', $key, $dk='')
 {
 
 		$dbs[$dk] = '';
@@ -21,7 +21,7 @@ function invoice_service_location($dbs='', $db='')
 	}
 	else
 	{
-		$dbs = invoice_db_key($dbs, $key, 'loc');
+		$dbs = invoice_db_key($dbs, $db, $key, 'loc');
 	}
 
 return $dbs;
@@ -36,7 +36,7 @@ function invoice_billing($dbs='', $db='')
 	}
 	else
 	{
-		$dbs = invoice_db_key($dbs, $db, 'billing');
+		$dbs = invoice_db_key($dbs, $db, $key, 'billing');
 	}
 return $dbs;
 }
