@@ -25,7 +25,17 @@ function invoice_row($db = '', $key = '')
 	}
 }
 
-invoice_html($arrays = '');
+function invoice_total_due($db = '')
+{
+	return invoice_row($db);
+}
+
+function invoice_total_due_by($db = '')
+{
+	return invoice_row($db);
+}
+
+function invoice_html($arrays = '');
 {
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
@@ -85,7 +95,7 @@ return $html;
 function invoice($invoice = '')
 {
 
-return invoice_html();
+return invoice_html($invoice);
 
 }
 

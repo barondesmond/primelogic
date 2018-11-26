@@ -79,14 +79,7 @@ function invoice_html($arrays = '');
 		$html .= invoice_total_due_by();
 	}
 	$html .= '</table></td></tr>
- <tr>
-   <td width="100"></td>
-   <td width="400"></td>
-   <td width="100">$0.00</td>
-   <td width="100"></td>
-</tr.
  </table>
-
 
 </body></html>';
 return $html;
