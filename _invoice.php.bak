@@ -70,7 +70,8 @@ function invoice_html($arrays = '')
  </tr>
  <tr>
 	<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
-	<td colspan="3" width="699">
+	<td colspan="3" width="699">';
+	/*
 		<table class="first">';
 	if ($arrays != '' && is_array($arrays))
 	{
@@ -91,7 +92,9 @@ function invoice_html($arrays = '')
 			<table class="first">';
 	$html .= invoice_total_due();
 	$html .= invoice_total_due_by();
-	$html .= '</table></td></tr></table></body></html>';
+	$html .= '</table>';
+	*/
+	$html .- '</td></tr></table></body></html>';
 
 return $html;
 }
