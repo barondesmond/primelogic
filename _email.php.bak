@@ -50,7 +50,7 @@ try {
 	if (isset($filename) && isset($cid) && isset($name))
 	{
 
-		$mail->AddEmbeddedImage($filename, $cid, $name, 'base64', 'image/png');
+		$mail->AddEmbeddedImage($filename, $cid, $name);
 		echo "$filename $cid $name";
 		//exit;
 	}
