@@ -6,7 +6,7 @@ function invoice_db_key($dbs = '', $db = '', $dk='')
 		$dbs[$dk] = '';
 		foreach ($key as $k)
 		{
-			$dbs[$dk] . $db[$k] . '<BR>';
+			$dbs[$dk] .= $db[$k] . '<BR>';
 		}
 
 return $dbs;
