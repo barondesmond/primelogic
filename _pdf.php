@@ -1,6 +1,5 @@
 <?php
-require_once('../tcpdf/tcpdf.php');
-
+require_once('../vendor/autoloader.php');
 
 function htmlpdf($html, $fpdf)
 {
