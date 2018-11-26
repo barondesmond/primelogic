@@ -14,6 +14,11 @@ $html = '<html><body><table border="1">
  </table></body></html>';
  */
  //$html = '<html><body><table><tr><td>This is a test</td></tr></table></body></html>';
+ if ($_GET[debug])
+ {
+	 echo $html;
+	exit;
+ }
 $file = htmlpdf($html, 'test.pdf');
 //echo $file;
 ?>
