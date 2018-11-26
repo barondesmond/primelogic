@@ -27,7 +27,7 @@ require 'PHPMailer/src/SMTP.php';
 	$dp[70][] = 'arthur@plisolutions.com';
 
 
-function email_report($email, $subject, $body, $filename='', $cid='', $name='' )
+function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
 {
 
 	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -57,7 +57,10 @@ try {
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
     //Attachments
-    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+	if (isset($pdf))
+	{
+		$mail->addAttachment($pdf);         // Add attachments
+	}
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
     //Content
@@ -73,6 +76,8 @@ try {
 }
 
 }
+
+
 
 
 	
