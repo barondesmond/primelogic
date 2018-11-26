@@ -71,7 +71,6 @@ function invoice_html($arrays = '')
         color: black;
         font-family: helvetica;
         font-size: 10pt;
-		border: 1;
     }
 </style>
 <table class="first">
@@ -91,7 +90,7 @@ function invoice_html($arrays = '')
  
  $html .= '<tr>
 	<td width="1"></td>
-	<td colspan="3" width="699">';
+	<td colspan="3" width="699">whatever';
 	
 $html .='<table class="first">';
 	if ($arrays != '' && is_array($arrays))
