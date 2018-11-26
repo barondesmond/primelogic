@@ -152,11 +152,11 @@ function invoice_init($dbs='', $db='')
 	{
 		foreach($key as $k)
 		{
-			if ($db[$k]) && $k != 'InvDate' && $k != 'DueDate')
+			if ($db[$k] != '' && $k != 'InvDate' && $k != 'DueDate')
 			{
 				$dbs[$k] = $db[$k];
 			}
-			else
+			elseif ($db[$k] != '')
 			{
 				$dbs[$k] = date('d/m/Y', $db[$k]);
 			}
