@@ -93,7 +93,7 @@ function invoice_html($arrays = '')
 	<td colspan="3" width="699">';
 	
 $html .='<table class="first">';
-	$max = 26;
+	$max = 25;
 	if ($arrays != '' && is_array($arrays))
 	{
 		foreach ($arrays as $db)
