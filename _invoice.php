@@ -45,6 +45,21 @@ function invoice_tax_due($db = '')
 
 function invoice_total_due_by($db = '')
 {
+	$db[0] = '';
+	$db[1] = '';
+	$db[2] = '';
+	$db[3] = '';
+	$db[4] = '$0.00';
+	return invoice_row($db);
+}
+
+function invoice_blank()
+{
+	$db[0] = '';
+	$db[1] = '';
+	$db[2] = '';
+	$db[3] = '';
+	$db[4] = '';
 	return invoice_row($db);
 }
 
@@ -97,6 +112,7 @@ $html .='<table class="first">';
 		<td colspan="3" width="699">
 			<table class="first">';
 	$html .= invoice_tax_due();
+	$html .= invoice_blank();
 	$html .= invoice_total_due_by();
 	$html .= '</table>';
 	
