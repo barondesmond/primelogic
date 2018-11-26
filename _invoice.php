@@ -206,6 +206,7 @@ $html .='<table class="first">';
 	$max = 24;
 	if ($arrays != '' && is_array($arrays))
 	{
+		$i=0;
 		$key = array('Desc', 'Quan', 'Price', 'Amount');
 		foreach ($arrays as $db)
 		{
