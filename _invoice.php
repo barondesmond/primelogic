@@ -26,8 +26,8 @@ function invoice_row($db = '', $key = '')
 
 		$row = '<tr><td width="360" align="left">' . $db['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>
-		<td width="90" align="right">' . $db2['3'] . '</td>
-		<td width="90" align="right">' . $db2['4'] . '</td></tr>' . "\r\n";
+		<td width="90" align="right">' . $db2['2'] . '</td>
+		<td width="90" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
 
 	}
 return $row;
@@ -40,8 +40,7 @@ function invoice_tax_due($db = '', $key='')
 		$db[0] = '';
 		$db[1] = '';
 		$db[2] = '';
-		$db[3] = '';
-		$db[4] = '$0.00';
+		$db[3] = '$0.00';
 	}
 	if (is_array($key) && is_array($db))
 	{
@@ -60,9 +59,8 @@ function invoice_total_due_by($db = '', $key='')
 	{
 		$db[0] = '';
 		$db[1] = '';
-		$db[2] = '';
-		$db[3] = '10/23/2018';
-		$db[4] = '$313.75';
+		$db[2] = '10/28/2013';
+		$db[3] = '$313.75';
 	}
 	if (is_array($key) && is_array($db))
 	{
@@ -81,7 +79,6 @@ function invoice_blank()
 	$db[1] = '';
 	$db[2] = '';
 	$db[3] = '';
-	$db[4] = '';
 	return invoice_row($db);
 }
 
