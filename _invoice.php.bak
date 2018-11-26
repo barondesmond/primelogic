@@ -1,0 +1,28 @@
+<?php
+
+function invoice_row($db = '', $key = '')
+{
+	if ($db == '')
+	{
+		$row = '<tr><td width="360" align="left">Service Labor Lead Tech</td><td width="90" align="right">2.5</td><td width="90" align="right">79.50</td><td width="90" align="right">198.75</td></tr>';
+	}
+	else
+	{
+		if ($key == '')
+		{
+			$db2 = array_values($db);
+		}
+		else
+		{
+			foreach ($key as $kd)
+			{
+				$db2[] = $db[$key];
+			}
+		}
+
+		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td><td width="90" align="right">' . $db2['1'] . '</td><td width="90" align="right">' . $db2['3'] . '</td><td width="90" align="right">' . $db2['4'] . '</td></tr>';
+
+	}
+}
+
+?>
