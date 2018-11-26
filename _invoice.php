@@ -141,7 +141,7 @@ function invoice_blank()
 
 function invoice_init($dbs='', $db='')
 {
-	$key = array('Invoice', 'InvDate', 'DueDate', 'EntDate', 'PO');
+	$key = array('Invoice', 'InvDate', 'DueDate', 'EntDate', 'PONum');
 
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
