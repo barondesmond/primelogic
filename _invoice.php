@@ -68,18 +68,18 @@ function invoice_html($arrays = '');
 		{
 			$html .= invoice_row($db); 
 		}
-		$html .= invoice_total_due($arrays[0]);
-		$html .= invoice_total_due_by($arrays[0]);
 
 	}
 	else
 	{
 		$html .- invoice_row();
-		$html .= invoice_total_due();
-		$html .= invoice_total_due_by();
 	}
 	$html .= '</table></td></tr>
- </table>
+<tr><td><width="1">';
+		$html .= invoice_total_due();
+		$html .= invoice_total_due_by();
+
+ $html .= '</table>
 
 </body></html>';
 return $html;
