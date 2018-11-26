@@ -150,7 +150,7 @@ function invoice_blank()
 
 function invoice_init($dbs='', $db='')
 {
-	$key = array('Invoice', 'InvDate', 'DueDate', 'EntDate', 'PONum');
+	$key = array('Invoice', 'InvDate', 'DueDate', 'EntDate', 'PONum', 'InvAmt');
 
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
@@ -241,9 +241,9 @@ $html .='<table class="first">';
 		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
 		<td colspan="3" width="699">
 			<table class="first">';
-	$html .= invoice_tax_due($arrays[0]);
+	$html .= invoice_tax_due($dbs);
 	$html .= invoice_blank();
-	$html .= invoice_total_due_by($arrays[0]);
+	$html .= invoice_total_due_by($dbs);
 	$html .= '</table>';
 	
 	$html .= '</td></tr>';
