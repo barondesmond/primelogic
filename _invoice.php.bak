@@ -35,7 +35,7 @@ function invoice_total_due_by($db = '')
 	return invoice_row($db);
 }
 
-function invoice_html($arrays = '');
+function invoice_html($arrays = '')
 {
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
@@ -79,7 +79,7 @@ function invoice_html($arrays = '');
 		$html .= invoice_total_due();
 		$html .= invoice_total_due_by();
 
- $html .= '</table></td></tr></table>'
+ $html .= '</table></td></tr></table>
 
 </body></html>';
 return $html;
