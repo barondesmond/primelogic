@@ -132,7 +132,14 @@ function invoice_total_due_by($db = '')
 	{
 		foreach ($key as $k)
 		{
-			$db2[] = $db[$k];
+			if ($k == 'InvAmt')
+			{
+				$db2[] = money_format('%.2n', $db[$k]);
+			}
+			else
+			{
+				$db2[] = $db[$k];
+			}
 		}
 		$db = $db2;
 	}
