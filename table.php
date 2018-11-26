@@ -7,9 +7,9 @@ $html = invoice($invoice);
 	
 $html = '<html><body><table>
  <tr>
-  <td width="200" align="center"><BR><BR><BR><BR><BR></td>
-  <td width="250" align="right"></td>
-  <td width="50" align="right"><BR><BR><BR><BR><BR></td>
+  <td width="200" align="center">x xx xx xx xx xx</td>
+  <td width="250" align="right">xx xx xx xx xx xx</td>
+  <td width="50" align="right">xx xx xx xx xx xx</td>
  </tr>
  </table></body></html>';
  //$html = '<html><body><table><tr><td>This is a test</td></tr></table></body></html>';
