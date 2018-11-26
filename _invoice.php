@@ -186,6 +186,7 @@ INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
 WHERE Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
+		echo $Invoice;
 		$res = mssql_query($sql);
 		while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 		{
