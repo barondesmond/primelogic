@@ -5,7 +5,7 @@ include("_invoice.php");
 $html = invoice($invoice);
 		
 	
-$html = '<html><body><table>
+$html = '<html><body><table border="1">
  <tr>
   <td width="200" align="center">x xx xx xx xx xx</td>
   <td width="250" align="right">xx xx xx xx xx xx</td>
