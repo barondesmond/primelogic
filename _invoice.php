@@ -4,7 +4,11 @@ function invoice_row($db = '', $key = '')
 {
 	if ($db == '')
 	{
-		$row = '<tr><td width="360" align="left">Service Labor Lead Tech</td><td width="90" align="right">2.5</td><td width="90" align="right">79.50</td><td width="90" align="right">198.75</td></tr>' . "\r\n";
+		$row = '<tr><td width="360" align="left">Service Labor Lead Tech</td>
+		<td width="90" align="right">2.5</td>
+		<td width="90" align="right">79.50</td>
+		<td width="90" align="right">198.75</td>
+		</tr>' . "\r\n";
 	}
 	else
 	{
@@ -20,7 +24,10 @@ function invoice_row($db = '', $key = '')
 			}
 		}
 
-		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td><td width="90" align="right">' . $db2['1'] . '</td><td width="90" align="right">' . $db2['3'] . '</td><td width="90" align="right">' . $db2['4'] . '</td></tr>' . "\r\n";
+		$row = '<tr><td width="360" align="left">' . $db['0'] . '</td>
+		<td width="90" align="right">' . $db2['1'] . '</td>
+		<td width="90" align="right">' . $db2['3'] . '</td>
+		<td width="90" align="right">' . $db2['4'] . '</td></tr>' . "\r\n";
 
 	}
 return $row;
@@ -61,8 +68,10 @@ function invoice_html($arrays = '')
   <td width="210" align="left">Service Location<BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555</b></td>
 
  </tr>
- <tr><td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td><td colspan="3" width="699">
- <table class="first">';
+ <tr>
+	<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
+	<td colspan="3" width="699">
+		<table class="first">';
 	if ($arrays != '' && is_array($arrays))
 	{
 		foreach ($arrays as $db)
