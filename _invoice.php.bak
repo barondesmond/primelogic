@@ -113,13 +113,14 @@ $html .='<table class="first">';
 			$html .= invoice_row();
 		}
 	}
+	$html .= invoice_blank();
+
 	$html .= '</table></td></tr>
 	<tr>
 		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
 		<td colspan="3" width="699">
 			<table class="first">';
 	$html .= invoice_tax_due();
-	$html .= invoice_blank();
 	$html .= invoice_total_due_by();
 	$html .= '</table>';
 	
