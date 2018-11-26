@@ -24,7 +24,7 @@ $html='<html><head></head><body style="margin: 0px;">
 
  </tr>
  <tr><td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td><td colspan="3" width="699">
- <table class="first"><tr><td width="370">Service Labor Lead Tech</td><td width="80" align="right">2.5</td><td width="80" align="right">79.50</td><td width="80" align="right">198.75</td></tr></table></td></tr>
+ <table class="first"><tr><td width="370">Service Labor Lead Tech</td><td width="90" align="right">2.5</td><td width="90" align="right">79.50</td><td width="90" align="right">198.75</td></tr></table></td></tr>
  <tr>
    <td width="100"></td>
    <td width="400"></td>
