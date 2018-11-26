@@ -1,11 +1,13 @@
 <?php
 
-require_once('../vendor/autoload.php');
+require_once('/PHPMailer//autoload.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 	//days (0 current, 60 = 60-75, 90 = 90+)
 	$da[0][] = 'service@plisolutions.com';
