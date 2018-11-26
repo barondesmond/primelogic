@@ -121,6 +121,7 @@ $html .='<table class="first">';
 		<td colspan="3" width="699">
 			<table class="first">';
 	$html .= invoice_tax_due();
+	$html .= invoice_blank();
 	$html .= invoice_total_due_by();
 	$html .= '</table>';
 	
