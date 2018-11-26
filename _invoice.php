@@ -69,7 +69,14 @@ function invoice_row($db = '', $key = '')
 			{
 				if ($db[$kd] != '0')
 				{
-					$db2[] = $db[$kd];
+					if (is_numeric($db[$kd]))
+					{				
+						$db2[] = number_format($db[$kd], '2');
+					}
+					else
+					{
+						$db2[] = $db[$kd];
+					}
 				}
 				else
 				{
@@ -78,8 +85,6 @@ function invoice_row($db = '', $key = '')
 				
 			}
 		}
-
-		//print_r($db2);
 
 		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>

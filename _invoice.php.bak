@@ -203,7 +203,7 @@ function invoice_html($arrays = '')
 	<td colspan="3" width="699">';
 	
 $html .='<table class="first">';
-	$max = 24;
+	$max = 23;
 	if ($arrays != '' && is_array($arrays))
 	{
 		$i=0;
