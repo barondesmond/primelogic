@@ -33,8 +33,13 @@ function invoice_row($db = '', $key = '')
 return $row;
 }
 
-function invoice_total_due($db = '')
+function invoice_tax_due($db = '')
 {
+	$db[0] = '';
+	$db[1] = '';
+	$db[2] = '';
+	$db[3] = '';
+	$db[4] = '$0.00';
 	return invoice_row($db);
 }
 
@@ -62,7 +67,7 @@ function invoice_html($arrays = '')
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>
-  <td width="50" align="center"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
+  <td width="50" align="center"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
   <td width="350" ><color="grey">Billing Address:</color><BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lama Street<BR>PO BOX 1240<BR>Oxford MS 38655<BR></b><BR><BR></td>
   <td width="90" align="left"></td>
   <td width="210" align="left">Service Location<BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555</b></td>
@@ -91,7 +96,7 @@ $html .='<table class="first">';
 		<td width="1"></td>
 		<td colspan="3" width="699">
 			<table class="first">';
-	$html .= invoice_total_due();
+	$html .= invoice_tax_due();
 	$html .= invoice_total_due_by();
 	$html .= '</table>';
 	
