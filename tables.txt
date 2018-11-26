@@ -10,11 +10,11 @@ Service	dbo	AHSStatus	BASE TABLE
 Service	dbo	CollActn	BASE TABLE
 Service	dbo	IntegrationLog	BASE TABLE
 Service	dbo	Collectn	BASE TABLE
-Service	dbo	CollTemp	BASE TABLE
+Service	dbo	CollTemp	BASE TABLE empy
 Service	dbo	Company	BASE TABLE
 Service	dbo	Counter	BASE TABLE
 Service	dbo	CredCard	BASE TABLE
-Service	dbo	Customer	BASE TABLE
+Service	dbo	Customer	BASE TABLE CustNo
 Service	dbo	CustSort	BASE TABLE
 Service	dbo	SalesTemplate	BASE TABLE
 Service	dbo	DepInfo	BASE TABLE
