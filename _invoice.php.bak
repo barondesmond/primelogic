@@ -84,7 +84,11 @@ function invoice_html($arrays = '')
 	{
 		$html .= invoice_row();
 	}
-	$html .= '</table></td></tr><tr><td width="1"></td><td colspan="3" width="699"><table class="first">';
+	$html .= '</table></td></tr>
+	<tr>
+		<td width="1"></td>
+		<td colspan="3" width="699">
+			<table class="first">';
 	$html .= invoice_total_due();
 	$html .= invoice_total_due_by();
 	$html .= '</table></td></tr></table></body></html>';
