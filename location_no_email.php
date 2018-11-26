@@ -41,7 +41,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 			//if (!isset($y[$db[CustNo]][$db[LocNo]]))
 			//{
 				$noe .= table_row($db, $no);
-				$y[$db[CustNo]][$db[LocNo]] = $db;
+				$y[$db['CustNo']][$db['LocNo']] = $db;
 			//}
 }
 			$html = html_head() . '<table>';
