@@ -465,20 +465,20 @@ function location_logo($LocName='')
 {
 	if (substr($LocName, 0, 1)  == '*')
 	{		
-		$ll['filename'] .= '/var/www/html/primelogic/PLIClogo.png';
+		$ll['filename'] .= '/var/www/html/images/PLIClogo.png';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'PLIClogo';
 
 	}
 	elseif (substr($LocName, 0, 1)  == '#')
 	{		
-		$ll['filename'] .= '/var/www/html/primelogic/NMT.jpg';
+		$ll['filename'] .= '/var/www/html/images/NMT.jpg';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'NMTlogo';
 	}
 	else
 	{
-		$ll['filename'] .= '/var/www/html/primelogic/PLIS.png';
+		$ll['filename'] .= '/var/www/html/images/PLIS.png';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'PLISlogo';
 	}
