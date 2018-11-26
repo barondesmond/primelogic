@@ -67,11 +67,12 @@ function invoice_html($arrays = '')
   <td width="90" align="left"></td>
   <td width="210" align="left">Service Location<BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555</b></td>
 
- </tr>
+ </tr>';
+ /*
  <tr>
 	<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
 	<td colspan="3" width="699">';
-	/*
+	
 		<table class="first">';
 	if ($arrays != '' && is_array($arrays))
 	{
@@ -93,10 +94,10 @@ function invoice_html($arrays = '')
 	$html .= invoice_total_due();
 	$html .= invoice_total_due_by();
 	$html .= '</table>';
+	
+	$html .= '</td></tr>';
 	*/
-	$html .= '</td>
-	</tr>
-	</table>
+	$html .= '</table>
 	</body></html>';
 
 return $html;
