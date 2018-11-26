@@ -241,9 +241,9 @@ $html .='<table class="first">';
 		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
 		<td colspan="3" width="699">
 			<table class="first">';
-	$html .= invoice_tax_due($db[0]);
+	$html .= invoice_tax_due($arrays[0]);
 	$html .= invoice_blank();
-	$html .= invoice_total_due_by($db[0]);
+	$html .= invoice_total_due_by($arrays[0]);
 	$html .= '</table>';
 	
 	$html .= '</td></tr>';
