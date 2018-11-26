@@ -472,7 +472,7 @@ function location_logo($LocName='')
 	}
 	elseif (substr($LocName, 0, 1)  == '#')
 	{		
-		$ll['filename'] .= '/var/www/html/primelogic/NMT.png';
+		$ll['filename'] .= '/var/www/html/primelogic/NMT.jpg';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'NMTlogo';
 	}
