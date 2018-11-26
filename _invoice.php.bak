@@ -24,7 +24,7 @@ function invoice_row($db = '', $key = '')
 			}
 		}
 
-		print_r($db2);
+		//print_r($db2);
 
 		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>
@@ -186,8 +186,8 @@ INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
 WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
-		echo $Invoice;
-		echo $sql;
+		//echo $Invoice;
+		//echo $sql;
 		$res = mssql_query($sql);
 		while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 		{
