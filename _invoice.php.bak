@@ -62,7 +62,7 @@ function invoice_html($arrays = '')
  </tr>
  <tr><td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td><td colspan="3" width="699">
  <table class="first">';
-	if (is_array($arrays))
+	if ($arrays != '' && is_array($arrays))
 	{
 		foreach ($arrays as $db)
 		{
@@ -72,7 +72,7 @@ function invoice_html($arrays = '')
 	}
 	else
 	{
-		$html .- invoice_row();
+		$html .= invoice_row();
 	}
 	$html .= '</table></td></tr>
 <tr><td width="1"></td><td colspan="3" width="699"><table>';
