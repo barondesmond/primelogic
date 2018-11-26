@@ -94,7 +94,10 @@ function invoice_html($arrays = '')
 	$html .= invoice_total_due_by();
 	$html .= '</table>';
 	*/
-	$html .= '</td></tr></table></body></html>';
+	$html .= '</td>
+	</tr>
+	</table>
+	</body></html>';
 
 return $html;
 }
