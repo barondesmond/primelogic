@@ -1,6 +1,6 @@
 <?php
 
-function invoice_db_key($dbs = '', $db = '', $dk='')
+function invoice_db_key($dbs = '', $db = '', $key, $dk='')
 {
 
 		$dbs[$dk] = '';
@@ -21,7 +21,7 @@ function invoice_service_location($dbs='', $db='')
 	}
 	else
 	{
-		$dbs = invoice_db_key($dbs, $key, 'loc');
+		$dbs = invoice_db_key($dbs, $db, $key, 'loc');
 	}
 
 return $dbs;
@@ -36,7 +36,7 @@ function invoice_billing($dbs='', $db='')
 	}
 	else
 	{
-		$dbs = invoice_db_key($dbs, $db, 'billing');
+		$dbs = invoice_db_key($dbs, $db, $key, 'billing');
 	}
 return $dbs;
 }
@@ -180,7 +180,7 @@ function invoice_html($arrays = '')
   <tr><td>' . $dbs['InvDate'] . '</td></tr>
   <tr><td>' . $dbs['DueDate'] . '</td></tr>
   <tr><td>' . $dbs['ServiceDate'] . '</td></tr>
-  <tr><td>' . $dbs['PO'] . '</td></tr></table></td>
+  <tr><td>' . $dbs['PONum'] . '</td></tr></table></td>
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>
