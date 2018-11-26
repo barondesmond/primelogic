@@ -62,7 +62,7 @@ function invoice_html($arrays = '')
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>
-  <td width="50" align="center"><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
+  <td width="50" align="center"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
   <td width="350" ><color="grey">Billing Address:</color><BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lama Street<BR>PO BOX 1240<BR>Oxford MS 38655<BR></b><BR><BR></td>
   <td width="90" align="left"></td>
   <td width="210" align="left">Service Location<BR><b>Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555</b></td>
