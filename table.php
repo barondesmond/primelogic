@@ -13,7 +13,7 @@ $html = '<html><body><table>
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  </table></body></html>';
- //$html = '<html><body>This is a test</body></html>';
+ $html = '<html><body><table><tr><td>This is a test</td></tr></table></body></html>';
 $file = htmlpdf($html, 'test.pdf');
 //echo $file;
 ?>
