@@ -41,13 +41,7 @@ Description/Notes
 
 
 
-SELECT Sales.Invoice, Sales.InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate
-FROM Sales
-WHERE Invoice = '0000011928';
 
-SELECT Paid, InvAmt-Paid as TotalDue
-FROM  Receivab
-WHERE Invoice = '0000019928';
 
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */

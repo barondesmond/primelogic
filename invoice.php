@@ -3,6 +3,7 @@ require ('_pdf.php');
 require ('_email.php');
 require ('_db_config.php');
 require ('_report.php');
+include("_invoice.php");
 /*
 
 invoice tables
