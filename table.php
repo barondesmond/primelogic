@@ -3,9 +3,11 @@ include("_pdf.php");
 include("_invoice.php");
 
 $html = invoice($invoice);
-
-//echo $html;
-
+if ($_GET['debug'])
+{
+	echo $html;
+	exit;
+}
 $file = htmlpdf($html, 'test.pdf');
 //echo $file;
 ?>
