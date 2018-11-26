@@ -4,7 +4,7 @@ function invoice_row($db = '', $key = '')
 {
 	if ($db == '')
 	{
-		$row = '<tr><td width="360" align="left">Service Labor Lead Tech</td><td width="90" align="right">2.5</td><td width="90" align="right">79.50</td><td width="90" align="right">198.75</td></tr>';
+		$row = '<tr><td width="360" align="left">Service Labor Lead Tech</td><td width="90" align="right">2.5</td><td width="90" align="right">79.50</td><td width="90" align="right">198.75</td></tr>' . "\r\n";
 	}
 	else
 	{
@@ -20,7 +20,7 @@ function invoice_row($db = '', $key = '')
 			}
 		}
 
-		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td><td width="90" align="right">' . $db2['1'] . '</td><td width="90" align="right">' . $db2['3'] . '</td><td width="90" align="right">' . $db2['4'] . '</td></tr>';
+		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td><td width="90" align="right">' . $db2['1'] . '</td><td width="90" align="right">' . $db2['3'] . '</td><td width="90" align="right">' . $db2['4'] . '</td></tr>' . "\r\n";
 
 	}
 return $row;
