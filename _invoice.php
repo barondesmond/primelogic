@@ -6,7 +6,7 @@ function invoice_db_key($dbs = '', $db = '', $dk='')
 		$dbs[$dk] = '';
 		foreach ($key as $k)
 		{
-			$dbs[$dk] . $db[$k] . '<BR>';
+			$dbs[$dk] .= $db[$k] . '<BR>';
 		}
 
 return $dbs;
@@ -159,8 +159,8 @@ function invoice_html($arrays = '')
 {
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
+	$dbs = invoice_billing($dbs, $arrays[0]);
 
-	$dbs['billing'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lama Street<BR>PO BOX 1240<BR>Oxford MS 38655<BR>';
 
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
