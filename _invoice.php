@@ -88,8 +88,8 @@ function invoice_row($db = '', $key = '')
 
 		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>
-		<td width="105" align="right">' . $db2['2'] . '</td>
-		<td width="75" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
+		<td width="110" align="right">' . $db2['2'] . '</td>
+		<td width="70" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
 
 	}
 return $row;
