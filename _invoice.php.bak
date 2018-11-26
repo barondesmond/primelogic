@@ -119,7 +119,7 @@ function invoice_tax_due($db = '')
 
 function invoice_total_due_by($db = '')
 {
-	$key = array('', '', 'InvDate', 'InvAmt');
+	$key = array('', '', 'DueDate', 'InvAmt');
 
 	if ($db== '')
 	{
