@@ -2,8 +2,7 @@
 
 require_once('../vendor/autoload.php');
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+
 
 
 	//days (0 current, 60 = 60-75, 90 = 90+)
