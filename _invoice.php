@@ -93,6 +93,7 @@ function invoice_html($arrays = '')
 	<td colspan="3" width="699">';
 	
 $html .='<table class="first">';
+	$max = 20;
 	if ($arrays != '' && is_array($arrays))
 	{
 		foreach ($arrays as $db)
@@ -100,14 +101,14 @@ $html .='<table class="first">';
 			$i++;
 			$html .= invoice_row($db); 
 		}
-		for ($j=$i; $j < 10; $j++)
+		for ($j=$i; $j < $max; $j++)
 		{
 			$html .= invoice_blank();
 		}
 	}
 	else
 	{
-		for ($i=0; $i < 10; $i++)
+		for ($i=0; $i < $max; $i++)
 		{
 			$html .= invoice_row();
 		}
