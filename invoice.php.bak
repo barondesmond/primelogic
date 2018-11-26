@@ -48,7 +48,11 @@ SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
  
 $html = invoice($_GET['Invoice']);
-
+ if ($_GET[debug])
+ {
+	 echo $html;
+	exit;
+ }
 
 $file = htmlpdf($html, 'test.pdf');
 echo $file;
