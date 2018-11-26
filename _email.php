@@ -64,9 +64,9 @@ try {
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
     //Attachments
-	if (isset($pdf))
+	if ($pdf != "")
 	{
-		//$mail->addAttachment($pdf);         // Add attachments
+		$mail->addAttachment($pdf);         // Add attachments
 	}
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
