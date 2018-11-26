@@ -56,6 +56,10 @@ try {
 		{
 			"apache can read it why not you phpmailer $filename";
 		}
+		else
+		{
+			echo "you suck apache $filename ";
+		}
 		//exit;
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';

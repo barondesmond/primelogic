@@ -66,7 +66,7 @@ try {
     //Attachments
 	if (isset($pdf))
 	{
-		$mail->addAttachment($pdf);         // Add attachments
+		//$mail->addAttachment($pdf);         // Add attachments
 	}
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
