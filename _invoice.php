@@ -20,7 +20,7 @@ function invoice_row($db = '', $key = '')
 		{
 			foreach ($key as $kd)
 			{
-				$db2[] = $db[$key];
+				$db2[] = $db[$kd];
 			}
 		}
 
