@@ -23,6 +23,8 @@ function invoice_row($db = '', $key = '')
 				$db2[] = $db[$kd];
 			}
 		}
+		print_r($db);
+		print_r($db2);
 
 		$row = '<tr><td width="360" align="left">' . $db['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>
