@@ -23,6 +23,7 @@ function invoice_row($db = '', $key = '')
 		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td><td width="90" align="right">' . $db2['1'] . '</td><td width="90" align="right">' . $db2['3'] . '</td><td width="90" align="right">' . $db2['4'] . '</td></tr>';
 
 	}
+return $row;
 }
 
 function invoice_total_due($db = '')
