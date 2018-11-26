@@ -147,7 +147,7 @@ function invoice_init($dbs='', $db='')
 		$dbs['InvDate'] = '12/12/1970';
 		$dbs['DueDate'] = '12/12/12';
 		$dbs['ServiceDate'] = '11/11/11';
-		$dbs['PO'] = '324234';
+		$dbs['PONum'] = '324234';
 	if ($db != '' && is_array($db))
 	{
 		foreach($key as $k)
@@ -186,7 +186,7 @@ function invoice_html($arrays = '')
   <tr><td>' . $dbs['Invoice'] . '</td></tr>
   <tr><td>' . $dbs['InvDate'] . '</td></tr>
   <tr><td>' . $dbs['DueDate'] . '</td></tr>
-  <tr><td>' . $dbs['ServiceDate'] . '</td></tr>
+  <tr><td>' . $dbs['EntDate'] . '</td></tr>
   <tr><td>' . $dbs['PONum'] . '</td></tr></table></td>
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
@@ -254,7 +254,7 @@ function invoice($invoice = '')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, Sales.EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, Sales.DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*, Location.*
+	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate) as DueDate, Paid, InvAmt-Paid as TotalDue, SalesLed.*, Location.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
