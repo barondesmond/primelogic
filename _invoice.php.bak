@@ -65,8 +65,14 @@ function invoice_blank()
 
 function invoice_html($arrays = '')
 {
+	$dbs['Invoice'] = '000000';
+	$dbs['InvDate'] = '12/12/1970';
+	$dbs['DueDate'] = '12/12/12';
+	$dbs['ServiceDate'] = '11/11/11';
+	$dbs['PO'] = '324234';
 	$dbs['loc'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lamar Street<BR>PO BOX 1240<BR>Oxford MS 38555';
 	$dbs['billing'] = 'Lafayette Co. Chancery Clerk<BR>300 North Lama Street<BR>PO BOX 1240<BR>Oxford MS 38655<BR>';
+
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
  table.first {
@@ -79,7 +85,13 @@ function invoice_html($arrays = '')
  <tr>
   <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
-  <td width="250" align="right"><table cellpadding="4" class="first"><tr><td>0000000</td></tr><tr><td>12/12/1970</td></tr><tr><td>12/12/12</td></tr><tr><td>11/11/11</td></tr><tr><td>324234</td></tr></table></td>
+  <td width="250" align="right">
+  <table cellpadding="4" class="first">
+  <tr><td>' . $dbs['Invoice'] . '</td></tr>
+  <tr><td>' . $dbs['InvDate'] . '</td></tr>
+  <tr><td>' . $dbs['DueDate'] . '</td></tr>
+  <tr><td>' . $dbs['ServiceDate'] . '</td></tr>
+  <tr><td>' . $dbs['PO'] . '</td></tr></table></td>
   <td width="50" align="right"><BR><BR><BR><BR><BR></td>
  </tr>
  <tr>

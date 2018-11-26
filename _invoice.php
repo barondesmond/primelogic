@@ -33,23 +33,45 @@ function invoice_row($db = '', $key = '')
 return $row;
 }
 
-function invoice_tax_due($db = '')
+function invoice_tax_due($db = '', $key='')
 {
-	$db[0] = '';
-	$db[1] = '';
-	$db[2] = '';
-	$db[3] = '';
-	$db[4] = '$0.00';
+	if ($db== '')
+	{
+		$db[0] = '';
+		$db[1] = '';
+		$db[2] = '';
+		$db[3] = '';
+		$db[4] = '$0.00';
+	}
+	if (is_array($key) && is_array($db))
+	{
+		foreach ($key as $k)
+		{
+			$db2[] = $db[$k];
+		}
+		$db = $db2;
+	}
 	return invoice_row($db);
 }
 
-function invoice_total_due_by($db = '')
+function invoice_total_due_by($db = '', $key='')
 {
-	$db[0] = '';
-	$db[1] = '';
-	$db[2] = '';
-	$db[3] = '';
-	$db[4] = '$0.00';
+	if ($db== '')
+	{
+		$db[0] = '';
+		$db[1] = '';
+		$db[2] = '';
+		$db[3] = '10/23/2018';
+		$db[4] = '$313.75';
+	}
+	if (is_array($key) && is_array($db))
+	{
+		foreach ($key as $k)
+		{
+			$db2[] = $db[$k];
+		}
+		$db = $db2;
+	}
 	return invoice_row($db);
 }
 
@@ -140,6 +162,11 @@ $html .='<table class="first">';
 	$html .= '</table>';
 	
 	$html .= '</td></tr>';
+	$thml .= '
+	<tr>
+		<td align="left" width="400" colspan="2">' . $dbs['billing'] . '</td>
+		<td width="400" align="right" colsoan="2">' . $dbs['TotalDue'] . '</td>
+	</tr>';	
 	$html .= '</table>
 	</body></html>';
 
