@@ -100,7 +100,7 @@ $pdf->setPageMark();
 	$dbs = invoice_billing($dbs, $arrays[0]);
 	$border='1';
 	//Bottom Table
-	$pdf -> writeHTMLCell('50', '50', '30', '235', "<b>$dbs['billing']</b>", $border);
+	$pdf -> writeHTMLCell('50', '50', '30', '235', '<b>' . $dbs['billing'] . '</b>', $border);
 	$pdf->SetFont('helvetica', '', 8);
 	$pdf -> writeHTMLCell('18', '5', '116', '255', $dbs['Invoice'], $border);
 	$pdf -> writeHTMLCell('18', '5', '134', '255', $dbs['InvDate'], $border);
