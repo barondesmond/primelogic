@@ -103,7 +103,7 @@ $pdf->setPageMark();
 	$html = invoice_header($dbs);
 	$html .= invoice_toptable($dbs);
 
-	$html .= invoice_middletable($dbs);
+	$html .= invoice_middletable($arrays);
 	$pdf->writeHTML($html, true, false, true, false, '');
 
 	//$pdf -> writeHTMLCell('200', '120', '0', '0', $html, $border);

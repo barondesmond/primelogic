@@ -146,7 +146,6 @@ WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 		{
 			$arrays[] = $db;
 		}
-		print_r($arrays);
 	}
 return $arrays;
 }
@@ -154,6 +153,7 @@ return $arrays;
 function pdf_input($invoice='')
 {
 	$arrays = pdf_query($invoice);
+		print_r($arrays);
 
 	$file = pdf_output($arrays);
 return $file;
