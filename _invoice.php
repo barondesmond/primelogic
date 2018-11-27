@@ -207,7 +207,8 @@ function invoice_html($arrays = '')
 		max-height: 350px;
 		border-collapse: collapse;
 		border-spacing: 0;
-
+		width: 450;
+		height: 350;
     }
 </style>
 <table class="toptable">
