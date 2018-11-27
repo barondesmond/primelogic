@@ -99,7 +99,7 @@ $pdf->setPageMark();
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
 
-	$pdf -> writeHTMLCell('100', '100', '20', '250', $dbs['billing']);
+	$pdf -> writeHTMLCell('20', '20', '20', '250', $dbs['billing']);
 
 // ---------------------------------------------------------
 
