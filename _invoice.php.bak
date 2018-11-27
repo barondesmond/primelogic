@@ -261,6 +261,8 @@ function invoice_middletable($arrays)
 		{
 			$i++;
 			$html .= invoice_row($db, $key); 
+			print_r($db);
+			exit;
 		}
 		for ($j=$i; $j < $max; $j++)
 		{
