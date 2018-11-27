@@ -251,7 +251,7 @@ function invoice_middletable($arrays)
 		
  
 	
-$html .='<table class="middletable">';
+	$html ='<table class="middletable">';
 	$max = 20;
 	if ($arrays != '' && is_array($arrays))
 	{
