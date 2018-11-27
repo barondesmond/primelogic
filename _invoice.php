@@ -202,7 +202,7 @@ $html = '<table class="toptable">
 return $html;
 }
 
-function invoice_header($dbs);
+function invoice_header($dbs)
 {
 
 	$html='<html><head></head><body style="margin: 0px;">
