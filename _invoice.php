@@ -223,12 +223,12 @@ function invoice_header($dbs)
         font-family: helvetica;
         font-size: 8pt;
 		table-layout: fixed;
-		max-width: 450px;
-		max-height: 350px;
+		max-width: 650px;
+		max-height: 250px;
 		border-collapse: collapse;
 		border-spacing: 0;
-		width: 450;
-		height: 350;
+		width: 650;
+		height: 250;
     }
  table.bottomtable {
         color: black;
