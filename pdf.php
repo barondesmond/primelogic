@@ -100,8 +100,14 @@ $pdf->setPageMark();
 	$dbs = invoice_billing($dbs, $arrays[0]);
 	$border='1';
 	//middletable
-	$html = invoice_middletable($dbs);
-	$pdf -> writeHTMLCell('2000', '120', '0', '100', $html, $border);
+	$html = invoice_header($dbs);
+	$html .= invoice_toptable($dbs);
+
+	$html .= invoice_middletable($dbs);
+	$pdf->writeHTML($html, true, false, true, false, '');
+
+	//$pdf -> writeHTMLCell('200', '120', '0', '0', $html, $border);
+
 	//Bottom Table
 	$pdf -> writeHTMLCell('50', '50', '30', '235', '<b>' . $dbs['billing'] . '</b>', $border);
 	$pdf->SetFont('helvetica', '', 8);
