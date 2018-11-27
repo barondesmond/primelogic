@@ -266,7 +266,7 @@ $html .='<table class="middletable">';
 		}
 		for ($j=$i; $j < $max; $j++)
 		{
-			$html .= invoice_blank();
+			//$html .= invoice_blank();
 		}
 	}
 	else
@@ -277,22 +277,7 @@ $html .='<table class="middletable">';
 		}
 	}
 	$html .= invoice_blank();
-	$html .= '</table></td></tr>
-	<tr>
-		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
-		<td colspan="3" width="699">
-			<table class="middle">';
-	$html .= invoice_tax_due($dbs);
-	$html .= invoice_blank();
-	$html .= invoice_total_due_by($dbs);
-	$html .= '</table>';
-	
-	$html .= '</td></tr>';
-	$thml .= '
-	<tr>
-		<td align="left" width="400" colspan="2">' . $dbs['billing'] . '</td>
-		<td width="400" align="right" colspan="2">' . $dbs['TotalDue'] . '</td>
-	</tr>';	
+	$html .= '</table></td></tr>'
 	$html .= '</table>';
 return $html;
 }
