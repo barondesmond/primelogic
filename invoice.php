@@ -4,6 +4,8 @@ require ('_email.php');
 require ('_db_config.php');
 require ('_report.php');
 include("_invoice.php");
+include("pdf.php");
+
 /*
 
 invoice tables
@@ -47,14 +49,15 @@ Description/Notes
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
  
-$html = invoice($_GET['Invoice']);
+//$html = invoice($_GET['Invoice']);
+pdf_input($_GET['Invoice']);
  if ($_GET[debug])
  {
 	 echo $html;
 	exit;
  }
 
-$file = htmlpdf($html, 'test.pdf');
+//$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
 //email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);

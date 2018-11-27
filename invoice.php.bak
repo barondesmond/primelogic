@@ -47,15 +47,15 @@ Description/Notes
 SELECT * FROM SalesLed WHERE Invoice = '0000019928' and NoPrint='0';
 */
  
-$html = invoice($_GET['Invoice']);
+//$html = invoice($_GET['Invoice']);
+pdf_input($_GET['Invoice']);
  if ($_GET[debug])
  {
-	 print_r($_GET);
 	 echo $html;
 	exit;
  }
 
-$file = htmlpdf($html, 'test.pdf');
+//$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
 //email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
