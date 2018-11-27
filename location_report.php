@@ -14,6 +14,6 @@ EmailTasks(1-6) 2,255
 $html = location_basis();
 //echo $html;
 define('EMAIL_SEND', 'barondesmond@gmail.com');
-email_report("shannon@plisolutions.com", "Priority Location Invoice Email Need Fixing", $html);
+email_report("barondesmond@gmail.com", "Priority Location Invoice Email Need Fixing", $html);
 ?>
 
