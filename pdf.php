@@ -153,7 +153,7 @@ return $arrays;
 function pdf_input($invoice='')
 {
 	$arrays = pdf_query($invoice);
-		print_r($arrays);
+		//print_r($arrays);
 
 	$file = pdf_output($arrays);
 return $file;
