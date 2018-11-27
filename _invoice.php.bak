@@ -227,7 +227,7 @@ function invoice_header($dbs)
 		max-height: 250px;
 		border-collapse: collapse;
 		border-spacing: 0;
-		width: 650;
+		width: 700;
 		height: 250;
     }
  table.bottomtable {
