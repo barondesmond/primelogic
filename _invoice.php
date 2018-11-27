@@ -306,7 +306,7 @@ return $html;
 
 function invoice_html($arrays = '')
 {
-	print_r($arrays);
+	//print_r($arrays);
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
