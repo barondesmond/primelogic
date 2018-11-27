@@ -98,7 +98,7 @@ $pdf->setPageMark();
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
-	$border='1';
+	$border='0';
 	//middletable
 	$html = invoice_header($dbs);
 	$html .= invoice_toptable($dbs);
