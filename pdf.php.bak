@@ -134,7 +134,7 @@ WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 return $arrays;
 }
 
-function pdf_input($invoice-'')
+function pdf_input($invoice='')
 {
 	$arrays = pdf_query($invoice);
 
