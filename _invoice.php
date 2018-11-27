@@ -281,7 +281,7 @@ $html .='<table class="middletable">';
 	<tr>
 		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
 		<td colspan="3" width="699">
-			<table class="first">';
+			<table class="middle">';
 	$html .= invoice_tax_due($dbs);
 	$html .= invoice_blank();
 	$html .= invoice_total_due_by($dbs);
