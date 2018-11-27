@@ -127,7 +127,7 @@ $pdf->setPageMark();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output($file, 'I');
+$pdf->Output($file, 'F');
 return $file;
 }
 
@@ -161,8 +161,8 @@ function pdf_input($invoice='')
 {
 	$arrays = pdf_query($invoice);
 		//print_r($arrays);
-
-	$file = pdf_output($arrays);
+	$file = '/var/pdf/' . $invoice . '.pdf';
+	$file = pdf_output($arrays, $file);
 return $file;
 
 }
