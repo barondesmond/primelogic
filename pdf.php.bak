@@ -163,7 +163,7 @@ function pdf_input($invoice='')
 
 	$arrays = pdf_query($invoice);
 		//print_r($arrays);
-	$file = '/var/pdf/' . $invoice . '.pdf'
+	$file = '/var/www/pdf/' . $invoice . '.pdf';
 	echo $file;
 	exit;
 	$file = pdf_output($arrays, $file);
