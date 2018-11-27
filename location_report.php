@@ -10,7 +10,7 @@ CustomerInactive 0
 ReceiveNotifications -1
 EmailTasks(1-6) 2,255
 */
-//define('EMAIL_SEND', 'barondesmond@gmail.com');
+define('EMAIL_SEND', '');
 
 $html = location_basis();
 //echo $html;
