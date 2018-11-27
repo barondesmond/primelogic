@@ -116,7 +116,7 @@ $pdf->setPageMark();
 	$pdf -> writeHTMLCell('18', '5', '152', '254', '$' . money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
 	$pdf -> writeHTMLCell('18', '5', '175', '243', '$' . money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
 	$pdf->SetFont('helvetica', '', 10);
-	$pdf -> writeHTMLCell('20', '5', '157', '216', '<b>' . $dbs['Invdate'] . '</b>' , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('20', '5', '157', '216', '<b>' . $dbs['InvDate'] . '</b>' , $border, '', '', '', 'R');
 	$pdf -> writeHTMLCell('20', '5', '177', '216', '<b>$' . money_format('%.2n', $dbs['InvAmt']) . '</b>' , $border, '', '', '', 'R');
  
 // ---------------------------------------------------------
