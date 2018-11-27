@@ -363,7 +363,7 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					if (EMAIL_SEND)
+					if (EMAIL_SEND != '')
 					{
 						email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
 					}
@@ -461,7 +461,7 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					if (EMAIL_SEND)
+					if (EMAIL_SEND != '')
 					{
 						email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
 					}
