@@ -363,7 +363,14 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					email_report('barondesmond@gmail.com', "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+					if (EMAIL_SEND)
+					{
+						email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+					}
+					else
+					{
+						//spam users
+					}
 					unset($pdf);
 					unset($html);
 					unset($ll);
@@ -454,7 +461,14 @@ $res = mssql_query($sql);
 					$html .= html_foot();
 					echo $html;
 					$i++;
-					email_report('barondesmond@gmail.com', "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+					if (EMAIL_SEND)
+					{
+						email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+					}
+					else
+					{
+						//spam users
+					}
 					unset($pdf);
 					unset($html);
 					unset($ll);
