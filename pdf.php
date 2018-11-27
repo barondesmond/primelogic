@@ -1,7 +1,7 @@
 <?php
 require_once('../vendor/autoload.php');
 
-function pdf_output($arrays)
+function pdf_output($arrays, $file)
 {
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF {
