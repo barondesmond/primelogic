@@ -104,8 +104,10 @@ $pdf->setPageMark();
 	$html .= invoice_toptable($dbs);
 
 	$html .= invoice_middletable($dbs);
+	$pdf->writeHTML($html, true, false, true, false, '');
 
-	$pdf -> writeHTMLCell('200', '120', '0', '0', $html, $border);
+	//$pdf -> writeHTMLCell('200', '120', '0', '0', $html, $border);
+
 	//Bottom Table
 	$pdf -> writeHTMLCell('50', '50', '30', '235', '<b>' . $dbs['billing'] . '</b>', $border);
 	$pdf->SetFont('helvetica', '', 8);
@@ -144,6 +146,7 @@ WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 		{
 			$arrays[] = $db;
 		}
+		print_r($arrays);
 	}
 return $arrays;
 }
