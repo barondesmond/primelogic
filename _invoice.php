@@ -221,7 +221,7 @@ function invoice_header($dbs)
  table.middletable {
         color: black;
         font-family: helvetica;
-        font-size: 9pt;
+        font-size: 10pt;
 		table-layout: fixed;
 		max-width: 650px;
 		max-height: 250px;
