@@ -89,7 +89,7 @@ function invoice_row($db = '', $key = '')
 		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>
 		<td width="110" align="right">' . $db2['2'] . '</td>
-		<td width="80" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
+		<td width="90" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
 
 	}
 return $row;
@@ -227,7 +227,7 @@ function invoice_header($dbs)
 		max-height: 250px;
 		border-collapse: collapse;
 		border-spacing: 0;
-		width: 700;
+		width: 750;
 		height: 250;
     }
  table.bottomtable {
@@ -325,11 +325,12 @@ function invoice($invoice = '')
 	{
 		//$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*
+	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, Dispatch.Complete as ServiceDate
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
+INNER JOIN Dispatch ON Sales.Invoice = Dispatch.Invoice
 WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{

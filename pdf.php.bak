@@ -123,13 +123,13 @@ $pdf->setPageMark();
 	$pdf->SetFont('helvetica', '', 8);
 	$pdf -> writeHTMLCell('18', '5', '116', '255', $dbs['Invoice'], $border);
 	$pdf -> writeHTMLCell('18', '5', '134', '255', $dbs['InvDate'], $border);
-	$pdf -> writeHTMLCell('18', '5', '152', '254', '$' . money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
-	$pdf -> writeHTMLCell('18', '5', '175', '243', '$' . money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('18', '5', '152', '254', money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('18', '5', '175', '243', money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
 	$pdf->SetFont('helvetica', '', 10);
-	$pdf -> writeHTMLCell('20', '5', '179', '209', '<b>$' . money_format('%.2n', $dbs['Tax1']) . '</b>' , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('20', '5', '179', '209', '<b>' . money_format('%.2n', $dbs['Tax1']) . '</b>' , $border, '', '', '', 'R');
 
 	$pdf -> writeHTMLCell('20', '5', '159', '215', '<b>' . $dbs['InvDate'] . '</b>' , $border, '', '', '', 'R');
-	$pdf -> writeHTMLCell('20', '5', '179', '215', '<b>$' . money_format('%.2n', $dbs['InvAmt']) . '</b>' , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('20', '5', '179', '215', '<b>' . money_format('%.2n', $dbs['InvAmt']) . '</b>' , $border, '', '', '', 'R');
 	$pdf->SetFont('helvetica', '', 11);
 
 	$pdf -> writeHTMLCell('22', '5', '165', '273', '<b>' . $dbs['InvDate'] . '<b>', $border);
