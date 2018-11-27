@@ -120,6 +120,7 @@ $pdf->setPageMark();
 
 	$pdf -> writeHTMLCell('20', '5', '159', '215', '<b>' . $dbs['InvDate'] . '</b>' , $border, '', '', '', 'R');
 	$pdf -> writeHTMLCell('20', '5', '179', '215', '<b>$' . money_format('%.2n', $dbs['InvAmt']) . '</b>' , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('18', '5', '175', '255', $dbs['InvDate'], $border);
  
 // ---------------------------------------------------------
 
