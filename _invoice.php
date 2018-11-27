@@ -177,13 +177,33 @@ function invoice_init($dbs='', $db='')
 return $dbs;
 }
 
-
-function invoice_html($arrays = '')
+function invoice_toptable($dbs)
 {
-	$dbs = invoice_init($dbs, $arrays[0]);
-	$dbs = invoice_service_location($dbs, $arrays[0]);
-	$dbs = invoice_billing($dbs, $arrays[0]);
+$html = '<table class="toptable">
+ <tr>
+  <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
+  <td width="200" align="center"><BR><BR><BR><BR><BR></td>
+  <td width="250" align="right">
+  <table cellpadding="4" class="first">
+  <tr><td>' . $dbs['Invoice'] . '</td></tr>
+  <tr><td>' . $dbs['InvDate'] . '</td></tr>
+  <tr><td>' . $dbs['DueDate'] . '</td></tr>
+  <tr><td>' . $dbs['EntDate'] . '</td></tr>
+  <tr><td>' . $dbs['PONum'] . '</td></tr></table></td>
+  <td width="50" align="right"><BR><BR><BR><BR><BR></td>
+ </tr>
+ <tr>
+  <td width="50" align="center"></td>
+  <td width="350" ><color="grey">Billing Address:</color><BR><b>' . $dbs['billing'] . '</b><BR><BR></td>
+  <td width="90" align="left"></td>
+  <td width="210" align="left">Service Location<BR><b>' . $dbs['loc'] . '</b></td>
 
+ </tr></table>';
+return $html;
+}
+
+function invoice_header($dbs);
+{
 
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
@@ -210,33 +230,18 @@ function invoice_html($arrays = '')
 		width: 450;
 		height: 350;
     }
-</style>
-<table class="toptable">
- <tr>
-  <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
-  <td width="200" align="center"><BR><BR><BR><BR><BR></td>
-  <td width="250" align="right">
-  <table cellpadding="4" class="first">
-  <tr><td>' . $dbs['Invoice'] . '</td></tr>
-  <tr><td>' . $dbs['InvDate'] . '</td></tr>
-  <tr><td>' . $dbs['DueDate'] . '</td></tr>
-  <tr><td>' . $dbs['EntDate'] . '</td></tr>
-  <tr><td>' . $dbs['PONum'] . '</td></tr></table></td>
-  <td width="50" align="right"><BR><BR><BR><BR><BR></td>
- </tr>
- <tr>
-  <td width="50" align="center"></td>
-  <td width="350" ><color="grey">Billing Address:</color><BR><b>' . $dbs['billing'] . '</b><BR><BR></td>
-  <td width="90" align="left"></td>
-  <td width="210" align="left">Service Location<BR><b>' . $dbs['loc'] . '</b></td>
+</style>';
+return $html;
+}
 
- </tr></table>';
- 
- $html .= '<table class="middletable"><tr>
+function invoice_middletable($arrays)
+{
+		
+ $html = '<table class="middletable"><tr>
 	<td width="1"></td>
 	<td colspan="3" width="699">';
 	
-$html .='<table class="first">';
+$html .='<table class="middletable">';
 	$max = 20;
 	if ($arrays != '' && is_array($arrays))
 	{
@@ -260,7 +265,6 @@ $html .='<table class="first">';
 		}
 	}
 	$html .= invoice_blank();
-
 	$html .= '</table></td></tr>
 	<tr>
 		<td width="1"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></td>
@@ -277,9 +281,44 @@ $html .='<table class="first">';
 		<td align="left" width="400" colspan="2">' . $dbs['billing'] . '</td>
 		<td width="400" align="right" colspan="2">' . $dbs['TotalDue'] . '</td>
 	</tr>';	
-	$html .= '</table>
-	</body></html>';
+	$html .= '</table>';
+return $html;
+}
+function invoice_bottomtable($dbs)
+{
+	$html = '<table class="bottomtable">
+	<tr>
+		<td width="400">' . $dbs['billing'] . '</td>
+		<td width="200"> </td>
+		<td width="150">' . $dbs['InvAmt'] . '</td>
+	</tr>
+	<tr>
+		<td width="400"> </td>
+		<td width="200">' . $dbs['Invoice'] . ' ' . $dbs['InvDate'] . ' ' . $dbs['InvAmt']. '</td>
+		<td width="150"> </td>
+	</tr>
+	</table>';
+return $html;
+}
 
+function invoice_footer()
+{
+	$html = '</body></html>';
+
+return $html;
+}
+
+function invoice_html($arrays = '')
+{
+	$dbs = invoice_init($dbs, $arrays[0]);
+	$dbs = invoice_service_location($dbs, $arrays[0]);
+	$dbs = invoice_billing($dbs, $arrays[0]);
+	$html .= invoice_toptable($dbs);
+	$html .= invoice_header($dbs);
+	$html .= invoice_middletable($arrays);
+	$html .= invoice_bottomtable($dbs);
+	$html .= invoice_footer();
+	
 return $html;
 }
 
