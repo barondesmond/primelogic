@@ -162,7 +162,7 @@ function invoice_init($dbs='', $db='')
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
 		$dbs['DueDate'] = '12/12/12';
-		$dbs['ServiceDate'] = '11/11/11';
+		$dbs['ServiceDate'] = '';
 		$dbs['PONum'] = '324234';
 	if ($db != '' && is_array($db))
 	{
@@ -325,7 +325,7 @@ function invoice($invoice = '')
 	{
 		//$arrays = '';
 	}
-	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, Dispatch.Complete as ServiceDate
+	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, CONVERT(varchar(10), Dispatch.RecDate, 101) as ServiceDate
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
