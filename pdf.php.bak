@@ -102,7 +102,7 @@ $pdf->setPageMark();
 	//Bottom Table
 	$pdf -> writeHTMLCell('50', '50', '30', '235', $dbs['billing'], $border);
 	$pdf->SetFont('helvetica', '', 8);
-	$pdf -> writeHTMLCell('25', '5', '118', '253', $dbs['Invoice'], $border);
+	$pdf -> writeHTMLCell('25', '5', '115', '255', $dbs['Invoice'], $border);
 // ---------------------------------------------------------
 
 //Close and output PDF document
