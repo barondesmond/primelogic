@@ -47,6 +47,23 @@ function invoice_billing($dbs='', $db='')
 	}
 return $dbs;
 }
+function invoice_office($dbs='', $db='')
+{
+	if (substr($dbs['LastName'], 0, 1)  == '#')
+	{
+		$dbs['Office'] = 'Office: 662.841.1390<BR>Email: service@plisolutions.com';
+	}
+	elseif (substr($dbs['LastName'], 0, 1)  == '*')
+	{
+		$dbs['Office'] = 'Office: 662.841.1390<BR>Email: service@plisolutions.com';
+
+	}
+	else
+	{
+		$dbs['Office'] = 'Office: 662.841.1390<BR>Email: service@plisolutions.com';
+	}
+return $dbs;
+}
 function invoice_row($db = '', $key = '')
 {
 	if ($db == '')
@@ -157,8 +174,8 @@ function invoice_blank()
 
 function invoice_init($dbs='', $db='')
 {
-	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PONum', 'InvAmt');
-
+	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PONum', 'InvAmt', 'LastName');
+		$dbs['LastName'] = '#Lafayette Co. CHancery Clerk';
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
 		$dbs['DueDate'] = '12/12/12';
@@ -174,6 +191,10 @@ function invoice_init($dbs='', $db='')
 			}
 		}
 	}
+	$dbs = invoice_service_location($dbs, $db);
+	$dbs = invoice_billing($dbs, $db);
+	$dbs = invoice_office($dbs, $db);
+
 return $dbs;
 }
 
@@ -181,7 +202,7 @@ function invoice_toptable($dbs)
 {
 $html = '<table class="toptable">
  <tr>
-  <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
+  <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>' . $dbs['Office'] . '</td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
   <td width="250" align="right">
   <table cellpadding="4" class="first">
@@ -308,8 +329,6 @@ function invoice_html($arrays = '')
 {
 	//print_r($arrays);
 	$dbs = invoice_init($dbs, $arrays[0]);
-	$dbs = invoice_service_location($dbs, $arrays[0]);
-	$dbs = invoice_billing($dbs, $arrays[0]);
 	$html .= invoice_header($dbs);
 	$html .= invoice_toptable($dbs);
 	$html .= invoice_middletable($arrays);

@@ -55,7 +55,7 @@ function invoice_office($dbs='', $db='')
 	}
 	elseif (substr($dbs['LastName'], 0, 1)  == '*')
 	{
-		$dbs['Office'] = 'Office: 662.841.1390<BR>Email: service@plisolutions.com';
+		$dbs['Office'] = 'Office: 662.841.7722<BR>Email: service@plisolutions.com';
 
 	}
 	else
