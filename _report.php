@@ -395,6 +395,7 @@ $res = mssql_query($sql);
 				$pi .= table_row($db, $ik);
 				$pt['DaysPastDue'] = 'Total Past Due';
 				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
+				$pdf[] = pdf_input($db['Invoice']);
 			}
 			else
 			{

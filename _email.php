@@ -66,7 +66,13 @@ try {
     //Attachments
 	if ($pdf != "")
 	{
-		$mail->addAttachment($pdf);         // Add attachments
+		if (is_array($pdf))
+		{
+			foreach ($pdf as $p)
+			{
+				$mail->addAttachment($p);         // Add attachments
+			}
+		}
 	}
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 

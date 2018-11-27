@@ -2,7 +2,8 @@
 include("_db_config.php");
 include("_email.php");
 include("_report.php");
-
+include("pdf.php");
+include("_invoice.php");
 /*
 LocationInactive 0
 CustomerInactive 0

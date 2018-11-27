@@ -47,7 +47,7 @@ try {
     $mail->addReplyTo('baron@desmond.com');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
-	if (isset($filename) && isset($cid) && isset($name))
+	if ($filename!= '' && $cid!='' && $name!='')
 	{
 
 		$mail->AddEmbeddedImage($filename, $cid, $name);
