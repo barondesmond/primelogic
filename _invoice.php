@@ -249,9 +249,7 @@ return $html;
 function invoice_middletable($arrays)
 {
 		
- $html = '<table class="middletable"><tr>
-	<td width="1"></td>
-	<td colspan="3" width="699">';
+ 
 	
 $html .='<table class="middletable">';
 	$max = 20;
@@ -276,8 +274,6 @@ $html .='<table class="middletable">';
 			$html .= invoice_row();
 		}
 	}
-	$html .= invoice_blank();
-	$html .= '</table></td></tr>';
 	$html .= '</table>';
 return $html;
 }
