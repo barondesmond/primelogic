@@ -187,14 +187,30 @@ function invoice_html($arrays = '')
 
 	$html='<html><head></head><body style="margin: 0px;">
 <style>
- table.first {
+ table.toptable {
         color: black;
         font-family: helvetica;
         font-size: 10pt;
 		table-layout: fixed;
+		max-width: 750px;
+		max-height: 250px;
+		border-collapse: collapse;
+		border-spacing: 0;
+
+    }
+ table.middletable {
+        color: black;
+        font-family: helvetica;
+        font-size: 10pt;
+		table-layout: fixed;
+		max-width: 450px;
+		max-height: 350px;
+		border-collapse: collapse;
+		border-spacing: 0;
+
     }
 </style>
-<table class="first">
+<table class="toptable">
  <tr>
   <td width="200" align="left" color="grey"><BR><BR><BR><BR><BR><BR><BR>Office: 662.841.1390<BR>Email: service@plisolutions.com</td>
   <td width="200" align="center"><BR><BR><BR><BR><BR></td>
@@ -213,7 +229,7 @@ function invoice_html($arrays = '')
   <td width="90" align="left"></td>
   <td width="210" align="left">Service Location<BR><b>' . $dbs['loc'] . '</b></td>
 
- </tr>';
+ </tr></table>';
  
  $html .= '<tr>
 	<td width="1"></td>

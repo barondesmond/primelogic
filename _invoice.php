@@ -231,7 +231,7 @@ function invoice_html($arrays = '')
 
  </tr></table>';
  
- $html .= '<tr>
+ $html .= '<table class="middletable"><tr>
 	<td width="1"></td>
 	<td colspan="3" width="699">';
 	
