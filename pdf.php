@@ -99,6 +99,9 @@ $pdf->setPageMark();
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
 	$border='1';
+	//middletable
+	$html = invoice_middletable($dbs);
+	$pdf -> writeHTMLCell('600', '300', '0', '100', $html, $border);
 	//Bottom Table
 	$pdf -> writeHTMLCell('50', '50', '30', '235', '<b>' . $dbs['billing'] . '</b>', $border);
 	$pdf->SetFont('helvetica', '', 8);
