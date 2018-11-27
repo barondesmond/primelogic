@@ -266,7 +266,7 @@ $html .='<table class="middletable">';
 		}
 		for ($j=$i; $j < $max; $j++)
 		{
-			$html .= invoice_blank();
+			//$html .= invoice_blank();
 		}
 	}
 	else

@@ -277,7 +277,7 @@ $html .='<table class="middletable">';
 		}
 	}
 	$html .= invoice_blank();
-	$html .= '</table></td></tr>'
+	$html .= '</table></td></tr>';
 	$html .= '</table>';
 return $html;
 }
