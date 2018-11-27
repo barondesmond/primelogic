@@ -89,7 +89,7 @@ function invoice_row($db = '', $key = '')
 		$row = '<tr><td width="360" align="left">' . $db2['0'] . '</td>
 		<td width="90" align="right">' . $db2['1'] . '</td>
 		<td width="110" align="right">' . $db2['2'] . '</td>
-		<td width="80" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
+		<td width="90" align="right">' . $db2['3'] . '</td></tr>' . "\r\n";
 
 	}
 return $row;
@@ -227,7 +227,7 @@ function invoice_header($dbs)
 		max-height: 250px;
 		border-collapse: collapse;
 		border-spacing: 0;
-		width: 700;
+		width: 750;
 		height: 250;
     }
  table.bottomtable {
