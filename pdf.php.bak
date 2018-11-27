@@ -4,14 +4,14 @@ require_once('../vendor/autoload.php');
 function pdf_background($LocName='')
 {
 
-	if (substr($LocName, 0, 1)  == '*')
+	if (substr($LocName, 0, 1)  == '#')
 	{		
 		$ll['filename'] .= '/var/www/html/images/PL_INVOICE-construction-1.png';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'PLIClogo';
 
 	}
-	elseif (substr($LocName, 0, 1)  == '#')
+	elseif (substr($LocName, 0, 1)  == '*')
 	{		
 		$ll['filename'] = '/var/www/html/images/PL_INVOICE-NMT-1.png';
 		$ll['cid'] = 'my-attach';
