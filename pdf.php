@@ -92,7 +92,7 @@ $pdf->SetAutoPageBreak(false, 0);
 // set bacground image
 //$img_file = K_PATH_IMAGES.'image_demo.jpg';
 //$img_file = '/var/www/html/primelogic/PL_INVOICE-service-1.png';
-$ll = pdf_background($arrays['0']['LocName']);
+$ll = pdf_background($arrays['0']['LastName']);
 
 $pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 // restore auto-page-break status
@@ -148,11 +148,12 @@ function pdf_query($invoice='')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT LocName, Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*
+	$sql = "SELECT LastName, Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
 WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{

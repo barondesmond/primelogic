@@ -148,11 +148,12 @@ function pdf_query($invoice='')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Sales.LastName, Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*
+	$sql = "SELECT LastName, Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
 WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
