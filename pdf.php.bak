@@ -98,10 +98,11 @@ $pdf->setPageMark();
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
-
+	$border='1';
 	//Bottom Table
-	$pdf -> writeHTMLCell('50', '50', '30', '235', $dbs['billing'], 1);
-	$pdf -> writeHTMLCell('25', '5', '118', '253', $dbs['Invoice'], 1);
+	$pdf -> writeHTMLCell('50', '50', '30', '235', $dbs['billing'], $border);
+	$pdf->SetFont('helvetica', '', 8);
+	$pdf -> writeHTMLCell('25', '5', '118', '253', $dbs['Invoice'], $border);
 // ---------------------------------------------------------
 
 //Close and output PDF document
