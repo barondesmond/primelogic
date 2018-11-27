@@ -94,9 +94,12 @@ $pdf->setPageMark();
 // Print a text
 //$html = '<span style="color:white;text-align:center;font-weight:bold;font-size:80pt;">PAGE 3</span>';
 //$pdf->writeHTML($html, true, false, true, false, '');
+
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
+	$html = invoice_bottomtable($dbs);
+	$pdf -> writeHTMLCell('750', '250', '0', '500', $html);
 
 // ---------------------------------------------------------
 

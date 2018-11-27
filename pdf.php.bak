@@ -1,5 +1,8 @@
 <?php
+require_once('../vendor/autoload.php');
 
+function pdf_output($arrays)
+{
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF {
     //Page header
@@ -59,7 +62,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('helvetica', '', 18);
+$pdf->SetFont('helvetica', '', 10);
 
 // --- example with background set on page ---
 
@@ -90,11 +93,50 @@ $pdf->setPageMark();
 
 // Print a text
 //$html = '<span style="color:white;text-align:center;font-weight:bold;font-size:80pt;">PAGE 3</span>';
-$pdf->writeHTML($html, true, false, true, false, '');
+//$pdf->writeHTML($html, true, false, true, false, '');
+	$dbs = invoice_init($dbs, $arrays[0]);
+	$dbs = invoice_service_location($dbs, $arrays[0]);
+	$dbs = invoice_billing($dbs, $arrays[0]);
 
 // ---------------------------------------------------------
 
 //Close and output PDF document
 $pdf->Output($file, 'I');
 return $file;
+}
+
+function pdf_query($invoice='')
+{
+
+	if ($invoice == '')
+	{
+		$arrays = '';
+	}
+	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*
+FROM Sales
+INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
+INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
+INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
+WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
+	if ($invoice != '')
+	{
+		//echo $Invoice;
+		//echo $sql;
+		$res = mssql_query($sql);
+		while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+		{
+			$arrays[] = $db;
+		}
+	}
+return $arrays;
+}
+
+function pdf_input($invoice-'')
+{
+	$arrays = pdf_query($invoice);
+
+	$file = pdf_output($arrays);
+return $file;
+
+}
 ?>
