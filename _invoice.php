@@ -230,6 +230,18 @@ function invoice_header($dbs);
 		width: 450;
 		height: 350;
     }
+ table.bottomtable {
+        color: black;
+        font-family: helvetica;
+        font-size: 10pt;
+		table-layout: fixed;
+		max-width: 450px;
+		max-height: 350px;
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 450;
+		height: 350;
+    }
 </style>';
 return $html;
 }
@@ -313,8 +325,8 @@ function invoice_html($arrays = '')
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
-	$html .= invoice_toptable($dbs);
 	$html .= invoice_header($dbs);
+	$html .= invoice_toptable($dbs);
 	$html .= invoice_middletable($arrays);
 	$html .= invoice_bottomtable($dbs);
 	$html .= invoice_footer();

@@ -288,11 +288,23 @@ function invoice_bottomtable($dbs)
 {
 	$html = '<table class="bottomtable">
 	<tr>
-		<td>' . $dbs['billing'] . '</td>
-		<td>' . $dbs['Invoice'] . ' ' . $dbs['InvDate'] . ' ' . $dbs['InvAmt']. '</td>
-		<td>' . $dbs['InvAmt'] . '</td>
+		<td width="400">' . $dbs['billing'] . '</td>
+		<td width="200"> </td>
+		<td width="150">' . $dbs['InvAmt'] . '</td>
+	</tr>
+	<tr>
+		<td width="400"> </td>
+		<td width="200">' . $dbs['Invoice'] . ' ' . $dbs['InvDate'] . ' ' . $dbs['InvAmt']. '</td>
+		<td width="150"> </td>
 	</tr>
 	</table>';
+return $html;
+}
+
+function invoice_footer()
+{
+	$html = '</body></html>';
+
 return $html;
 }
 
@@ -301,12 +313,12 @@ function invoice_html($arrays = '')
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$dbs = invoice_service_location($dbs, $arrays[0]);
 	$dbs = invoice_billing($dbs, $arrays[0]);
-	$html .= invoice_toptable($dbs);
 	$html .= invoice_header($dbs);
+	$html .= invoice_toptable($dbs);
 	$html .= invoice_middletable($arrays);
 	$html .= invoice_bottomtable($dbs);
-	$html .= '</body></html>';
-
+	$html .= invoice_footer();
+	
 return $html;
 }
 
