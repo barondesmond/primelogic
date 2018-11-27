@@ -86,7 +86,7 @@ $pdf->SetAutoPageBreak(false, 0);
 $img_file = '/var/www/html/primelogic/PL_INVOICE-service-1.png';
 $pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 // restore auto-page-break status
-$pdf->SetAutoPageBreak($auto_page_break, $bMargin);
+//$pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 // set the starting point for the page content
 $pdf->setPageMark();
 
