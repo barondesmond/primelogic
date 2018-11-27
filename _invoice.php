@@ -330,7 +330,7 @@ FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
-INNER JOIN Dispatch ON Sales.Invoice = Dispatch.Invoice
+LEFT JOIN Dispatch ON Sales.Invoice = Dispatch.Invoice
 WHERE Sales.Invoice = '$invoice' and SalesLed.NoPrint = '0'";
 	if ($invoice != '')
 	{
