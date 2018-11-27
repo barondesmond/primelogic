@@ -10,10 +10,10 @@ CustomerInactive 0
 ReceiveNotifications -1
 EmailTasks(1-6) 2,255
 */
+define('EMAIL_SEND', 'barondesmond@gmail.com');
 
 $html = location_basis();
 //echo $html;
-define('EMAIL_SEND', 'barondesmond@gmail.com');
 email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
 ?>
 
