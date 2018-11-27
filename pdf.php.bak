@@ -159,9 +159,13 @@ return $arrays;
 
 function pdf_input($invoice='')
 {
+	echo $invoice;
+
 	$arrays = pdf_query($invoice);
 		//print_r($arrays);
-	$file = '/var/pdf/' . $invoice . '.pdf';
+	$file = '/var/pdf/' . $invoice . '.pdf'
+	echo $file;
+	exit;
 	$file = pdf_output($arrays, $file);
 return $file;
 
