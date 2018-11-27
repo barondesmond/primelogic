@@ -403,6 +403,7 @@ $res = mssql_query($sql);
 				$ci .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
+				$pdf[] = pdf_input($db['Invoice']);
 				
 			}
 			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo)
