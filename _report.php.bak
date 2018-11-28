@@ -577,10 +577,14 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 			{
 				//send email
 				echo "Sending Email " . $dbs[$var] . "\r\n";
+				email_report($dbs[$var], "Invoice Current and Past Due", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+
 			}
 			elseif (trim($dbs[$var]) == trim($email) && trim($email) != '' && trim($dbs[$var]) != '')
 			{
 				echo "Origin email send ". $email . "\r\n";
+				email_report($dbs[$var], "Invoice Current and Past Due", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+
 			}
 		}
 	}
