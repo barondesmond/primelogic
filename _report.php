@@ -568,6 +568,7 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 	}
 	else
 	{
+		print_r($dbs);
 		for ($i=1; $i < 7; $i++)
 		{
 			$var = "Email" . $i;
