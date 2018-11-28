@@ -257,6 +257,7 @@ function location_basis()
 	$curCustNo = '';
 	$curEmailer = '';
 	$curLocNo = '';
+	$html = '';
 	$ik = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'Paids', 'InvAmts');
 	$ci = '';
 	$pi = '';
