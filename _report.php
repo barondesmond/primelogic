@@ -329,7 +329,7 @@ $res = mssql_query($sql);
 			if (!isset($y[$db[CustNo]][$db[LocNo]]))
 			{
 				$noe .= table_row($db, $no);
-				$y[$db[CustNo]][$db[LocNo]] = $db;
+				$y[$db['CustNo']][$db['LocNo']] = $db;
 			}
 		}
 		else
