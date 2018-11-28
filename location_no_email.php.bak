@@ -83,7 +83,7 @@ if (EMAIL_SEND == '')
 }
 if (EMAIL_SEND != '')
 {
-	emai_report(EMAIL_SEND, "Fix Location Email Report", $html);
+	email_report(EMAIL_SEND, "Fix Location Email Report", $html);
 }
 
 

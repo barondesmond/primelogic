@@ -19,7 +19,7 @@ elseif ($argv[1])
 	define(EMAIL_SEND, $argv[1]);
 }
 
-$sql = "SELECT Customer.LastName, Location.LocNo FROM Location
+$sql = "SELECT Customer.LastName, Customer.CustNo, Location.LocNo FROM Location
 INNER JOIN Customer ON Location.CustNo = Customer.CustNo
  WHERE ReceivesNotifications = '-1' and CustomerInactive = '0' and LocationInactive = '0' and
 
