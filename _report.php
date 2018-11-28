@@ -371,7 +371,7 @@ $res = mssql_query($sql);
 				{
 					$finchrg = finchg($db['CustNo']);
 
-					$html = html_head($cl) . '<table width="%100">';
+					$html = html_head() . '<table width="%100">';
 					$ll = location_logo($db['LastName']);
 
 					if ($finchrg != '')

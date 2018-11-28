@@ -355,7 +355,7 @@ $res = mssql_query($sql);
 					else
 					{
 						//spam users
-						invoice_email_report($dbs, $email, $html, $ll, $pdf);
+						invoice_email_report($dbs, $curEmailer, $html, $ll, $pdf);
 					}
 					unset($pdf);
 					unset($html);
