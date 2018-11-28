@@ -33,6 +33,6 @@ foreach ($sm as $emp => $emails)
 	}
 }
 
-email_report('nicole@plisolutions.com', "Priority Location Invoice Email Need Fixing", $html);
+email_report('dispatch@plisolutions.com', "Priority Location Invoice Email Need Fixing", $html);
 ?>
 
