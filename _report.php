@@ -6,7 +6,7 @@ function finchg($CustNo, $day1='0', $day2 = '-1096')
 	$sql = "SELECT Invoice, '' as JB, Dept, '' as Terms, CONVERT(varchar(10), InvDate, 101) as InvDates, CONVERT(decimal(10,2), Receivab.Paid) as Paids, CONVERT(decimal(10,2), InvAmt) as InvAmts FROM Receivab WHERE CustNo=" . $CustNo . " and Type = 'F'
 	and InvDate < DATEADD(DD, " . $day1 . ", getdate()) and InvDate > DATEADD(DD, " . $day2 . ", getdate()) and Paid != InvAmt
 	ORDER BY InvDate DESC;";
-	echo $sql;
+	
 	
 	//exit;
 	$res = mssql_query($sql);
@@ -54,12 +54,6 @@ function finchg($CustNo, $day1='0', $day2 = '-1096')
 		
 
 	}
-	//if ($table != '')
-	//{
-		//$table = "<table>" . $table . "</table>";
-			//echo $table;
-		//exit;
-	//}
 
 return $table;
 }
@@ -76,9 +70,6 @@ function notes($CustNo, $day)
 	and [Date] < DATEADD(DD, " . $day1 . ", getdate()) and [Date] > DATEADD(DD, " . $day2 . ", getdate()) 
 	
 	ORDER BY [Date] DESC;";
-	//echo $sql;
-	
-	//exit;
 	$res = mssql_query($sql);
 
 	$table = '';
@@ -115,12 +106,6 @@ function notes($CustNo, $day)
 		}
 		//$table .= $row;
 
-	}
-	if ($table != '')
-	{
-		//$table = "<table>" . $table . "</table>";
-			//echo $table;
-		//exit;
 	}
 return wordwrap($row, 65, "<BR>\r\n");
 }
@@ -194,7 +179,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 	}
 	if ($cc != $CCusNo && $cc != '')
 	{
-		//echo $cushead
+		
 		echo "CC = $cc and CCusNo = $CCusNo\r\n";
 		$table .= '<tr><td colspan="7"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 		$table .= $cushead . "<td colspan='6'>"  . notes($cc, $day) . "</td></tr>\r\n";
@@ -216,7 +201,7 @@ $cus = array('CustNo', 'LastName', 'phone');
 
 	$html .= $table;
 	$html .= "</font></body>";
-	//echo $html;
+	
 return $html;
 }     
 
@@ -237,7 +222,7 @@ $day2 = $day2 * -1;
 
 $sql2 = "SELECT CONVERT(decimal(12,2), SUM(InvAmt-Paid)) as Amt  FROM Sales, Receivab 
 WHERE Sales.Invoice = Receivab.Invoice and  DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate())  and PaidOff is NULL and Paid != InVAmt $empsql $deptsql";
-echo $sql2;
+
 $res2 = mssql_query($sql2);
 $db = mssql_fetch_array($res2);
 
@@ -246,7 +231,7 @@ FROM Sales, Receivab, Customer
 WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo=Sales.CustNo 
 and DueDate < DATEADD(DD, " . $day1 . ", getdate()) and DueDate > DATEADD(DD, " . $day2 . ", getdate()) and PaidOff is NULL and Paid != InvAmt $empsql $deptsql
 ORDER BY Sales.CustNo ASC;";
-//echo $sql;
+
 
 
 	setlocale(LC_MONETARY, 'en_US.UTF-8');
@@ -361,7 +346,7 @@ $res = mssql_query($sql);
 				{
 					$html .= '</table>';
 					$html .= html_foot();
-					echo $html;
+					
 					$i++;
 					if (EMAIL_SEND != '')
 					{
@@ -460,7 +445,7 @@ $res = mssql_query($sql);
 				{
 					$html .= '</table>';
 					$html .= html_foot();
-					echo $html;
+					
 					$i++;
 					if (EMAIL_SEND != '')
 					{
