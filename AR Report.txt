@@ -36,4 +36,10 @@ SELECT * FROM Customer, Receivab WHERE Customer.CustNo = Receivab.CustNo and Rec
 SELECT * FROM Customer, Receivab WHERE Customer.CustNo = Receivab.CustNo and Receivab.PaidOff is NULL 
 and Receivab.InvDate < DATEADD(DD,-1 * CAST(SUBSTRING(Terms, 4, 3) as int),getdate() ) and Receivab.InvDate >  DATEADD(DD, CAST(SUBSTRING(Terms, 4, 3) as int) * -1 - 30, getdate() );
 
+SELECT * FROM Sales, Receivab
+WHERE Sales.Invoice = Receivab.Invoice and DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate)
+
+SELECT Sales.Invoice, Sales.CustNo, Sales.Dept, Sales.Salesman, Employee.EmpName, Sales.DueDate, Receivab.Paid, InvAmt, Customer.LastName, phone1  FROM Sales, Receivab, Customer, Employee
+WHERE Sales.Invoice = Receivab.Invoice and Customer.CustNo= Sales.CustNo and DueDate < getdate() and DueDate > DATEADD(DD, -30, getdate()) and PaidOff is NULL and Sales.Salesman = Employee.EmpNo;
+
 
