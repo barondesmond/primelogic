@@ -49,6 +49,23 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 			$html .= "</table></body>";
 $ll = location_logo();
 
-email_report("barondesmond@gmail.com", "Fix Email Tasks Billing Email", $html, $ll['filename'], $ll['cid'], $ll['name']);
+foreach ($sm as $emp => $emails)
+{
+	$day = '31';
+	$day2 = '60';
+	if (!isset($email))
+	{
+		$email_send = $emails;
+	}
+	else
+	{
+		$email_send = $email;
+	}
+	foreach ($email_send as $send)
+	{
+		echo "Email = $send \n";
+		email_report($send, "Fix Location Email Report", $html);
+	}
+}
 ?>
 
