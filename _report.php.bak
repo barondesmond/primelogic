@@ -355,7 +355,7 @@ $res = mssql_query($sql);
 					else
 					{
 						//spam users
-						invoice_email_report($dbs, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
 					}
 					unset($pdf);
 					unset($html);
@@ -371,7 +371,7 @@ $res = mssql_query($sql);
 				{
 					$finchrg = finchg($db['CustNo']);
 
-					$html = html_head($cl) . '<table width="%100">';
+					$html = html_head() . '<table width="%100">';
 					$ll = location_logo($db['LastName']);
 
 					if ($finchrg != '')
@@ -388,7 +388,7 @@ $res = mssql_query($sql);
 				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
-				
+				$cur_db = $db;
 
 			}
 	
@@ -454,7 +454,7 @@ $res = mssql_query($sql);
 					else
 					{
 
-						invoice_email_report($dbs, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($db, $curEmailer, $html, $ll, $pdf);
 
 						//spam users
 					}

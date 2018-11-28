@@ -334,7 +334,7 @@ $res = mssql_query($sql);
 		}
 		else
 		{	
-			print_r($db);
+			//print_r($db);
 
 			if ($db['CustNo'] != $curCustNo || ($db['CustNo'] == $curCustNo && $db['Emailer'] != $curEmailer))
 			{
@@ -355,7 +355,7 @@ $res = mssql_query($sql);
 					else
 					{
 						//spam users
-						invoice_email_report($dbs, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
 					}
 					unset($pdf);
 					unset($html);
@@ -388,7 +388,7 @@ $res = mssql_query($sql);
 				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
-				
+				$curdb = $db;
 
 			}
 	
@@ -454,7 +454,7 @@ $res = mssql_query($sql);
 					else
 					{
 
-						invoice_email_report($dbs, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
 
 						//spam users
 					}
