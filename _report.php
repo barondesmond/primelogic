@@ -586,7 +586,7 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 		for ($i=1; $i < 7; $i++)
 		{
 			$var = "Email" . $i;
-			if ($dbs[$var] != '' && $dbs[$var)] != $email)
+			if ($dbs[$var] != '' && $dbs[$var] != $email)
 			{
 				//send email
 				echo "Sending Email " . $dbs[$var] . "\r\n";
