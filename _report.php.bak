@@ -522,7 +522,7 @@ function table_row($arr, $keys='')
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
 			setlocale(LC_MONETARY, 'en_US.UTF-8');
-			$row .= "<td align=right>" . money_format('%.2n', $arr[$key]) . "</td>";
+			$row .= "<td align=right>" . @money_format('%.2n', $arr[$key]) . "</td>";
 
 		}
 		else
@@ -572,12 +572,12 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 		for ($i=1; $i < 7; $i++)
 		{
 			$var = "Email" . $i;
-			if ($dbs[$var] != ' ' && $dbs[$var] != $email && $email != '')
+			if (trim($dbs[$var]) != '' && $dbs[$var] != $email && trim($email) != '')
 			{
 				//send email
 				echo "Sending Email " . $dbs[$var] . "\r\n";
 			}
-			elseif ($dbs[$var] == $email && $email != '')
+			elseif (trim($dbs[$var]) == trim($email) && trim($email) != '' && trim($dbs[$var]) != '')
 			{
 				echo "Origin email send ". $email . "\r\n";
 			}

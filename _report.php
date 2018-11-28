@@ -568,16 +568,16 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 	}
 	else
 	{
-		print_r($dbs);
+		//print_r($dbs);
 		for ($i=1; $i < 7; $i++)
 		{
 			$var = "Email" . $i;
-			if ($dbs[$var] != ' ' && $dbs[$var] != $email && $email != '')
+			if (trim($dbs[$var]) != '' && $dbs[$var] != $email && trim($email) != '')
 			{
 				//send email
 				echo "Sending Email " . $dbs[$var] . "\r\n";
 			}
-			elseif ($dbs[$var] == $email && $email != '')
+			elseif (trim($dbs[$var]) == trim($email) && trim($email) != '' && trim($dbs[$var]) != '')
 			{
 				echo "Origin email send ". $email . "\r\n";
 			}
