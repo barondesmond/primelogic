@@ -591,10 +591,11 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 				//send email
 				echo "Sending Email " . $dbs[$var] . "\r\n";
 			}
-			elseif ($dbs[$var] == $email
+			elseif ($dbs[$var] == $email)
 			{
 				echo "Origin email send ". $email . "\r\n";
 			}
 		}
+	}
 }
 ?>
