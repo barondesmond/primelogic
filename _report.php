@@ -480,7 +480,7 @@ function location_logo($LocName='')
 {
 	if (substr($LocName, 0, 1)  == '#')
 	{		
-		$ll['filename'] .= '/var/www/html/images/PLIClogo.png';
+		$ll['filename'] = '/var/www/html/images/PLIClogo.png';
 		$ll['cid'] = 'my-attach';
 		$ll['name'] = 'PLIClogo';
 
