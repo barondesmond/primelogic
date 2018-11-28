@@ -10,6 +10,14 @@ ReceiveNotifications -1
 EmailTasks(1-6) 2,255
 */
 
+if (!$argv[1])
+{
+	define(EMAIL_SEND, '');
+}
+elseif ($argv[1])
+{
+	define(EMAIL_SEND, $argv[1]);
+}
 
 $sql = "SELECT Customer.LastName, Location.LocNo FROM Location
 INNER JOIN Customer ON Location.CustNo = Customer.CustNo
@@ -19,16 +27,19 @@ INNER JOIN Customer ON Location.CustNo = Customer.CustNo
 or
 
 (CASE 
-WHEN (Email not like '%[^a-z,0-9,@,.]%' and Email like '%_@_%_.__%') and (EmailTasks1 = '2' )  THEN Email
- WHEN (Email2 not like '%[^a-z,0-9,@,.]%' and Email2 like '%_@_%_.__%') and (EmailTasks2 = '2' ) THEN Email2
- WHEN (Email3 not like '%[^a-z,0-9,@,.]%' and Email3 like '%_@_%_.__%') and (EmailTasks3 = '2' ) THEN Email3
- WHEN (Email4 not like '%[^a-z,0-9,@,.]%' and Email4 like '%_@_%_.__%') and (EmailTasks4 = '2' ) THEN Email4
- WHEN (Email5 not like '%[^a-z,0-9,@,.]%' and Email5 like '%_@_%_.__%') and (EmailTasks5 = '2' ) THEN Email5
- WHEN (Email6 not like '%[^a-z,0-9,@,.]%' and Email6 like '%_@_%_.__%') and (EmailTasks6 = '2'  ) THEN Email6
+WHEN ((PATINDEX('%[^A-z0-9._-]%@%.%',Email)=0) and Email like '%_@_%_.__%') and (EmailTasks1 = '2' )  THEN Email
+ WHEN ((PATINDEX('%[^A-z0-9._-]%@%.%',Email2)=0) and Email2 like '%_@_%_.__%') and (EmailTasks2 = '2' ) THEN Email2
+ WHEN ((PATINDEX('%[^A-z0-9._-]%@%.%',Email3)=0) and Email3 like '%_@_%_.__%') and (EmailTasks3 = '2' ) THEN Email3
+ WHEN ((PATINDEX('%[^A-z0-9._-]%@%.%',Email4)=0) and Email4 like '%_@_%_.__%') and (EmailTasks4 = '2' ) THEN Email4
+ WHEN ((PATINDEX('%[^A-z0-9._-]%@%.%',Email5)=0) and Email5 like '%_@_%_.__%') and (EmailTasks5 = '2' ) THEN Email5
+ WHEN ((PATINDEX('%[^A-z0-9._-]%@%.%',Email6)=0) and Email6 like '%_@_%_.__%') and (EmailTasks6 = '2'  ) THEN Email6
  ELSE 'No Email'
  END) = 'No Email'
 ) ORDER BY Location.CustNo, Location.LocNo
 ";
+
+
+
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
@@ -49,23 +60,32 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 			$html .= "</table></body>";
 $ll = location_logo();
 
-foreach ($sm as $emp => $emails)
+if (EMAIL_SEND == '')
 {
-	$day = '31';
-	$day2 = '60';
-	if (!isset($email))
+	foreach ($sm as $emp => $emails)
 	{
-		$email_send = $emails;
-	}
-	else
-	{
-		$email_send = $email;
-	}
-	foreach ($email_send as $send)
-	{
-		echo "Email = $send \n";
-		email_report($send, "Fix Location Email Report", $html);
+		$day = '31';
+		$day2 = '60';
+		if (!isset($email))
+		{
+			$email_send = $emails;
+		}
+		else
+		{
+			$email_send = $email;
+		}
+		foreach ($email_send as $send)
+		{
+			echo "Email = $send \n";
+			email_report($send, "Fix Location Email Report", $html);
+		}
 	}
 }
+if (EMAIL_SEND != '')
+{
+	emai_report(EMAIL_SEND, "Fix Location Email Report", $html);
+}
+
+
 ?>
 

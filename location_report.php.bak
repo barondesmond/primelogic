@@ -29,7 +29,7 @@ foreach ($sm as $emp => $emails)
 	foreach ($email_send as $send)
 	{
 		echo "Email = $send \n";
-		email_report($send, "Priority Location Invoice Email Need Fixing", $html);
+		//email_report($send, "Priority Location Invoice Email Need Fixing", $html);
 	}
 }
 

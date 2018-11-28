@@ -10,6 +10,14 @@ ReceiveNotifications -1
 EmailTasks(1-6) 2,255
 */
 
+if (!$argv[1])
+{
+	define(EMAIL_SEND, '');
+}
+elseif ($argv[1])
+{
+	define(EMAIL_SEND, $argv[1]);
+}
 
 $sql = "SELECT Customer.LastName, Location.LocNo FROM Location
 INNER JOIN Customer ON Location.CustNo = Customer.CustNo
@@ -49,6 +57,32 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 			$html .= "</table></body>";
 $ll = location_logo();
 
-email_report("barondesmond@gmail.com", "Fix Email Tasks Billing Email", $html, $ll['filename'], $ll['cid'], $ll['name']);
+if (EMAIL_SEND == '')
+{
+	foreach ($sm as $emp => $emails)
+	{
+		$day = '31';
+		$day2 = '60';
+		if (!isset($email))
+		{
+			$email_send = $emails;
+		}
+		else
+		{
+			$email_send = $email;
+		}
+		foreach ($email_send as $send)
+		{
+			echo "Email = $send \n";
+			email_report($send, "Fix Location Email Report", $html);
+		}
+	}
+}
+if (EMAIL_SEND != '')
+{
+	emai_report(EMAIL_SEND, "Fix Location Email Report", $html);
+}
+
+
 ?>
 
