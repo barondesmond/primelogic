@@ -44,7 +44,7 @@ try {
     $mail->setFrom(EMAIL_USERNAME, 'Mailer');
     $mail->addAddress($email);     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo('baron@desmond.com');
+    $mail->addReplyTo('administrator@plisolutions.com');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
 	if ($filename!= '' && $cid!='' && $name!='')
@@ -52,15 +52,7 @@ try {
 
 		$mail->AddEmbeddedImage($filename, $cid, $name);
 		echo "$filename $cid $name";
-		if (file_exists($filename))
-		{
-			"apache can read it why not you phpmailer $filename";
-		}
-		else
-		{
-			echo "you suck apache $filename ";
-		}
-		//exit;
+
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
     //Attachments
