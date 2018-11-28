@@ -522,7 +522,7 @@ function table_row($arr, $keys='')
 		if ($key == 'InvAmts' || $key == 'Paids')
 		{
 			setlocale(LC_MONETARY, 'en_US.UTF-8');
-			$row .= "<td align=right>" . money_format('%.2n', $arr[$key]) . "</td>";
+			$row .= "<td align=right>" . @money_format('%.2n', $arr[$key]) . "</td>";
 
 		}
 		else
