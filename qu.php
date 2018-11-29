@@ -5,7 +5,7 @@ if ($argv[1])
 {
 	$res = mssql_query($argv[1]);
 	$x=0;
-	while ($db = mssql_fetch_array($res))
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		//print_r($db);
 		if (!isset($hd))
