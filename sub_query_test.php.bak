@@ -45,8 +45,6 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 function dbn_table_column($db)
 {
 
-while ($db = @mssql_fetch_array($res, MSSQL_ASSOC))
-{
 	$sql3 = "USE " . $db['DBN'] . "\r\n";
 	echo $sql3;
 	mssql_query($sql3);
@@ -64,7 +62,6 @@ while ($db = @mssql_fetch_array($res, MSSQL_ASSOC))
 			print_r($db2);
 		}
 	}
-}
 
 }
   ?>

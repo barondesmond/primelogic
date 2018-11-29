@@ -38,11 +38,11 @@ $res = @mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	dbn_table_column($db);
+	dbn_table_column($db, $var2);
 
 }
 
-function dbn_table_column($db)
+function dbn_table_column($db, $var2)
 {
 
 	$sql3 = "USE " . $db['DBN'] . "\r\n";
