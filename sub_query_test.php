@@ -128,7 +128,7 @@ function dbn_table_column($db, $var2, $dl=array())
 
 			$dl[$db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
 		}
-	
+	show_data(array(), $nd);	
 return $dl;
 }
   ?>
