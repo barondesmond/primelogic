@@ -42,23 +42,32 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 
 }
 
+$res = @mssql_query($sql2);
+while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+{
+
+	dbn_table_column($db, $var2);
+
+}
+
 function dbn_table_column($db, $var2)
 {
 
 	$sql3 = "USE " . $db['DBN'] . "\r\n";
-	echo $sql3;
+	//echo $sql3;
 	mssql_query($sql3);
 
 	$sql3 = "SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2';";
 
-			echo "$sql3 \r\n";
+			//echo "$sql3 \r\n";
 
 	$res3 = @mssql_query($sql3);
 	
 		while ($db2 = @mssql_fetch_array($res3, MSSQL_ASSOC))
 		{
 			//echo "$sql3 \r\n";
-			print_r($db2);
+			//print_r($db2);
+			echo $db['DBN'] . ' ' . $db['TableName'] . ' ' . $db['ColumnName'] . "\r\n";
 		}
 	
 
