@@ -35,6 +35,7 @@ WHERE
   sys.columns.name LIKE '%job%';";
 
 $res = @mssql_query($sql);
+$dl = '';
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 

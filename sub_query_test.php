@@ -35,11 +35,10 @@ WHERE
   sys.columns.name LIKE '%job%';";
 
 $res = @mssql_query($sql);
-$dl = '';
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	$dl = dbn_table_column($db, $var2, $dl);
+	$dl = dbn_table_column($db, $var2);
 
 }
 
@@ -52,7 +51,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 }
 
 print_r($dl);
-function dbn_table_column($db, $var2, $dl)
+function dbn_table_column($db, $var2, $dl='')
 {
 
 	$sql3 = "USE " . $db['DBN'] . "\r\n";
