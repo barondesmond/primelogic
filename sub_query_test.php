@@ -28,7 +28,7 @@ if (isset($_GET['SHOW_DATA']))
 {
 	define('SHOW_DATA', $_GET['SHOW_DATA']);
 }
-elseif isset($_GET['val']))
+elseif (isset($_GET['val']))
 {
 	define('SHOW_DATA', '');
 }

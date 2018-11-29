@@ -24,11 +24,11 @@ if (isset($_GET['val']))
 {
 	$var1 = $_GET['val'];
 }
-if (isset($_GET['SHOW_DATA'])
+if (isset($_GET['SHOW_DATA']))
 {
 	define('SHOW_DATA', $_GET['SHOW_DATA']);
 }
-elseif isset($_GET['val'])
+elseif isset($_GET['val']))
 {
 	define('SHOW_DATA', '');
 }
