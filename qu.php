@@ -4,7 +4,7 @@ include("_db_query.php");
 if ($argv[1])
 {
 	$res = db_query($sql);
-	while ($db = mssql_fetch_array($res)
+	while ($db = mssql_fetch_array($res))
 	{
 		if (!$hd)
 		{

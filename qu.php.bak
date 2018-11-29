@@ -1,4 +1,5 @@
 <?php
+include("_db_query.php");
 
 if ($argv[1])
 {
