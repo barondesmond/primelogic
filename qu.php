@@ -24,12 +24,14 @@ if ($argv[1])
 			echo "\r\n";
 		
 		}
-		for ($i=0;$i< count($hd); $i++)
+		if (!isset($argv[2]))
 		{
-			echo "$db[$i],";
+			for ($i=0;$i< count($hd); $i++)
+			{
+				echo "$db[$i],";
+			}
+			echo "\r\n";
 		}
-		echo "\r\n";
-
 	}
 
 }	
