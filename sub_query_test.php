@@ -90,9 +90,15 @@ foreach ($dl as $k1 => $db2)
 
 }
 
-function show_data($db)
+function show_data($db, $nd='')
 {
 static $hd;
+	if ($nd != '')
+	{
+		unset($hd);
+		echo "<BR><BR>\r\n\r\n";
+
+	}
 foreach ($db as $k => $v)
 {
 	//echo "DB, Table, Column, Value<BR>\r\n";
@@ -113,7 +119,7 @@ echo $vl . " <BR>\r\n";
 
 function dbn_table_column($db, $var2, $dl=array())
 {
-
+	$nd = '1';
 	$sql3 = "USE " . $db['DBN'] . "\r\n";
 	//echo $sql3;
 	mssql_query($sql3);
@@ -130,7 +136,8 @@ function dbn_table_column($db, $var2, $dl=array())
 			//print_r($db2);
 			if (SHOW_DATA != '')
 			{
-				show_data($db2);
+				show_data($db2, $nd);
+				$nd = '';
 			}
 
 			$dl[$db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
