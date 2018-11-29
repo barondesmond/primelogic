@@ -1,4 +1,4 @@
-<? php
+<?php
 include("_db_config.'php");
 
 /*
