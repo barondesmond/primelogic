@@ -3,7 +3,8 @@ include("_db_query.php");
 
 if ($argv[1])
 {
-	$res = mssql_query($sql);
+	echo $argv[1] . "\r\n";
+	$res = mssql_query($argv[1]);
 	while ($db = mssql_fetch_array($res))
 	{
 		if (!$hd)
