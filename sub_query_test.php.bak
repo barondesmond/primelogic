@@ -46,29 +46,9 @@ JOIN sys.tables ON
 
 ";
 
-$sql2 = "
-USE OCA;
-
-SELECT
-  sys.columns.name AS ColumnName,
-  tables.name AS TableName, ist.TABLE_CATALOG as DBN
-FROM
-  sys.columns
-JOIN sys.tables ON
-  sys.columns.object_id = tables.object_id
-  INNER JOIN INFORMATION_SCHEMA.TABLES as ist ON tables.name = ist.TABLE_NAME
-;";
 
 $res = @mssql_query($sql);
 $dl = array();
-while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
-{
-
-	$dl = dbn_table_column($db, $var1, $dl);
-
-}
-
-$res = @mssql_query($sql2);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
