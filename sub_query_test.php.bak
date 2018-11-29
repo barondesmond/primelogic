@@ -1,0 +1,22 @@
+<? php
+include("_db_config.'php");
+
+/*
+searching for %job% columns where %job%  column in table = 'J-0001907'
+*/
+$var1 = 'job';
+$var2 = 'J-0001907'
+
+$sql = "SELECT
+  sys.columns.name AS ColumnName,
+  tables.name AS TableName
+FROM
+  sys.columns
+JOIN sys.tables ON
+  sys.columns.object_id = tables.object_id
+WHERE
+  sys.columns.name LIKE '%$var1%'";
+
+
+
+  ?>
