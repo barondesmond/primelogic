@@ -4,7 +4,17 @@ include("_db_config.php");
 /*
 searching for %job% columns where %job%  column in table = 'J-0001907'
 */
+
 $var1 = 'J-0001907';
+
+if ($argv[1])
+{
+	$var1 = $argv[1];
+}
+if ($_GET['val'])
+{
+	$var1 = $_GET['val']
+}
 
 $sql = "USE Service;
 
@@ -56,7 +66,7 @@ foreach ($dl as $k1 => $db2)
 	{
 		foreach ($db3 as $k3 => $val)
 		{
-			echo "$k1, $k2, $k3 <BR>\r\n";
+			echo "$k1, $k2, $k3 = $val <BR>\r\n";
 		}
 	}
 

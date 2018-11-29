@@ -50,9 +50,16 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 }
 
 
-foreach ($dl as $k -> $k2 -> $k3)
+foreach ($dl as $k1 => $db2)
 {
-	echo "$k, $k2, $k3 <BR>\r\n";
+	foreach ($db2 as $k2 => $db3)
+	{
+		foreach ($db3 as $k3 => $val)
+		{
+			echo "$k1, $k2, $k3 = $val <BR>\r\n";
+		}
+	}
+
 }
 
 function dbn_table_column($db, $var2, $dl=array())
