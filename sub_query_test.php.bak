@@ -38,7 +38,7 @@ $res = @mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	dbn_table_column($db, $var2);
+	$dl = dbn_table_column($db, $var2);
 
 }
 
@@ -46,10 +46,11 @@ $res = @mssql_query($sql2);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	dbn_table_column($db, $var2);
+	$dl = dbn_table_column($db, $var2);
 
 }
 
+print_r($dl);
 function dbn_table_column($db, $var2)
 {
 
@@ -67,9 +68,9 @@ function dbn_table_column($db, $var2)
 		{
 			//echo "$sql3 \r\n";
 			//print_r($db2);
-			echo $db['DBN'] . ' ' . $db['TableName'] . ' ' . $db['ColumnName'] . "\r\n";
+			$dl[db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
 		}
 	
-
+return $dl;
 }
   ?>

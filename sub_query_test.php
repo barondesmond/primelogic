@@ -68,7 +68,8 @@ function dbn_table_column($db, $var2)
 		{
 			//echo "$sql3 \r\n";
 			//print_r($db2);
-			$dl[db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
+
+			$dl[$db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
 		}
 	
 return $dl;
