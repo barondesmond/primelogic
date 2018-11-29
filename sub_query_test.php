@@ -90,7 +90,7 @@ foreach ($db as $k => $v)
 }
 if (!isset($hd))
 {
-	echo "<table>";
+	echo "<table border=1>";
 
 	echo "<TR>$hdr <BR>\r\n</TR>";
 	$hd = '1';
