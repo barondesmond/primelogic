@@ -6,7 +6,7 @@ searching for %job% columns where %job%  column in table = 'J-0001907'
 */
 
 $var1 = 'J-0001907';
-define('SHOW_DATA', '');
+//define('SHOW_DATA', '');
 
 if (isset($argv[1]))
 {

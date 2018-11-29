@@ -104,10 +104,10 @@ foreach ($db as $k => $v)
 }
 if (!isset($hd))
 {
-	echo "$hdr \r\n";
+	echo "$hdr <BR>\r\n";
 	$hd = '1';
 }
-echo $vl . "\r\n";
+echo $vl . " <BR>\r\n";
 
 }
 
