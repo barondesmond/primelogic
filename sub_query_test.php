@@ -6,14 +6,31 @@ searching for %job% columns where %job%  column in table = 'J-0001907'
 */
 
 $var1 = 'J-0001907';
+define('SHOW_DATA', '');
 
 if (isset($argv[1]))
 {
 	$var1 = $argv[1];
 }
+if (isset($argv[2] && isset($argv[1]))
+{
+	define('SHOW_DATA', $argv[2]);
+}
+elseif (isset($argv[1])
+{
+	define('SHOW_DATA', '');
+}
 if (isset($_GET['val']))
 {
 	$var1 = $_GET['val'];
+}
+if (isset($_GET['SHOW_DATA'])
+{
+	define('SHOW_DATA', $_GET['SHOW_DATA']);
+}
+elseif isset($_GET['val'])
+{
+	define('SHOW_DATA', '');
 }
 
 $sql = "USE Service;
@@ -73,6 +90,27 @@ foreach ($dl as $k1 => $db2)
 
 }
 
+function show_data($db)
+{
+static $hd;
+foreach ($db as $k => $v)
+{
+	//echo "DB, Table, Column, Value<BR>\r\n";
+	if (!$hd)
+	{
+		$hdr .= "$k, ";
+	}
+	$vl .= "$v, ";
+}
+if (!isset($hd))
+{
+	echo "$hdr \r\n";
+	$hd = '1';
+}
+echo $vl . "\r\n";
+
+}
+
 function dbn_table_column($db, $var2, $dl=array())
 {
 
@@ -90,6 +128,10 @@ function dbn_table_column($db, $var2, $dl=array())
 		{
 			//echo "$sql3 \r\n";
 			//print_r($db2);
+			if (SHOW_DATA != '')
+			{
+				show_data($db2);
+			}
 
 			$dl[$db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
 		}
