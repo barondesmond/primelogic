@@ -16,7 +16,7 @@ if (isset($argv[2]) && isset($argv[1]))
 {
 	define('SHOW_DATA', $argv[2]);
 }
-elseif (isset($argv[1])
+elseif (isset($argv[1]))
 {
 	define('SHOW_DATA', '');
 }
