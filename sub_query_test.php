@@ -7,11 +7,11 @@ searching for %job% columns where %job%  column in table = 'J-0001907'
 
 $var1 = 'J-0001907';
 
-if ($argv[1])
+if (isset($argv[1]))
 {
 	$var1 = $argv[1];
 }
-if ($_GET['val'])
+if (isset($_GET['val']))
 {
 	$var1 = $_GET['val'];
 }

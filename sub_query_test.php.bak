@@ -13,7 +13,7 @@ if ($argv[1])
 }
 if ($_GET['val'])
 {
-	$var1 = $_GET['val']
+	$var1 = $_GET['val'];
 }
 
 $sql = "USE Service;
