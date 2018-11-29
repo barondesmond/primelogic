@@ -39,7 +39,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'";
 
-	echo $sql3;
+	echo "$sql3 \r\n";
 	$res3 = mssql_query($sql3);
 	if (mssql_num_rows($res3)>0)
 	{
@@ -56,7 +56,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'";
 
-	echo $sql3;
+	echo "$sql3 \r\n";
 	$res3 = mssql_query($sql3);
 	if (mssql_num_rows($res3)>0)
 	{
