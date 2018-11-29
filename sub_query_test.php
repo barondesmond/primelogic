@@ -37,24 +37,21 @@ WHERE
 $res = @mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
-	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2';";
-			echo "$sql3 \r\n";
 
-	$res3 = @mssql_query($sql3);
-	if (@mssql_num_rows($res3)>0)
-	{
-		while ($db2 = @mssql_fetch_assoc($res3, MSSQL_ASSOC))
-		{
-			print_r($db2);
-		}
-	}
+	dbn_table_column($db);
+
 }
 
-$res = @mssql_query($sql2);
+function dbn_table_column($db)
+{
 
 while ($db = @mssql_fetch_array($res, MSSQL_ASSOC))
 {
-	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2';";
+	$sql3 = "USE " . $db['DBN'] . "\r\n";
+	echo $sql3;
+	mssql_query($sql3);
+
+	$sql3 = "SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2';";
 
 			echo "$sql3 \r\n";
 
@@ -67,5 +64,7 @@ while ($db = @mssql_fetch_array($res, MSSQL_ASSOC))
 			print_r($db2);
 		}
 	}
+}
+
 }
   ?>
