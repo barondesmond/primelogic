@@ -1,5 +1,5 @@
 <?php
-include("_db_config.'php");
+include("_db_config.php");
 
 /*
 searching for %job% columns where %job%  column in table = 'J-0001907'
