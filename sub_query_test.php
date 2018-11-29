@@ -18,7 +18,7 @@ WHERE
   sys.columns.name LIKE '%$var1%'";
 echo $sql;
 $res = mssql_query($sql);
-while ($db = mssql_fetch_array($res, MSSQL_ASSOC)
+while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$sql2 = "USE Service; 
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES

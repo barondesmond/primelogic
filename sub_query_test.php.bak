@@ -5,7 +5,7 @@ include("_db_config.'php");
 searching for %job% columns where %job%  column in table = 'J-0001907'
 */
 $var1 = 'job';
-$var2 = 'J-0001907'
+$var2 = 'J-0001907';
 
 $sql = "SELECT
   sys.columns.name AS ColumnName,
@@ -33,7 +33,7 @@ BEGIN
   SELECT * FROM $db['TableName'] WHERE $db['ColumnName'] = '$var2'
 END;";
 
-	echo $sql;
+	echo $sql2;
 	$res2 = mssql_query($sql2);
 	if (mssql_num_rows($res2)>0)
 	{
