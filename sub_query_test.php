@@ -22,7 +22,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$sql2 = "USE Service; 
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
-    WHERE TABLE_NAME = N'employee_id')
+    WHERE TABLE_NAME = '$db['TableName'])
 BEGIN 
   SELECT * FROM $db['TableName'] WHERE $db['ColumnName'] = '$var2'
 END
