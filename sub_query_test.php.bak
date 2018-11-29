@@ -7,41 +7,63 @@ searching for %job% columns where %job%  column in table = 'J-0001907'
 $var1 = 'job';
 $var2 = 'J-0001907';
 
-$sql = "SELECT
+$sql = "USE Service;
+
+SELECT
   sys.columns.name AS ColumnName,
-  tables.name AS TableName
+  tables.name AS TableName, ist.TABLE_CATALOG as DBN
 FROM
   sys.columns
 JOIN sys.tables ON
   sys.columns.object_id = tables.object_id
+  INNER JOIN INFORMATION_SCHEMA.TABLES as ist ON tables.name = ist.TABLE_NAME
 WHERE
-  sys.columns.name LIKE '%$var1%'";
-echo $sql;
+  sys.columns.name LIKE '%job%';";
+
+$sql2 = "
+USE OCA;
+
+SELECT
+  sys.columns.name AS ColumnName,
+  tables.name AS TableName, ist.TABLE_CATALOG as DBN
+FROM
+  sys.columns
+JOIN sys.tables ON
+  sys.columns.object_id = tables.object_id
+  INNER JOIN INFORMATION_SCHEMA.TABLES as ist ON tables.name = ist.TABLE_NAME
+WHERE
+  sys.columns.name LIKE '%job%';";
+
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
-	$sql2 = "USE Service; 
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
-    WHERE TABLE_NAME = '" . $db['TableName'] . "')
-BEGIN 
-  SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'
-END
+	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'";
 
-ELSE
-BEGIN
-  USE OCA
-  SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'
-END;";
-
-	echo $sql2;
-	$res2 = mssql_query($sql2);
-	if (mssql_num_rows($res2)>0)
+	echo $sql3;
+	$res3 = mssql_query($sql3);
+	if (mssql_num_rows($res3)>0)
 	{
-		while ($db =mssql_fetch_assoc($res2, MSSQL_ASSOC))
+		while ($db2 =mssql_fetch_assoc($res3, MSSQL_ASSOC))
 		{
-			print_r($db);
+			print_r($db2);
 		}
 	}
 }
 
+$res = mssql_query($sql2);
+
+while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+{
+	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'";
+
+	echo $sql3;
+	$res3 = mssql_query($sql3);
+	if (mssql_num_rows($res3)>0)
+	{
+		while ($db2 =mssql_fetch_assoc($res3, MSSQL_ASSOC))
+		{
+			print_r($db2);
+		}
+	}
+}
   ?>
