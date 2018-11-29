@@ -96,6 +96,8 @@ static $hd;
 	if ($nd != '')
 	{
 		unset($hd);
+		echo "<BR><BR>\r\n\r\n";
+
 	}
 foreach ($db as $k => $v)
 {
@@ -134,7 +136,6 @@ function dbn_table_column($db, $var2, $dl=array())
 			//print_r($db2);
 			if (SHOW_DATA != '')
 			{
-				echo "<BR><BR>\r\n\r\n";
 				show_data($db2, $nd);
 				$nd = '';
 			}

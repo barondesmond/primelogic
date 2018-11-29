@@ -136,6 +136,10 @@ function dbn_table_column($db, $var2, $dl=array())
 			//print_r($db2);
 			if (SHOW_DATA != '')
 			{
+				if ($nd != '')
+				{
+					show_data($db, $nd);
+				}
 				show_data($db2, $nd);
 				$nd = '';
 			}
