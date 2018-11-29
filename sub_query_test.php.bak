@@ -54,14 +54,13 @@ function dbn_table_column($db, $var2)
 			echo "$sql3 \r\n";
 
 	$res3 = @mssql_query($sql3);
-	if (@mssql_num_rows($res3)>0)
-	{
+	
 		while ($db2 = @mssql_fetch_assoc($res3, MSSQL_ASSOC))
 		{
 			//echo "$sql3 \r\n";
 			print_r($db2);
 		}
-	}
+	
 
 }
   ?>
