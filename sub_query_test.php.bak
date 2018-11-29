@@ -76,24 +76,26 @@ static $hd;
 	if ($nd != '')
 	{
 		unset($hd);
+		echo "</table>";
 		echo "<BR><BR>\r\n\r\n";
-
 	}
 foreach ($db as $k => $v)
 {
 	//echo "DB, Table, Column, Value<BR>\r\n";
 	if (!$hd)
 	{
-		$hdr .= "$k, ";
+		$hdr .= "<td>$k</td>";
 	}
-	$vl .= "$v, ";
+	$vl .= "<td>$v</td>";
 }
 if (!isset($hd))
 {
-	echo "$hdr <BR>\r\n";
+	echo "<table>"
+
+	echo "<TR>$hdr <BR>\r\n</TR>";
 	$hd = '1';
 }
-echo $vl . " <BR>\r\n";
+echo "<tr>$vl<BR>\r\n</tr>";
 
 }
 
