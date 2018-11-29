@@ -17,6 +17,9 @@ if ($argv[1])
 		//print_r($db);
 		if (!isset($hd))
 		{
+			if ($argv[1])
+			{
+				print_r($db);
 			foreach ($db as $key=> $value)
 			{
 				if (is_numeric($key))
