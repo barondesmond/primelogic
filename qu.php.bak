@@ -8,7 +8,7 @@ if ($argv[1])
 	$res = mssql_query($argv[1]);
 	while ($db = mssql_fetch_array($res))
 	{
-		print_r($db);
+		//print_r($db);
 		if (!$hd)
 		{
 			foreach ($db as $key=> $value)
@@ -18,7 +18,7 @@ if ($argv[1])
 
 					$hd[] = $value;
 					$x++;
-					echo "$value $x,";
+					echo "$value,";
 				}
 			}		
 			echo "\r\n";
