@@ -62,6 +62,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 
 foreach ($dl as $k1 => $db2)
 {
+	echo "DB, Table, Column, Value<BR>\r\n";
 	foreach ($db2 as $k2 => $db3)
 	{
 		foreach ($db3 as $k3 => $val)
