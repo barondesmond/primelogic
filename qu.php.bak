@@ -7,6 +7,7 @@ if ($argv[1])
 	$res = mssql_query($argv[1]);
 	while ($db = mssql_fetch_array($res))
 	{
+		print_r($db);
 		if (!$hd)
 		{
 			foreach ($db as $key=> $value)

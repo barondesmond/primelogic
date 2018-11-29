@@ -3,6 +3,7 @@ include("_db_config.php");
 
 if ($argv[1])
 {
+	$x=0;
 	echo $argv[1] . "\r\n";
 	$res = mssql_query($argv[1]);
 	while ($db = mssql_fetch_array($res))
@@ -14,8 +15,10 @@ if ($argv[1])
 			{
 				if (is_numeric($key))
 				{
+
 					$hd[] = $value;
-					echo "$value,";
+					$x++;
+					echo "$value $x,";
 				}
 			}		
 			echo "\r\n";
