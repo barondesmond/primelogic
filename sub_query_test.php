@@ -4,8 +4,7 @@ include("_db_config.php");
 /*
 searching for %job% columns where %job%  column in table = 'J-0001907'
 */
-$var1 = 'job';
-$var2 = 'J-0001907';
+$var1 = 'J-0001907';
 
 $sql = "USE Service;
 
@@ -38,7 +37,7 @@ $dl = array();
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	$dl = dbn_table_column($db, $var2, $dl);
+	$dl = dbn_table_column($db, $var1, $dl);
 
 }
 
@@ -46,11 +45,16 @@ $res = @mssql_query($sql2);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	$dl = dbn_table_column($db, $var2, $dl);
+	$dl = dbn_table_column($db, $var1, $dl);
 
 }
 
-print_r($dl);
+
+foreach ($dl as $k => $k2 => $k3)
+{
+	echo "$k, $k2, $k3 <BR>\r\n";
+}
+
 function dbn_table_column($db, $var2, $dl=array())
 {
 
