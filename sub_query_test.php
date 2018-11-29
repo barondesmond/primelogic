@@ -38,7 +38,7 @@ $res = @mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	$dl = dbn_table_column($db, $var2);
+	$dl = dbn_table_column($db, $var2, $dl);
 
 }
 
@@ -46,12 +46,12 @@ $res = @mssql_query($sql2);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 
-	$dl = dbn_table_column($db, $var2);
+	$dl = dbn_table_column($db, $var2, $dl);
 
 }
 
 print_r($dl);
-function dbn_table_column($db, $var2)
+function dbn_table_column($db, $var2, $dl)
 {
 
 	$sql3 = "USE " . $db['DBN'] . "\r\n";
