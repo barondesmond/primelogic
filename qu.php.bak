@@ -19,7 +19,7 @@ if ($argv[1])
 		{
 			if ($argv[1])
 			{
-				print_r($db);
+				//print_r($db);
 			}
 			foreach ($db as $key=> $value)
 			{

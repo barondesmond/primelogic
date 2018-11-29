@@ -8,6 +8,7 @@ if ($argv[1])
 	$ar = explode(';', $argv[1]);
 	if (count($ar)>1)
 	{
+		echo $ar[0];
 		$res = mssql_query($ar[0]);
 		$argv[1] = $ar[1];
 	}
