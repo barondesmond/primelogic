@@ -31,8 +31,7 @@ FROM
 JOIN sys.tables ON
   sys.columns.object_id = tables.object_id
   INNER JOIN INFORMATION_SCHEMA.TABLES as ist ON tables.name = ist.TABLE_NAME
-WHERE
-  sys.columns.name LIKE '%job%';";
+;";
 
 $res = @mssql_query($sql);
 $dl = array();
