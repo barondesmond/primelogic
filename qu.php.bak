@@ -20,6 +20,7 @@ if ($argv[1])
 			if ($argv[1])
 			{
 				print_r($db);
+			}
 			foreach ($db as $key=> $value)
 			{
 				if (is_numeric($key))
