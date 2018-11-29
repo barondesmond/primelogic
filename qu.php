@@ -8,7 +8,7 @@ if ($argv[1])
 	{
 		if (!$hd)
 		{
-			foreach ($db, $key=> $value)
+			foreach ($db as $key=> $value)
 			{
 				if (is_numeric($key))
 				{
