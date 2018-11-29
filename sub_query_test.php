@@ -34,15 +34,15 @@ JOIN sys.tables ON
 WHERE
   sys.columns.name LIKE '%job%';";
 
-$res = mssql_query($sql);
+$res = @mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'";
 
-	$res3 = mssql_query($sql3);
-	if (mssql_num_rows($res3)>0)
+	$res3 = @mssql_query($sql3);
+	if (@mssql_num_rows($res3)>0)
 	{
-		while ($db2 =mssql_fetch_assoc($res3, MSSQL_ASSOC))
+		while ($db2 = @mssql_fetch_assoc($res3, MSSQL_ASSOC))
 		{
 			echo "$sql3 \r\n";
 			print_r($db2);
@@ -50,16 +50,16 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	}
 }
 
-$res = mssql_query($sql2);
+$res = @mssql_query($sql2);
 
-while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+while ($db = @mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$sql3 = "USE " . $db['DBN'] . ";SELECT * FROM " . $db['TableName'] . " WHERE " . $db['ColumnName'] . "= '$var2'";
 
-	$res3 = mssql_query($sql3);
-	if (mssql_num_rows($res3)>0)
+	$res3 = @mssql_query($sql3);
+	if (@mssql_num_rows($res3)>0)
 	{
-		while ($db2 =mssql_fetch_assoc($res3, MSSQL_ASSOC))
+		while ($db2 = @mssql_fetch_assoc($res3, MSSQL_ASSOC))
 		{
 			echo "$sql3 \r\n";
 			print_r($db2);
