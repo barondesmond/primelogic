@@ -22,7 +22,7 @@ if ($argv[1])
 				}
 			}		
 			echo "\r\n";
-		$hd = '1';
+		
 		}
 		for ($i=0;$i< count($hd); $i++)
 		{
