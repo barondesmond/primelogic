@@ -4,6 +4,7 @@ include("_db_config.php");
 if ($argv[1])
 {
 	$res = mssql_query($argv[1]);
+	$x=0;
 	while ($db = mssql_fetch_array($res))
 	{
 		//print_r($db);
@@ -18,7 +19,7 @@ if ($argv[1])
 				if (is_numeric($key))
 				{
 
-					$hd[] = $value;
+					$hd[$x] = $value;
 					$x++;
 					echo "$value,";
 				}
