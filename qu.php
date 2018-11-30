@@ -9,7 +9,7 @@ if ($_GET['query'])
 {
 	$query = $_GET['query'];
 }	echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">';
-	echo '<input type=textarea name="query" width="100" height="100">';
+	echo '<input type=textarea name="query" rows="100" columns="100">';
 	
 	echo $query;
 
