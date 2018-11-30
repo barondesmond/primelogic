@@ -14,6 +14,11 @@ if (count($db) == 0)
 	{
 	return false;
 	}
+if (!$hd)
+{
+	$hdr = '';
+	$vl = '';
+}
 foreach ($db as $k => $v)
 {
 	//echo "DB, Table, Column, Value<BR>\r\n";
