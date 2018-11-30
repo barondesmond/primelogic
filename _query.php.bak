@@ -32,11 +32,11 @@ if (!isset($hd))
 {
 	echo "<table border=1>";
 
-	echo "<TR>$hdr <BR>\r\n</TR>";
+	echo "<TR>$hdr</TR>\r\n";
 	$hd = '1';
 }
 
-echo "<tr>$vl<BR>\r\n</tr>";
+echo "<tr>$vl</tr>";
 
 }
 

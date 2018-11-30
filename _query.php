@@ -4,6 +4,8 @@
 function show_data($db, $nd='')
 {
 static $hd;
+static $rows;
+
 	if ($nd != '')
 	{
 		unset($hd);
@@ -27,6 +29,7 @@ foreach ($db as $k => $v)
 		$hdr .= "<td>$k</td>";
 	}
 	$vl .= "<td>$v</td>";
+	$rows++;
 }
 if (!isset($hd))
 {
@@ -37,7 +40,11 @@ if (!isset($hd))
 }
 
 echo "<tr>$vl</tr>";
-
+if ($rows>100)
+	{
+		echo "</table><table border=1>":
+		$rows=0;
+	}
 }
 
 function dbn_table_column($db, $var2, $dl=array())
