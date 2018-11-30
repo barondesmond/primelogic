@@ -30,8 +30,9 @@ foreach ($db as $k => $v)
 		$hdr .= "<td>$k</td>";
 	}
 	$vl .= "<td>$v</td>";
-	$rows++;
+	
 }
+$rows++;
 if (!isset($hd))
 {
 	echo "<table border=1>";
