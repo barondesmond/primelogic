@@ -1,6 +1,6 @@
 <?php
 include("_db_config.php");
-
+include("_query.php");
 if ($argv[1])
 {
 	$query = $argv[1];
