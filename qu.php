@@ -8,7 +8,7 @@ if ($argv[1])
 if ($_GET['query'])
 {
 	$query = $_GET['query'];
-}	echo '<form method="GET" action="' . $_ENV['PHP_SELF'] . '">';
+}	echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">';
 	echo '<input type=textarea name="query" width="100" height="100">';
 	
 	echo $query;
