@@ -5,6 +5,7 @@ function show_data($db, $nd='')
 {
 static $hd;
 static $rows;
+static $hdr;
 
 	if ($nd != '')
 	{
