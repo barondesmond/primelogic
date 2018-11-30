@@ -8,8 +8,13 @@ if ($argv[1])
 if ($_GET['query'])
 {
 	$query = $_GET['query'];
-}
-	echo $query . "<BR>\r\n";
+}	echo '<form method=get action="' . $_ENV['PHP_SELF'] . '">';
+	echo '<input type=textarea name="query" width="100" height="100">';
+	
+	echo $query;
+
+	echo '</textarea><input type=submit></form>';
+
 	
 	$res = mssql_query($query);
 	$x=0;
