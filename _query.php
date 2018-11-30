@@ -43,7 +43,7 @@ echo "<tr>$vl</tr>";
 if ($rows>100)
 	{
 		echo "</table>";
-		exit;
+		//exit;
 		echo "<table border=1><TR>$hdr</TR>\r\n";
 		$rows=0;
 	}

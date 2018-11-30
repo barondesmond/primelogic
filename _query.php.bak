@@ -44,7 +44,7 @@ if ($rows>100)
 	{
 		echo "</table>";
 		exit;
-		<table border=1><TR>$hdr</TR>\r\n";
+		echo "<table border=1><TR>$hdr</TR>\r\n";
 		$rows=0;
 	}
 }
