@@ -79,6 +79,10 @@ static $hd;
 		echo "</table>";
 		echo "<BR><BR>\r\n\r\n";
 	}
+if (count($db) == 0)
+	{
+	return false;
+	}
 foreach ($db as $k => $v)
 {
 	//echo "DB, Table, Column, Value<BR>\r\n";

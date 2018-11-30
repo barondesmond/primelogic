@@ -3,21 +3,20 @@ include("_db_config.php");
 
 if ($argv[1])
 {
+	$query = $argv[1];
+}
+if ($_GET['query'])
+{
+	$query = $_GET['query'];
+
 	$res = mssql_query($argv[1]);
 	$x=0;
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		//print_r($db);
-		if (!isset($hd))
-		{
-			if ($argv[1])
-			{
-				print_r($db);
-			}	
-			echo "\r\n";
-		
-		}
+		show_data($db);
 	}
+	show_data(array((), '1');
+
 
 }	
 
