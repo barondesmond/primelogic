@@ -55,8 +55,10 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	$dl = dbn_table_column($db, $var1, $dl);
 
 }
-show_data(array(), '1');
-
+if (SHOW_DATA != '')
+{
+	show_data(array(), '1');
+}	
 foreach ($dl as $k1 => $db2)
 {
 	echo "DB, Table, Column, Value<BR>\r\n";
