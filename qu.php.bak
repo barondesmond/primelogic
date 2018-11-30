@@ -9,7 +9,7 @@ if ($_GET['query'])
 {
 	$query = $_GET['query'];
 }
-	
+	echo $query . '<BR>\r\n";
 	
 	$res = mssql_query($query);
 	$x=0;
