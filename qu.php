@@ -11,7 +11,7 @@ if ($_GET['query'])
 }	
 	echo $query;
 	echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">';
-	echo '<input type=textarea name="query" rows="100" cols="100" value="' . $query . '">';
+	echo '<textarea name="query" rows="100" cols="100" value="' . $query . '">';
 	
 
 	echo '</textarea><input type=submit></form>';
