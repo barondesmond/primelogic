@@ -7,13 +7,16 @@ if ($argv[1])
 }
 if ($_GET['query'])
 {
-	$query = $_GET['query'];
-}	echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">';
-	echo '<input type=textarea name="query" rows="100" cols="100">';
-	
+	$query = $_GET['query'];	
+}	
 	echo $query;
+	echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">';
+	echo '<input type=textarea name="query" rows="100" cols="100" value="' . $query . '">';
+	
 
 	echo '</textarea><input type=submit></form>';
+
+
 
 	
 	$res = mssql_query($query);
