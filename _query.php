@@ -42,7 +42,7 @@ if (!isset($hd))
 echo "<tr>$vl</tr>";
 if ($rows>100)
 	{
-		echo "</table><table border=1>":
+		echo "</table><table border=1><TR>$hdr</TR>\r\n":
 		$rows=0;
 	}
 }
