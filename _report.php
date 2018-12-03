@@ -514,12 +514,12 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $cb[$curEmailer]['html'], $cb[$curEmailer][$ll['filename']], $cb[$curEmailer][$ll['cid']], $cb[$curEmailer][$ll['name']], $pdf[$curEmailer]);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $cb[$curEmailer]['html'], $cb[$curEmailer]['ll']['filename']], $cb[$curEmailer]['ll']['cid'], $cb[$curEmailer]['ll']['name'], $pdf[$curEmailer]);
 					}
 					else
 					{
 
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curEmailer]);
+						invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
 
 						//spam users
 					}
