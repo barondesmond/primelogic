@@ -1,0 +1,4 @@
+SELECT Name, TransDesc, CostType, Units, Amount, TransDate, * FROM JobClass 
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+WHERE Name='School Electronics Install' and FinLedger.Active='-1' and JobClass.Inactive = '0'
+and CostType='200' 
