@@ -418,7 +418,9 @@ $res = mssql_query($sql);
 						$html .= table_hd($tk, $tk, '#b3b3b3');
 						$html .= $finchrg;
 					}
-					$cb[$$db['Emailer']]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
+					$cb[$$db['Emailer']]['loc']['x'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
+					$cb[$curEmailer]['html'] .= table_hd($cb[$curEmailer]['loc'], $cb[$curEmailer]['loc'], '', count($ik));
+		
 					$cb[$db['Emailer']]['ll'] = $ll;
 					//unset($t);					
 				}
@@ -473,8 +475,8 @@ $res = mssql_query($sql);
 					$ct['InvAmts'] = '0';
 				}
 				$curLocNo = $db['LocNo'];
-				$cb[$curEmailer]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
-				$cb[$curEmailer]['html'] .= table_hd($x, $x, '', count($ik));
+				$cb[$curEmailer]['loc']['x'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
+				$cb[$curEmailer]['html'] .= table_hd($cb[$curEmailer]['loc'], $cb[$curEmailer]['loc'], '', count($ik));
 			}
 		}
 	}

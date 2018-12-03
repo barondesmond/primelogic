@@ -382,7 +382,7 @@ $res = mssql_query($sql);
 					$cb[$curEmailer]['html'] .= html_foot();
 					
 					$i++;
-					if (EMAIL_SEND != '' && LOCATION_ONLY!='')
+					if (EMAIL_SEND != '' && LOCATION_ONLY=='')
 					{
 						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $cb[$curEmailer]['html'], $cb[$curEmailer]['ll']['filename'], $cb[$curEmailer]['ll']['cid'], $cb[$curEmailer]['ll']['name'], $pdf[$curEmailer]);
 					}
@@ -511,7 +511,7 @@ $res = mssql_query($sql);
 				$cb[$curEmailer]['html'] .= html_foot();
 					
 					$i++;
-					if (EMAIL_SEND != '' && LOCATION_ONLY!='')
+					if (EMAIL_SEND != '' && LOCATION_ONLY=='')
 					{
 						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $cb[$curEmailer]['html'], $cb[$curEmailer]['ll']['filename'], $cb[$curEmailer]['ll']['cid'], $cb[$curEmailer]['ll']['name'], $pdf[$curEmailer]);
 					}
