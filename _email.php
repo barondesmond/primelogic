@@ -41,6 +41,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 		fwrite($stream, $enc);
 		fclose($stream);
 		return $file;
+		sleep(1);
 	}
 
 
