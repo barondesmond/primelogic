@@ -16,7 +16,7 @@ if (!$argv['1'])
 }
 elseif ($argv['1'])
 {
-	define('EMAIL_SEND', 'barondesmond@gmail.com');
+	define('EMAIL_SEND', $argv[1]);
 }
 $html = location_basis();
 //echo $html;
@@ -35,10 +35,13 @@ foreach ($sm as $emp => $emails)
 	foreach ($email_send as $send)
 	{
 		echo "Email = $send \n";
-		email_report($send, "Priority Location Invoice Email Need Fixing", $html);
+		if (EMAIL_SEND != '')
+		{
+			email_report($send, "Priority Location Invoice Email Need Fixing", $html);
+		}
 	}
 }
 
-email_report('barondesmond@gmail.com', "Priority Location Invoice Email Need Fixing", $html);
+email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
 ?>
 
