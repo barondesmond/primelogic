@@ -27,7 +27,7 @@ define('SPOOLING', 'write');
 
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
 {
-	if (isset(SPOOLING) && SPOOLING=='write')
+	if (SPOOLING=='write')
 	{
 		$db['email'] = $email;
 		$db['subject'] = $subject;
