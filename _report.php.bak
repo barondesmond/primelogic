@@ -259,7 +259,7 @@ function location_basis($Customer = '')
 	$curLocNo = '';
 	$html = '';
 	$ik = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'Paids', 'InvAmts');
-	$tk = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'InvAmts');
+	$tk = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'Paids', 'InvAmts');
 
 	$ci = '';
 	$pi = '';

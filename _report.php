@@ -357,14 +357,14 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curEmailer]);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
 					}
 					else
 					{
 						//spam users
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curEmailer]);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
 					}
-					unset($pdf[$curEmailer]);
+					unset($pdf);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
@@ -407,14 +407,14 @@ $res = mssql_query($sql);
 				$pi .= table_row($db, $ik);
 				$pt['DaysPastDue'] = 'Total Past Due';
 				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
-				$pdf[$curEmailer][] = pdf_input($db['Invoice']);
+				$pdf[] = pdf_input($db['Invoice']);
 			}
 			else
 			{
 				$ci .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				$pdf[$curEmailer][] = pdf_input($db['Invoice']);
+				$pdf[] = pdf_input($db['Invoice']);
 				
 			}
 			if (($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '')) && $db['CustNo'] == $curCustNo)
@@ -469,7 +469,7 @@ $res = mssql_query($sql);
 
 						//spam users
 					}
-					unset($pdf[$curEmailer]);
+					unset($pdf);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
