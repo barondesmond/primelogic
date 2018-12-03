@@ -389,6 +389,7 @@ $res = mssql_query($sql);
 				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
+				$curLocNo = $db['LocNo'];
 				$curdb = $db;
 
 			}
@@ -450,7 +451,7 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						//email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+						email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
 					}
 					else
 					{
