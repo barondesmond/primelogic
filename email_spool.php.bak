@@ -25,17 +25,27 @@ while (time() < $end && $ct_today <99)
      }
     closedir($handle);
 	}
+	sleep(10);
 }
 
 
 function send_json_file($entry)
 {
-	
+	global $er_array;
 	$json = file_get_contents($entry);
 	
 	$db = json_decode($json);
 	print_r($db);
-	exit;
+	if (email_report($db['email'], $db['subject'], $db['body'], $db['filename'], $db['cid'], $db['name'], $db['pdf']))
+	{
+		echo "file $entry sent";
+		if (unlink($entry))
+		{
+			echo "file $entry deleted";
+		}
+	}
+	sleep(1);
+	
 }	
 
 ?>
