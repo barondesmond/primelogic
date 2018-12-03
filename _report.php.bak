@@ -385,7 +385,7 @@ $res = mssql_query($sql);
 						$t['fnchg'] = 'Finance Charges';
 						$html .= table_row($t, '', '', count($ik));				
 						$html .= "\r\n";
-						$html .= $finchrg . '</table>';
+						$html .= $finchrg;
 					}
 					$loc = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
 					$x[$loc] = $loc;
