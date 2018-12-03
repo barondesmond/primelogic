@@ -36,7 +36,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 		$db['name'] = $name;
 		$db['pdf'] = $pdf;
 		$enc =json_encode($db);
-		$file = '/var/www/email/' . $email . '.' . urlencode($subject) . '.' . time() . '.email';
+		$file = '/var/www/email/' . $email . '.' . urlencode($subject) . '.' . time() . microtime() . '.email';
 		$stream = fopen($file, 'w');
 		fwrite($stream, $enc);
 		fclose($stream);
