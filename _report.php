@@ -418,10 +418,8 @@ $res = mssql_query($sql);
 						$html .= table_hd($tk, $tk, '#b3b3b3');
 						$html .= $finchrg;
 					}
-					$cb[$curEmailer]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
-					$cb[$curEmailer]['ll'] = $ll;
-					print_r($cb);
-					exit;
+					$cb[$$db['Emailer']]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
+					$cb[$db['Emailer']]['ll'] = $ll;
 					//unset($t);					
 				}
 				$curCustNo = $db['CustNo'];
