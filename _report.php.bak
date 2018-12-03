@@ -250,7 +250,7 @@ return $html;
 
 
 
-function location_basis()
+function location_basis($Customer = '')
 {
 
 	//$noemail = array('');
@@ -268,7 +268,10 @@ function location_basis()
 		$ct[$ik[$i]] = '';
 	}
 
-
+	if ($Customer != '')
+	{
+		$sqlcus = " and Customer.CustNo = '$Customer' ";
+	}
 $sql = "
 SELECT  Customer.CustNo, Location.LocNo, Customer.LastName, Location.LocName, 
  Case
@@ -312,6 +315,7 @@ or EmailTasks6 = '255'
 and LocationInactive = '0'
 and CustomerInactive = '0'
 and Paid < InvAmt and InvAmt > 0 and PaidOff is NULL
+$sqlcus
 ORDER BY Customer.CustNo, Emailer, Location.LocNo;";
 
 $res = mssql_query($sql);
