@@ -2,7 +2,6 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 require_once("/var/www/html/vendor/autoload.php");
-define('SPOOLWRITE', 'write');
 
 
 	//days (0 current, 60 = 60-75, 90 = 90+)
@@ -27,7 +26,7 @@ define('SPOOLWRITE', 'write');
 
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
 {
-	if (SPOOLWRITE=='write' && !SPOOLREAD)
+	if (SPOOLWRITE=='write')
 	{
 		$db['email'] = $email;
 		$db['subject'] = $subject;

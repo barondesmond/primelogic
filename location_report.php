@@ -4,6 +4,9 @@ include("_email.php");
 include("_report.php");
 include("pdf.php");
 include("_invoice.php");
+
+define('SPOOLWRITE', 'write');
+
 /*
 LocationInactive 0
 CustomerInactive 0

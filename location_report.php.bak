@@ -26,7 +26,7 @@ else
 {
 	define('LOCATION_ONLY', '');
 }
-$html = location_basis($argv[2]);
+$html = location_basis($argv['3']);
 //echo $html;
 
 foreach ($sm as $emp => $emails)

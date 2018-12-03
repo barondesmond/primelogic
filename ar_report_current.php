@@ -2,6 +2,7 @@
 include("_db_config.php");
 include("_report.php");
 include("_email.php");
+define('SPOOLWRITE', 'write');
 
 
 $day = '0';

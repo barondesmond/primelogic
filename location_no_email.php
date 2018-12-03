@@ -2,6 +2,7 @@
 include("_db_config.php");
 include("_email.php");
 include("_report.php");
+define('SPOOLWRITE', 'write');
 
 /*
 LocationInactive 0
