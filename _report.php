@@ -351,7 +351,7 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						//email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
 					}
 					else
 					{
@@ -451,7 +451,7 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
 					}
 					else
 					{
