@@ -355,14 +355,14 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curCustNo][$curEmailer]);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curEmailer]);
 					}
 					else
 					{
 						//spam users
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curCustNo][$curEmailer]);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curEmailer]);
 					}
-					unset($pdf[$curCustNo][$curEmailer]);
+					unset($pdf[$curEmailer]);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
@@ -404,14 +404,14 @@ $res = mssql_query($sql);
 				$pi .= table_row($db, $ik);
 				$pt['DaysPastDue'] = 'Total Past Due';
 				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
-				$pdf[$curCustNo][$curEmailer] = pdf_input($db['Invoice']);
+				$pdf[$curEmailer][] = pdf_input($db['Invoice']);
 			}
 			else
 			{
 				$ci .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				$pdf[$curCustNo][$curEmailer] = pdf_input($db['Invoice']);
+				$pdf[$curEmailer][] = pdf_input($db['Invoice']);
 				
 			}
 			if (($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '')) && $db['CustNo'] == $curCustNo)
@@ -457,16 +457,16 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curCustNo][$curEmailer]);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curEmailer]);
 					}
 					else
 					{
 
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curCustNo][$curLocNo][$curEmailer]);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curEmailer]);
 
 						//spam users
 					}
-					unset($pdf[$curCustNo][$curLocNo][$curEmailer]);
+					unset($pdf[$curEmailer]);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
