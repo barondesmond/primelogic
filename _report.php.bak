@@ -419,7 +419,7 @@ $res = mssql_query($sql);
 						$html .= $finchrg;
 					}
 					$cb[$db['Emailer']]['loc']['x'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
-					$cb[$curEmailer]['html'] .= table_hd($cb[$curEmailer]['loc'], $cb[$curEmailer]['loc'], '', count($ik));
+					$html = table_hd($cb[$db['Emailer']]['loc'], $cb[$db['Emailer']]['loc'], '', count($ik));
 		
 					$cb[$db['Emailer']]['ll'] = $ll;
 					//unset($t);					
