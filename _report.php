@@ -420,7 +420,8 @@ $res = mssql_query($sql);
 					}
 					$cb[$curEmailer]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
 					$cb[$curEmailer]['ll'] = $ll;
-
+					print_r($cb);
+					exit;
 					//unset($t);					
 				}
 				$curCustNo = $db['CustNo'];
