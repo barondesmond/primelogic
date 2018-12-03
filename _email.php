@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 require_once("/var/www/html/vendor/autoload.php");
-
+define('SPOOLING', 'write');
 
 
 	//days (0 current, 60 = 60-75, 90 = 90+)
@@ -27,6 +27,22 @@ require_once("/var/www/html/vendor/autoload.php");
 
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
 {
+	if (isset(SPOOLING) && SPOOLING=='write')
+	{
+		$db['email'] = $email;
+		$db['subject'] = $subject;
+		$db['body'] = $body];
+		$db['filename'] = $filename;
+		$db['name'] = $name;
+		$db['pdf'] = $pdf;
+		$enc =json_encode($db);
+		$file = '/var/www/email/'$email.$subject.time();
+		$stream = fopen($file, 'w');
+		fwrite($stream, $enc);
+		fclose($stream);
+		return $file;
+	}
+
 
 	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
