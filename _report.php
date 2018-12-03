@@ -316,7 +316,7 @@ and LocationInactive = '0'
 and CustomerInactive = '0'
 and Paid < InvAmt and InvAmt > 0 and PaidOff is NULL
 $sqlcus
-ORDER BY Customer.CustNo, Emailer, Location.LocNo;";
+ORDER BY Customer.CustNo, Location.LocNo, Emailer;";
 
 $res = mssql_query($sql);
 

@@ -393,7 +393,7 @@ $res = mssql_query($sql);
 				}
 				$curCustNo = $db['CustNo'];
 				$curEmailer = $db['Emailer'];
-				$curLocNo = $db['LocNo'];
+				//$curLocNo = $db['LocNo'];
 				$curdb = $db;
 
 			}
@@ -413,7 +413,7 @@ $res = mssql_query($sql);
 				$pdf[] = pdf_input($db['Invoice']);
 				
 			}
-			if ($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '') && $db['CustNo'] == $curCustNo)
+			if (($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '')) && $db['CustNo'] == $curCustNo)
 			{
 	
 				$html .= table_hd($x, $x, '', count($ik));
@@ -442,6 +442,7 @@ $res = mssql_query($sql);
 					$ci = '';
 					$ct['InvAmts'] = '0';
 				}
+				$curLocNo = $db['LocNo'];
 
 			}
 		}
