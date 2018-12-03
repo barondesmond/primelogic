@@ -6,7 +6,7 @@ include("_email.php");
 
 define('SPOOLING', 'read');
 
-if ($handle = opendir('.')) {
+if ($handle = opendir('/var/www/email')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
             echo "$entry\n";

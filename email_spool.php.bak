@@ -1,6 +1,6 @@
 <?php
 //email spool cron
-<?php
+
 
 include("_email.php");
 
