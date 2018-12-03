@@ -18,9 +18,17 @@ elseif ($argv['1'])
 {
 	define('EMAIL_SEND', $argv[1]);
 }
-
+if ($argv['2'])
+{
+	define('LOCATION_ONLY', 'SEND');
+}
+else
+{
+	define('LOCATION_ONLY', '');
+}
 $html = location_basis($argv[2]);
 //echo $html;
+
 foreach ($sm as $emp => $emails)
 {
 	$day = '31';
@@ -42,7 +50,9 @@ foreach ($sm as $emp => $emails)
 		}
 	}
 }
-
-email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
+if (EMAIL_SEND != '')
+{
+	email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
+}
 ?>
 

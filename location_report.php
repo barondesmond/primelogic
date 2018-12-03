@@ -18,7 +18,14 @@ elseif ($argv['1'])
 {
 	define('EMAIL_SEND', $argv[1]);
 }
-
+if ($argv['2'])
+{
+	define('LOCATION_ONLY', 'SEND');
+}
+else
+{
+	define('LOCATION_ONLY', '');
+}
 $html = location_basis($argv[2]);
 //echo $html;
 
@@ -37,13 +44,15 @@ foreach ($sm as $emp => $emails)
 	foreach ($email_send as $send)
 	{
 		echo "Email = $send \n";
-		if (EMAIL_SEND == '')
+		if (EMAIL_SEND == '' && LOCATION_ONLY== '')
 		{
 			email_report($send, "Priority Location Invoice Email Need Fixing", $html);
 		}
 	}
 }
-
-email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
+if (EMAIL_SEND != '')
+{
+	email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
+}
 ?>
 
