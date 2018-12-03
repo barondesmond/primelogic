@@ -7,7 +7,7 @@ $start = time();
 $end = time() . 86000;
 
 define('SPOOLREAD', 'read');
-define('DIRD', '/var/www/email');
+define('DIRD', '/var/www/email/');
 
 while (time() < $end)
 {

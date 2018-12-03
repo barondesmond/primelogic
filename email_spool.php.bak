@@ -7,18 +7,18 @@ $start = time();
 $end = time() . 86000;
 
 define('SPOOLREAD', 'read');
-
+define('DIRD', '/var/www/email');
 
 while (time() < $end)
 {
-	if ($handle = opendir('/var/www/email')) 
+	if ($handle = opendir(DIRD)) 
 	{
 	 while (false !== ($entry = readdir($handle)))
      {
 	     if ($entry != "." && $entry != "..")
 	     {
 
-			send_json_file($entry);
+			send_json_file(DIRD . $entry);
 			
             echo "$entry\n";
 		 }
@@ -30,12 +30,11 @@ while (time() < $end)
 
 function send_json_file($entry)
 {
-	$st = fopen('/var/www/email/' . $entry, "r");
-	$json = fread($st);
-
+	
+	$json = file_get_contents($entry);
+	
 	$db = json_decode($json);
 	print_r($db);
-	fclose($st);
 	exit;
 }	
 
