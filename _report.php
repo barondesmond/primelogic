@@ -404,7 +404,7 @@ $res = mssql_query($sql);
 				$pi .= table_row($db, $ik);
 				$pt['DaysPastDue'] = 'Total Past Due';
 				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
-				$pdf[$curCustNo][$curLocNo][$curEmailer] = pdf_input($db['Invoice']);
+				$pdf[$curCustNo][$curEmailer] = pdf_input($db['Invoice']);
 			}
 			else
 			{
