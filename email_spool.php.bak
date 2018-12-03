@@ -8,15 +8,17 @@ include("_email.php");
 define('SPOOLREAD', 'read');
 while (time() < $end)
 {
-if ($handle = opendir('/var/www/email')) {
-    while (false !== ($entry = readdir($handle))) {
-        if ($entry != "." && $entry != "..") {
+	if ($handle = opendir('/var/www/email')) 
+	{
+	 while (false !== ($entry = readdir($handle)))
+     {
+	     if ($entry != "." && $entry != "..") {
 
 			send_json_file($entry);
 			
             echo "$entry\n";
-        }
-    }
+		 }
+     }
     closedir($handle);
 
 }

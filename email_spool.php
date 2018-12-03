@@ -12,7 +12,8 @@ while (time() < $end)
 	{
 	 while (false !== ($entry = readdir($handle)))
      {
-	     if ($entry != "." && $entry != "..") {
+	     if ($entry != "." && $entry != "..")
+	     {
 
 			send_json_file($entry);
 			
