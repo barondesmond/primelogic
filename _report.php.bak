@@ -352,7 +352,7 @@ $res = mssql_query($sql);
 				//finance charge
 				if ($cb[$curEmailer]['html'] != '')
 				{
-					if ($cb['pi'] != '')
+					if ($cb[$curEmailer]['pi'] != '')
 					{
 						$p['Past Due Invoices'] = 'Past Due Invoices';
 						$cb[$curEmailer]['html'] .= table_hd($p, $p, 'red', count($ik));
@@ -365,7 +365,7 @@ $res = mssql_query($sql);
 						$pt['InvAmts'] = '0';
 
 					}
-					if ($ci != '')
+					if ($cb[$curEmailer]['ci'] != '')
 					{
 						$c['Current Invoices'] = 'Current Invoices';
 						$cb[$curEmailer]['html'] .= table_hd($c, $c, '#4d7db3', count($ik));
@@ -374,7 +374,8 @@ $res = mssql_query($sql);
 						$cb[$curEmailer]['html'] .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 	
 						$cb[$curEmailer]['html'] .= table_row($ct, $ik);
-						$ci = '';
+						$cb[$curEmailer]['ci'] = '';
+
 						$ct['InvAmts'] = '0';
 					}
 					$cb[$curEmailer]['html'] .= '</table>';
@@ -504,7 +505,7 @@ $res = mssql_query($sql);
 					$cb[$curEmailer]['html'] .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 		
 					$cb[$curEmailer]['html'] .= table_row($ct, $ik);
-					$cb[$curEmailer]['ci' = '';
+					$cb[$curEmailer]['ci'] = '';
 					$ct['InvAmts'] = '0';
 					}
 				$cb[$curEmailer]['html'] .= '</table>';
