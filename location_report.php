@@ -18,7 +18,8 @@ elseif ($argv['1'])
 {
 	define('EMAIL_SEND', $argv[1]);
 }
-$html = location_basis();
+
+$html = location_basis($argv[2]);
 //echo $html;
 foreach ($sm as $emp => $emails)
 {
