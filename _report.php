@@ -253,11 +253,12 @@ return $html;
 function location_basis($Customer = '')
 {
 
-	//$noemail = array('');
+	$noemail = array('');
 	$curCustNo = '';
 	$curEmailer = '';
 	$curLocNo = '';
 	$html = '';
+	
 	$ik = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'Paids', 'InvAmts');
 	$tk = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'Paids', 'InvAmts');
 
@@ -357,14 +358,15 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $cb[$curEmailer]['html'], $cb[$curEmailer]['ll']['filename'], $cb[$curEmailer]['ll']['cid'], $cb[$curEmailer]['ll']['name'], $pdf[$curEmailer]);
 					}
 					else
 					{
 						//spam users
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
 					}
-					unset($pdf);
+					unset($pdf[$curEmailer]);
+					unset($cb[$curEmailer]);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
@@ -397,52 +399,51 @@ $res = mssql_query($sql);
 				$curEmailer = $db['Emailer'];
 				//$curLocNo = $db['LocNo'];
 				$curdb = $db;
-
+				$cb[$curEmailer]['html'] = $html;
+				$cb[$curEmailer]['ll'] = $ll;
 			}
 	
 			if ($db['DaysPastDue'] >0)
 			{
-				$pi .= table_row($db, $ik);
+				$cb[$curEmailer]['pi'] .= table_row($db, $ik);
 				$pt['DaysPastDue'] = 'Total Past Due';
 				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
-				$pdf[] = pdf_input($db['Invoice']);
+				$pdf[$curEmailer][] = pdf_input($db['Invoice']);
+				
 			}
 			else
 			{
-				$ci .= table_row($db, $ik);
+				$cb[$curEmailer]['ci'] .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				$pdf[] = pdf_input($db['Invoice']);
-				
+				$pdf[$curEmailer][] = pdf_input($db['Invoice']);
 			}
-			if (($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '')) && $db['CustNo'] == $curCustNo)
+			if (($curLocNo != $db['LocNo'] && ($cb[$curEmailer]['pi'] !='' || $cb[$curEmailer]['ci'] != '')) && $db['CustNo'] == $curCustNo)
 			{
-				$loc = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
-				$x[$loc] = $loc;
-	
-				$html .= table_hd($x, $x, '', count($ik));
-				if ($pi != '')
+				$cb[$curEmailer]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
+				$cb[$curEmailer]['html'] .= table_hd($x, $x, '', count($ik));
+				if ($cb['pi'] != '')
 				{
 					$p['Past Due Invoices'] = 'Past Due Invoices';
-					$html .= table_hd($p, $p, 'red', count($ik));
-					$html .= table_hd($ik, $ik, '#b3b3b3');
-					$html .= $pi;
-					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
+					$cb[$curEmailer]['html'] .= table_hd($p, $p, 'red', count($ik));
+					$cb[$curEmailer]['html'] .= table_hd($ik, $ik, '#b3b3b3');
+					$cb[$curEmailer]['html']  .= $cb[$curEmailer]['pi'];
+					$cb[$curEmailer]['html']  .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 
-					$html .= table_row($pt, $ik);
-					$pi = '';
+					$cb[$curEmailer]['html'] .= table_row($pt, $ik);
+					$cb[$curEmailer]['pi'] = '';
 					$pt['InvAmts'] = '0';
 
 				}
 				if ($ci != '')
 				{
 					$c['Current Invoices'] = 'Current Invoices';
-					$html .= table_hd($c, $c, '#4d7db3', count($ik));
-					$html .= table_hd($ik, $ik, '#b3b3b3');
-					$html .= $ci;
-					$html .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
+					$cb[$curEmailer]['html'] .= table_hd($c, $c, '#4d7db3', count($ik));
+					$cb[$curEmailer]['html'] .= table_hd($ik, $ik, '#b3b3b3');
+					$cb[$curEmailer]['html'] .= $ci;
+					$cb[$curEmailer]['html'] .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 	
-					$html .= table_row($ct, $ik);
+					$cb[$curEmailer]['html'] .= table_row($ct, $ik);
 					$ci = '';
 					$ct['InvAmts'] = '0';
 				}
@@ -452,15 +453,15 @@ $res = mssql_query($sql);
 		}
 	}
 
-			if ($html != '')
+			if ($cb[$curEmailer]['html'] != '')
 				{
-					$html .= '</table>';
-					$html .= html_foot();
+					$cb[$curEmailer]['html'] .= '</table>';
+					$cb[$curEmailer]['html'] .= html_foot();
 					
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curEmailer]);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $cb[$curEmailer]['html', $cb[$curEmailer][$ll['filename']], $cb[$curEmailer][$ll['cid']], $cb[$curEmailer][$ll['name']], $pdf[$curEmailer]);
 					}
 					else
 					{
@@ -469,11 +470,12 @@ $res = mssql_query($sql);
 
 						//spam users
 					}
-					unset($pdf);
-					unset($html);
-					unset($ll);
+					unset($pdf[$curEmailer]);
+					unset($cb[$curEmailer]);
+					
 					$curCustNo = '';
 					$curLocNo = '';
+					$html = '';
 					
 
 				}
