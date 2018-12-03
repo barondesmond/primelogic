@@ -8,8 +8,8 @@ $end = time() . 86000;
 
 define('SPOOLREAD', 'read');
 define('DIRD', '/var/www/email/');
-
-while (time() < $end)
+$ct_today=0;
+while (time() < $end && $ct_today <99)
 {
 	if ($handle = opendir(DIRD)) 
 	{
@@ -19,7 +19,7 @@ while (time() < $end)
 	     {
 
 			send_json_file(DIRD . $entry);
-			
+			$ct_today++;
             echo "$entry\n";
 		 }
      }
