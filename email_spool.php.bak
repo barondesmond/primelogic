@@ -1,5 +1,5 @@
 <?php
-//email cron
+//email spool cron
 <?php
 
 include("_email.php");
