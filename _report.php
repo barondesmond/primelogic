@@ -259,6 +259,8 @@ function location_basis($Customer = '')
 	$curLocNo = '';
 	$html = '';
 	$ik = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'Paids', 'InvAmts');
+	$tk = array('Invoice', 'JobDispatch', 'Dept', 'Terms', 'DueDates', 'DaysPastDue', 'InvAmts');
+
 	$ci = '';
 	$pi = '';
 	$noe = '';
@@ -383,9 +385,10 @@ $res = mssql_query($sql);
 					{
 
 						$t['fnchg'] = 'Finance Charges';
-						$html .= table_hd($t, $t, 'red', count($ik));
+						$html .= table_hd($t, $t, 'red', count($tk));
 						$html .= "\r\n";
-						$html .= table_hd($ik, $ik, '#b3b3b3');
+						$tk = array('
+						$html .= table_hd($tk, $tk, '#b3b3b3');
 						$html .= $finchrg;
 					}
 					$loc = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
