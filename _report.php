@@ -350,10 +350,10 @@ $res = mssql_query($sql);
 				//start email
 				//logo
 				//finance charge
-				if ($html != '')
+				if ($cb[$curEmailer]['html'] != '')
 				{
-					$html .= '</table>';
-					$html .= html_foot();
+					$cb[$curEmailer]['html'] .= '</table>';
+					$cb[$curEmailer]['html'] .= html_foot();
 					
 					$i++;
 					if (EMAIL_SEND != '')
