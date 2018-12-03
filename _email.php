@@ -23,13 +23,15 @@ require_once("/var/www/html/vendor/autoload.php");
 	$dp[60][] = 'shannon@plisolutions.com';
 	$dp[70][] = 'arthur@plisolutions.com';
 
+
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
 {
-	$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf');
 
-
+	
 	if (SPOOLWRITE=='write')
 	{
+		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf');
+
 		for($i=0;$i<count($er_array);$i++)
 		{
 			$db[$er_array[$i]] = ${$er_array[$i])};
@@ -92,8 +94,10 @@ try {
 
     $mail->send();
     echo 'Message has been sent';
+	return true;
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+	return false;
 }
 
 }
