@@ -41,7 +41,7 @@ try {
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom(EMAIL_USERNAME, 'Mailer');
+    $mail->setFrom(EMAIL_USERNAME, 'Account Overview');
     $mail->addAddress($email);     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
     $mail->addReplyTo('administrator@plisolutions.com');
