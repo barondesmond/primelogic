@@ -30,7 +30,7 @@ while (time() < $end)
 
 function send_json_file($entry)
 {
-	$st = fopen($entry, "r");
+	$st = fopen('/var/www/email/' . $entry, "r");
 	$json = fread($st);
 
 	$db = json_decode($json);
