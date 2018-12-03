@@ -34,7 +34,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 
 		for($i=0;$i<count($er_array);$i++)
 		{
-			$db[$er_array[$i]] = ${$er_array[$i])};
+			$db[$er_array[$i]] = ${$er_array[$i]};
 		}
 		$enc =json_encode($db);
 		$file = '/var/www/email/' . $email . '.' . urlencode($subject) . '.' . time() . '.email';
