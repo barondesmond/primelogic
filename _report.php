@@ -390,8 +390,6 @@ $res = mssql_query($sql);
 						$html .= table_hd($tk, $tk, '#b3b3b3');
 						$html .= $finchrg;
 					}
-					$loc = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
-					$x[$loc] = $loc;
 
 					//unset($t);					
 				}
@@ -419,6 +417,8 @@ $res = mssql_query($sql);
 			}
 			if (($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '')) && $db['CustNo'] == $curCustNo)
 			{
+				$loc = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];
+				$x[$loc] = $loc;
 	
 				$html .= table_hd($x, $x, '', count($ik));
 				if ($pi != '')
