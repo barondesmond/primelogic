@@ -387,7 +387,6 @@ $res = mssql_query($sql);
 						$t['fnchg'] = 'Finance Charges';
 						$html .= table_hd($t, $t, 'red', count($tk));
 						$html .= "\r\n";
-						$tk = array('
 						$html .= table_hd($tk, $tk, '#b3b3b3');
 						$html .= $finchrg;
 					}
