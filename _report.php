@@ -419,6 +419,7 @@ $res = mssql_query($sql);
 						$html .= $finchrg;
 					}
 					$cb[$curEmailer]['loc'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
+					$cb[$curEmailer]['ll'] = $ll;
 
 					//unset($t);					
 				}
@@ -427,7 +428,6 @@ $res = mssql_query($sql);
 				//$curLocNo = $db['LocNo'];
 				$curdb = $db;
 				$cb[$curEmailer]['html'] = $html;
-				$cb[$curEmailer]['ll'] = $ll;
 			}
 	
 			if ($db['DaysPastDue'] >0)

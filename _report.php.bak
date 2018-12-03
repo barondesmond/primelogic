@@ -370,7 +370,7 @@ $res = mssql_query($sql);
 						$c['Current Invoices'] = 'Current Invoices';
 						$cb[$curEmailer]['html'] .= table_hd($c, $c, '#4d7db3', count($ik));
 						$cb[$curEmailer]['html'] .= table_hd($ik, $ik, '#b3b3b3');
-						$cb[$curEmailer]['html'] .= $ci;
+						$cb[$curEmailer]['html'] .= $cb[$curEmailer]['ci'];
 						$cb[$curEmailer]['html'] .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 	
 						$cb[$curEmailer]['html'] .= table_row($ct, $ik);
@@ -466,7 +466,7 @@ $res = mssql_query($sql);
 					$c['Current Invoices'] = 'Current Invoices';
 					$cb[$curEmailer]['html'] .= table_hd($c, $c, '#4d7db3', count($ik));
 					$cb[$curEmailer]['html'] .= table_hd($ik, $ik, '#b3b3b3');
-					$cb[$curEmailer]['html'] .= $ci;
+					$cb[$curEmailer]['html'] .= $cb[$curEmailer]['ci'];
 					$cb[$curEmailer]['html'] .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 	
 					$cb[$curEmailer]['html'] .= table_row($ct, $ik);
@@ -501,7 +501,7 @@ $res = mssql_query($sql);
 					$c['Current Invoices'] = 'Current Invoices';
 					$cb[$curEmailer]['html'] .= table_hd($c, $c, '#4d7db3', count($ik));						
 					$cb[$curEmailer]['html'] .= table_hd($ik, $ik, '#b3b3b3');
-					$cb[$curEmailer]['html'] .= $ci;
+					$cb[$curEmailer]['html'] .= $cb[$curEmailer]['ci'];
 					$cb[$curEmailer]['html'] .= '<tr><td colspan="' . count($ik) . '"><div style="border: solid 0 #060; border-top-width:2px; "></td></tr>';
 		
 					$cb[$curEmailer]['html'] .= table_row($ct, $ik);
