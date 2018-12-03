@@ -4,7 +4,7 @@
 
 include("_email.php");
 
-define('SPOOLING', 'read');
+define('SPOOLREAD', 'read');
 
 if ($handle = opendir('/var/www/email')) {
     while (false !== ($entry = readdir($handle))) {
