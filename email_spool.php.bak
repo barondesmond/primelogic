@@ -34,7 +34,7 @@ function send_json_file($entry)
 	global $er_array;
 	$json = file_get_contents($entry);
 	
-	$db = json_decode($json);
+	$db = json_decode($json, 1);
 	print_r($db);
 	if (email_report($db['email'], $db['subject'], $db['body'], $db['filename'], $db['cid'], $db['name'], $db['pdf']))
 	{
