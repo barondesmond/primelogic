@@ -31,7 +31,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 	{
 		$db['email'] = $email;
 		$db['subject'] = $subject;
-		$db['body'] = $body];
+		$db['body'] = $body;
 		$db['filename'] = $filename;
 		$db['name'] = $name;
 		$db['pdf'] = $pdf;
