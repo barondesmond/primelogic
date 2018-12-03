@@ -457,7 +457,6 @@ $res = mssql_query($sql);
 					if (EMAIL_SEND != '')
 					{
 						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curCustNo][$curEmailer]);
-);
 					}
 					else
 					{

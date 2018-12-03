@@ -316,7 +316,7 @@ and LocationInactive = '0'
 and CustomerInactive = '0'
 and Paid < InvAmt and InvAmt > 0 and PaidOff is NULL
 $sqlcus
-ORDER BY Customer.CustNo, Location.LocNo, Emailer;";
+ORDER BY Customer.CustNo, Emailer, Location.LocNo;";
 
 $res = mssql_query($sql);
 
@@ -355,14 +355,14 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curCustNo][$curEmailer]);
 					}
 					else
 					{
 						//spam users
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curCustNo][$curEmailer]);
 					}
-					unset($pdf);
+					unset($pdf[$curCustNo][$curEmailer]);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
@@ -403,14 +403,14 @@ $res = mssql_query($sql);
 				$pi .= table_row($db, $ik);
 				$pt['DaysPastDue'] = 'Total Past Due';
 				$pt['InvAmts'] = $pt['InvAmts'] + $db['InvAmts'] - $db['Paids'];
-				$pdf[] = pdf_input($db['Invoice']);
+				$pdf[$curCustNo][$curLocNo][$curEmailer] = pdf_input($db['Invoice']);
 			}
 			else
 			{
 				$ci .= table_row($db, $ik);
 				$ct['InvAmts'] = $ct['InvAmts'] + $db['InvAmts'] - $db['Paids'];
 				$ct['DaysPastDue'] = 'Total Current Due';
-				$pdf[] = pdf_input($db['Invoice']);
+				$pdf[$curCustNo][$curEmailer] = pdf_input($db['Invoice']);
 				
 			}
 			if (($curLocNo != $db['LocNo'] && ($pi !='' || $ci != '')) && $db['CustNo'] == $curCustNo)
@@ -456,16 +456,17 @@ $res = mssql_query($sql);
 					$i++;
 					if (EMAIL_SEND != '')
 					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf[$curCustNo][$curEmailer]);
+);
 					}
 					else
 					{
 
-						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf);
+						invoice_email_report($curdb, $curEmailer, $html, $ll, $pdf[$curCustNo][$curLocNo][$curEmailer]);
 
 						//spam users
 					}
-					unset($pdf);
+					unset($pdf[$curCustNo][$curLocNo][$curEmailer]);
 					unset($html);
 					unset($ll);
 					$curCustNo = '';
