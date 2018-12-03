@@ -21,6 +21,7 @@ elseif ($argv['1'])
 
 $html = location_basis($argv[2]);
 //echo $html;
+
 foreach ($sm as $emp => $emails)
 {
 	$day = '31';
