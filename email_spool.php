@@ -24,7 +24,7 @@ while (time() < $end)
 		 }
      }
     closedir($handle);
-
+	}
 }
 
 

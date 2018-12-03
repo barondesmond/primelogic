@@ -1,11 +1,14 @@
 <?php
 //email spool cron
 
-$start = time();
-$end = time() . 86000;
 include("_email.php");
 
+$start = time();
+$end = time() . 86000;
+
 define('SPOOLREAD', 'read');
+
+
 while (time() < $end)
 {
 	if ($handle = opendir('/var/www/email')) 
