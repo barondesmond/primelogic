@@ -47,9 +47,11 @@ function send_json_file($entry)
 	else
 	{
 		$exp = explode('.', $entry);
+			print_r($exp);
+
 		if ($exp[0] < time()-86400)
 		{
-			print_r($exp);
+			//delete day old
 		}
 	}
 
