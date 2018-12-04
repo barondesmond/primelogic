@@ -36,7 +36,7 @@ function send_json_file($entry)
 	
 	$db = json_decode($json, 1);
 	//print_r($db);
-	if (email_report($db['email'], $db['subject'], $db['body'], $db['filename'], $db['cid'], $db['name'], $db['pdf']), $db['func'])
+	if (email_report($db['email'], $db['subject'], $db['body'], $db['filename'], $db['cid'], $db['name'], $db['pdf'], $db['func'])
 	{
 		echo "file $entry sent";
 		if (unlink($entry))
