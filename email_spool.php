@@ -44,6 +44,15 @@ function send_json_file($entry)
 			echo "file $entry deleted";
 		}
 	}
+	else
+	{
+		$exp = explode('.', $entry);
+		if ($exp[0] < time()-86400)
+		{
+			print_r($exp);
+		}
+	}
+
 	sleep(1);
 	
 }	
