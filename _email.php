@@ -38,11 +38,19 @@ function get_calling_function() {
   return $r;
 }
 
-function email_from_gcf($func)
+function email_from_gcf($func='')
 {
 	if ($func == '')
 	{
 		return EMAIL_FROM;
+	}
+	elseif ($func == 'location_no_email.php')
+	{
+		return 'Location Email';
+	}
+	elseif ($func == 'location_report.php')
+	{
+		return 'Priority Email';
 	}
 	else
 	{
