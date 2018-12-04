@@ -65,7 +65,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 
 	if ($func == '')
 	{
-		$func = $_SERVER['PHP_SELF'];
+		$func = trim($_SERVER['PHP_SELF']);
 	}	
 	if (SPOOLWRITE=='write')
 	{
