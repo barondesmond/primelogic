@@ -1,6 +1,6 @@
 <?php
 //email spool cron
-
+include("_db_config.php");
 include("_email.php");
 
 $start = time();
