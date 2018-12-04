@@ -52,9 +52,9 @@ function email_from_gcf($func='')
 	{
 		return 'Priority Email';
 	}
-	else
+	elseif ($func == 'Account Overview')
 	{
-		//return $func;
+		return $func;
 	}
 
 return EMAIL_FROM;
