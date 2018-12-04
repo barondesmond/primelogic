@@ -47,13 +47,18 @@ function send_json_file($entry)
 	else
 	{
 		$ex = explode('/', $entry);
-		print_r($ex);
+		//print_r($ex);
 		$exp = explode('.', $ex[4]);
-			print_r($exp);
+		//print_r($exp);
 
 		if ($exp[0] < time()-86400)
 		{
 			//delete day old
+			echo "Deleting $entry";
+			if (unlink($entry))
+			{
+				echo "file $entry deleted";
+			}
 		}
 	}
 

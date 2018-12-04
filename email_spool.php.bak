@@ -46,7 +46,9 @@ function send_json_file($entry)
 	}
 	else
 	{
-		$exp = explode('.', $entry);
+		$ex = explode('/', $entry);
+		print_r($ex);
+		$exp = explode('.', $ex[4]);
 			print_r($exp);
 
 		if ($exp[0] < time()-86400)
