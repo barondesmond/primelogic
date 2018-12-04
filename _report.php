@@ -627,9 +627,11 @@ return $row;
 
 function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 {
+	$email_from = 'Account Ovierview';
+
 	if (EMAIL_SEND != '')
 	{
-		email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+		email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
 	}
 	else
 	{
@@ -641,13 +643,13 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 			{
 				//send email
 				echo "Sending Email " . $dbs[$var] . "\r\n";
-				email_report($dbs[$var], "Invoice Current and Past Due", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+				email_report($dbs[$var], "Invoice Current and Past Due", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
 
 			}
 			elseif (trim($dbs[$var]) == trim($email) && trim($email) != '' && trim($dbs[$var]) != '')
 			{
 				echo "Origin email send ". $email . "\r\n";
-				email_report($dbs[$var], "Invoice Current and Past Due", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf);
+				email_report($dbs[$var], "Invoice Current and Past Due", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
 
 			}
 		}
