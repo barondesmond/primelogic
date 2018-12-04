@@ -615,7 +615,7 @@ return $row;
 
 function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 {
-	$email_from = 'Account Ovierview';
+	$email_from = EMAIL_USERNAME_FROM;
 
 	if (EMAIL_SEND != '')
 	{
