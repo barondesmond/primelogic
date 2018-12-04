@@ -23,6 +23,20 @@ require_once("/var/www/html/vendor/autoload.php");
 	$dp[60][] = 'shannon@plisolutions.com';
 	$dp[70][] = 'arthur@plisolutions.com';
 
+function get_calling_function() {
+  // a funciton x has called a function y which called this
+  // see stackoverflow.com/questions/190421
+  $caller = debug_backtrace();
+  $caller = $caller[2];
+  $r = $caller['function'] . '()';
+  if (isset($caller['class'])) {
+    $r .= ' in ' . $caller['class'];
+  }
+  if (isset($caller['object'])) {
+    $r .= ' (' . get_class($caller['object']) . ')';
+  }
+  return $r;
+}
 
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
 {
@@ -30,8 +44,8 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 	
 	if (SPOOLWRITE=='write')
 	{
-		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf');
-
+		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf', 'func');
+		$func = get_calling_function();
 		for($i=0;$i<count($er_array);$i++)
 		{
 			$db[$er_array[$i]] = ${$er_array[$i]};
