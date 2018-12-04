@@ -38,14 +38,30 @@ function get_calling_function() {
   return $r;
 }
 
-function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
+function email_from_gcf($func)
+{
+	if ($func == '')
+	{
+		return EMAIL_FROM;
+	}
+	else
+	{
+		return $func;
+	}
+
+return EMAIL_FROM;
+}
+
+function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '', $func = '' )
 {
 
-	
+	if ($func == '')
+	{
+		$func = get_calling_function();
+	}	
 	if (SPOOLWRITE=='write')
 	{
 		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf', 'func');
-		$func = get_calling_function();
 		for($i=0;$i<count($er_array);$i++)
 		{
 			$db[$er_array[$i]] = ${$er_array[$i]};
@@ -58,6 +74,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 		return $file;
 		sleep(1);
 	}
+	$from = email_from_gcf($func);
 
 
 	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -73,7 +90,7 @@ try {
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom(EMAIL_USERNAME, EMAIL_USERNAME_FROM);
+    $mail->setFrom(EMAIL_USERNAME, $from);
     $mail->addAddress($email);     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
     $mail->addReplyTo('administrator@plisolutions.com');
