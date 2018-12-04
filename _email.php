@@ -42,7 +42,7 @@ function email_from_gcf($func='')
 {
 	if ($func == '')
 	{
-		return EMAIL_FROM;
+		return EMAIL_USERNAME_FROM;
 	}
 	elseif ($func == 'location_no_email.php')
 	{
@@ -57,7 +57,7 @@ function email_from_gcf($func='')
 		return $func;
 	}
 
-return EMAIL_FROM;
+return EMAIL_USERNAME_FROM;
 }
 
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '', $func = '' )

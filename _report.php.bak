@@ -382,15 +382,9 @@ $res = mssql_query($sql);
 					$cb[$curEmailer]['html'] .= html_foot();
 					
 					$i++;
-					if (EMAIL_SEND != '' && LOCATION_ONLY=='')
-					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $cb[$curEmailer]['html'], $cb[$curEmailer]['ll']['filename'], $cb[$curEmailer]['ll']['cid'], $cb[$curEmailer]['ll']['name'], $pdf[$curEmailer]);
-					}
-					elseif (EMAIL_SEND =='')
-					{
-						//spam users
-						invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
-					}
+					
+					invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
+
 					unset($pdf[$curEmailer]);
 					unset($cb[$curEmailer]);
 					unset($html);
@@ -513,15 +507,9 @@ $res = mssql_query($sql);
 				$cb[$curEmailer]['html'] .= html_foot();
 					
 					$i++;
-					if (EMAIL_SEND != '' && LOCATION_ONLY=='')
-					{
-						email_report(EMAIL_SEND, "Invoice $curEmailer $curCustNo $curLocNo", $cb[$curEmailer]['html'], $cb[$curEmailer]['ll']['filename'], $cb[$curEmailer]['ll']['cid'], $cb[$curEmailer]['ll']['name'], $pdf[$curEmailer]);
-					}
-					elseif (EMAIL_SEND =='')
-					{
-						//spam users
+		
 						invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
-					}
+
 					unset($pdf[$curEmailer]);
 					unset($cb[$curEmailer]);
 					
@@ -631,9 +619,12 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 
 	if (EMAIL_SEND != '')
 	{
-		email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
+		if (LOCATION_ONLY == '')
+		{
+			email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
+		}
 	}
-	else
+	elseif (LOCATION_ONLY == '')
 	{
 		//print_r($dbs);
 		for ($i=1; $i < 7; $i++)
