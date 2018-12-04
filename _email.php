@@ -54,7 +54,7 @@ function email_from_gcf($func='')
 	}
 	else
 	{
-		return $func;
+		//return $func;
 	}
 
 return EMAIL_FROM;
