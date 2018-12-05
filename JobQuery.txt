@@ -1,0 +1,211 @@
+SELECT TransDate, TransDesc,  Units, Amount FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+WHERE Name = 'Security/Fire'    and Voided = '0' and Inactive='0' and Active='0'  and CostType != '100'
+ORDER BY TransDate DESC;
+
+SELECT * FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+WHERE Name = 'Security/Fire'    and Voided = '0' and Inactive='0' and Active='0' and TransDesc = 'Quote J-0001907'
+ORDER BY TransDate DESC;
+
+SELECT * FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+WHERE Name = 'Security/Fire'    and Voided = '0' and Inactive='0' and Active='0' and TransDesc = 'Quote J-0001907' and CostType != '100'
+ORDER BY TransDate DESC;
+
+SELECT * FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+WHERE Name = 'Security/Fire'    and Voided = '0' and Inactive='0' and Active='0' and TransDesc = 'Quote J-0001907' and CostType != '100'
+ORDER BY TransDate DESC;
+
+SELECT TransDate, TransDesc,  Units, Amount FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+WHERE Name = 'Security/Fire'    and Voided = '0' and Inactive='0' and Active='0'  and TransDesc = 'Jacob A Dillon'
+ORDER BY TransDate DESC;
+
+SELECT TransDate, TransDesc,  Units, Amount, Voided, CostType, JobClass.Inactive as JInActive, Active, Jobs.*, Customer.* FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+INNER JOIN Jobs ON FinLedger.JobID = Jobs.JobID
+INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
+WHERE JobClass.Name = 'Stadium, Theater Video/Audio'      and (CostType='200' or Active ='-1') and Voided = '0' and TransDesc = 'Jacob A Dillon' and JobStatus = '0';
+
+SELECT FinLedger.TranNumber, Amount, Units
+ FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+INNER JOIN Jobs ON FinLedger.JobID = Jobs.JobID
+INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
+WHERE JobClass.Name = 'Stadium, Theater Video/Audio'   and Voided = '0' and TransDesc = 'Jacob A Dillon' and JobStatus = '0';
+
+
+SELECT FinLedger.TranNumber, Amount, Units, Voided, Active, Inactive, CostType
+ FROM JobClass
+INNER JOIN FinLedger ON JobClass.JobClassID = FinLedger.JobClassID
+
+WHERE JobClass.Name = 'Security/Fire'    and TransDesc = 'Quote J-0001907' and Voided  = '0' and Inactive = '0' and CostType = '100'
+
+CostType = '100' (Income)?
+CostType = '200' (Costs)?
+
+SELECT Jobs.*
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+WHERE Sales.Invoice = 'J-0001907'
+
+SELECT TransDesc, Jobs.*, FinLedger.TransDate, FinLedger.CostType, FinLedger.TransType,  FinLedger.Units, FinLedger.Amount, JobClass.Name as Jname,  FinLedger.Voided
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' and Units = '515.85'
+ORDER BY CostType, TransType
+
+
+
+SELECT CONVERT(varchar(10), FinLedger.TransDate, 101) as TransDate, ISNULL(JobClass.Name, '***Unclassified***') as JName,  CostType, TransType, TransDesc, Units, Amount,
+ CASE WHEN CostType = '100' THEN 'Income' ELSE CONCAT('Whatever', CostType) END as CostName
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+LEFT JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' and Amount = '37630.12'
+ORDER BY CostType, TransType;
+
+SELECT CONVERT(varchar(10), FinLedger.TransDate, 101) as TransDate, ISNULL(JobClass.Name, '***Unclassified***') as JName,  CostType, TransType, TransDesc, Units, Amount,
+ CASE WHEN CostType = '100' THEN 'Income' ELSE CONCAT('CostType ', CostType) END as CostName,
+CASE WHEN TransType = '400' THEN 'Material' WHEN TransType = '410' THEN 'Material Security/Fire' ELSE CONCAT('TransType ', TransType) END AS TransName
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+LEFT JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' and TransDesc = 'Quote J-0001907'
+ORDER BY CostType, TransType;
+
+SELECT  FinLedger.*
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+LEFT JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' and TransDesc = 'Quote J-0001907'
+ORDER BY CostType, TransType;
+
+SELECT *
+FROM POLed
+WHERE Job =   'J-0001907'
+
+SELECT * FROM
+InvenAct WHERE Job =   'J-0001907'
+
+SELECT CONVERT(varchar(10), FinLedger.TransDate, 101) as TransDate, ISNULL(JobClass.Name, '***Unclassified***') as JName,  CostType, TransType, TransDesc, Units, Amount,
+ CASE WHEN CostType = '100' THEN 'Income' ELSE CONCAT('CostType ', CostType) END as CostName,
+CASE WHEN TransType = '400' THEN 'Material' WHEN TransType = '410' THEN 'Material Security/Fire' ELSE CONCAT('TransType ', TransType) END AS TransName, COA.*
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID 
+
+LEFT JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' and TransDesc = 'Quote J-0001907'
+ORDER BY CostType, TransType;
+WHERE Sales.Invoice = 'J-00001907';
+
+
+SELECT CONVERT(varchar(10), FinLedger.TransDate, 101) as TransDate, ISNULL(JobClass.Name, '***Unclassified***') as JName,  TransDesc, Units, Amount,
+ [COA].[Desc] as AcctDesc
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID 
+
+LEFT JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' 
+ORDER BY Account, CostType, TransType;
+
+SELECT CONVERT(varchar(10), FinLedger.TransDate, 101) as TransDate, ISNULL(JobClass.Name, '***Unclassified***') as JName,  TransDesc, Units, Amount,
+ [COA].[Desc] as AcctDesc
+FROM Sales
+INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
+INNER JOIN Jobs ON Customer.CustNo = Jobs.CustNo and Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID 
+
+LEFT JOIN JobClass ON FInLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.Invoice = 'J-0001907' and Voided = '0' 
+ORDER BY Account, FinLedger.JobClassID
+
+SELECT Invoice, JobNumber, InvAmount, LaborCost, AmtCharge, MatCost
+FROM Sales
+WHERE Sales.Invoice = '0000019807'
+
+SELECT TransID FROM Sales WHERE Invoice = 'J-0001907'
+
+SELECT Account, [COA].[DESC] as AcctDesc, SUM(CASE WHEN JobClassID ='' and Account = '40006' THEN Amount * -1 END) as EstimateMaterial, SUM(CASE WHEN JobClassID != '' and Account='40006' THEN Amount * -1 END) as Income, SUM(CASE WHEN JobClassID != '' and Account='58010' THEN Amount END) as Labor, SUM(Amount) as Others
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Sales.Invoice = 'J-0001907' and voided ='0' 
+GROUP BY Account, [COA].[DESC]
+
+SELECT Invoice, JobNumber, LaborCost, MatCost, AmtCharge, InvAmount FROM Sales WHERE TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a'
+
+SELECT Account, [COA].[DESC] as AcctDesc, SUM(CASE WHEN JobClassID ='' and Account = '40006' THEN Amount * -1 END) as Estimate, SUM(CASE WHEN JobClassID != '' and Account='40006' THEN Amount * -1 END) as Es, SUM(CASE WHEN JobClassID != '' and Account='58010' THEN Amount END) as Labor, SUM(Amount) as Others
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' 
+GROUP BY Account, [COA].[DESC]
+UNION
+
+SELECT '000000' as Account, 'Labor' as AcctDesc, '0.00' as Estimate, '0.00' as JobToDate FROM Sales WHERE TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a'
+
+
+SELECT JobID FROM Jobs WHERE Name = 'J-0001907'
+
+SELECT '000000' as Account, 'Labor' as AcctDesc, LaborCost as Estimate, (
+SELECT SUM(CASE WHEN JobClassID != '' and Account='58010' THEN Amount END) as Labor
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' and Account = '58010'
+GROUP BY Account, [COA].[DESC]) as JobToDate, Estimate-JobToDate as Variance
+
+, '0.00' as Variance FROM Sales WHERE TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a'
+UNION
+SELECT Account, [COA].[DESC] as AcctDesc, SUM(CASE WHEN JobClassID != '' THEN Amount * -1 END) as Estimate, SUM(CASE WHEN JobClassID = '' THEN Amount * -1 END)  as JobToDate,  SUM(CASE WHEN JobClassID = '' THEN Amount * -1 END) - (SUM(CASE WHEN JobClassID != '' THEN Amount * -1 END)) as Variance
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' and Account = '40006' 
+GROUP BY Account, [COA].[DESC]
+
+--------------------------------------------------------------------------Income/Labor----------------------------
+SELECT '000000' as Account, 'Labor' as AcctDesc, LaborCost as Estimate, (
+SELECT SUM(CASE WHEN JobClassID != '' and Account='58010' THEN Amount END) as Labor
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' and Account = '58010'
+GROUP BY Account, [COA].[DESC]) as JobToDate, '0.00'
+as Variance
+ FROM Sales WHERE TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a'
+UNION
+SELECT Account, [COA].[DESC] as AcctDesc, SUM(CASE WHEN JobClassID != '' THEN Amount * -1 END) as Estimate, SUM(CASE WHEN JobClassID = '' THEN Amount * -1 END)  as JobToDate,  SUM(CASE WHEN JobClassID = '' THEN Amount * -1 END) - (SUM(CASE WHEN JobClassID != '' THEN Amount * -1 END)) as Variance
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' and Account = '40006' 
+GROUP BY Account, [COA].[DESC]
+
+--------------------------------------------------------------------------Income/Labor-------------------------------
