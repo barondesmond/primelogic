@@ -9,13 +9,15 @@ $end = time() + 86000;
 define('SPOOLREAD', 'read');
 define('DIRD', '/var/www/email/');
 $ct_today=0;
+$ignore = array('.', '..');
+
 while (time() < $end && $ct_today <99)
 {
 	if ($handle = opendir(DIRD)) 
 	{
 	 while (false !== ($entry = readdir($handle)))
      {
-	     if ($entry != "." && $entry != "..")
+	     if ($entry != "." && $entry != ".." && !in_array($ignore, $entry)
 	     {
 
 			if (send_json_file(DIRD . $entry))
@@ -23,6 +25,10 @@ while (time() < $end && $ct_today <99)
 				$ct_today++;
 				echo "$entry\n";
 			}
+			else
+			 {
+				$ignore[] = $entry;
+			 }
 		 }
      }
     closedir($handle);

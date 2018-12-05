@@ -18,7 +18,7 @@ while (time() < $end && $ct_today <99)
 	     if ($entry != "." && $entry != "..")
 	     {
 
-			if (send_json_file(DIRD . $entry)
+			if (send_json_file(DIRD . $entry))
 			{
 				$ct_today++;
 				echo "$entry\n";
