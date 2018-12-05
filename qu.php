@@ -19,7 +19,8 @@ if ($_GET['query'])
 
 	
 	$res = mssql_query($query);
-	if ($mes = mssql_get_last_message($res))
+	mssql_get_last_message();
+	if (!$res && $mes = mssql_get_last_message($res))
 	{
 		echo "$mes";
 	}
