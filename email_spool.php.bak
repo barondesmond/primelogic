@@ -4,7 +4,7 @@ include("_db_config.php");
 include("_email.php");
 
 $start = time();
-$end = time() . 86000;
+$end = time() + 86000;
 
 define('SPOOLREAD', 'read');
 define('DIRD', '/var/www/email/');
@@ -18,9 +18,11 @@ while (time() < $end && $ct_today <99)
 	     if ($entry != "." && $entry != "..")
 	     {
 
-			send_json_file(DIRD . $entry);
-			$ct_today++;
-            echo "$entry\n";
+			if (send_json_file(DIRD . $entry)
+			{
+				$ct_today++;
+				echo "$entry\n";
+			}
 		 }
      }
     closedir($handle);
@@ -42,6 +44,7 @@ function send_json_file($entry)
 		if (unlink($entry))
 		{
 			echo "file $entry deleted";
+			return true;
 		}
 	}
 	else
@@ -67,7 +70,7 @@ function send_json_file($entry)
 	}
 
 	sleep(1);
-	
+return false;	
 }	
 
 ?>
