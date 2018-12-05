@@ -60,6 +60,10 @@ function send_json_file($entry)
 				echo "file $entry deleted";
 			}
 		}
+		else
+		{
+			echo "$entry not old $exp[0]\r\n";
+		}
 	}
 
 	sleep(1);

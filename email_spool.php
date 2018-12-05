@@ -4,7 +4,7 @@ include("_db_config.php");
 include("_email.php");
 
 $start = time();
-$end = time() . 86000;
+$end = time() + 86000;
 
 define('SPOOLREAD', 'read');
 define('DIRD', '/var/www/email/');
