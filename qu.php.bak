@@ -25,7 +25,10 @@ if ($_GET['query'])
 		show_data($db);
 	}
 	show_data(array(), '1');
-
+	if ($mes = mssql_get_last_message($res))
+	{
+		echo "$mes";
+	}
 
 
 

@@ -19,16 +19,17 @@ if ($_GET['query'])
 
 	
 	$res = mssql_query($query);
+	if ($mes = mssql_get_last_message($res))
+	{
+		echo "$mes";
+	}
 	$x=0;
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		show_data($db);
 	}
 	show_data(array(), '1');
-	if ($mes = mssql_get_last_message($res))
-	{
-		echo "$mes";
-	}
+
 
 
 
