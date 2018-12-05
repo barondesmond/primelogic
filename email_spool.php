@@ -17,7 +17,7 @@ while (time() < $end && $ct_today <99)
 	{
 	 while (false !== ($entry = readdir($handle)))
      {
-	     if ($entry != "." && $entry != ".." && !in_array($ignore, $entry))
+	     if ($entry != "." && $entry != ".." && !in_array($entry, $ignore))
 	     {
 
 			if (send_json_file(DIRD . $entry))
