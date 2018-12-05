@@ -4,6 +4,9 @@ include("_query.php");
 
 /*
 --------------------------------------------------------------------------Income/Labor----------------------------
+*/
+$query = "
+
 SELECT '000000' as Account, 'Labor' as AcctDesc, LaborCost as Estimate, (
 SELECT SUM(CASE WHEN JobClassID != '' and Account='58010' THEN Amount END) as Labor
 FROM Sales
@@ -29,11 +32,13 @@ INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
 INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
 INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' and Account = '40006' 
-GROUP BY Account, [COA].[DESC]
+GROUP BY Account, [COA].[DESC]";
 
+/*
 --------------------------------------------------------------------------Income/Labor-------------------------------
 
 */
+
 
 	$res = mssql_query($query);
 	echo	mssql_get_last_message();

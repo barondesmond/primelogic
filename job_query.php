@@ -38,7 +38,7 @@ GROUP BY Account, [COA].[DESC]";
 --------------------------------------------------------------------------Income/Labor-------------------------------
 
 */
-
+echo $query;
 
 	$res = mssql_query($query);
 	echo	mssql_get_last_message();
