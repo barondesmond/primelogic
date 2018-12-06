@@ -102,10 +102,10 @@ GROUP BY CostType,Account, Source, [DESC]";
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		$gr[$db['Account']][$db['Source']][$db['CostType']] = $db;
-		show_data($db);
+		//show_data($db);
 
 	}
-	show_data(array(), '1', '1');
+	//show_data(array(), '1', '1');
 
 	//print_r($gr);
 	job_summary($gr);
