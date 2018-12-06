@@ -138,9 +138,27 @@ function job_summary($gr)
 	$row['Estimate'] = $row['Estimate'] * -1;
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//print_r($row);
-	show_data($row);
+	$tb[] = $row;
+	//show_data($row);
+	//Equipment/Material/Inventory
+	$row['Type'] = 'Material';
+	$row['Document'] = '';
+	$row['Est Units'] = '';
+	$row['Act Units'] = '';
+	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
+	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
+	//print_r($row);
+	$row = sum_array($gr,$row);
+	$row['Estimate'] = $row['Estimate'] * -1;
+	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	//print_r($row);
+	foreach ($tb as $row)
+	{
+		show_data($row);
+	}
 
 	show_data(array(), '1');
+
 
 }
 
