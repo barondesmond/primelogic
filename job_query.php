@@ -156,9 +156,9 @@ function job_summary($gr)
 	$row['Estimate'] = $row['Estimate'] * -1;
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//print_r($row);
-	foreach ($tb as $row)
+	foreach ($tb as $rob)
 	{
-		show_data($row);
+		show_data($rob);
 	}
 
 	show_data(array(), '1');
