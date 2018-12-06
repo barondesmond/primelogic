@@ -137,11 +137,10 @@ function job_summary($gr)
 	$row = sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] + $row['Estimate'];
 	//print_r($row);
-	echo "<html>";
 	show_data($row);
 
 	show_data(array(), '1');
-	echo "</html>"
+
 }
 
 
