@@ -145,7 +145,7 @@ function job_summary($gr)
 	$tb[] = $row;
 	//show_data($row);
 	//Equipment/Material/Inventory
-	$row['Type'] = 'Material';
+	$row['Type'] = 'Material Total';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
 	//print_r($row);
