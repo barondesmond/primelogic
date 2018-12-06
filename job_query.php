@@ -116,7 +116,7 @@ function sum_array($gr,$sua, $sum)
 			$sum[$su['SUM']] = $sum[$su['SUM']] + $gr[$su['Account']][$su['Source']][$su['CostType']][$su['SUM']];
 		}			
 	}
-return $sum[$su['SUM']];
+return $sum;
 }
 
 function job_summary($gr)
