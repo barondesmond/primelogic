@@ -201,6 +201,14 @@ function job_summary($gr)
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$tb[] = $row;
 
+	$row['Type'] = 'Other';
+	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
+	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
+	//print_r($row);
+	$row = sum_array($gr,$row);
+	$row['Estimate'] = $row['Estimate'];
+	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$tb[] = $row;
 
 	//print_r($tb);
 	foreach ($tb as $rob)
