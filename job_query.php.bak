@@ -174,7 +174,7 @@ function job_summary($gr)
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;
 	$row2 = $row;
-	$row['Type'] = 'Equipment Total';
+	$row['Type'] = 'Equipment';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = $row2['JobToDate'] + $row1['JobToDate']; //array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
@@ -182,8 +182,8 @@ function job_summary($gr)
 	$row['Estimate'] = $row['Estimate'];
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$tb[] = $row;
-
-	$row['Type'] = 'Inventory Total';
+	$row3 = $row2
+	$row['Type'] = 'Inventory';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
@@ -191,10 +191,18 @@ function job_summary($gr)
 	$row['Estimate'] = $row['Estimate'];
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$tb[] = $row;
+	
+	$row['Type'] = 'Labor';
+	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
+	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
+	//print_r($row);
+	$row = sum_array($gr,$row);
+	$row['Estimate'] = $row['Estimate'];
+	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$tb[] = $row;
 
 
-
-	print_r($tb);
+	//print_r($tb);
 	foreach ($tb as $rob)
 	{
 		show_data($rob);
