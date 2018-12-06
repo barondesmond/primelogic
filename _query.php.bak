@@ -1,7 +1,7 @@
 <?php
 //must show data too end table
 ////show_data(array(), '1');
-function show_data($db, $nd='')
+function show_data($db, $nd='', $nt = '')
 {
 static $hd;
 static $rows;
@@ -12,7 +12,13 @@ static $hdr;
 		unset($hd);
 		echo "</table>";
 		echo "<BR><BR>\r\n\r\n";
+		if ($nt != '')
+		{
+			unset($hdr);
+			return false;
+		}
 	}
+
 if (count($db) == 0)
 	{
 	return false;
