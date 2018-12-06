@@ -4,8 +4,8 @@ include("_query.php");
 
 /*
 --------------------------------------------------------------------------Income/Labor----------------------------
-*/
-$query = "
+
+
 
 SELECT '000000' as Account, 'Labor' as AcctDesc, LaborCost as Estimate, (
 SELECT SUM(CASE WHEN JobClassID != '' and Account='58010' THEN Amount END) as Labor
@@ -34,7 +34,6 @@ INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0' and Account = '40006' 
 GROUP BY Account, [COA].[DESC]";
 
-/*
 --------------------------------------------------------------------------Income/Labor-------------------------------
 
 */
@@ -64,13 +63,23 @@ INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0'  and Account = '12000'
 ORDER BY Source, Account
 -------------------------------------------------------------------------------------------------------------------------------
-SELECT SUM(Amount), SUM(Units), Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
+SELECT SUM(Amount), SUM(Units), Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
 FROM Sales
 INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
 INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
 INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0'  
 GROUP BY CostType,Account, Source, [DESC]
+*/
+
+$sql = "SELECT SUM(Amount), SUM(Units), Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC], JobClass.Name
+FROM Sales
+INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
+WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0'  
+GROUP BY CostType,Account, Source, [DESC], JobClass.Name";
 
 */
 
