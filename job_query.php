@@ -83,7 +83,7 @@ GROUP BY CostType,Account, Source, [DESC]";
 
 
 
-echo $query;
+//echo $query;
 /*
 	$res = mssql_query($query);
 	echo	mssql_get_last_message();
@@ -127,20 +127,21 @@ function job_summary($gr)
 {
 	//Income row
 
-	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
-	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	$row['Type'] = 'Income';
 	$row['Document'] = '';
 	$row['Est Units'] = '';
 	$row['Act Units'] = '';
+	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
+	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	//print_r($row);
 	$row = sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] + $row['Estimate'];
 	//print_r($row);
+	echo "<html>";
 	show_data($row);
 
 	show_data(array(), '1');
-
+	echo "</html>"
 }
 
 
