@@ -106,15 +106,19 @@ echo $query;
 	//print_r($gr);
 	job_sommary($gr);
 
-function sum_array($gr,$sua, $sum)
+function sum_array($gr,$sua)
 {
 
-	foreach ($sua as $su)
+	foreach ($sua as $key => $su)
 	{
 		if (is_array($su))
 		{
-			$sum[$su['SUM']] = $sum[$su['SUM']] + $gr[$su['Account']][$su['Source']][$su['CostType']][$su['SUM']];
-		}			
+			$sum[$key] = $sum[$key] + $gr[$su['Account']][$su['Source']][$su['CostType']][$su['SUM']];
+		}
+		else
+		{
+			$sum[$key] = $su;
+		}
 	}
 return $sum;
 }
@@ -123,8 +127,8 @@ function job_summary($gr)
 {
 	//Income row
 
-	$sua['Estimate'] = array('SUM' => '0', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
-	$sua['JobToDate'] = array('SUM' => '0', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
+	$row['Estimate'] = array('SUM' => '0', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
+	$row['JobToDate'] = array('SUM' => '0', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	$row['Type'] = 'Income';
 	$row['Document'] = '';
 	$row['Est Units'] = '';

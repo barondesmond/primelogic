@@ -133,7 +133,7 @@ function job_summary($gr)
 	$row['Document'] = '';
 	$row['Est Units'] = '';
 	$row['Act Units'] = '';
-	$row = sum_array($gr, $sua, $row);
+	$row = sum_array($gr,$row);
 	print_r($row);
 	show_data($row);
 
