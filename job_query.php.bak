@@ -135,6 +135,7 @@ function job_summary($gr)
 	$row['Act Units'] = '';
 	print_r($row);
 	$row = sum_array($gr,$row);
+	$row['Variance'] = $row['JobToDate'] + $row['Estimate'];
 	print_r($row);
 	show_data($row);
 
