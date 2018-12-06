@@ -101,7 +101,7 @@ echo $query;
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		$gr[$db['Account']['Source']['CostType'] = $db;
+		$gr[$db['Account']][$db['Source']][$db['CostType']] = $db;
 	}
 
 
