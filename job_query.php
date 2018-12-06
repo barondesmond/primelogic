@@ -103,7 +103,7 @@ echo $query;
 	{
 		$gr[$db['Account']][$db['Source']][$db['CostType']] = $db;
 	}
-
+print_r($gr);
 job_sommary($gr);
 function sum_array($gr,$sua, $sum)
 {
