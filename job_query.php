@@ -81,7 +81,7 @@ LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
 WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0'  
 GROUP BY CostType,Account, Source, [DESC], JobClass.Name";
 
-*/
+
 
 echo $query;
 
