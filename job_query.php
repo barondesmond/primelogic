@@ -72,7 +72,7 @@ WHERE Sales.TransID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a' and voided ='0'
 GROUP BY CostType,Account, Source, [DESC]
 */
 
-$query = "SELECT SUM(Amount), SUM(Units), Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC], JobClass.Name
+$query = "SELECT SUM(Amount) as Amount, SUM(Units) as Units, Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC], JobClass.Name
 FROM Sales
 INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
 INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
@@ -84,7 +84,7 @@ GROUP BY CostType,Account, Source, [DESC], JobClass.Name";
 
 
 echo $query;
-
+/*
 	$res = mssql_query($query);
 	echo	mssql_get_last_message();
 	if (!$res && $mes = mssql_get_last_message($res))
@@ -97,5 +97,43 @@ echo $query;
 		show_data($db);
 	}
 	show_data(array(), '1');
+*/
+	$res = mssql_query($query);
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+		$gr[$db['Account']['Source']['CostType'] = $db;
+	}
+
+
+function sum_array($gr,$sua, $sum)
+{
+
+	foreach ($sua as $su)
+	{
+		if (is_array($su))
+		{
+			$sum[$su['SUM']] = $sum[$su['SUM']] + $gr[$su['Account']][$su['Source']][$su['CostType']][$su['SUM']];
+		}			
+	}
+return $sum[$su['SUM']];
+}
+
+function job_summary($gr)
+{
+	//Income row
+
+	$sua['Estimate'] = array('SUM' => '0', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
+	$sua['JobToDate'] = array('SUM' => '0', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
+	$row['Type'] = 'Income';
+	$row['Document'] = '';
+	$row['Est Units'] = '';
+	$row['Act Units'] = '';
+	$row = sum_array($gr, $sua, $row);
+	show_data($row);
+
+	show_data(array(), '1');
+
+}
+
 
 ?>
