@@ -162,7 +162,7 @@ function job_summary($gr)
 	$row['Estimate'] = $row['Estimate'] ;
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$tb[] = $row;
-	$row1 = $row
+	$row1 = $row;
 
 	$row['Type'] = 'Equipment Sales';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');

@@ -155,7 +155,7 @@ function job_summary($gr)
 	$tb[] = $row;
 
 	$row['Type'] = 'Equipment Freight';
-	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
+	$row['Estimate'] = '0'; 
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	//$row = sum_array($gr,$row);
