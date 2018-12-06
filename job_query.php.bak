@@ -127,8 +127,8 @@ function job_summary($gr)
 {
 	//Income row
 
-	$row['Estimate'] = array('SUM' => '0', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
-	$row['JobToDate'] = array('SUM' => '0', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
+	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
+	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	$row['Type'] = 'Income';
 	$row['Document'] = '';
 	$row['Est Units'] = '';
