@@ -190,7 +190,7 @@ function jobs_active_query()
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		$jobs[$db['Name']] = $db;
+		$jobs[] = $db;
 	}
 
 return $jobs;
