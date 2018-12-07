@@ -14,24 +14,24 @@ if ($_GET['email'] != '' && $_GET['job'] != '' && !$_GET['psswd'] && !$_GET['sen
 else
 {
 
-	echo "help first";
-	print_r($_GET);
-	exit;
+	//echo "help first";
+	//print_r($_GET);
+	//exit;
 }
 	
 if ($_GET['psswd'] && $_GET['email'] && $_GET['job'] && md5($_GET['email'] . $salt) == $_GET['psswd'])
 {
 
 	$res = system("/usr/bin/php /usr/bin/php/job_detail_report.php '" . $_GET['job'] . "'" . $_GET['email'] . "'");
-	echo $res;
+	//echo $res;
 	Header('email_sent.php.php"email=' . $_GET['email']);
 	exit;
 }
 else
 {
-	echo "help";
-	print_r($_GET);
-	exit;
+	//echo "help";
+	//print_r($_GET);
+	//exit;
 }
 
 

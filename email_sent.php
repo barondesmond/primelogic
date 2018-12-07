@@ -23,15 +23,15 @@ if ($_GET['psswd'] && $_GET['email'] && $_GET['job'] && md5($_GET['email'] . $sa
 {
 
 	$res = system("/usr/bin/php /usr/bin/php/job_detail_report.php '" . $_GET['job'] . "'" . $_GET['email'] . "'");
-	//echo $res;
+	echo $res;
 	Header('email_sent.php.php"email=' . $_GET['email']);
 	exit;
 }
-else
+elseif ($_GET['psswd'] != '')
 {
-	//echo "help";
-	//print_r($_GET);
-	//exit;
+	echo "help";
+	print_r($_GET);
+	exit;
 }
 
 
