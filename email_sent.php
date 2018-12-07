@@ -2,7 +2,7 @@
 include("_email.php");
 $salt = 'wtf';
 
-if ($_GET['email'] != '' && $_GET['job'] != '' && !$_GET['psswd'] && !$_GET['sent'])
+if ($_GET['email'] != '' && $_GET['job'] != '' && !isset($_GET['psswd']) && !isset($_GET['sent']))
 {
 	$psswd = md5($_GET['email'] . $salt);
 	if (email_validate($_GET['email']))
