@@ -18,7 +18,11 @@ if ($_GET['psswd'] && $_GET['email'] && $_GET['job'] && md5($_GET['email'] . $sa
 	echo $res;
 	Header('email_sent.php.php"email=' . $_GET['email']);
 	exit;
-}	
+}
+else
+{
+	echo "help";
+}
 
 
 if (email_validate($_GET['email']))
