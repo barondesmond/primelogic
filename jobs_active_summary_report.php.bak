@@ -45,8 +45,8 @@ for ($i=0; $i < count($jobs); $i++)
 	
 	if ($i > 2)
 	{
-		break;
-		$i = count($jobs);
+		//break;
+		//$i = count($jobs);
 	}
 }
 $table .= job_foot($key);

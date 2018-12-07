@@ -41,6 +41,7 @@ for ($i=0; $i < count($jobs); $i++)
 	{
 		$table .= job_row($td[$t], $key);
 	}
+		$table .= job_bar($key);
 	
 	
 	if ($i > 2)
