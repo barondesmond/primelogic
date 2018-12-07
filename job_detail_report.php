@@ -37,8 +37,16 @@ if ($argv[1])
 {
 	$Name = $argv[1];
 }
+if (!$Name)
+{
+	echo "What is a $Name";
+	exit;
+}
 $jobs = jobs_active_query($Name);
-
+if (!is_array($jobs))
+{
+    exit;
+}
 $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate', 'Variance');
 for ($i=0; $i < count($jobs); $i++)
