@@ -7,7 +7,7 @@ if ($_GET['email'] != '' && $_GET['job'] != '' && !$_GET['psswd'] && !$_GET['sen
 	$psswd = md5($_GET['email'] . $salt);
 	if (validate_email($_GET['email']))
 	{	
-		Header('email_sent.php?email=' . $_GET['email'] . '&job=' . $_GET['job'] . '&psswd=' $psswd);
+		Header('email_sent.php?email=' . $_GET['email'] . '&job=' . $_GET['job'] . '&psswd=' . $psswd);
 		exit;
 	}
 }
