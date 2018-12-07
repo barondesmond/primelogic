@@ -2,7 +2,7 @@
 
 function job_head($hd)
 {
-	$table = '<table class="job" ><tr><td colspan="7"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
+	$table = '<table class="job" ><tr><td colspan="7" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
 	return $table;
 }
 
@@ -44,7 +44,14 @@ function job_row($row, $key)
 	$table = '<tr>';
 	foreach ($key as $k)
 	{
-		$table .= '<td>' . $row[$k] . '</td>';
+		if ($k == 'Type' || $k == 'Document')
+		{
+			$table .= '<td align="left">' . $row[$k] . '</td>';
+		}
+		else
+		{
+			$table .= '<td align="right">' . $row[$k] . '</td>';
+		}
 	}
 	$table .= '</tr>';
 return $table;

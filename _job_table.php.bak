@@ -11,7 +11,7 @@ function job_title($hd)
 	$table ='<tr>
 		  <td colspan="2">Job ' . $hd['Name'] . '</td>
 		  <td colspan="5">' . $hd['LastName'] . '</td>
-		</tr>\r\n';
+		</tr>' . "\r\n";
 return $table;
 }
 
