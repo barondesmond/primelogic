@@ -38,7 +38,7 @@ function job_bar($hd, $key)
 return $table;
 }	
 	
-function job_row($row, $key);
+function job_row($row, $key)
 {
 	$table = '<tr>';
 	foreach ($key as $k)
