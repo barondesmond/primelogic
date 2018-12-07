@@ -226,7 +226,7 @@ return $jobs;
 
 function job_details($gr)
 {
-	print_r($gr);
+	
 	$row['Type'] = 'Contract';
 	$row['Document'] = ' ';
 	$row['Est Units'] = '0.00';
