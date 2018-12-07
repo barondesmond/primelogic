@@ -31,8 +31,8 @@ for ($i=0; $i < count($jobs); $i++)
 		$hd = $job;
 		$hd['title'] = 'Jobs Active Summary Report';
 		$table = job_head($hd);
-		$table .= job_hd($hd, $key);
-		$table .= job_bar($hd, $key);
+		$table .= job_hd($key);
+		$table .= job_bar($key);
 	}
 	$table .= job_title($hd);
 	for ($t=0; $t< count($td); $t++)
