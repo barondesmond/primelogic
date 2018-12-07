@@ -163,7 +163,7 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; 
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
-	$row = job_um_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	//print_r($row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;

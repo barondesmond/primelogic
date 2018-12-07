@@ -110,7 +110,7 @@ GROUP BY CostType,Account, Source, [DESC]";
 	//print_r($gr);
 	job_summary($gr);
 
-function sum_array($gr,$sua)
+function job_sum_array($gr,$sua)
 {
 
 	foreach ($sua as $key => $su)
@@ -143,7 +143,7 @@ function job_summary($gr)
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Estimate'] = $row['Estimate'] * -1;
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//print_r($row);
@@ -154,7 +154,7 @@ function job_summary($gr)
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;
 	$sum[] = $row;
@@ -163,7 +163,7 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; 
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_um_array($gr,$row);
 	//print_r($row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;
@@ -173,7 +173,7 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;
 	$row2 = $row;
@@ -181,7 +181,7 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = $row2['JobToDate'] + $row1['JobToDate']; //array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 
 	//$tb[] = $row;
@@ -190,7 +190,7 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;
 	$sum[] = $row;
@@ -198,7 +198,7 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	//$tb[] = $row;
 	$sum[] = $row;
@@ -220,7 +220,7 @@ function job_summary($gr)
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	//print_r($row);
-	$row = sum_array($gr,$row);
+	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$tb[] = $row;
 
