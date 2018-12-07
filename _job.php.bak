@@ -199,16 +199,6 @@ function job_summary($gr)
 	$tb[] = $row;
 
 
-
-	//print_r($tb);
-	/*
-	foreach ($tb as $rob)
-	{
-		show_data($rob);
-	}
-
-	show_data(array(), '1');
-	*/
 return $tb;
 }
 
