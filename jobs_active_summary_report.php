@@ -24,11 +24,9 @@ $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate
 for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
-	print_r($job);
+
 	$gr = job_query($job['Name']);
 	$td = job_summary($gr);
-	print_r($td);
-	exit;
 	//print_r($td);
 	if (!$hd)
 	{
