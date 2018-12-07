@@ -22,6 +22,7 @@ if ($_GET['psswd'] && $_GET['email'] && $_GET['job'] && md5($_GET['email'] . $sa
 else
 {
 	echo "help";
+	exit;
 }
 
 
