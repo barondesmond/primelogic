@@ -25,7 +25,7 @@ for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
 	print_r($job);
-	$gr = job_query($job);
+	$gr = job_query($job['Name']);
 	$td = job_summary($gr);
 	print_r($td);
 	exit;
