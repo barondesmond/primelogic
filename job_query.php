@@ -10,7 +10,7 @@ if ($_GET[action] == 'summary')
 {
 	job_summary($gr);
 }
-elseif ($_GET['action'] = 'details')
+elseif ($_GET['action'] == 'details')
 {
 	job_details($gr);
 }
