@@ -14,6 +14,10 @@ if ($argv[2])
 {
 	$Email = $argv[2];
 }
+if ($_GET['Email'])
+{
+	$Email = $_GET['Email'];
+}
 /*
 	$row['Type'] = 'Contract';
 	$row['Document'] = '';
@@ -70,9 +74,9 @@ for ($i=0; $i < count($jobs); $i++)
 }
 $table .= job_foot($key);
 $html .= '<html><body>' . $table . '</body></html>';
-if ($Email != ''  && $argv[1] != '' && $Email == $argv[2])
+if ($Email != '')
 {
-	echo "$Email $argv[1]";
+	echo "$Email";
 	if (email_validate($Email))
 	{
 		email_report($Email, 'Job Detail Report', $html);
