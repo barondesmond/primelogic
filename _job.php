@@ -225,7 +225,7 @@ return $jobs;
 
 function job_details($gr)
 {
-	
+	print_r($gr);
 	$row['Type'] = 'Contract';
 	$row['Document'] = ' ';
 	$row['Est Units'] = '0.00';
@@ -261,6 +261,7 @@ function job_details($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
 	//print_r($row);
+	
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 
