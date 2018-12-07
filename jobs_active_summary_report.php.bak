@@ -4,18 +4,12 @@ include("_query.php");
 include("_job.php");
 
 
+$jobs = job_active_query();
 
-$gr = job_query($_GET['val'], 'details');
-if ($_GET[action] == 'summary')
+foreach ($jobs as $job=>$db)
 {
-	job_summary($gr);
+	$gr = job_query($job);
+	$td = job_sommary($gr);
 }
-elseif ($_GET['action'] == 'details')
-{
-	job_details($gr);
-}
-else
-{
-	job_summary($gr);
-}
+
 ?>
