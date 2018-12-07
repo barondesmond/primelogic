@@ -37,6 +37,13 @@ function job_bar($key)
 	$ct = count($key);
 	$table = '<tr><td colspan="' . $ct . '" style="border-bottom-style: solid"></tr>';
 return $table;
+}
+
+function job_bar_dot($key)
+{
+	$ct = count($key);
+	$table = '<tr><td colspan="' . $ct . '" style="border-bottom-style: dotted"></tr>';
+return $table;
 }	
 	
 function job_row($row, $key)

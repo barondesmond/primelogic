@@ -32,7 +32,7 @@ for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
 
-	$gr = job_query($job['Name'], 'Details');
+	$gr = job_query($job['Name'], 'details');
 	$td = job_details($gr);
 	if (!$hd)
 	{
