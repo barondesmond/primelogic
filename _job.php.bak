@@ -35,7 +35,10 @@ GROUP BY CostType,Account, Source, [DESC]";
 	//show_data(array(), '1', '1');
 
 	//print_r($gr);
-	job_summary($gr);
+	$td = job_summary($gr);
+
+return $td;
+}
 
 function job_sum_array($gr,$sua)
 {
