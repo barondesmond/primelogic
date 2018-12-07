@@ -33,7 +33,10 @@ elseif ($_GET['psswd'] != '')
 	print_r($_GET);
 	exit;
 }
-
+else
+{
+	echo "what about this";
+}
 
 if (email_validate($_GET['email']))
 {
