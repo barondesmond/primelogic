@@ -46,7 +46,7 @@ for ($i=0; $i < count($jobs); $i++)
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
-		if (!is_numeric($td[$t][$key[0]])
+		if (!is_numeric($td[$t][$key[0]]))
 		{		
 			$table .= job_bar_dot($key);
 		}
