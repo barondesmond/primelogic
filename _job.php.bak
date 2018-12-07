@@ -37,7 +37,7 @@ function job_query($val='J-0001907', $action = '')
 		WHERE Jobs.Name = '$val' and voided ='0'  
 		GROUP BY CostType,Account, Source, [DESC]";
 	}
-	echo $sql;
+	//echo $query;
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{

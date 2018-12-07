@@ -37,7 +37,7 @@ function job_query($val='J-0001907', $action = '')
 		WHERE Jobs.Name = '$val' and voided ='0'  
 		GROUP BY CostType,Account, Source, [DESC]";
 	}
-	echo $query;
+	//echo $query;
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
@@ -179,5 +179,24 @@ function job_summary($gr)
 
 return $tb;
 }
+
+function jobs_active_query()
+{
+	$sql = "SELECT Jobs.Name, Customer.LastName FROM Jobs
+	INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
+	WHERE Inactive = '0'";
+	
+	$res = mssql_query($sql);
+	while ($db = mssql_fetch_assoc($res))
+	{
+		$jobs[$db['Name']] = $db;
+	}
+
+return $jobs;
+
+}
+
+
+
 
 ?>
