@@ -4,6 +4,18 @@ include("_query.php");
 include("_job.php");
 
 
-job_query($_GET['val']);
 
+$gr = job_query($_GET['val']);
+if ($_GET[action] == 'summary')
+{
+	job_summary($gr);
+}
+elseif ($_GET['action'] = 'details')
+{
+	job_details($gr);
+}
+else
+{
+	job_summary($gr);
+}
 ?>
