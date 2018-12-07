@@ -17,7 +17,7 @@ include("_job_table.php");
 	$row['Estimate'] = $row['Estimate'] * -1;
 */
 
-$jobs = jobs_active_query();
+$jobs = jobs_active_query($_GET['NAME']);
 //print_r($jobs);
 $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate', 'Variance');
@@ -25,13 +25,13 @@ for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
 
-	$gr = job_query($job['Name']);
-	$td = job_summary($gr);
+	$gr = job_query($job['Name'], 'Details');
+	$td = job_details($gr);
 	//print_r($td);
 	if (!$hd)
 	{
 		$hd = $job;
-		$hd['title'] = 'Jobs Active Summary Report';
+		$hd['title'] = 'Job Details Report';
 		$table = job_head($hd);
 		$table .= job_hd($key);
 		$table .= job_bar($key);

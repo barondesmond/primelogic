@@ -16,8 +16,14 @@ include("_job_table.php");
 	$row = job_sum_array($gr,$row);
 	$row['Estimate'] = $row['Estimate'] * -1;
 */
-
-$jobs = jobs_active_query();
+if ($_GET['Name'])
+{
+	$Name = $_GET['Name'];
+}
+if ($argv[1])
+{
+	$Name = $argv[1];
+$jobs = jobs_active_query($Name);
 //print_r($jobs);
 $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate', 'Variance');

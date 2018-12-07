@@ -212,11 +212,15 @@ function job_summary($gr)
 return $tb;
 }
 
-function jobs_active_query()
+function jobs_active_query($Name = '')
 {
+	if ($Name != '')
+	{
+		$nas = ' and Jobs.Name = ' . $Name;
+	}
 	$sql = "SELECT Jobs.Name, Customer.LastName FROM Jobs
 	INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
-	WHERE Inactive = '0'";
+	WHERE Inactive = '0' $nas";
 	
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
