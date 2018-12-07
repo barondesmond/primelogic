@@ -25,7 +25,7 @@ if ($argv[1])
 	$Name = $argv[1];
 }
 $jobs = jobs_active_query($Name);
-print_r($jobs);
+
 $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate', 'Variance');
 for ($i=0; $i < count($jobs); $i++)
@@ -34,7 +34,6 @@ for ($i=0; $i < count($jobs); $i++)
 
 	$gr = job_query($job['Name'], 'Details');
 	$td = job_details($gr);
-	print_r($td);
 	if (!$hd)
 	{
 		$hd = $job;
