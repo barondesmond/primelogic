@@ -67,7 +67,7 @@ if ($_GET[email])
 	{
 		send_email($_GET[email], 'Job Detail Report', $html);
 	}
-	Header("email_sent.php?email=$_GET['email']");
+	Header('email_sent.php?email=' . $_GET['email']);
 	exit;
 
 }
