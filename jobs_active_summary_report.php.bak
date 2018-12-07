@@ -20,7 +20,7 @@ include("_job_table.php");
 $jobs = jobs_active_query();
 //print_r($jobs);
 $i=0;
-$key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate');
+$key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate', 'Variance');
 for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
