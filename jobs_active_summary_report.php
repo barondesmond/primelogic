@@ -10,6 +10,7 @@ foreach ($jobs as $job=>$db)
 {
 	$gr = job_query($job);
 	$td = job_summary($gr);
+	print_r($td);
 	$i++;
 	if ($i > 2)
 	{

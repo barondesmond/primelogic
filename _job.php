@@ -170,13 +170,14 @@ function job_summary($gr)
 
 
 	//print_r($tb);
+	/*
 	foreach ($tb as $rob)
 	{
 		show_data($rob);
 	}
 
 	show_data(array(), '1');
-
+	*/
 return $tb;
 }
 
