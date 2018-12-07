@@ -75,7 +75,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 			$db[$er_array[$i]] = ${$er_array[$i]};
 		}
 		$enc =json_encode($db);
-		$file = '/var/www/email/' . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
+		$file = '/var/www/html/primelogic/email/' . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
 		$stream = fopen($file, 'w');
 		fwrite($stream, $enc);
 		fclose($stream);
