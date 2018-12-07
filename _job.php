@@ -28,7 +28,7 @@ function job_query($val='J-0001907', $sum = 'yes')
 	}
 	
 echo $query;
-
+exit;
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
