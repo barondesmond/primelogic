@@ -88,6 +88,11 @@ if ($Email != '')
 	if (email_validate($Email))
 	{
 		email_report($Email, 'Job Detail Report', $html);
+		echo "Emailed report to $Email";
+	}
+	else
+	{
+		echo "Failed to email $Email";
 	}
 	
 }
