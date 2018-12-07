@@ -5,7 +5,7 @@ include("_job.php");
 
 
 
-$gr = job_query($_GET['val'], $_GET['action']);
+$gr = job_query($_GET['val'], 'details');
 if ($_GET[action] == 'summary')
 {
 	job_summary($gr);
