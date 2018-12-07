@@ -63,7 +63,7 @@ $table .= job_foot($key);
 $html .= '<html><body>' . $table . '</body></html>';
 if ($_GET[email])
 {
-	if (email_vailidate($_GET['email']))
+	if (email_validate($_GET['email']))
 	{
 		send_email($_GET[email], 'Job Detail Report', $html);
 	}
