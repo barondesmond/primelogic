@@ -141,6 +141,15 @@ try {
 
 }
 
+function email_validate($email)
+{
+	$emails = array('barondesmond@gmail.com');
+	if (in_array($emails, $email))
+	{
+		return true;
+	}
+return false;
+}
 
 
 

@@ -60,6 +60,18 @@ for ($i=0; $i < count($jobs); $i++)
 	}
 }
 $table .= job_foot($key);
+$html .= '<html><body>' . $table . '</body></html>';
+if ($_GET[email])
+{
+	if (email_vailidate($_GET['email']))
+	{
+		send_email($_GET[email], 'Job Detail Report', $html);
+	}
+	Header("email_sent.php?email=$_GET['email']");
+	exit;
+
+}
+
 echo $table;
 
 ?>

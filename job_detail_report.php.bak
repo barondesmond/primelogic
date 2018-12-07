@@ -46,7 +46,7 @@ for ($i=0; $i < count($jobs); $i++)
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
-		if (!is_numeric($td[$t][$key[0]])
+		if (!is_numeric($td[$t][$key[0]]))
 		{		
 			$table .= job_bar_dot($key);
 		}
@@ -60,6 +60,17 @@ for ($i=0; $i < count($jobs); $i++)
 	}
 }
 $table .= job_foot($key);
+$html .= '<html><body>' . $table . '</body></html>';
+if ($_GET[email])
+{
+	if (email_vailidate($_GET['email']))
+	{
+		send_email($_GET[email], 'Job Detail Report', $html);
+		Header("email_sent.php?email=$_GET['email']");
+		exit;
+	}
+}
+
 echo $table;
 
 ?>

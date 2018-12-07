@@ -1,0 +1,4 @@
+<?php
+
+echo "Email sent to $_GET['email']";
+?>
