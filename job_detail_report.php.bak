@@ -34,7 +34,7 @@ for ($i=0; $i < count($jobs); $i++)
 
 	$gr = job_query($job['Name'], 'Details');
 	$td = job_details($gr);
-	//print_r($td);
+	print_r($td);
 	if (!$hd)
 	{
 		$hd = $job;
