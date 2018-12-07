@@ -6,6 +6,14 @@ include("_job.php");
 include("_job_table.php");
 define('SPOOLWRITE', 'write');
 
+if ($argv[1])
+{
+	$Name = $argv[1];
+}
+if ($argv[2])
+{
+	$Email = $argv[2];
+}
 /*
 	$row['Type'] = 'Contract';
 	$row['Document'] = '';
@@ -64,9 +72,9 @@ $table .= job_foot($key);
 $html .= '<html><body>' . $table . '</body></html>';
 if ($argv[1])
 {
-	if (email_validate($argv[1]))
+	if (email_validate($Email))
 	{
-		email_report($argv[1], 'Job Detail Report', $html);
+		email_report($Email, 'Job Detail Report', $html);
 	}
 	
 }

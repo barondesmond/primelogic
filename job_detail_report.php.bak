@@ -62,15 +62,13 @@ for ($i=0; $i < count($jobs); $i++)
 }
 $table .= job_foot($key);
 $html .= '<html><body>' . $table . '</body></html>';
-if ($_GET[email])
+if ($argv[1])
 {
-	if (email_validate($_GET['email']))
+	if (email_validate($argv[1]))
 	{
-		email_report($_GET[email], 'Job Detail Report', $html);
+		email_report($argv[1], 'Job Detail Report', $html);
 	}
-	Header('email_sent.php?email=' . $_GET['email']);
-	exit;
-
+	
 }
 
 echo $table;
