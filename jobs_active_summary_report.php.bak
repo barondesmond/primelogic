@@ -1,5 +1,6 @@
 <?php
 include("_db_config.php");
+include("_email.php");
 include("_query.php");
 include("_job.php");
 include("_job_table.php");
@@ -30,11 +31,14 @@ foreach ($jobs as $job=>$db)
 		$hd = $job;
 		$hd['title'] = 'Jobs Active Summary Report';
 		$table = job_head($hd);
-		$table .= job_bar($hd, $td[0]);
-
+		$table .= job_hd($hd, $key);
+		$table .= job_bar($hd, $key);
 	}
 	$table .= job_title($hd);
-	
+	for ($t=0; $t< count($td); $t++)
+	{
+		$table .= job_row($td[$t], $key);
+	}
 	
 	$i++; 
 	if ($i > 2)
@@ -42,3 +46,7 @@ foreach ($jobs as $job=>$db)
 		exit;
 	}
 }
+$table .= job_foot($key);
+echo $table;
+
+?>

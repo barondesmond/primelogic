@@ -43,7 +43,7 @@ foreach ($jobs as $job=>$db)
 	$i++; 
 	if ($i > 2)
 	{
-		exit;
+		break;
 	}
 }
 $table .= job_foot($key);
