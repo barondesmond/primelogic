@@ -51,6 +51,10 @@ for ($i=0; $i < count($jobs); $i++)
 	}
 }
 $table .= job_foot($key);
-echo $table;
-
+$html = '<html><body>' . $table . '</body></html>';
+echo $html;
+if ($argv[1]
+{
+	email_report($argv[1], 'Jobs Active Summary Report', $html);
+}
 ?>
