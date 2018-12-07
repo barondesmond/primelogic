@@ -343,6 +343,7 @@ function job_details($gr)
 
 	$tb[] = $row;
 
+return $tb;
 }
 
 
