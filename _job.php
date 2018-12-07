@@ -48,9 +48,9 @@ function job_query($val='J-0001907', $sum = '')
 	//show_data(array(), '1', '1');
 
 	//print_r($gr);
-	$td = job_summary($gr);
+	//$td = job_summary($gr);
 
-return $td;
+return $gr;
 }
 
 function job_sum_array($gr,$sua)
