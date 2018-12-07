@@ -9,7 +9,7 @@ $jobs = jobs_active_query();
 foreach ($jobs as $job=>$db)
 {
 	$gr = job_query($job);
-	$td = job_sommary($gr);
+	$td = job_summary($gr);
 }
 
 ?>

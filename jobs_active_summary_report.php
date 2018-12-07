@@ -10,6 +10,11 @@ foreach ($jobs as $job=>$db)
 {
 	$gr = job_query($job);
 	$td = job_summary($gr);
+	$i++;
+	if ($i > 2)
+	{
+		exit;
+	}
 }
 
 ?>
