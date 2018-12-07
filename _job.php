@@ -61,6 +61,7 @@ function job_sum_array($gr,$sua)
 
 		if (is_array($su))
 		{
+			$sum[$key] = '0.00';
 			foreach ($gr[$su['Account']][$su['Source']][$su['CostType']] as $db)
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
