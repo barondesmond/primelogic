@@ -2,6 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 require_once("/var/www/html/vendor/autoload.php");
+define('DIRD', '/var/www/email/');
 
 
 	//days (0 current, 60 = 60-75, 90 = 90+)

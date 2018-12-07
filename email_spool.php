@@ -7,7 +7,6 @@ $start = time();
 $end = time() + 86000;
 
 define('SPOOLREAD', 'read');
-define('DIRD', '/var/www/html/primelogic/email/');
 $ct_today=0;
 $ignore = array('.', '..');
 
