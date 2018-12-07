@@ -65,7 +65,7 @@ function job_sum_array($gr,$sua)
 			foreach ($gr[$su['Account']][$su['Source']][$su['CostType']] as $db)
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
-				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');;
+				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
 			}
 		}
 		else
@@ -94,6 +94,7 @@ function job_summary($gr)
 		$row['Estimate'] = $row['Estimate'] * -1;
 	}
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 	//print_r($row);
 	$tb[] = $row;
 	//show_data($row);
@@ -104,6 +105,8 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	//$tb[] = $row;
 	$sum[] = $row;
 	
@@ -114,6 +117,8 @@ function job_summary($gr)
 	$row = job_sum_array($gr,$row);
 	//print_r($row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	//$tb[] = $row;
 	$row1 = $row;
 
@@ -123,6 +128,8 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	//$tb[] = $row;
 	$row2 = $row;
 	$row['Type'] = 'Equipment';
@@ -131,6 +138,7 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 
 	//$tb[] = $row;
 	$sum[] = $row2;
@@ -140,6 +148,8 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	//$tb[] = $row;
 	$sum[] = $row;
 	$row['Type'] = 'Other';
@@ -148,6 +158,8 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	//$tb[] = $row;
 	$sum[] = $row;
 
@@ -162,6 +174,8 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	$tb[] = $row;
 
 	$row['Type'] = 'Labor';
@@ -170,6 +184,8 @@ function job_summary($gr)
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+
 	$tb[] = $row;
 
 

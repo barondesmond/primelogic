@@ -65,6 +65,7 @@ function job_sum_array($gr,$sua)
 			foreach ($gr[$su['Account']][$su['Source']][$su['CostType']] as $db)
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
+				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');;
 			}
 		}
 		else
