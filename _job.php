@@ -8,6 +8,7 @@ function job_query($val='')
 {
 $TrnsID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a';
 $sql = "SELECT * FROM Sales WHERE invoice = '$val' or TransID = '$val' or JobNumber = '$val'";
+echo $sql;
 $res2 = mssql_query($sql);
 	if (mssql_num_rows($res2))
 	{
