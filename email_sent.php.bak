@@ -11,6 +11,14 @@ if ($_GET['email'] != '' && $_GET['job'] != '' && !$_GET['psswd'] && !$_GET['sen
 		exit;
 	}
 }
+else
+{
+
+	echo "help first";
+	print_r($_GET);
+	exit;
+}
+	
 if ($_GET['psswd'] && $_GET['email'] && $_GET['job'] && md5($_GET['email'] . $salt) == $_GET['psswd'])
 {
 
