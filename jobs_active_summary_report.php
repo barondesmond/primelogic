@@ -4,7 +4,7 @@ include("_query.php");
 include("_job.php");
 
 
-$jobs = job_active_query();
+$jobs = jobs_active_query();
 
 foreach ($jobs as $job->$db)
 {
