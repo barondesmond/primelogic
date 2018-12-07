@@ -4,7 +4,7 @@
 
 
 
-function job_query($val='', $sum = 'yes')
+function job_query($val='J-0001907', $sum = 'yes')
 {
 	if ($sum == 'sum')
 	{
