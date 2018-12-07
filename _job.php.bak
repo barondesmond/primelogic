@@ -6,25 +6,13 @@
 
 function job_query($val='')
 {
-$TrnsID = '6f8c8d7a-9aa9-49df-b1af-595b7b57201a';
-$sql = "SELECT * FROM Sales WHERE invoice = '$val' or TransID = '$val' or JobNumber = '$val'";
-echo $sql;
-$res2 = mssql_query($sql);
-	if (mssql_num_rows($res2))
-	{
-		
-		$db = mssql_fetch_array($res2, MSSQL_ASSOC);
-		print_r($db);
-		$TransID = $db['TransID'];
-	}
 
 $query = "SELECT SUM(Amount) as Amount, SUM(Units) as Units, Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
-FROM Sales
-INNER JOIN Jobs ON Sales.Invoice = Jobs.Name
+FROM Jobs 
 INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
 INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
-WHERE Sales.TransID = '$TransID' and voided ='0'  
+WHERE Jobs.Name = '$val' and voided ='0'  
 GROUP BY CostType,Account, Source, [DESC]";
 echo $query;
 
