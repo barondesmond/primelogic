@@ -55,7 +55,7 @@ return $gr;
 
 function job_sum_array($gr,$sua, &$rows='')
 {
-
+	$alt = array('Estimate'=> 'Amount', 'JobToDate' => 'Amount');
 	foreach ($sua as $key => $su)
 	{
 
@@ -66,6 +66,7 @@ function job_sum_array($gr,$sua, &$rows='')
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
 				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
+				$db[$key] = number_format((float)$db[$su['SUM'], 2, '.', '');
 				$rows[] = $db;
 			}
 		}
