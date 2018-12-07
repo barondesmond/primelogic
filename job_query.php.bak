@@ -101,7 +101,7 @@ GROUP BY CostType,Account, Source, [DESC]";
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		$gr[$db['Account']][$db['Source']][$db['CostType']] = $db;
+		$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
 		//show_data($db);
 
 	}
@@ -115,15 +115,20 @@ function sum_array($gr,$sua)
 
 	foreach ($sua as $key => $su)
 	{
+
 		if (is_array($su))
 		{
-			$sum[$key] = $sum[$key] + $gr[$su['Account']][$su['Source']][$su['CostType']][$su['SUM']];
+			foreach ($gr[$su['Account']][$su['Source']][$su['CostType']] as $db)
+			{
+				$sum[$key] = $sum[$key] + $db[$su['SUM']];
+			}
 		}
 		else
 		{
 			$sum[$key] = $su;
 		}
 	}
+	
 return $sum;
 }
 
