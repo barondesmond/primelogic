@@ -32,7 +32,7 @@ function job_hd($key)
 return $table;
 
 }
-function job_bar($hd, $key)
+function job_bar($key)
 {
 	$ct = count($key);
 	$table = '<tr><td colspan="' . $ct . '" style="border-bottom-style: solid"></tr>';
