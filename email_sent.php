@@ -19,7 +19,7 @@ else
 	exit;
 }
 	
-if ($_GET['psswd'] && $_GET['email'] && $_GET['job'] && md5($_GET['email'] . $salt) == $_GET['psswd'])
+if ($_GET['psswd'] != '' && $_GET['email'] != '' && $_GET['job'] != '' && md5($_GET['email'] . $salt) == $_GET['psswd'])
 {
 	print_r($_GET);
 	$res = system("/usr/bin/php /usr/bin/php/job_detail_report.php '" . $_GET['job'] . "'" . $_GET['email'] . "'");
