@@ -2,7 +2,7 @@
 
 function job_head($hd)
 {
-	$table = "<table class="job"><tr><td colspan="7"><b>$hd['title']</td></tr>";
+	$table = '<table class="job"><tr><td colspan="7"><b>' . $hd['title'] . '</td></tr>';
 }
 
 function job_title($hd)

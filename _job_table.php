@@ -7,10 +7,10 @@ function job_head($hd)
 
 function job_title($hd)
 {
-	$table ="<tr>
-		  <td colspan="2">Job $hd['Name']</td>
-		  <td colspan="5">$hd['LastName']</td>
-		</tr>\r\n";
+	$table ='<tr>
+		  <td colspan="2">Job ' . $hd['Name'] . '</td>
+		  <td colspan="5">' . $hd['LastName'] . '</td>
+		</tr>\r\n';
 return $table;
 }
 
@@ -25,7 +25,7 @@ function job_hd($key)
 	$table = '<tr>';
 	foreach ($key as $k)
 	{
-		$table .= '<td>$k</td>';
+		$table .= '<td>' . $k . '</td>';
 	}
 	$table .= '</tr>';
 return $table;
