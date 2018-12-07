@@ -23,6 +23,7 @@ if ($_GET['Name'])
 if ($argv[1])
 {
 	$Name = $argv[1];
+}
 $jobs = jobs_active_query($Name);
 //print_r($jobs);
 $i=0;
