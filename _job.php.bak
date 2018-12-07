@@ -23,7 +23,7 @@ INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
 WHERE Sales.TransID = '$TransID' and voided ='0'  
 GROUP BY CostType,Account, Source, [DESC]";
-
+echo $query;
 
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))

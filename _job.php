@@ -11,7 +11,9 @@ $sql = "SELECT * FROM Sales WHERE invoice = '$val' or TransID = '$val' or JobNum
 $res2 = mssql_query($sql);
 	if (mssql_num_rows($res2))
 	{
+		
 		$db = mssql_fetch_array($res2, MSSQL_ASSOC);
+		print_r($db);
 		$TransID = $db['TransID'];
 	}
 
