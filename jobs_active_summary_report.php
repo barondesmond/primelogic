@@ -21,7 +21,7 @@ $jobs = jobs_active_query();
 //print_r($jobs);
 $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate');
-foreach ($jobs as $job=>$db)
+for ($i=0; $i < count($jobs); $i++)
 {
 	$gr = job_query($job);
 	$td = job_summary($gr);
@@ -40,10 +40,11 @@ foreach ($jobs as $job=>$db)
 		$table .= job_row($td[$t], $key);
 	}
 	
-	$i++; 
+	
 	if ($i > 2)
 	{
 		break;
+		$i = count($jobs);
 	}
 }
 $table .= job_foot($key);
