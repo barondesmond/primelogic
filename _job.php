@@ -216,7 +216,7 @@ function jobs_active_query($Name = '')
 {
 	if ($Name != '')
 	{
-		$nas = ' and Jobs.Name = ' . $Name;
+		$nas = " and Jobs.Name = '$Name' ";
 	}
 	$sql = "SELECT Jobs.Name, Customer.LastName FROM Jobs
 	INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
