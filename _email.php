@@ -144,7 +144,7 @@ try {
 function email_validate($email)
 {
 	$emails = array('barondesmond@gmail.com');
-	if (in_array($emails, $email))
+	if (in_array($email, $emails))
 	{
 		return true;
 	}
