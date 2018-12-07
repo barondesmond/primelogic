@@ -23,6 +23,7 @@ $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate');
 for ($i=0; $i < count($jobs); $i++)
 {
+	$job = $jobs[$i];
 	$gr = job_query($job);
 	$td = job_summary($gr);
 	//print_r($td);
