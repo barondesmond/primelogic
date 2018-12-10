@@ -154,7 +154,7 @@ function email_validate($email)
 	}
 return false;
 }
-function email_job_report($email, $subject, $html);
+function email_job_report($email, $subject, $html)
 {
 	$html = str_replace({EMAIL}, $email, $html);
 	email_report($email, $subject, $html); 

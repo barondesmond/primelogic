@@ -156,7 +156,7 @@ return false;
 }
 function email_job_report($email, $subject, $html)
 {
-	$html = str_replace({EMAIL}, $email, $html);
+	$html = str_replace('{EMAIL}', $email, $html);
 	email_report($email, $subject, $html); 
 }
 
