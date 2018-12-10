@@ -84,7 +84,7 @@ $table .= job_foot($key);
 $html .= '<html><body>' . $table . '</body></html>';
 if ($Email != '')
 {
-	echo "$Email";
+	//echo "$Email";
 	if (email_validate($Email))
 	{
 		email_job_report($Email, 'Job Detail Report', $html);
@@ -98,6 +98,6 @@ if ($Email != '')
 }
 else
 {
-	echo $table;
+	//echo $table;
 }
 ?>
