@@ -56,7 +56,14 @@ $html = '<html><body>' . $table . '</body></html>';
 echo $html;
 if ($argv[1])
 {
-	email_report($argv[1], 'Jobs Active Summary Report', $html);
+	email_job_report($argv[1], 'Jobs Active Summary Report', $html);
 }
+else
+{
+	foreach ($emails as $email)
+	{
+		email_job_report($email, 'Jobs Active Summary Report', $html);
+	}
+
 
 ?>
