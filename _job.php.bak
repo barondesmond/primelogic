@@ -197,7 +197,7 @@ function job_summary($gr)
 	$row['Type'] = 'Labor';
 	$row['Units'] = array('SUM'=> 'Units', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200'); 
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
-	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
+	//$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
