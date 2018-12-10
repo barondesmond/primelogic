@@ -73,6 +73,8 @@ function job_sum_array($gr,$sua, &$rows='')
 				elseif ($db['CostType'] == '800' && $key == 'JobToDate')
 				{
 					$db[$key] = '0.00';
+					$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+
 				}		
 				else
 				{

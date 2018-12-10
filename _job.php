@@ -66,14 +66,14 @@ function job_sum_array($gr,$sua, &$rows='')
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
 				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
-				if ($db['CostType'] != '800' && $key != 'JobToDate')
+				if ($db['CostType'] != '800' )
 				{
 					$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 				}
-				elseif ($db['CostType'] == '800' && $key == 'JobToDate')
+				elseif ($db['CostType'] == '800')
 				{
 					$db[$key] = '0.00';
-					$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+					//$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 
 				}		
 				else
