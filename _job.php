@@ -74,6 +74,10 @@ function job_sum_array($gr,$sua, &$rows='')
 				{
 					$db[$key] = '0.00';
 				}		
+				else
+				{
+					$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+				}
 					
 				$rows[] = $db;
 			}
