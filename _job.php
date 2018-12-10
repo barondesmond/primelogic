@@ -36,7 +36,7 @@ function job_query($val='J-0001907', $action = '')
 		LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
 		WHERE Jobs.Name = '$val' and voided ='0'  
 		GROUP BY CostType,Account, Source, [DESC]";
-
+	}
 	//echo $query;
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
