@@ -56,7 +56,12 @@ $html = '<html><body>' . $table . '</body></html>';
 echo $html;
 if ($argv[1])
 {
+
 	email_job_report($argv[1], 'Jobs Active Summary Report', $html);
+}
+elseif ($_GET['email'])
+{
+	email_job_report($_GET['email'], 'Jobs Active Summary Report', $html););
 }
 else
 {
@@ -64,6 +69,6 @@ else
 	{
 		email_job_report($email, 'Jobs Active Summary Report', $html);
 	}
-
+}
 
 ?>
