@@ -1,8 +1,8 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 
-require_once("../vendor/autoload.php");
-
+require_once("/var/www/html/vendor/autoload.php");
+define('DIRD', '/var/www/email/');
 
 
 	//days (0 current, 60 = 60-75, 90 = 90+)
@@ -43,7 +43,7 @@ function email_from_gcf($func='')
 {
 	if ($func == '')
 	{
-		return EMAIL_FROM;
+		return EMAIL_USERNAME_FROM;
 	}
 	elseif ($func == 'location_no_email.php')
 	{
@@ -58,12 +58,33 @@ function email_from_gcf($func='')
 		return $func;
 	}
 
-return EMAIL_FROM;
 return EMAIL_USERNAME_FROM;
 }
 
-function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '' )
+function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '', $func = '' )
 {
+
+	if ($func == '')
+	{
+		$func = trim($_SERVER['PHP_SELF']);
+	}	
+	if (SPOOLWRITE=='write')
+	{
+		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf', 'func');
+		for($i=0;$i<count($er_array);$i++)
+		{
+			$db[$er_array[$i]] = ${$er_array[$i]};
+		}
+		$enc =json_encode($db);
+		$file = '/var/www/html/primelogic/email/' . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
+		$stream = fopen($file, 'w');
+		fwrite($stream, $enc);
+		fclose($stream);
+		return $file;
+		sleep(1);
+	}
+	$from = email_from_gcf($func);
+
 
 	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
@@ -78,7 +99,7 @@ try {
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom(EMAIL_USERNAME, 'Mailer');
+    $mail->setFrom(EMAIL_USERNAME, $from);
     $mail->addAddress($email);     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
     $mail->addReplyTo('administrator@plisolutions.com');
@@ -89,15 +110,7 @@ try {
 
 		$mail->AddEmbeddedImage($filename, $cid, $name);
 		echo "$filename $cid $name";
-		if (file_exists($filename))
-		{
-			"apache can read it why not you phpmailer $filename";
-		}
-		else
-		{
-			echo "you suck apache $filename ";
-		}
-		//exit;
+
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
     //Attachments
@@ -121,12 +134,23 @@ try {
 
     $mail->send();
     echo 'Message has been sent';
+	return true;
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+	return false;
 }
 
 }
 
+function email_validate($email)
+{
+	$emails = array('barondesmond@gmail.com');
+	if (in_array($email, $emails))
+	{
+		return true;
+	}
+return false;
+}
 
 
 

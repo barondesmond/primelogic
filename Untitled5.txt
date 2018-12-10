@@ -1,0 +1,19 @@
+DB, Table, Column, Value
+Service, Dispatch, Dispatch = J-0001907 
+Service, Dispatch, JobNumber = J-0001907 
+Service, DispComp, Dispatch = J-0001907 
+Service, XLogRec, Invoice = J-0001907 
+Service, DispTech, Dispatch = J-0001907 
+Service, InvenAct, Job = J-0001907 
+Service, InvRec, DispatchNo = J-0001907 
+Service, InvRec, Job = J-0001907 
+Service, Jobs, Name = J-0001907 
+Service, POLed, DispatchNo = J-0001907 
+Service, POLed, Job = J-0001907 
+Service, Receivab, JobNumber = J-0001907 
+Service, Sales, Invoice = J-0001907 
+Service, Sales, JobNumber = J-0001907 
+Service, Sales, QuoteOrg = J-0001907 
+Service, SalesLed, Invoice = J-0001907 
+Service, FinLedger, DocNum = J-0001907 
+Service, PRTimeEntry, Dispatch = J-0001907 

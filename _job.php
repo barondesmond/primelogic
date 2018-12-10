@@ -55,7 +55,7 @@ return $gr;
 
 function job_sum_array($gr,$sua, &$rows='')
 {
-	$alt = array('Estimate'=> 'Amount', 'JobToDate' => 'Amount');
+	$alt = array('Estimate'=> 'Amount', 'JobToDate' => 'Amount', 'Act Units' => 'Units', 'Est Units' => 'Units');
 	foreach ($sua as $key => $su)
 	{
 
@@ -66,7 +66,15 @@ function job_sum_array($gr,$sua, &$rows='')
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
 				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
-				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+				if ($db['CostType'] != '800' && $key != 'JobToDate')
+				{
+					$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+				}
+				elseif ($db['CostType'] == '800' && $key == 'JobToDate')
+				{
+					$db[$key] = '0.00';
+				}		
+					
 				$rows[] = $db;
 			}
 		}
@@ -190,6 +198,7 @@ function job_summary($gr)
 	$tb[] = $row;
 
 	$row['Type'] = 'Labor';
+	$row['Units'] = array('SUM'=> 'Units', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200'); 
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	//print_r($row);
