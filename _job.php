@@ -71,6 +71,8 @@ function job_sum_array($gr,$sua, &$rows='')
 					$db['JobToDate'] == '0';
 					$db['Amount'] == '0';
 					$db['Act Units'] = $db['Units'];
+					print_r($db);
+					exit;
 				}
 				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 	
