@@ -66,11 +66,14 @@ function job_sum_array($gr,$sua, &$rows='')
 			{
 				$sum[$key] = $sum[$key] + $db[$su['SUM']];
 				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
-				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 				if ($su['Account'] == '58010'  && $su['Source'] == '700' && $su['CostType'] == '200')
 				{
 					$db['JobToDate'] == '0';
+					$db['Amount'] == '0';
+					$db['Act Units'] = $db['Units'];
 				}
+				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+	
 					
 				$rows[] = $db;
 			}
