@@ -4,6 +4,7 @@ include("_email.php");
 include("_query.php");
 include("_job.php");
 include("_job_table.php");
+define('SPOOLWRITE', 'write');
 
 /*
 	$row['Type'] = 'Contract';
@@ -57,4 +58,5 @@ if ($argv[1])
 {
 	email_report($argv[1], 'Jobs Active Summary Report', $html);
 }
+
 ?>

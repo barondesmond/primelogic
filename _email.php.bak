@@ -24,6 +24,9 @@ define('DIRD', '/var/www/email/');
 	$dp[60][] = 'shannon@plisolutions.com';
 	$dp[70][] = 'arthur@plisolutions.com';
 
+	$emails = array('barondesmond@gmail.com', 'shannon@plisolutions.com');
+
+
 function get_calling_function() {
   // a funciton x has called a function y which called this
   // see stackoverflow.com/questions/190421
@@ -76,7 +79,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 			$db[$er_array[$i]] = ${$er_array[$i]};
 		}
 		$enc =json_encode($db);
-		$file = '/var/www/html/primelogic/email/' . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
+		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
 		$stream = fopen($file, 'w');
 		fwrite($stream, $enc);
 		fclose($stream);
@@ -144,7 +147,7 @@ try {
 
 function email_validate($email)
 {
-	$emails = array('barondesmond@gmail.com');
+	global $emails;
 	if (in_array($email, $emails))
 	{
 		return true;

@@ -87,7 +87,7 @@ if ($Email != '')
 	echo "$Email";
 	if (email_validate($Email))
 	{
-		email_report($Email, 'Job Detail Report', $html);
+		email_job_report($Email, 'Job Detail Report', $html);
 		echo "Emailed report to $Email";
 	}
 	else

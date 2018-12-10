@@ -24,6 +24,9 @@ define('DIRD', '/var/www/email/');
 	$dp[60][] = 'shannon@plisolutions.com';
 	$dp[70][] = 'arthur@plisolutions.com';
 
+	$emails = array('barondesmond@gmail.com', 'shannon@plisolutions.com');
+
+
 function get_calling_function() {
   // a funciton x has called a function y which called this
   // see stackoverflow.com/questions/190421
@@ -144,14 +147,17 @@ try {
 
 function email_validate($email)
 {
-	$emails = array('barondesmond@gmail.com');
+	global $emails;
 	if (in_array($email, $emails))
 	{
 		return true;
 	}
 return false;
 }
-
-
+function email_job_report($email, $subject, $html);
+{
+	$html = str_replace({EMAIL}, $email, $html);
+	email_report($email, $subject, $html); 
+}
 
 	
