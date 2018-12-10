@@ -53,15 +53,17 @@ for ($i=0; $i < count($jobs); $i++)
 }
 $table .= job_foot($key);
 $html = '<html><body>' . $table . '</body></html>';
-echo $html;
+//echo $html;
 if ($argv[1])
 {
 
 	email_job_report($argv[1], 'Jobs Active Summary Report', $html);
+	echo "Report Emailed $argv[1];";
 }
-elseif ($_GET['email'])
+elseif ($_GET['email'] && email_validate($_GET['email'])
 {
-	email_job_report($_GET['email'], 'Jobs Active Summary Report', $html););
+	email_job_report($_GET['email'], 'Jobs Active Summary Report', $html);
+	echo "Report Emailed " . $_GET['email'];
 }
 else
 {

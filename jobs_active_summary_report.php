@@ -60,7 +60,7 @@ if ($argv[1])
 	email_job_report($argv[1], 'Jobs Active Summary Report', $html);
 	echo "Report Emailed $argv[1];";
 }
-elseif ($_GET['email'] && email_validate($_GET['email'])
+elseif ($_GET['email'] && email_validate($_GET['email']))
 {
 	email_job_report($_GET['email'], 'Jobs Active Summary Report', $html);
 	echo "Report Emailed " . $_GET['email'];
