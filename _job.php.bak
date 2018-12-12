@@ -78,7 +78,7 @@ function job_sum_array($gr,$sua, &$rows='')
 				}
 	
 				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
-				if ($key == 'JobToDate') && $sum[$key] > 0)
+				if ($key == 'JobToDate' && $sum[$key] > 0)
 				{
 					$rows[] = $db;
 				}
