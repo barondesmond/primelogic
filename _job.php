@@ -73,6 +73,8 @@ function job_sum_array($gr,$sua, &$rows='')
 				if ($su['Account'] == '58010'  && $su['Source'] == '700' && $su['CostType'] == '200')
 				{
 					$db['JobToDate'] = '0';
+					$db['WeekToDate'] = '0';
+					$db['MonthToDate'] = '0';
 					$db['Amount'] = '0';
 					$db['Act Units'] = $db['Units'];
 					//print_r($db);
