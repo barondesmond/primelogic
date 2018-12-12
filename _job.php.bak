@@ -13,7 +13,7 @@ function job_query($val='J-0001907', $action = '')
 		INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
 		LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
 		WHERE Jobs.Name = '$val' and voided ='0'  
-		ORDER BY CostType,Account, Source, [DESC]";
+		ORDER BY CostType,Account, Source, [DESC], TransDate";
 
 	//echo $query;
 	$res = mssql_query($query);
