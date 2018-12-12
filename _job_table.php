@@ -51,10 +51,14 @@ function job_row($row, $key)
 	$table = '<tr>';
 	foreach ($key as $k)
 	{
-		if ($k == 'Type' || $k == 'Document')
+		if ($k == 'Type')
 		{
 			$table .= '<td align="left">' . $row[$k] . '</td>';
 		}
+		elseif ($k == 'Document')
+		{
+			 $table .= '<td align="left">' . $row[$k] . ' ' . $row['TransDate'] . '</td>';
+
 		else
 		{
 			$table .= '<td align="right">' . number_format((float)$row[$k], 2, '.', '') . '</td>';

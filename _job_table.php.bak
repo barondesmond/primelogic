@@ -9,7 +9,7 @@ function job_head($hd)
 function job_title($hd)
 {
 	$table ='<tr>
-		  <td colspan="2">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_details_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
+		  <td colspan="2">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
 		  <td colspan="5">' . $hd['LastName'] . '</td>
 		</tr>' . "\r\n";
 return $table;
