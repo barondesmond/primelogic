@@ -57,7 +57,7 @@ function job_row($row, $key)
 	{
 		if ($k == 'Document')
 		{
-			$table .= '<td align="left" $color>' . $row[$k] . '</td>';
+			$table .= '<td align="left" ' . $color . '>' . $row[$k] . '</td>';
 		}
 		elseif ($k == 'Type')
 		{
