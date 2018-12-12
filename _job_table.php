@@ -57,7 +57,12 @@ function job_row($row, $key)
 		}
 		elseif ($k == 'Type')
 		{
-			 $table .= '<td align="left">' . if ($row['TransDate'] != '') then date("m/d/Y", strtotime($row['TransDate']))  . ' ' . $row[$k] . '</td>';
+			 $table .= '<td align="left">';
+			 if ($row['TransDate'] != '') 
+		     {
+				 $table .= date("m/d/Y", strtotime($row['TransDate']));
+			 }	 
+			 $table .=	 . ' ' . $row[$k] . '</td>';
 		}
 		else
 		{
