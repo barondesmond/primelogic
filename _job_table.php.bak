@@ -52,7 +52,7 @@ function job_row($row, $key)
 	{
 		$style= ' style="color:red;" ';
 	}
-	$table = '<tr $style>';
+	$table = '<tr ' . $style . '>';
 
 	foreach ($key as $k)
 	{
