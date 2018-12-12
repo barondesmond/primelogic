@@ -49,15 +49,19 @@ return $table;
 function job_row($row, $key)
 {
 	$table = '<tr>';
+	if ($row['Variance'] < 0)
+	{
+		$color = ' color="red" ';
+	}
 	foreach ($key as $k)
 	{
 		if ($k == 'Document')
 		{
-			$table .= '<td align="left">' . $row[$k] . '</td>';
+			$table .= '<td align="left" $color>' . $row[$k] . '</td>';
 		}
 		elseif ($k == 'Type')
 		{
-			 $table .= '<td align="left">';
+			 $table .= '<td align="left" $color>';
 			 if ($row['TransDate'] != '') 
 		     {
 				 $table .= date("m/d/Y", strtotime($row['TransDate']));
@@ -66,7 +70,7 @@ function job_row($row, $key)
 		}
 		else
 		{
-			$table .= '<td align="right">' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+			$table .= '<td align="right" $color>' . number_format((float)$row[$k], 2, '.', '') . '</td>';
 		}
 	}
 	$table .= '</tr>';
