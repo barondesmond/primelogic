@@ -51,7 +51,7 @@ function job_sum_array($gr,$sua, &$rows='')
 					if (strtotime($db['TransDate']) > $twtd)
 					{
 						$sum['WeekToDate'] = $sum['WeekToDate'] + $db[$su['SUM']];
-
+						print_r($db);
 					}
 
 				}
