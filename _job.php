@@ -366,13 +366,13 @@ function job_details($gr)
 		$row['MonthToDate'] = $row['MonthToDate'] + $sum[$i]['MonthToDate'];
 		$row['WeekToDate'] = $row['WeekToDate'] + $sum[$i]['WeekToDate'];
 	}
-	print_r($row);
-	exit;
+	
+	
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
-
+print_r($row);
 	$tb[] = $row;
 
 	$row['Type'] = 'Labor';
@@ -385,7 +385,7 @@ function job_details($gr)
 	$row = job_sum_array($gr,$row, $tb);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
-
+print_r($row);
 	$tb[] = $row;
 
 return $tb;
