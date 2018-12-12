@@ -57,7 +57,7 @@ function job_row($row, $key)
 		}
 		elseif ($k == 'Document')
 		{
-			 $table .= '<td align="left">' . $row[$k] . ' ' . date("Y-m-d", time($row['TransDate']) . '</td>';
+			 $table .= '<td align="left">' . $row[$k] . ' ' . date("m/d/Y", time($row['TransDate']) . '</td>';
 		}
 		else
 		{
