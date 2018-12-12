@@ -96,8 +96,8 @@ if ($Email != '')
 	}
 	
 }
-else
+elseif ($_GET['print'])
 {
-	//echo $table;
+	echo $table;
 }
 ?>
