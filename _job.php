@@ -324,7 +324,7 @@ function job_details($gr)
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 
-	$tb[] = $row;
+	//$tb[] = $row;
 	$sum[] = $row2;
 	$row['Type'] = 'Inventory';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
