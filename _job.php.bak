@@ -248,7 +248,7 @@ function job_details($gr)
 	$row['Act Units'] = '0.00';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
 	$row['WeekToDate'] =  array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
-	$row['MonthToDate'] = '0';
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 
 	//print_r($row);

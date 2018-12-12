@@ -65,6 +65,8 @@ function job_sum_array($gr,$sua, &$rows='')
 				{
 					$sum[$key] = $sum[$key] + $db[$su['SUM']];
 					$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
+					$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
+
 				}
 				if ($su['Account'] == '58010'  && $su['Source'] == '700' && $su['CostType'] == '200')
 				{
@@ -77,7 +79,6 @@ function job_sum_array($gr,$sua, &$rows='')
 
 				}
 	
-				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 				if ($key == 'JobToDate' && $sum[$key] > 0)
 				{
 					$rows[] = $db;
