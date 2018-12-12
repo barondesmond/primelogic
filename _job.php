@@ -291,8 +291,8 @@ function job_details($gr)
 	
 	$row['Type'] = 'Equipment Freight';
 	$row['Estimate'] = '0'; 
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
+	$row['MonthToDate'] =array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
