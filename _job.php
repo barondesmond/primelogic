@@ -51,7 +51,7 @@ function job_sum_array($gr,$sua, &$rows='')
 					if (strtotime($db['TransDate']) > $twtd)
 					{
 						$sum['WeekToDate'] = $sum['WeekToDate'] + $db[$su['SUM']];
-						print_r($db);
+						//print_r($db);
 					}
 
 				}
@@ -272,7 +272,7 @@ function job_details($gr)
 	}
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
-	print_r($row);
+	//print_r($row);
 	$tb[] = $row;
 	//show_data($row);
 	//Equipment/Material/Inventory
@@ -358,7 +358,7 @@ function job_details($gr)
 	$row['JobToDate'] = '0';
 	$row['WeekToDate'] = '0';
 	$row['MonthToDate'] = '0';
-	print_r($sum);
+	//print_r($sum);
 	for ($i=0; $i < count($sum); $i++)
 	{
 		$row['Estimate'] =  $row['Estimate'] + $sum[$i]['Estimate'];
@@ -372,7 +372,7 @@ function job_details($gr)
 	$row = job_sum_array($gr,$row, $tb);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
-print_r($row);
+	//print_r($row);
 	$tb[] = $row;
 
 	$row['Type'] = 'Labor';
@@ -385,7 +385,7 @@ print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
-print_r($row);
+	//print_r($row);
 	$tb[] = $row;
 
 return $tb;
