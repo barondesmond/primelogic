@@ -46,8 +46,26 @@ function job_sum_array($gr,$sua, &$rows='')
 			$sum[$key] = '0.00';
 			foreach ($gr[$su['Account']][$su['Source']][$su['CostType']] as $db)
 			{
-				$sum[$key] = $sum[$key] + $db[$su['SUM']];
-				$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
+				if ($key == 'WeekToDate')
+				{
+					if (strtotime($db['TransDate'] > $twtd)
+					{
+						$sum['WeekToDate'] = $sum['WeekToDate'] + $db[$su['SUM']];
+					}
+
+				}
+				if ($key == 'JobToDate')
+				{
+					if (strtotime($db['TransDate']) > $tmtd)
+					{
+						$sum['MonthToDate'] = $sum['MonthToDate'] + $db[$su['SUM']];
+					}
+				}
+				else
+				{
+					$sum[$key] = $sum[$key] + $db[$su['SUM']];
+					$sum[$key] = number_format((float)$sum[$key], 2, '.', '');
+				}
 				if ($su['Account'] == '58010'  && $su['Source'] == '700' && $su['CostType'] == '200')
 				{
 					$db['JobToDate'] = '0';
@@ -55,18 +73,16 @@ function job_sum_array($gr,$sua, &$rows='')
 					$db['Act Units'] = $db['Units'];
 					//print_r($db);
 					//exit;
+					$rows[] = $db;
+
 				}
+	
 				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
-				if ($key == 'JobToDate' && strtotime($db['TransDate']) > $twtd)
+				if ($key == 'JobToDate') && $sum[$key] > 0)
 				{
-					$sum['WeekToDate'] = $sum['WeekToDate'] + $db[$su['SUM']];
+					$rows[] = $db;
 				}
-				if ($key == 'JobToDate' && strtotime($db['TransDate']) > $tmtd)
-				{
-					$sum['MonthToDate'] = $sum['MonthToDate'] + $db[$su['SUM']];
-				}
-					
-				$rows[] = $db;
+
 			}
 		}
 		else
@@ -231,7 +247,7 @@ function job_details($gr)
 	$row['Est Units'] = '0.00';
 	$row['Act Units'] = '0.00';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
-	$row['WeekToDate'] = '0';
+	$row['WeekToDate'] =  array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	$row['MonthToDate'] = '0';
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 
