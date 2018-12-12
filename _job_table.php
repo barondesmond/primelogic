@@ -62,7 +62,7 @@ function job_row($row, $key)
 		     {
 				 $table .= date("m/d/Y", strtotime($row['TransDate']));
 			 }	 
-			 $table .=	 . ' ' . $row[$k] . '</td>';
+			 $table .=	 ' ' . $row[$k] . '</td>';
 		}
 		else
 		{
