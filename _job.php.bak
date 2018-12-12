@@ -51,7 +51,6 @@ function job_sum_array($gr,$sua, &$rows='')
 					if (strtotime($db['TransDate']) > $twtd)
 					{
 						$sum['WeekToDate'] = $sum['WeekToDate'] + $db[$su['SUM']];
-						$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 
 					}
 
@@ -61,7 +60,6 @@ function job_sum_array($gr,$sua, &$rows='')
 					if (strtotime($db['TransDate']) > $tmtd)
 					{
 						$sum['MonthToDate'] = $sum['MonthToDate'] + $db[$su['SUM']];
-						$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
 
 					}
 				}
@@ -85,6 +83,14 @@ function job_sum_array($gr,$sua, &$rows='')
 	
 				if ($key == 'JobToDate' && $sum[$key] > 0)
 				{
+					if (strtotime($db['TransDate']) > $tmtd)
+					{
+						$db['MonthToDate'] = number_format((float)$db[$su['SUM']], 2, '.', '');
+					}
+					if (strtotime($db['TransDate']) > $twtd)
+					{
+						$db['WeekToDate'] = number_format((float)$db[$su['SUM']], 2, '.', '');
+					}
 					$rows[] = $db;
 				}
 

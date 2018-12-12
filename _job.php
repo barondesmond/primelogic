@@ -81,7 +81,7 @@ function job_sum_array($gr,$sua, &$rows='')
 
 				}
 	
-				if ($key == 'JobToDate' && $sum[$key] > 0)
+			    elseif ($key == 'JobToDate' && $sum[$key] > 0)
 				{
 					if (strtotime($db['TransDate']) > $tmtd)
 					{
