@@ -51,11 +51,11 @@ function job_row($row, $key)
 	$table = '<tr>';
 	foreach ($key as $k)
 	{
-		if ($k == 'Type')
+		if ($k == 'Document')
 		{
 			$table .= '<td align="left">' . $row[$k] . '</td>';
 		}
-		elseif ($k == 'Document')
+		elseif ($k == 'Type')
 		{
 			 $table .= '<td align="left">' . $row[$k] . ' ' . date("m/d/Y", time($row['TransDate'])) . '</td>';
 		}
