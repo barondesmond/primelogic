@@ -266,8 +266,8 @@ function job_details($gr)
 	//Equipment/Material/Inventory
 	$row['Type'] = 'Material Total';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
@@ -294,8 +294,8 @@ function job_details($gr)
 
 	$row['Type'] = 'Equipment Sales';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
@@ -306,8 +306,8 @@ function job_details($gr)
 	$row2 = $row;
 	$row['Type'] = 'Equipment';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = $row2['WeekToDate'] + $row1['WeekToDate'];
+	$row['MonthToDate'] = $row2['MonthToDate'] + $row1['MonthToDate'];
 	$row['JobToDate'] = $row2['JobToDate'] + $row1['JobToDate']; //array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
@@ -318,8 +318,8 @@ function job_details($gr)
 	$sum[] = $row2;
 	$row['Type'] = 'Inventory';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
@@ -330,8 +330,8 @@ function job_details($gr)
 	$sum[] = $row;
 	$row['Type'] = 'Other';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
@@ -350,6 +350,8 @@ function job_details($gr)
 	{
 		$row['Estimate'] =  $row['Estimate'] + $sum[$i]['Estimate'];
 		$row['JobToDate'] = $row['JobToDate'] + $sum[$i]['JobToDate'];
+		$row['MonthToDate'] = $row['MonthToDate'] + $sum[$i]['MonthToDate'];
+		$row['WeekToDate'] = $row['WeekToDate'] + $sum[$i]['WeekToDate'];
 	}
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
@@ -361,8 +363,8 @@ function job_details($gr)
 	$row['Type'] = 'Labor';
 	//$row['Act Units'] = array('SUM'=> 'Units', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200'); 
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
-	$row['WeekToDate'] = '0';
-	$row['MonthToDate'] = '0';
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	//print_r($row);
 	$row = job_sum_array($gr,$row, $tb);
