@@ -58,7 +58,7 @@ function job_row($row, $key)
 		elseif ($k == 'Document')
 		{
 			 $table .= '<td align="left">' . $row[$k] . ' ' . $row['TransDate'] . '</td>';
-
+		}
 		else
 		{
 			$table .= '<td align="right">' . number_format((float)$row[$k], 2, '.', '') . '</td>';
