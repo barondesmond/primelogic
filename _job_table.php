@@ -73,7 +73,7 @@ function job_row($row, $key)
 			$table .= '<td align="right" ' . $color . '>' . number_format((float)$row[$k], 2, '.', '') . '</td>';
 		}
 	}
-	$table .= '</tr>';
+	$table .= '</tr>' . "\r\n";
 return $table;
 }
 
