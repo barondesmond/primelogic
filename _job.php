@@ -33,6 +33,10 @@ return $gr;
 
 function job_sum_array($gr,$sua, &$rows='')
 {
+	$mtd = date("Y-m", time());
+	$mtd = $mtd . '-01 00:00:00';
+	$tmtd = strtotime($mtd);
+	$twtd = time()-86400*7;
 	$alt = array('Estimate'=> 'Amount', 'JobToDate' => 'Amount', 'Act Units' => 'Units', 'Est Units' => 'Units', 'WeekToDate'=> 'Amount', 'MonthToDate' => 'Amount');
 	foreach ($sua as $key => $su)
 	{
@@ -53,7 +57,14 @@ function job_sum_array($gr,$sua, &$rows='')
 					//exit;
 				}
 				$db[$key] = number_format((float)$db[$su['SUM']], 2, '.', '');
-	
+				if ($key == 'JobToDate' && strtotime($db['TransDate']) > $twtd)
+				{
+					$sum['WeekToDate'] = $sum['WeekToDate'] + $db[$su['SUM']];
+				}
+				if ($key == 'JobToDate' && strtotime($db['TransDate']) > $tmtd)
+				{
+					$sum['MonthToDate'] = $sum['MonthToDate'] + $db[$su['SUM']];
+				}
 					
 				$rows[] = $db;
 			}
