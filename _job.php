@@ -272,7 +272,7 @@ function job_details($gr)
 	}
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
-	//print_r($row);
+	print_r($row);
 	$tb[] = $row;
 	//show_data($row);
 	//Equipment/Material/Inventory
