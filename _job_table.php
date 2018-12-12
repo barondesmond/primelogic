@@ -42,7 +42,7 @@ return $table;
 function job_bar_dot($key)
 {
 	$ct = count($key);
-	$table = '<tr><td colspan="' . $ct . '" style="border-bottom-style: solid; color= grey;"></tr>';
+	$table = '<tr><td colspan="' . $ct . '" style="border-bottom: solid 1px gray;"></tr>';
 return $table;
 }	
 	
