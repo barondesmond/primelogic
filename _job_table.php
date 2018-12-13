@@ -1,16 +1,24 @@
 <?php
 
-function job_head($hd)
+function job_head($hd, $key = '')
 {
-	$table = '<table class="job" ><tr style="background-color:gray;"><td colspan="7" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
+	$cols = count($key);
+	$table = '<table class="job" ><tr style="background-color:gray;"><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
 	return $table;
 }
 
-function job_title($hd)
+function job_title($hd, $key= '')
 {
+	$cols = count($key);
+	if ($cols == 0)
+	{
+		$cols = '9';
+	}
+	$first = '2';
+	$second = $cols - $first;
 	$table ='<tr style="background-color:gray;">
-		  <td colspan="2">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
-		  <td colspan="5">' . $hd['LastName'] . '</td>
+		  <td colspan="' . $first . '">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
+		  <td colspan="' . $second . '">' . $hd['LastName'] . '</td>
 		</tr>' . "\r\n";
 return $table;
 }
