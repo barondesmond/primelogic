@@ -50,7 +50,7 @@ return $table;
 function job_bar_dot($key)
 {
 	$ct = count($key);
-	$table = '<tr><td colspan="' . $ct . '" style="border-bottom: solid 1px gray;"></tr>';
+	$table = '<tr><td colspan="' . $ct . '" style="border-bottom: solid 1px black;background-color:gray;"></tr>';
 return $table;
 }	
 /*	if ($row['Variance'] != '0')

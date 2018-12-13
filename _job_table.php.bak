@@ -53,10 +53,7 @@ function job_bar_dot($key)
 	$table = '<tr><td colspan="' . $ct . '" style="border-bottom: solid 1px gray;"></tr>';
 return $table;
 }	
-	
-function job_row($row, $key)
-{
-	if ($row['Variance'] != '0')
+/*	if ($row['Variance'] != '0')
 	{
 		$style = ' style="';
 	}
@@ -68,6 +65,51 @@ function job_row($row, $key)
 	{
 		$style .= 'background-color:gray;"';
 	}	
+	*/
+
+function job_row_detail_total($row, $key)
+{
+
+	$style = ' style="';
+	
+	if ($row['Variance'] < 0)
+	{
+		$style .= 'color:red;';
+	}
+	if ($row['Variance'] != '0')
+	{
+		$style .= 'background-color:gray;"';
+	}	
+	$table = '<tr ' . $style . '>';
+
+	foreach ($key as $k)
+	{
+		if ($k == 'Document')
+		{
+			$table .= '<td align="left" >' . $row[$k] . '</td>';
+		}
+		elseif ($k == 'Type')
+		{
+			 $table .= '<td align="left" >';
+			 if ($row['TransDate'] != '') 
+		     {
+				 $table .= date("m/d/Y", strtotime($row['TransDate']));
+			 }	 
+			 $table .=	 ' ' . $row[$k] . '</td>';
+		}
+		else
+		{
+			$table .= '<td align="right" >' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+		}
+	}
+	$table .= '</tr>' . "\r\n";
+return $table;
+}
+
+
+function job_row($row, $key)
+{
+
 	$table = '<tr ' . $style . '>';
 
 	foreach ($key as $k)
