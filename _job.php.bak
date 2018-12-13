@@ -274,7 +274,7 @@ function job_details($gr)
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 	//print_r($row);
 	$tb[] = $row;
-	$tb[$row['Type'] = $contract;
+	$tb[$row['Type']] = $contract;
 
 	//show_data($row);
 	//Equipment/Material/Inventory
