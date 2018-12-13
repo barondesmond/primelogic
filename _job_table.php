@@ -31,7 +31,7 @@ return $table;
 
 function job_hd($key)
 {
-	$table = '<tr>';
+	$table = '<tr style="background-color:gray;">';
 	foreach ($key as $k)
 	{
 		$table .= '<td>' . $k . '</td>';

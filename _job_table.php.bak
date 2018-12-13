@@ -1,8 +1,9 @@
 <?php
 
-function job_head($hd)
+function job_head($hd, $key = '')
 {
-	$table = '<table class="job" ><tr style="background-color:gray;"><td colspan="7" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
+	$cols = count($key);
+	$table = '<table class="job" ><tr style="background-color:gray;"><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
 	return $table;
 }
 
