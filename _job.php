@@ -8,7 +8,8 @@ function job_inventory_query($gr, $val='J-0001907')
 
 	$query = "SELECT " . $i['Type'] . " as Type, [Desc] as Document, RecDate as TransDate, Cost as Amount, Quan as Units," . $i['Account'] . " as Account, " . $i['Source'] . " as Source,
 	" . $i['CostType'] . " as CostType, " . $i['CostType'] . " as CostGroup 
-	FROM InvRec WHERE Job = '$val'";
+	FROM InvRec WHERE Job = '$val' 
+	ORDER BY RecDate ";
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
