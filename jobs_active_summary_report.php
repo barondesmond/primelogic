@@ -54,7 +54,7 @@ for ($i=0; $i < count($jobs); $i++)
 
 	}
 		$table .= job_bar($key);
-		$table .= job_row($row), $key);
+		$table .= job_row($row, $key);
 		$table .= job_bar($key);
 		unset($row);
 	
