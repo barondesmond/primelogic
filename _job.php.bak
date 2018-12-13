@@ -2,6 +2,24 @@
 //job
 
 
+function job_inventory_query($gr, $val='J-0001907')
+{
+	$i = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100', 'Type' => '610');
+
+	$sql = "SELECT " . $i['Type'] . " as Type, [Desc] as Document, RecDate as TransDate, Cost as Amount, Quan as Units," . $i['Account'] . " as Account, " . $i['Source'] . " as Source,
+	" . $i['CostType'] . " as CostType, " . $i['CostType'] . " as CostGroup 
+	FROM InvRec WHERE Job = '$val'";
+	$res = mssql_query($query);
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+
+		$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
+		//show_data($db);
+
+	}
+
+return $gr;
+}
 
 
 function job_query($val='J-0001907', $action = '')
@@ -11,7 +29,6 @@ function job_query($val='J-0001907', $action = '')
 		FROM Jobs 
 		INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
 		INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
-		LEFT JOIN JobClass ON FinLedger.JobClassID = JobClass.JobClassID
 		WHERE Jobs.Name = '$val' and voided ='0'  
 		ORDER BY CostType,Account, Source, [DESC], TransDate";
 
@@ -19,14 +36,14 @@ function job_query($val='J-0001907', $action = '')
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
-		//show_data($db);
+		if ($db['Accounts'] != '12000' && $db['Source'] != '200' && $db['CostType'] != '100' && $db['Type'] != '610')
+		{
+			$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
+		}
 
 	}
-	//show_data(array(), '1', '1');
+	$gr = job_inventory_query($gr, $val);
 
-	//print_r($gr);
-	//$td = job_summary($gr);
 
 return $gr;
 }
