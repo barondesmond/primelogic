@@ -52,14 +52,14 @@ $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'MonthToDa
 for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
-
+	$details = array();
 	$gr = job_query($job['Name'], 'details');
-	$td = job_details($gr);
+	$td = job_details($gr, $details);
 	if (!$hd)
 	{
 		$hd = $job;
 		$hd['title'] = 'Job Details Report';
-		$table = job_head($hd, $key;
+		$table = job_head($hd, $key);
 		$table .= job_hd($key);
 		$table .= job_bar($key);
 	}
