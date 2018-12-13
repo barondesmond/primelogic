@@ -68,7 +68,7 @@ for ($i=0; $i < count($jobs); $i++)
 		$table .= job_bar($key);
 		$table .= job_title($job, $key);
 		$table .= job_row_detail_total($td[$t], $key);
-		$table .= job_bar_dotted($key);
+		$table .= job_bar_dot($key);
 		$dr = $td[$td[$t]['Type']];
 		for ($d=0; $d<count($dr); $d++)
 		{
