@@ -56,10 +56,18 @@ return $table;
 	
 function job_row($row, $key)
 {
+	if ($row['Variance'] != '0')
+	{
+		$style = ' style="';
+	}
 	if ($row['Variance'] < 0)
 	{
-		$style= ' style="color:red;" ';
+		$style .= 'color:red;';
 	}
+	if ($row['Variance'] != '0')
+	{
+		$style .= 'background-color:gray;"';
+	}	
 	$table = '<tr ' . $style . '>';
 
 	foreach ($key as $k)

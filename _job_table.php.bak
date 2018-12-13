@@ -43,7 +43,7 @@ return $table;
 function job_bar($key)
 {
 	$ct = count($key);
-	$table = '<tr><td colspan="' . $ct . '" style="border-bottom-style: solid"></tr>';
+	$table = '<tr style="background-color:gray;"><td colspan="' . $ct . '" style="border-bottom-style: solid"></tr>';
 return $table;
 }
 
