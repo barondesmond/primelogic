@@ -48,7 +48,7 @@ for ($i=0; $i < count($jobs); $i++)
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
-		$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
+		//$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
 		$row['JobToDate'] = $row['JobToDate'] + $td[$t]['JobToDate'];
 		$row['Variance'] = $row['Variance'] + $td[$t]['Variance'];
 
