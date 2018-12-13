@@ -328,6 +328,8 @@ return $html;
 function invoice_html($arrays = '')
 {
 	//print_r($arrays);
+	print_r($arrays[0]);
+	exit;
 	$dbs = invoice_init($dbs, $arrays[0]);
 	$html .= invoice_header($dbs);
 	$html .= invoice_toptable($dbs);
@@ -345,7 +347,7 @@ function invoice($invoice = '')
 		//$arrays = '';
 	}
 	$sql = "SELECT Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, 
-	Customer.LastName as BilName, Customer.Add1 as BillAddr1, Customer.Add2 as BillAddr2, CONCAT(Customer.City, ' ' , Customer.State, ' ' , Customer.Zip) as BillCSZ,
+	Customer.LastName as BillName, Customer.Add1 as BillAddr1, Customer.Add2 as BillAddr2, CONCAT(Customer.City, ' ' , Customer.State, ' ' , Customer.Zip) as BillCSZ,
 
 	Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, CONVERT(varchar(10), Dispatch.RecDate, 101) as ServiceDate
 FROM Sales
