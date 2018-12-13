@@ -71,15 +71,9 @@ function job_row_detail_total($row, $key)
 {
 
 	$style = ' style="';
-	
-	if ($row['Variance'] < 0)
-	{
-		$style .= 'color:red;';
-	}
-	if ($row['Variance'] != '0')
-	{
-		$style .= 'background-color:gray;"';
-	}	
+	$style .= 'background-color:gray;"';
+
+		
 	$table = '<tr ' . $style . '>';
 
 	foreach ($key as $k)
@@ -96,6 +90,17 @@ function job_row_detail_total($row, $key)
 				 $table .= date("m/d/Y", strtotime($row['TransDate']));
 			 }	 
 			 $table .=	 ' ' . $row[$k] . '</td>';
+		}
+		elseif ($k == 'Variance')
+		{
+			if ($row[$k] < 0)
+			{
+				$table .= '<td align="right" style="color:red">' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+			}
+			else
+			{
+				$table .= '<td align="right" >' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+			}
 		}
 		else
 		{
