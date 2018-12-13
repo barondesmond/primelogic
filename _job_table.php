@@ -2,13 +2,13 @@
 
 function job_head($hd)
 {
-	$table = '<table class="job" ><tr><td colspan="7" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
+	$table = '<table class="job" ><tr style="background-color:gray;"><td colspan="7" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
 	return $table;
 }
 
 function job_title($hd)
 {
-	$table ='<tr>
+	$table ='<tr style="background-color:gray;">
 		  <td colspan="2">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
 		  <td colspan="5">' . $hd['LastName'] . '</td>
 		</tr>' . "\r\n";
