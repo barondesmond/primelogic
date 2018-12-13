@@ -3,7 +3,7 @@
 function job_head($hd, $key = '')
 {
 	$cols = count($key);
-	$table = '<table class="job" ><tr style="background-color:gray;"><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
+	$table = '<table class="job" style="border-collapse:collapse"><tr style="background-color:gray;"><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '</td></tr>' . "\r\n";
 	return $table;
 }
 
