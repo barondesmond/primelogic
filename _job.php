@@ -1,5 +1,6 @@
 <?php
 //job
+setlocale(LC_MONETARY, 'en_US');
 
 
 function job_inventory_query($gr, $val='J-0001907')

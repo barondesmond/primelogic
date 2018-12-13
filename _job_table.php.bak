@@ -11,7 +11,7 @@ function job_title($hd, $key= '')
 {
 	$cols = count($key);
 	if ($cols == 0)
-	{'
+	{
 		$cols = '9';
 	}
 	$first = '2';
