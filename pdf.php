@@ -152,7 +152,6 @@ function pdf_query($invoice='')
 	Customer.LastName as BillName, Customer.Add1 as BillAddr1, Customer.Add2 as BillAddr2, CONCAT(Customer.City, ' ' , Customer.State, ' ' , Customer.Zip) as BillCSZ,
 	Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, CONVERT(varchar(10), Dispatch.RecDate, 101) as ServiceDate
 FROM Sales
-INNER JOIN Customer ON Sales.CustNo = Customer.CustNo
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
 INNER JOIN SalesLed ON Sales.Invoice = SalesLed.Invoice
