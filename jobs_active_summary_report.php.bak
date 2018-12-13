@@ -18,7 +18,7 @@ define('SPOOLWRITE', 'write');
 	$row['Estimate'] = $row['Estimate'] * -1;
 */
 
-$jobs = jobs_active_query();
+$jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 $i=0;
 $key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'JobToDate', 'Variance');
