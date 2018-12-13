@@ -67,7 +67,7 @@ for ($i=0; $i < count($jobs); $i++)
 	for ($t=0; $t< 3; $t++)
 	{
 		$table .= job_row_detail_total($td[$t], $key);
-		$dr = $td[$td[$t]['Type'];
+		$dr = $td[$td[$t]['Type']];
 		for ($d=0; $d<count($dr); $d++)
 		{
 			$table .= job_row($dr[$d], $key);
