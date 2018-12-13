@@ -6,7 +6,7 @@ function job_inventory_query($gr, $val='J-0001907')
 {
 	$i = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100', 'Type' => '610');
 
-	$sql = "SELECT " . $i['Type'] . " as Type, [Desc] as Document, RecDate as TransDate, Cost as Amount, Quan as Units," . $i['Account'] . " as Account, " . $i['Source'] . " as Source,
+	$query = "SELECT " . $i['Type'] . " as Type, [Desc] as Document, RecDate as TransDate, Cost as Amount, Quan as Units," . $i['Account'] . " as Account, " . $i['Source'] . " as Source,
 	" . $i['CostType'] . " as CostType, " . $i['CostType'] . " as CostGroup 
 	FROM InvRec WHERE Job = '$val'";
 	$res = mssql_query($query);

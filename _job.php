@@ -14,11 +14,11 @@ function job_inventory_query($gr, $val='J-0001907')
 	{
 
 		$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
-		print_r($db);
+		//print_r($db);
 		//show_data($db);
 
 	}
-	exit;
+	
 return $gr;
 }
 
