@@ -52,8 +52,9 @@ for ($i=0; $i < count($jobs); $i++)
 	
 
 	}
+	$row['Estimate'] = $td[0]['Estimate'] - $td[1]['Estimate'] - $td[2]['Estimate'];
 	$row['JobToDate'] = $td[0]['JobToDate'] - $td[1]['JobToDate'] - $td[2]['JobToDate'];
-	
+	$row['Variance'] = $row['Estimate'] - $row['JobToDate'];
 		$table .= job_bar($key);
 		$table .= job_row($row, $key);
 		$table .= job_bar($key);
