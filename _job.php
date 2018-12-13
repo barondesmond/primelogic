@@ -38,7 +38,7 @@ function job_query($val='J-0001907', $action = '')
 	$res = mssql_query($query);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		if ($db['Accounts'] != '12000' && $db['Source'] != '200' && $db['CostType'] != '100' && $db['Type'] != '610')
+		if ($db['Account'] != '12000' && $db['Source'] != '200' && $db['CostType'] != '100' && $db['Type'] != '610')
 		{
 			$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
 		}
