@@ -60,12 +60,13 @@ for ($i=0; $i < count($jobs); $i++)
 		$hd = $job;
 		$hd['title'] = 'Job Details Report';
 		$table = job_head($hd, $key);
-		$table .= job_hd($key);
-		$table .= job_bar($key);
 	}
-	$table .= job_title($job, $key);
+
 	for ($t=0; $t< 3; $t++)
 	{
+		$table .= job_hd($key);
+		$table .= job_bar($key);
+		$table .= job_title($job, $key);
 		$table .= job_row_detail_total($td[$t], $key);
 		$dr = $td[$td[$t]['Type']];
 		for ($d=0; $d<count($dr); $d++)
