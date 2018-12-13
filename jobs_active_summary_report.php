@@ -38,12 +38,25 @@ for ($i=0; $i < count($jobs); $i++)
 		$table .= job_bar($key);
 	}
 	$table .= job_title($job, $key);
+	$row['Type'] = 'Summary';
+	$row['Document'] = '';
+	$row['Est Units'] = '';
+	$row['Act Units'] = '';
+	$row['Estimate'] = '0.00';
+	$row['JobToDate'] = '0.00';
+	$row['Variance'] = '0.00';
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
+		$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
+		$row['JobToDate'] = $row['JobToDate'] + $td[$t]['JobToDate'];
+		$row['Variance'] = $row['Variance'] + $td[$t]['Variance'];
+
 	}
 		$table .= job_bar($key);
-	
+		$table .= job_row($row), $key);
+		$table .= job_bar($key);
+		unset($row);
 	
 	if ($i > 2)
 	{
