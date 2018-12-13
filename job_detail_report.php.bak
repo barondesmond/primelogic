@@ -59,11 +59,11 @@ for ($i=0; $i < count($jobs); $i++)
 	{
 		$hd = $job;
 		$hd['title'] = 'Job Details Report';
-		$table = job_head($hd);
+		$table = job_head($hd, $key;
 		$table .= job_hd($key);
 		$table .= job_bar($key);
 	}
-	$table .= job_title($job);
+	$table .= job_title($job, $key);
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
