@@ -95,16 +95,16 @@ function job_row_detail_total($row, $key)
 		{
 			if ($row[$k] < 0)
 			{
-				$table .= '<td align="right" style="color:red">' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+				$table .= '<td align="right" style="color:red">' . money_format('%.2n', $row[$k]) . '</td>';
 			}
 			else
 			{
-				$table .= '<td align="right" >' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+				$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 			}
 		}
 		else
 		{
-			$table .= '<td align="right" >' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 		}
 	}
 	$table .= '</tr>' . "\r\n";
@@ -134,7 +134,7 @@ function job_row($row, $key)
 		}
 		else
 		{
-			$table .= '<td align="right" >' . number_format((float)$row[$k], 2, '.', '') . '</td>';
+			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 		}
 	}
 	$table .= '</tr>' . "\r\n";
