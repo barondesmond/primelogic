@@ -123,8 +123,8 @@ $pdf->setPageMark();
 	$pdf->SetFont('helvetica', '', 8);
 	$pdf -> writeHTMLCell('18', '5', '116', '255', $dbs['Invoice'], $border);
 	$pdf -> writeHTMLCell('18', '5', '134', '255', $dbs['InvDate'], $border);
-	$pdf -> writeHTMLCell('18', '5', '152', '254', money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
-	$pdf -> writeHTMLCell('18', '5', '175', '243', money_format('%.2n', $dbs['InvAmt']) , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('18', '5', '152', '254', money_format('%.2n', $dbs['AmtCharge']) , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('18', '5', '175', '243', money_format('%.2n', $dbs['AmtCharge']) , $border, '', '', '', 'R');
 	$pdf->SetFont('helvetica', '', 10);
 	$pdf -> writeHTMLCell('20', '5', '179', '209', '<b>' . money_format('%.2n', $dbs['Tax']) . '</b>' , $border, '', '', '', 'R');
 
@@ -150,7 +150,7 @@ function pdf_query($invoice='')
 	}
 	$sql = "SELECT LastName, Sales.Invoice, CONVERT(varchar(10), Sales.InvDate, 101) as InvDate, CONVERT(varchar(10), Sales.EntDate, 101) as EntDate, 
 	Customer.LastName as BillName, Customer.Add1 as BillAddr1, Customer.Add2 as BillAddr2, CONCAT(Customer.City, ' ' , Customer.State, ' ' , Customer.Zip) as BillCSZ,
-	Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, CONVERT(varchar(10), Dispatch.RecDate, 101) as ServiceDate, Sales.AmtCharge -  Sales.InvAmount as Tax
+	Sales.ShipName, Sales.ShipAddr1, Sales.ShipAddr2, Sales.ShipCSZ, Sales.PONum, Sales.InvAmount, CONVERT(varchar(10), Sales.DueDate, 101) as DueDate, Paid, InvAmt, Tax1, SalesLed.*, Location.*, CONVERT(varchar(10), Dispatch.RecDate, 101) as ServiceDate, Sales.AmtCharge -  Sales.InvAmount as Tax, AmtCharge
 FROM Sales
 INNER JOIN Receivab ON Sales.Invoice = Receivab.Invoice
 INNER JOIN Location ON Receivab.LocNo = Location.LocNo and Receivab.CustNo = Location.CustNo
