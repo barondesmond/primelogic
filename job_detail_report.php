@@ -48,7 +48,7 @@ if (!is_array($jobs))
     exit;
 }
 $i=0;
-$key = array('Type', 'Document', 'Est Units','Act Units', 'Estimate', 'MonthToDate', 'WeekToDate', 'JobToDate', 'Variance');
+$key = array('Type', 'Document', 'Act Units', 'Estimate', 'MonthToDate', 'WeekToDate', 'JobToDate', 'Variance');
 for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
