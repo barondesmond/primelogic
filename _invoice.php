@@ -174,7 +174,7 @@ function invoice_blank()
 
 function invoice_init($dbs='', $db='')
 {
-	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PONum', 'InvAmt', 'LastName');
+	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PONum', 'InvAmt', 'LastName', 'Tax');
 		$dbs['LastName'] = '#Lafayette Co. CHancery Clerk';
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
