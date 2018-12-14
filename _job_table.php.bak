@@ -1,5 +1,8 @@
 <?php
 
+setlocale(LC_MONETARY, 'en_US');
+
+
 function job_head($hd, $key = '')
 {
 	$cols = count($key);
