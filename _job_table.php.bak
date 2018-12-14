@@ -10,7 +10,7 @@ function job_head($hd, $key = '')
 	return $table;
 }
 
-function job_title($hd, $key= '')
+function job_title($hd, $key= '', $color='grey')
 {
 	$cols = count($key);
 	if ($cols == 0)
@@ -19,13 +19,20 @@ function job_title($hd, $key= '')
 	}
 	$first = '2';
 	$second = $cols - $first;
-	$table ='<tr style="background-color:gray;">
+	$table ='<tr style="background-color:' . $color . ';">
 		  <td colspan="' . $first . '">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
 		  <td colspan="' . $second . '">' . $hd['LastName'] . '</td>
 		</tr>' . "\r\n";
 return $table;
 }
 
+function job_summary_title($hd, $key= '', $color='white')
+{
+	
+	$table = job_title($hd, $key, $color);
+
+return $table;
+}
 function job_foot($hd)
 {
 	$table = "</table>\r\n";
