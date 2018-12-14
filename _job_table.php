@@ -116,6 +116,10 @@ function job_row_detail_total($row, $key)
 			 }	 
 			 $table .=	 ' ' . $row[$k] . '</td>';
 		}
+		elseif ($k == 'Act Units')
+		{
+				$table .= '<td align="right" >' . number_format($row[$k], 2) . '</td>';
+		}
 		elseif ($k == 'Variance')
 		{
 			if ($row[$k] < 0)
