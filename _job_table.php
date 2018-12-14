@@ -157,6 +157,10 @@ function job_row($row, $key)
 			 }	 
 			 $table .=	 ' ' . $row[$k] . '</td>';
 		}
+		elseif ($k == 'Act Units')
+		{
+			$table .= '<td align="right" >' . number_format($row[$k], '2') . '</td>';
+		}
 		else
 		{
 			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
