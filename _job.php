@@ -28,7 +28,7 @@ return $gr;
 function job_query($val='J-0001907', $action = '')
 {
 
-		$query = "SELECT TransType as Type, TransDesc as Document, TransDate, Amount as Amount, Units as Units, Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
+		$query = "SELECT TransType as Type, CONCAT(TransDesc, ' ', TransMemo) as Document, TransDate, Amount as Amount, Units as Units, Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
 		FROM Jobs 
 		INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
 		INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
@@ -205,12 +205,12 @@ function job_summary($gr)
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
-	//$row = job_sum_array($gr,$row);
-	//$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
-	//$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+	$row = job_sum_array($gr,$row);
+	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 
 	//$tb[] = $row;
-	//$sum[] = $row;
+	$sum[] = $row;
 	$row['Type'] = 'Other';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
@@ -358,12 +358,12 @@ function job_details($gr)
 	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
-	//$row = job_sum_array($gr,$row, $meio);
-	//$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
-	//$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
+	$row = job_sum_array($gr,$row, $meio);
+	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 	
 	//$tb[] = $row;
-	//$sum[] = $row;
+	$sum[] = $row;
 	$row['Type'] = 'Other';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
 	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
