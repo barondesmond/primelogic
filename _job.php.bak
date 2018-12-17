@@ -358,12 +358,12 @@ function job_details($gr)
 	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
-	$row = job_sum_array($gr,$row, $meio);
+	//$row = job_sum_array($gr,$row, $meio);
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 	$row['Variance'] = number_format((float)$row['Variance'], 2,'.', '');
 	
 	//$tb[] = $row;
-	$sum[] = $row;
+	//$sum[] = $row;
 	$row['Type'] = 'Other';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
 	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
