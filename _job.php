@@ -2,7 +2,7 @@
 //job
 setlocale(LC_MONETARY, 'en_US');
 
-
+//not used
 function job_inventory_query($gr, $val='J-0001907')
 {
 	$i = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100', 'Type' => '610');
@@ -21,6 +21,32 @@ function job_inventory_query($gr, $val='J-0001907')
 
 	}
 	
+return $gr;
+}
+
+function job_tax_query($val='J-0001907', $action = '')
+{
+
+		$query = "SELECT TransType as Type, CONCAT(TransDesc, ' ', TransMemo, ' Tax Deduction') as Document, TransDate, InvAmount-AmtCharge as Amount, '0' as Units , Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
+FROM Jobs INNER JOIN Sales ON Jobs.Name = Sales.JobNumber 
+INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID and Sales.AmtCharge = FinLedger.Amount
+INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
+WHERE Jobs.Name = '$val' and CostType = '0' and Source = '400'
+	ORDER BY CostType,Account, Source, [DESC], TransDate";
+
+	//echo $query;
+	$res = mssql_query($query);
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+		//if ($db['Type'] != '610')
+		//{
+			$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
+		//}
+
+	}
+	//$gr = job_inventory_query($gr, $val);
+
+
 return $gr;
 }
 
@@ -46,7 +72,7 @@ function job_query($val='J-0001907', $action = '')
 
 	}
 	//$gr = job_inventory_query($gr, $val);
-
+	$gr = job_tax_query($gr, $val)l
 
 return $gr;
 }
