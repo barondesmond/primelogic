@@ -72,7 +72,7 @@ function job_query($val='J-0001907', $action = '')
 
 	}
 	//$gr = job_inventory_query($gr, $val);
-	$gr = job_tax_query($gr, $val)l
+	$gr = job_tax_query($gr, $val);
 
 return $gr;
 }
