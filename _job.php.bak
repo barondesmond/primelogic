@@ -42,7 +42,7 @@ WHERE Jobs.Name = '$val' and CostType = '0' and Source = '400'
 		//{
 			$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
 		//}
-
+			print_r($db);
 	}
 	//$gr = job_inventory_query($gr, $val);
 
