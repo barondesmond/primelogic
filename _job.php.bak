@@ -31,11 +31,13 @@ function job_tax_query($gr, $val='J-0001907')
 FROM Jobs INNER JOIN Sales ON Jobs.Name = Sales.JobNumber 
 INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID and Sales.AmtCharge = FinLedger.Amount
 INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
-WHERE Jobs.Name = '$val' and CostType = '0' and Source = '400'
+WHERE Jobs.Name = '$val' and CostType = '0' and Source = '400' and (Sales.InvAmount - Sales.AmtCharge) != 0
 	ORDER BY CostType,Account, Source, [DESC], TransDate";
 
 	//echo $query;
 	$res = mssql_query($query);
+	if (mssql_num_rows($res))
+	{
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		//if ($db['Type'] != '610')
@@ -43,6 +45,7 @@ WHERE Jobs.Name = '$val' and CostType = '0' and Source = '400'
 			$gr[$db['Account']][$db['Source']][$db['CostType']][] = $db;
 		//}
 			print_r($db);
+	}
 	}
 	//$gr = job_inventory_query($gr, $val);
 
