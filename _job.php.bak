@@ -286,10 +286,10 @@ function jobs_active_query($Name = '')
 	{
 		$nas = " and Jobs.Name = '$Name' ";
 	}
-	$sql = "SELECT Jobs.Name, Customer.LastName FROM Jobs
-	INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
-	WHERE JobStatus = '0'  $nas
-	ORDER BY Jobs.Name
+	$sql = "SELECT Jobs.Name, Location.LocName FROM Jobs
+	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+	WHERE JobStatus = '100' and Inactive = '0'
+ORDER BY Name
 	";
 	
 	$res = mssql_query($sql);
