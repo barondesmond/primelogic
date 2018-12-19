@@ -20,7 +20,6 @@ function job_head($hd, $key = '')
 	$table = '     <style> 
             table, th, td {
 			    border-collapse:collapse;
-                text-align:left; 
             } 
             th, td { 
                 padding: 2px; 
