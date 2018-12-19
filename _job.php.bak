@@ -27,7 +27,7 @@ return $gr;
 function job_tax_query($gr, $val='J-0001907')
 {
 
-		$query = "SELECT TransType as Type, CONCAT(TransDesc, ' ', TransMemo, ' Tax Deduction') as Document, TransDate, (Sales.InvAmount - Sales.AmtCharge) as Amount, '0' as Units , Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
+		$query = "SELECT TransType as Type, LEFT(CONCAT(TransDesc, ' ', TransMemo, ' Tax Deduction'), 75) as Document, TransDate, (Sales.InvAmount - Sales.AmtCharge) as Amount, '0' as Units , Account, Source, CostType, CASE WHEN CostType = '0' THEN 'Income' WHEN CostType = '200' THEN 'Labor' WHEN CostType = '100' THEN 'Material' WHEN CostType = '150' THEN 'Equipment' WHEN CostType='300' THEN 'Other300' WHEN CostType='500' THEN 'Other'  ELSE ''END as CostGroup, [DESC]
 FROM Jobs INNER JOIN Sales ON Jobs.Name = Sales.JobNumber 
 INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID and Sales.AmtCharge = FinLedger.Amount
 INNER JOIN COA ON FinLedger.AccountID = COA.AccountID
