@@ -288,7 +288,7 @@ function jobs_active_query($Name = '')
 	}
 	$sql = "SELECT Jobs.Name, Customer.LastName FROM Jobs
 	INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
-	WHERE Inactive = '0'  $nas
+	WHERE JobStatus = '100' and Inactive = '0'  $nas
 	ORDER BY Jobs.Name
 	";
 	
