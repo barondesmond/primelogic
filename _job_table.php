@@ -17,7 +17,7 @@ function job_head($hd, $key = '')
 {
 	$cols = count($key);
 
-	$table = '<table class="job" style="border-collapse:collapse">'
+	$table = '<table class="job" style="border-collapse:collapse">';
 	$table .=  job_disclaimer($cols);
 
 	$table .= '<tr><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '<BR>Report Generated ' . date("m/d/Y", time()) . '</td></tr>' . "\r\n";
