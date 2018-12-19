@@ -2,10 +2,20 @@
 
 setlocale(LC_MONETARY, 'en_US');
 
+function job_disclaimer()
+{
+	$table = "<b>////
+
+CONFIDENTIALITY DISCLAIMER: Privileged/Confidential information is contained in this message and/or attachments and is and exempt from disclosure under applicable laws. Access to this e-mail by anyone other than the intended recipients, whether directly or by indirect means, is unauthorized. If you do not consent to internet e-mail messages of this kind (or) don’t agree to this Non-Disclosure Agreement please notify us immediately.
+
+////
+</b>";
+return $table;
 
 function job_head($hd, $key = '')
 {
 	$cols = count($key);
+
 	$table = '<table class="job" style="border-collapse:collapse"><tr><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '<BR>Report Generated ' . date("m/d/Y", time()) . '</td></tr>' . "\r\n";
 	return $table;
 }

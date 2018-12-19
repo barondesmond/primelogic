@@ -21,7 +21,9 @@ define('SPOOLWRITE', 'write');
 $jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 $i=0;
-$key = array('Type', 'Estimate', 'JobToDate', 'Variance');
+$key = array('Type', 'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
+$table = job_disclaimer();
+
 for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
@@ -33,7 +35,7 @@ for ($i=0; $i < count($jobs); $i++)
 	{
 		$hd = $job;
 		$hd['title'] = 'Jobs Active Summary Report';
-		$table = job_head($hd, $key);
+		$table .= job_head($hd, $key);
 	}
 	$table .= job_summary_title($job, $key);
 	$table .= job_summary_hd($key);
