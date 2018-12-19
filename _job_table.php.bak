@@ -142,7 +142,7 @@ function job_row_detail_total($row, $key)
 				$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 			}
 		}
-		elseif ($row[$k] != '0')
+		elseif ($row[$k] != '0.00')
 		{
 			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 		}
