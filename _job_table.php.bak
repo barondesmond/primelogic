@@ -127,7 +127,7 @@ function job_row_detail_total($row, $key)
 			 }	 
 			 $table .=	 ' ' . $row[$k] . '</td>';
 		}
-		elseif ($k == 'Act Units' && $row[$k] != '0')
+		elseif ($k == 'Act Units')
 		{
 				$table .= '<td align="right" >' . number_format($row[$k], 2) . '</td>';
 		}
@@ -142,14 +142,10 @@ function job_row_detail_total($row, $key)
 				$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 			}
 		}
-		elseif ($row[$k] != '0.00')
+		else
 		{
 			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 		}
-		else
-		{
-			$table .= '<td align="right" ></td>';
-		}	
 	}
 	$table .= '</tr>' . "\r\n";
 return $table;
@@ -176,13 +172,17 @@ function job_row($row, $key)
 			 }	 
 			 $table .=	 ' ' . $row[$k] . '</td>';
 		}
-		elseif ($k == 'Act Units')
+		elseif ($k == 'Act Units' && $row[$k] != '0')
 		{
 			$table .= '<td align="right" >' . number_format($row[$k], '2') . '</td>';
 		}
-		else
+		elseif ($row[$k] != '0')
 		{
 			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
+		}
+		else
+		{
+			$table .= '<td algin="right" ></td>';
 		}
 	}
 	$table .= '</tr>' . "\r\n";
