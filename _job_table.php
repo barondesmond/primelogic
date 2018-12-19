@@ -22,7 +22,7 @@ function job_head($hd, $key = '')
 			    border-collapse:collapse;
             } 
             th, td { 
-                padding: 2px; 
+                padding: 0px; 
                 background-color:none; 
             } 
 			</style>
