@@ -6,7 +6,7 @@ function job_disclaimer()
 {
 	$table = addslashes('<b>
 
-CONFIDENTIALITY DISCLAIMER: Privileged/Confidential information is contained in this message and/or attachments and is and exempt from disclosure under applicable laws. Access to this e-mail by anyone other than the intended recipients, whether directly or by indirect means, is unauthorized. If you do not consent to internet e-mail messages of this kind (or) don’t agree to this Non-Disclosure Agreement please notify us immediately.
+CONFIDENTIALITY DISCLAIMER: Privileged Confidential information is contained in this message and or attachments and is and exempt from disclosure under applicable laws. Access to this e-mail by anyone other than the intended recipients, whether directly or by indirect means, is unauthorized. If you do not consent to internet e-mail messages of this kind (or) dont agree to this Non-Disclosure Agreement please notify us immediately.
 
 
 </b>');
