@@ -414,6 +414,7 @@ function job_details($gr)
 	//print_r($sum);
 	for ($i=0; $i < count($sum); $i++)
 	{
+		$row['Act Units'] = $row['Act Units'] + $sum[$i]['Act Units'];
 		$row['Estimate'] =  $row['Estimate'] + $sum[$i]['Estimate'];
 		$row['JobToDate'] = $row['JobToDate'] + $sum[$i]['JobToDate'];
 		$row['MonthToDate'] = $row['MonthToDate'] + $sum[$i]['MonthToDate'];
