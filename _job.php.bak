@@ -288,8 +288,8 @@ function jobs_active_query($Name = '')
 	}
 	$sql = "SELECT Jobs.Name, Location.LocName FROM Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
-	WHERE JobStatus = '100' and Inactive = '0'
-ORDER BY Name
+	WHERE JobStatus = '100' and Inactive = '0' $nas
+	ORDER BY Name 
 	";
 	
 	$res = mssql_query($sql);

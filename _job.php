@@ -286,7 +286,7 @@ function jobs_active_query($Name = '')
 	{
 		$nas = " and Jobs.Name = '$Name' ";
 	}
-	$sql = "SELECT Jobs.Name, Location.LocName FROM Jobs
+	$sql = "SELECT Jobs.Name, Location.LocName as LastName FROM Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 	WHERE JobStatus = '100' and Inactive = '0' $nas
 	ORDER BY Name 
