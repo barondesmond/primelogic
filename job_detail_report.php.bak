@@ -49,6 +49,8 @@ if (!is_array($jobs))
 }
 $i=0;
 $key = array('Type', 'Document', 'Act Units', 'Estimate', 'MonthToDate', 'WeekToDate', 'JobToDate', 'Variance');
+$table = job_disclaimer();
+
 for ($i=0; $i < count($jobs); $i++)
 {
 	$job = $jobs[$i];
@@ -59,7 +61,7 @@ for ($i=0; $i < count($jobs); $i++)
 	{
 		$hd = $job;
 		$hd['title'] = 'Job Details Report';
-		$table = job_head($hd, $key);
+		$table .= job_head($hd, $key);
 	}
 
 	for ($t=0; $t< 3; $t++)
