@@ -90,10 +90,10 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 	$from = email_from_gcf($func);
 
 
-	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+	$mail = new PHPMailer(false);                              // Passing `true` enables exceptions
 try {
     //Server settings
-    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
