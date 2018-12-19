@@ -72,7 +72,14 @@ function job_hd($key, $color='#989898')
 	$table = '<tr style="background-color:' . $color . ';">';
 	foreach ($key as $k)
 	{
-		$table .= '<td>' . ' ' .  $k .  ' ' . '</td>';
+		if ($key == 'Type' || $key == 'Document')
+		{
+			$table .= '<td>' . ' ' .  $k .  ' ' . '</td>';
+		}
+		else
+		{
+			$table .= '<td align="right">' . ' ' .  $k .  ' ' . '</td>';
+		}
 	}
 	$table .= '</tr>';
 return $table;
