@@ -21,7 +21,7 @@ define('SPOOLWRITE', 'write');
 $jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 $i=0;
-$key = array('Type', 'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
+$key = array('Type', 'Act Units', 'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
 $table = '';
 
 for ($i=0; $i < count($jobs); $i++)
@@ -43,8 +43,7 @@ for ($i=0; $i < count($jobs); $i++)
 
 	$row['Type'] = 'Summary';
 	$row['Document'] = '';
-	$row['Est Units'] = '';
-	$row['Act Units'] = '';
+	$row['Act Units'] = '0.00';
 	$row['Estimate'] = '0.00';
 	$row['WeekToDate'] = '0.00';
 	$row['MonthToDate'] = '0.00';

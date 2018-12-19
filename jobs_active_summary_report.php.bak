@@ -46,6 +46,9 @@ for ($i=0; $i < count($jobs); $i++)
 	$row['Est Units'] = '';
 	$row['Act Units'] = '';
 	$row['Estimate'] = '0.00';
+	$row['WeekToDate'] = '0.00';
+	$row['MonthToDate'] = '0.00';
+
 	$row['JobToDate'] = '0.00';
 	$row['Variance'] = '0.00';
 	for ($t=0; $t< count($td); $t++)
