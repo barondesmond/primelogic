@@ -24,7 +24,7 @@ define('DIRD', '/var/www/email/');
 	$dp[60][] = 'shannon@plisolutions.com';
 	$dp[70][] = 'arthur@plisolutions.com';
 
-	$emails = array('barondesmond@gmail.com', 'shannon@plisolutions.com');
+	$emails = array('barondesmond@gmail.com', 'shannon@plisolutions.com', 'clint@plisolutions.com', 'gwen@plisolutions.com', 'david@plisolutions.com', 'beau@plisolutions.com');
 
 
 function get_calling_function() {
