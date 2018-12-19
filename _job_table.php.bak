@@ -22,12 +22,12 @@ function job_head($hd, $key = '')
 			    border-collapse:collapse;
             } 
             th, td { 
-                padding: 0px; 
+                padding: 2px; 
                 background-color:none; 
             } 
 			</style>
                ';
-	$table .= '<table style="border-collapse:collapse;padding: 0px;">';
+	$table .= '<table style="border-collapse:collapse;padding: 2px;">';
 	$table .=  job_disclaimer($cols);
 
 	$table .= '<tr><td colspan="' . $cols . '" align="center"><b>' . $hd['title'] . '<BR>Report Generated ' . date("m/d/Y", time()) . '</td></tr>' . "\r\n";

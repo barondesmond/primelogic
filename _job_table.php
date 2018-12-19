@@ -72,7 +72,7 @@ function job_hd($key, $color='gray')
 	$table = '<tr style="background-color:' . $color . ';">';
 	foreach ($key as $k)
 	{
-		$table .= '<td>' . $k . '</td>';
+		$table .= '<td>' . ' ' .  $k . . ' ' . '</td>';
 	}
 	$table .= '</tr>';
 return $table;
