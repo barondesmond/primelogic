@@ -172,7 +172,7 @@ function job_row($row, $key)
 			 }	 
 			 $table .=	 ' ' . $row[$k] . '</td>';
 		}
-		elseif ($k == 'Act Units' && $row[$k] != '0.00' && $row[$k] != '0')
+		elseif ($k == 'Act Units' && $row[$k] != '0.00' && $row[$k] != '0' && $row[$k] != '')
 		{
 			$table .= '<td align="right" >' . number_format($row[$k], '2') . '</td>';
 		}
@@ -180,10 +180,10 @@ function job_row($row, $key)
 		{
 			$table .= '<td algin="right" ></td>';
 		}
-		elseif ($row[$k] != '0.00' && $row[$k] != '0')
+		elseif ($row[$k] != '0.00' && $row[$k] != '0' && $row[$k] != '')
 		{
-			echo $k;
-			print_r($row);
+			//echo $k;
+			//print_r($row);
 
 			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
 		}
