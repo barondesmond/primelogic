@@ -22,7 +22,7 @@ $jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 $i=0;
 $key = array('Type', 'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
-$table = job_disclaimer();
+$table = '';
 
 for ($i=0; $i < count($jobs); $i++)
 {

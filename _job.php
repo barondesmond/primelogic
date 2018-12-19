@@ -92,7 +92,7 @@ function job_sum_array($gr,$sua, &$rows='')
 
 		if (is_array($su))
 		{
-			$sum[$key] = '0.00';
+			$sum[$key] = '0';
 			foreach ($gr[$su['Account']][$su['Source']][$su['CostType']] as $db)
 			{
 				if ($key == 'WeekToDate')

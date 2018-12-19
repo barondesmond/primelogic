@@ -4,7 +4,7 @@ include("_email.php");
 include("_query.php");
 include("_job.php");
 include("_job_table.php");
-define('SPOOLWRITE', 'write');
+//define('SPOOLWRITE', 'write');
 
 if ($argv[1])
 {
