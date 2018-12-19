@@ -57,6 +57,7 @@ for ($i=0; $i < count($jobs); $i++)
 	
 
 	}
+	$row['Act Units'] = $td[1]['Act Units'] + $td[2]['Actual Units'];
 	$row['Estimate'] = $td[0]['Estimate'] - $td[1]['Estimate'] - $td[2]['Estimate'];
 	$row['WeekToDate'] = $td[0]['WeekToDate'] - $td[1]['WeekToDate'] - $td[2]['WeekToDate'];
 	$row['MonthToDate'] = $td[0]['MonthToDate'] - $td[1]['MonthToDate'] - $td[2]['MonthToDate'];
