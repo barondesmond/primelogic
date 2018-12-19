@@ -182,6 +182,7 @@ function job_row($row, $key)
 		}
 		elseif ($row[$k] != '0.00' && $row[$k] != '0')
 		{
+			echo $k;
 			print_r($row);
 
 			$table .= '<td align="right" >' . money_format('%.2n', $row[$k]) . '</td>';
