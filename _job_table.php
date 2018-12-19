@@ -26,6 +26,7 @@ function job_head($hd, $key = '')
                 padding: 20px; 
                 background-color:none; 
             } 
+			</style>
                ';
 	$table .= '<table>';
 	$table .=  job_disclaimer($cols);
