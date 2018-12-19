@@ -50,7 +50,7 @@ function job_title($hd, $key= '', $color='grey')
 return $table;
 }
 
-function job_summary_title($hd, $key= '', $color='white')
+function job_summary_title($hd, $key= '', $color='#989898')
 {
 	
 	$table = job_title($hd, $key, $color);
