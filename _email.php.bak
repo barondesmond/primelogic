@@ -78,6 +78,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 		{
 			$db[$er_array[$i]] = ${$er_array[$i]};
 		}
+		print_r($db);
 		$enc =json_encode($db);
 		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
 		$stream = fopen($file, 'w');
