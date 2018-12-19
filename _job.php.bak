@@ -414,7 +414,6 @@ function job_details($gr)
 	//print_r($sum);
 	for ($i=0; $i < count($sum); $i++)
 	{
-		$row['Act Units'] = $row['Act Units'] + $sum[$i]['Act Units'];
 		$row['Estimate'] =  $row['Estimate'] + $sum[$i]['Estimate'];
 		$row['JobToDate'] = $row['JobToDate'] + $sum[$i]['JobToDate'];
 		$row['MonthToDate'] = $row['MonthToDate'] + $sum[$i]['MonthToDate'];
@@ -430,7 +429,7 @@ function job_details($gr)
 	$tb[] = $row;
 	$tb[$row['Type']] = $meio;
 	$row['Type'] = 'Labor';
-	//$row['Act Units'] = array('SUM'=> 'Units', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200'); 
+	$row['Act Units'] = array('SUM'=> 'Units', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200'); 
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
 	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
