@@ -49,7 +49,8 @@ if (!is_array($jobs))
 }
 $i=0;
 $key = array('Type', 'Document', 'Act Units', 'Estimate', 'MonthToDate', 'WeekToDate', 'JobToDate', 'Variance');
-$table = job_disclaimer();
+$table = '';
+//$table = job_disclaimer();
 
 for ($i=0; $i < count($jobs); $i++)
 {
