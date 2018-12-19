@@ -63,11 +63,11 @@ function job_foot($hd)
 return $table;
 }
 
-function job_summary_hd($key, $color='white')
+function job_summary_hd($key, $color='#989898')
 {
 	return job_hd($key, $color);
 }
-function job_hd($key, $color='gray')
+function job_hd($key, $color='#989898')
 {
 	$table = '<tr style="background-color:' . $color . ';">';
 	foreach ($key as $k)
@@ -79,24 +79,24 @@ return $table;
 
 }
 
-function job_summary_bar($key, $color='white')
+function job_summary_bar($key, $color='#989898')
 {
 	return job_bar($key, $color);
 }
 
-function job_bar($key, $color='grey')
+function job_bar($key, $color='#989898')
 {
 	$ct = count($key);
 	$table = '<tr style="background-color:' . $color . ';"><td colspan="' . $ct . '" style="border-bottom-style: solid"></tr>';
 return $table;
 }
 
-function job_summary_bar_dot($key, $color='white')
+function job_summary_bar_dot($key, $color='#989898')
 {
 	return job_bar_dot($key, $color);
 }
 
-function job_bar_dot($key, $color='gray')
+function job_bar_dot($key, $color='#989898')
 {
 	$ct = count($key);
 	$table = '<tr><td colspan="' . $ct . '" style="border-bottom: solid 1px black;background-color:' . $color . ';"></tr>';
@@ -120,7 +120,7 @@ function job_row_detail_total($row, $key)
 {
 
 	$style = ' style="';
-	$style .= 'background-color:gray;"';
+	$style .= 'background-color:#989898;"';
 
 		
 	$table = '<tr ' . $style . '>';

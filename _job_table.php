@@ -44,7 +44,7 @@ function job_title($hd, $key= '', $color='grey')
 	$first = '1';
 	$second = $cols - $first;
 	$table ='<tr style="background-color:' . $color . ';">
-		  <td colspan="' . $first . '">Job <a href=' . $_SERVER['HOSTNAME'] . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
+		  <td colspan="' . $first . '">Job <a href=http://' . HOST . '/primelogic/job_detail_report.php?Name=' . $hd['Name'] . '&Email={EMAIL}>' . $hd['Name'] . '</href></td>
 		  <td colspan="' . $second . '">' . $hd['LastName'] . '</td>
 		</tr>' . "\r\n";
 return $table;
