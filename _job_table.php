@@ -23,7 +23,7 @@ function job_head($hd, $key = '')
                 text-align:center; 
             } 
             th, td { 
-                padding: 20px; 
+                padding: 2px; 
                 background-color:none; 
             } 
 			</style>
