@@ -46,6 +46,9 @@ for ($i=0; $i < count($jobs); $i++)
 	$row['Est Units'] = '';
 	$row['Act Units'] = '';
 	$row['Estimate'] = '0.00';
+	$row['WeekToDate'] = '0.00';
+	$row['MonthToDate'] = '0.00';
+
 	$row['JobToDate'] = '0.00';
 	$row['Variance'] = '0.00';
 	for ($t=0; $t< count($td); $t++)
@@ -56,6 +59,8 @@ for ($i=0; $i < count($jobs); $i++)
 
 	}
 	$row['Estimate'] = $td[0]['Estimate'] - $td[1]['Estimate'] - $td[2]['Estimate'];
+	$row['WeekToDate'] = $td[0]['WeekToDate'] - $td[1]['WeekToDate'] - $td[2]['WeekToDate'];
+	$row['MonthToDate'] = $td[0]['MonthToDate'] - $td[1]['MonthToDate'] - $td[2]['MonthToDate'];
 	$row['JobToDate'] = $td[0]['JobToDate'] - $td[1]['JobToDate'] - $td[2]['JobToDate'];
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 		$table .= job_summary_bar($key);
