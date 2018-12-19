@@ -7,7 +7,7 @@ include("_email.php");
 			$db[$er_array[$i]] = $argv[$i];
 		}
 		$enc =json_encode($db);
-		$file = DIRD . time() . '.' . $db['email'] . '.' . urlencode($db['subject'] .  '.email';
+		$file = DIRD . time() . '.' . $db['email'] . '.' . urlencode($db['subject') .  '.email';
 		$stream = fopen($file, 'w');
 		fwrite($stream, $enc);
 		fclose($stream);
