@@ -11,6 +11,7 @@ CONFIDENTIALITY DISCLAIMER: Privileged/Confidential information is contained in 
 ////
 </b>";
 return $table;
+}
 
 function job_head($hd, $key = '')
 {
