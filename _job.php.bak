@@ -171,9 +171,11 @@ function job_summary($gr)
 
 	$row['Type'] = 'Contract';
 	$row['Document'] = ' ';
-	$row['Est Units'] = '0.00';
 	$row['Act Units'] = '0.00';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'40006', 'Source' => '100', 'CostType' => '100');
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
+
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'11000', 'Source' => '400', 'CostType' => '0');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -189,6 +191,9 @@ function job_summary($gr)
 	//Equipment/Material/Inventory
 	$row['Type'] = 'Material Total';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
+
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '100');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -200,6 +205,9 @@ function job_summary($gr)
 	
 	$row['Type'] = 'Equipment Freight';
 	$row['Estimate'] = '0'; 
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
+
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'57501', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -212,6 +220,9 @@ function job_summary($gr)
 
 	$row['Type'] = 'Equipment Sales';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
+
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -222,6 +233,9 @@ function job_summary($gr)
 	$row2 = $row;
 	$row['Type'] = 'Equipment';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
+	$row['WeekToDate'] = $row2['WeekToDate'] + $row1['WeekToDate']; //array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
+	$row['MonthToDate'] = $row2['MonthToDate'] + $row1['MonthToDate']; //array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
+
 	$row['JobToDate'] = $row2['JobToDate'] + $row1['JobToDate']; //array('SUM' => 'Amount', 'Account'=>'50001', 'Source' => '300', 'CostType' => '150');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -232,6 +246,9 @@ function job_summary($gr)
 	$sum[] = $row2;
 	$row['Type'] = 'Inventory';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '100');
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
+
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'12000', 'Source' => '200', 'CostType' => '100');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -242,6 +259,9 @@ function job_summary($gr)
 	$sum[] = $row;
 	$row['Type'] = 'Other';
 	$row['Estimate'] = '0'; //array('SUM' => 'Amount', 'Account'=>'', 'Source' => '100', 'CostType' => '200');
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
+
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58007', 'Source' => '300', 'CostType' => '500');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -254,10 +274,15 @@ function job_summary($gr)
 	$row['Type'] = 'MEIO Total';
 	$row['Estimate'] = '0';
 	$row['JobToDate'] = '0';
+	$row['WeekToDate'] = '0';
+	$row['MonthToDate'] = '0';
+	//print_r($sum);
 	for ($i=0; $i < count($sum); $i++)
 	{
 		$row['Estimate'] =  $row['Estimate'] + $sum[$i]['Estimate'];
 		$row['JobToDate'] = $row['JobToDate'] + $sum[$i]['JobToDate'];
+		$row['MonthToDate'] = $row['MonthToDate'] + $sum[$i]['MonthToDate'];
+		$row['WeekToDate'] = $row['WeekToDate'] + $sum[$i]['WeekToDate'];
 	}
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
@@ -269,6 +294,8 @@ function job_summary($gr)
 	$row['Type'] = 'Labor';
 	$row['Estimate'] = array('SUM' => 'Amount', 'Account'=>'50003', 'Source' => '100', 'CostType' => '200');
 	$row['JobToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
+	$row['WeekToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
+	$row['MonthToDate'] = array('SUM' => 'Amount', 'Account'=>'58010', 'Source' => '700', 'CostType' => '200');
 	//print_r($row);
 	$row = job_sum_array($gr,$row);
 	$row['Variance'] = $row['Estimate']  - $row['JobToDate'];
