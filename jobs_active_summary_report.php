@@ -5,7 +5,7 @@ include("_query.php");
 include("_job.php");
 include("_job_table.php");
 define('SPOOLWRITE', 'write');
-
+define('OVERHEAD', '0.28');
 /*
 	$row['Type'] = 'Contract';
 	$row['Document'] = '';
@@ -21,7 +21,7 @@ define('SPOOLWRITE', 'write');
 $jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 $i=0;
-$key = array('Type', 'Act Units', 'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
+$key = array('Type',  'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
 $table = '';
 
 for ($i=0; $i < count($jobs); $i++)
@@ -41,9 +41,18 @@ for ($i=0; $i < count($jobs); $i++)
 	$table .= job_summary_hd($key);
 	$table .= job_summary_bar($key);
 
+	$ov['Type'] = 'Overhead/Burdens';
+	$row['Document'] = '';
+	$row['Estimate'] = $td['0']['Estimate'] * OVERHEAD;
+	$row['WeekToDate'] = '';
+	$row['MonthToDate'] = '';
+
+	$row['JobToDate'] = $td['0']['Estimate'] * OVERHEAD;
+	$row['Variance'] = '0.00';
+
 	$row['Type'] = 'Summary';
 	$row['Document'] = '';
-	$row['Act Units'] = '0.00';
+
 	$row['Estimate'] = '0.00';
 	$row['WeekToDate'] = '0.00';
 	$row['MonthToDate'] = '0.00';
@@ -53,15 +62,18 @@ for ($i=0; $i < count($jobs); $i++)
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
+		if ($t==0)
+		{
+			$table .= job_summary_bar($key);
+		}
 		//$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
 	
 
 	}
-	$row['Act Units'] = $td[1]['Act Units'] + $td[2]['Actual Units'];
-	$row['Estimate'] = $td[0]['Estimate'] - $td[1]['Estimate'] - $td[2]['Estimate'];
-	$row['WeekToDate'] = $td[0]['WeekToDate'] - $td[1]['WeekToDate'] - $td[2]['WeekToDate'];
-	$row['MonthToDate'] = $td[0]['MonthToDate'] - $td[1]['MonthToDate'] - $td[2]['MonthToDate'];
-	$row['JobToDate'] = $td[0]['JobToDate'] - $td[1]['JobToDate'] - $td[2]['JobToDate'];
+		$table .= job_row($ov, $key);
+
+	$row['Estimate'] = $td[0]['Estimate'] - $td[1]['Estimate'] - $td[2]['Estimate'] - $ov['Estimate'];
+	$row['JobToDate'] = $td[0]['Estimate'] - $td[1]['JobToDate'] - $td[2]['JobToDate'] - $ov['Estimate'];
 	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
 		$table .= job_summary_bar($key);
 		$table .= job_row($row, $key);
