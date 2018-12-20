@@ -103,6 +103,13 @@ function job_summary_bar_dot($key, $color='#989898')
 	return job_bar_dot($key, $color);
 }
 
+function job_bar_dotted($key, $color='white')
+{
+	$ct = count($key);
+	$table = '<tr><td colspan="' . $ct . '" style="border-bottom: dotted 1px black;background-color:' . $color . ';"></tr>';
+return $table;
+}	
+
 function job_bar_dot($key, $color='#989898')
 {
 	$ct = count($key);

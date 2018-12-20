@@ -34,7 +34,7 @@ function job_head($hd, $key = '')
 	return $table;
 }
 
-function job_title($hd, $key= '', $color='grey')
+function job_title($hd, $key= '', $color='#989898')
 {
 	$cols = count($key);
 	if ($cols == 0)
