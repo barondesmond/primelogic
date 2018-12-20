@@ -87,7 +87,10 @@ for ($i=0; $i < count($jobs); $i++)
 }
 $table .= job_foot($key);
 $html = '<html><body>' . $table . '</body></html>';
-//echo $html;
+if ($_GET['print'])
+{
+	echo $html;
+}
 if ($argv[1])
 {
 
@@ -99,7 +102,7 @@ elseif ($_GET['email'] && email_validate($_GET['email']))
 	email_job_report($_GET['email'], 'Jobs Active Summary Report', $html);
 	echo "Report Emailed " . $_GET['email'];
 }
-else
+elseif (!$_GET['print'])
 {
 	foreach ($emails as $email)
 	{

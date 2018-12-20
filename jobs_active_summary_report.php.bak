@@ -63,7 +63,7 @@ for ($i=0; $i < count($jobs); $i++)
 		$table .= job_row($td[$t], $key);
 		if ($t==0)
 		{
-			$table .= job_summary_bar($key);
+			$table .= job_bar_dotted($key);
 		}
 		//$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
 	
