@@ -1,7 +1,5 @@
 <?php
 
-//controller
-
 //user init
 function auth_user_init()
 {
