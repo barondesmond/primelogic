@@ -1,5 +1,4 @@
 <?php
-include("_db_config.php");
 
 //user init
 function auth_user_init()
@@ -18,6 +17,5 @@ function auth_user_response
 {
 
 }
-
 
 ?>

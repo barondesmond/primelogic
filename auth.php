@@ -1,23 +1,8 @@
 <?php
 include("_db_config.php");
-
-//user init
-function auth_user_init()
-{
-
-}
-
-//authenticate user
-funtion auth_user()
-{
-
-}
-
-//user responds account setup
-function auth_user_response
-{
-
-}
-
+include("_email.php");
+include("_auth.php");
+include("_auth_user_table.php");
+include("_auth_sql.php");
 
 ?>
