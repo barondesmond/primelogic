@@ -62,6 +62,10 @@ for ($i=0; $i < count($jobs); $i++)
 	for ($t=0; $t< count($td); $t++)
 	{
 		$table .= job_row($td[$t], $key);
+		if ($t==0)
+		{
+			$table .= job_summary_bar($key);
+		}
 		//$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
 	
 

@@ -42,13 +42,12 @@ for ($i=0; $i < count($jobs); $i++)
 	$table .= job_summary_bar($key);
 
 	$ov['Type'] = 'Overhead/Burdens';
-	$row['Document'] = '';
-	$row['Estimate'] = $td['0']['Estimate'] * OVERHEAD;
+	$ov['Document'] = '';
+	$ov['Estimate'] = $td['0']['Estimate'] * OVERHEAD;
 	$row['WeekToDate'] = '';
 	$row['MonthToDate'] = '';
-
-	$row['JobToDate'] = $td['0']['Estimate'] * OVERHEAD;
-	$row['Variance'] = '0.00';
+	$ov['JobToDate'] = $td['0']['Estimate'] * OVERHEAD;
+	$ov['Variance'] = '';
 
 	$row['Type'] = 'Summary';
 	$row['Document'] = '';
