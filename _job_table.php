@@ -9,7 +9,7 @@ CONFIDENTIALITY DISCLAIMER: Privileged Confidential information is contained in 
 from disclosure under applicable laws. Access to this e-mail by anyone other than the intended recipients, whether directly or by <BR>
 indirect means, is unauthorized. If you do not consent to internet e-mail messages of this kind (or) do not agree to this <BR>
 Non-Disclosure Agreement please notify us immediately.
-</b><<BR><BR></td></tr>';
+</b><BR><BR></td></tr>';
 
 return $table;
 }
