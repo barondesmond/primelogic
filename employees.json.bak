@@ -1,4 +1,4 @@
-<?php
+<?
 include("_db_config.php");
 //api app
 
@@ -17,3 +17,5 @@ header('Content-Type: application/json');
 echo json_encode($js);
 
 ?>
+
+
