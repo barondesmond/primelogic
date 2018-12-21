@@ -5,7 +5,7 @@ include("_db_config.php");
 
 $js['title'] = 'Jobs List';
 $js['description'] = 'Job Name, Job Location';
-$sql = "SELECT Jobs.Name, Location.LocName as LastName FROM Jobs
+$sql = "SELECT Jobs.Name as id, Jobs.Name, Location.LocName as LastName FROM Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 	WHERE JobStatus = '100' and Inactive = '0'
 	ORDER BY Name ";
@@ -13,7 +13,7 @@ $res = mssql_query($sql);
 $i=0;
 while ($db = mssql_fetch_assoc($res))
 {
-	$db['id'] = $i+1;
+	
 	$js[jobs][$i] = $db;
 }
 
