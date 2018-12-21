@@ -10,11 +10,10 @@ $sql = "SELECT Jobs.Name as id, Jobs.Name, Location.LocName as LastName FROM Job
 	WHERE JobStatus = '100' and Inactive = '0'
 	ORDER BY Name ";
 $res = mssql_query($sql);
-$i=0;
 while ($db = mssql_fetch_assoc($res))
 {
 	
-	$js[jobs][$i] = $db;
+	$js[jobs][] = $db;
 }
 
 header('Content-Type: application/json');
