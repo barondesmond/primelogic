@@ -5,12 +5,12 @@ include("_db_config.php");
 
 $js['title'] = 'Employee List';
 $js['description'] = 'Employee Number, Email, Phone for authentication';
-$sql = "SELECT EmpName, Email, phone FROM Employee WHERE Email != '' and Inactive = '0'";
+$sql = "SELECT EmpNo as id, EmpName, Email, phone FROM Employee WHERE Email != '' and Inactive = '0'";
 $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_assoc($res))
 {
-	$db['id'] = $i;
+	//$db['id'] = $i;
 	$js[employees][] = $db;
 	$i++;
 }
