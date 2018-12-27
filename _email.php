@@ -127,6 +127,10 @@ try {
 				$mail->addAttachment($p);         // Add attachments
 			}
 		}
+		else
+		{
+			$mail->addAttachment($pdf);
+		}	
 	}
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
