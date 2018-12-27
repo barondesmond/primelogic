@@ -1,4 +1,4 @@
-<?
+<?php
 include("_email.php");
 
 $email = $argv[1];
@@ -10,5 +10,3 @@ $name = '';
 $func = '';
 
 email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '', $func = '' );
-
-?>

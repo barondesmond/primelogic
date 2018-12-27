@@ -1,4 +1,6 @@
 <?php
+include("_db_config.php");
+
 include("_email.php");
 
 $email = $argv[1];
