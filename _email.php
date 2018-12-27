@@ -129,6 +129,7 @@ try {
 		}
 		else
 		{
+			echo "attached file $pdf";
 			$mail->addAttachment($pdf);
 		}	
 	}
