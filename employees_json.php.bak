@@ -2,7 +2,7 @@
 include("_db_config.php");
 //api app
 
-if ($_REQUEST['Name'] && $_REQUEST['Email'})
+if ($_REQUEST['Name'] && $_REQUEST['Email'])
 {
 	$sel = " and EmpName = '". $ _GET['Name'] . ' and Email = ' . $_GET['Email'] . "'";
 }
