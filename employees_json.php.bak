@@ -4,7 +4,7 @@ include("_db_config.php");
 
 if ($_REQUEST['Name'] && $_REQUEST['Email'])
 {
-	$sel = " and EmpName = '". $_REQUEST['Name'] . ' and Email = ' . $_REQUEST['Email'] . "'";
+	$sel = " and EmpName = '" . $_REQUEST['Name'] . "' and Email = '" . $_REQUEST['Email'] . "'";
 }
 $js['title'] = 'Employee List';
 $js['description'] = 'Employee Number, Email, Phone for authentication';
