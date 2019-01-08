@@ -10,6 +10,8 @@ define('DIRD', '/var/www/email/');
 	$da[0][] = 'dispatch@plisolutions.com';
 	$da[60][] = 'gwen@plisolutions.com';
 	$da[60][] = 'nicole@plisolutions.com';
+	$da[60][] = 'shannon@plisolutions.com';
+
 	$da[90][] = 'gwen@plisolutions.com';
 	$da[90][] = 'shannon@plisolutions.com';
 	$da[90][] = 'arthur@plisolutions.com';

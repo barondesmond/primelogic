@@ -18,11 +18,11 @@ else
 	
 foreach ($da as $day=> $emails)
 {
-	if ($day == '90')
+	if ($day == '91')
 	{
-		$day2 = '1095';
+		$day2 = '1096';
 	}
-	elseif ($day == '60')
+	elseif ($day == '61')
 	{
 		$day2 = '90';
 	}

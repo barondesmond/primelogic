@@ -24,7 +24,7 @@ foreach ($da as $day=> $emails)
 	}
 	elseif ($day == '60')
 	{
-		$day2 = '75';
+		$day2 = '90';
 	}
 	else
 	{
