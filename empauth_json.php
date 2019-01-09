@@ -27,12 +27,12 @@ WHERE Email != '' and Inactive = '0' $sel";
 
 $res = mssql_query($sql);
 $i=1;
-while ($db = mssql_fetch_assoc($res))
+while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	if (!isset($db['authorized']))
 	{
-		$sql = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES(" . $db['EmpNo'] . ", " . $_REQUEST['installationID'] . ")";
-		@mssql_query($sql);
+		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES(" . $db['EmpNo'] . ", " . $_REQUEST['installationID'] . ")";
+		@mssql_query($sql2);
 		$db['authorized'] = '0';
 	}
 	$db['id'] = $i;
@@ -44,6 +44,7 @@ if (!isset($db))
 	$db['authorized'] = 0;
 }
 $db['sql'] = $sql;
+$db['sql2'] = $sql2;
 header('Content-Type: application/json');
 
 echo json_encode($db);
