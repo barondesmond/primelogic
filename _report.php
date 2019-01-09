@@ -343,6 +343,7 @@ $res = mssql_query($sql);
 		else
 		{	
 			//print_r($db);
+	
 
 			if ($db['CustNo'] != $curCustNo || ($db['CustNo'] == $curCustNo && $db['Emailer'] != $curEmailer))
 			{
@@ -472,6 +473,7 @@ $res = mssql_query($sql);
 				$cb[$curEmailer]['loc']['x'] = '<b>' . $db['LastName'] .'</b>' . "<BR>Location: " . $db['LocName'];	
 				$cb[$curEmailer]['html'] .= table_hd($cb[$curEmailer]['loc'], $cb[$curEmailer]['loc'], '', count($ik));
 			}
+		}
 		}
 	}
 

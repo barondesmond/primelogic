@@ -621,7 +621,7 @@ function invoice_email_report($dbs, $email, $html, $ll, $pdf)
 	{
 		if (LOCATION_ONLY == '')
 		{
-			email_report(EMAIL_SEND, "Invoice $curEmailer", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
+			email_report(EMAIL_SEND, "Invoice $email", $html, $ll['filename'], $ll['cid'], $ll['name'], $pdf, $email_from);
 		}
 	}
 	elseif (LOCATION_ONLY == '')

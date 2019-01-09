@@ -8,12 +8,12 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 }
 $js['title'] = 'Employee List';
 $js['description'] = 'Employee Number, Email, Phone for authentication';
-$sql = "SELECT EmpNo as id, EmpName, Email, phone FROM Employee WHERE Email != '' and Inactive = '0' $sel";
+$sql = "SELECT EmpNo as EmpNo, EmpName, Email, phone FROM Employee WHERE Email != '' and Inactive = '0' $sel";
 $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_assoc($res))
 {
-	//$db['id'] = $i;
+	$db['id'] = $i;
 	$js[employees][] = $db;
 	$i++;
 }
