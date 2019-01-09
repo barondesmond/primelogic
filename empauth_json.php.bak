@@ -43,6 +43,10 @@ if (!isset($db))
 	$db['error'] = 'Employee Missing';
 	$db['authorized'] = 0;
 }
+if ($db['installationId'] != $_REQUEST['installationId'])
+{
+	$db['authorized'] = 0;
+}
 
 header('Content-Type: application/json');
 

@@ -43,6 +43,12 @@ if (!isset($db))
 	$db['error'] = 'Employee Missing';
 	$db['authorized'] = 0;
 }
+if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1)
+{
+	$db['authorized'] = 0;
+	$sql = "UPDATE UserAppAuth SET authorized = '0', installationID = '" . $_REQUEST['installationID'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	@mssql_query($sql);
+}
 
 header('Content-Type: application/json');
 
