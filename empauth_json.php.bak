@@ -21,7 +21,7 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 
 
 $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized FROM Employee
-LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo and UserAppAuth.installationID = '" . $_REQUEST['installationID'] . "'
+LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 WHERE Email != '' and Inactive = '0' $sel";
 
 
