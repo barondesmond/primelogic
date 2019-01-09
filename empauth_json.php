@@ -43,8 +43,7 @@ if (!isset($db))
 	$db['error'] = 'Employee Missing';
 	$db['authorized'] = 0;
 }
-$db['sql'] = $sql;
-$db['sql2'] = $sql2;
+
 header('Content-Type: application/json');
 
 echo json_encode($db);
