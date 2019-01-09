@@ -36,6 +36,10 @@ while ($db = mssql_fetch_assoc($res))
 	$db['id'] = $i;
 	$i++;
 }
+if (!$db)
+{
+	$db['error'] = 'Employee Missing';
+}
 
 header('Content-Type: application/json');
 
