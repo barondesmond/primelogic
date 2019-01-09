@@ -31,7 +31,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	if ($db['authorized'] == '')
 	{
-		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES(" . $db['EmpNo'] . ", " . $_REQUEST['installationID'] . ")";
+		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES('" . $db['EmpNo'] . "', '" . $_REQUEST['installationID'] . "')";
 		@mssql_query($sql2);
 		$db['authorized'] = '0';
 	}
