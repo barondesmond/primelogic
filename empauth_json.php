@@ -24,8 +24,7 @@ $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.insta
 LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo and UserAppAuth.installationID = '" . $_REQUEST['installationID'] . "'
 WHERE Email != '' and Inactive = '0' $sel";
 
-echo $sql;
-exit;
+
 $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_assoc($res))
@@ -39,9 +38,10 @@ while ($db = mssql_fetch_assoc($res))
 	$db['id'] = $i;
 	$i++;
 }
-if (!$db)
+if (!isset($db))
 {
 	$db['error'] = 'Employee Missing';
+	$db['authorized'] = 0;
 }
 
 header('Content-Type: application/json');
