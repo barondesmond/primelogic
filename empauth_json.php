@@ -21,7 +21,7 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 
 
 $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized FROM Employee
-LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
+LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo and UserAppAuth.installationID = '" . $_REQUEST['installationID'] . "'
 WHERE Email != '' and Inactive = '0' $sel";
 $res = mssql_query($sql);
 $i=1;
@@ -30,7 +30,7 @@ while ($db = mssql_fetch_assoc($res))
 	if (!isset($db['authorized'])
 	{
 		$sql = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES($db['EmpNo'], $_REQUEST['installationID'])";
-		mssql_query($sql);
+		@mssql_query($sql);
 		$db['authorized'] = '0';
 	}
 	$db['id'] = $i;
