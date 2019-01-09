@@ -27,8 +27,8 @@ WHERE Email != '' and Inactive = '0' $sel";
 
 $res = mssql_query($sql);
 $i=1;
-while ($db = mssql_fetch_array($res))
-{
+$db = mssql_fetch_array($res);
+
 	if ($db['authorized'] == '')
 	{
 		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES('" . $db['EmpNo'] . "', '" . $_REQUEST['installationID'] . "')";
@@ -37,7 +37,7 @@ while ($db = mssql_fetch_array($res))
 	}
 	$db['id'] = $i;
 	$i++;
-}
+
 if (!isset($db))
 {
 	$db['error'] = 'Employee Missing';
