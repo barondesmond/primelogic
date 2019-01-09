@@ -29,7 +29,7 @@ $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
-	if ($db['authorized'] == ''))
+	if ($db['authorized'] == '')
 	{
 		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationID) VALUES(" . $db['EmpNo'] . ", " . $_REQUEST['installationID'] . ")";
 		@mssql_query($sql2);
