@@ -28,7 +28,7 @@ WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installation
 
 $res = mssql_query($sql);
 $i=1;
-$db = mssql_fetch_array($res);
+$db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 if (!$db)
 {
