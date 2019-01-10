@@ -23,9 +23,7 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized, TimeClockApp.* FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
-WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installationID = '$_REQUEST['installationId'] 
-
-";
+WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installationID = '" . $_REQUEST['installationId'] . "' ";
 
 
 $res = mssql_query($sql);
