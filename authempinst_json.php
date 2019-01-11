@@ -18,15 +18,15 @@ $time = time();
 
 if ($_REQUEST['checkinStatus'] == 'Stop')
 {
-	$sql = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] .  "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '1'";
-	$res = @mssql_query($sql);
+	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] .  "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '1'";
+	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
 }
 elseif ($_REQUEST['checkinStatus'] == 'Start');
 {
-	$sql = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartTime, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',
+	$sql2 = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartTime, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',
 	        '" . $_REQUEST['latitude'] . "','" . $_REQUEST['longitude'] . "','" . $_REQUEST['event'] . "','" . $time . "','1');";
-    $res = @mssql_query($sql);
+    @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
 }
 /*
@@ -60,6 +60,9 @@ if (!$db)
 if (isset($error))
 {
 	$db['error'][] = $error;
+	$db['sql'][] = $sql;
+	$db['sql'][] = $sql1;
+	$db['sql'][] = $sql2;
 }
 
 
@@ -69,6 +72,7 @@ $json =  json_encode($db);
 if ($db['error'])
 {
 	error_log($json);
+	
 }
 echo $json;
 ?>
