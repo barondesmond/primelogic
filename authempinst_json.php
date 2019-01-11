@@ -14,7 +14,7 @@ INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhf
 */
 
 
-$time = date("Y:m:d H:i:s", time();
+$time = date("Y:m:d H:i:s", time());
 
 if $_REQUEST['checkinStatus'] == 'Stop')
 {
