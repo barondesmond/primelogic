@@ -16,7 +16,7 @@ INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhf
 
 $time = date("Y:m:d H:i:s", time());
 
-if $_REQUEST['checkinStatus'] == 'Stop')
+if ($_REQUEST['checkinStatus'] == 'Stop')
 {
 	$sql = "UPDATE TimeClockApp SET EventStop = '$time' WHERE EmpNo = '" . $_REQUEST['EmpNo'] "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '0'";
 	$res = @mssql_query($sql);
@@ -56,7 +56,10 @@ if (!$db)
 
 	$db['id'] = $i;
 	$i++;
-
+if (isset($error))
+{
+	$db['error'[ = $error;
+}
 
 
 header('Content-Type: application/json');
