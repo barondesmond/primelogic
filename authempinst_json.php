@@ -14,15 +14,34 @@ INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhf
 */
 
 
-if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
+$time = date("Y:m:d H:i:s", time();
+
+if $_REQUEST['checkinStatus'] == 'Stop')
 {
-	$sel = " and EmpName = '" . $_REQUEST['EmpName'] . "' and Email = '" . $_REQUEST['Email'] . "'";
+	$sql = "UPDATE TimeClockApp SET EventStop = '$time' WHERE EmpNo = '" . $_REQUEST['EmpNo'] "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '0'";
+	$res = @mssql_query($sql);
+	$error = mssql_get_last_message();
 }
-
-
-$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized, TimeClockApp.EmpActive FROM Employee
+if ($_REQUEST['checkinStatus'] == 'Start');
+{
+	$sql = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartEvent, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',
+	        '" . $_REQUEST['latitude'] . "','" . $_REQUEST['longitude'] . "','" . $_REQUEST['event'] . "','" . $time . "','1');";
+    $res = @mssql_query($sql);
+	$error = mssql_get_last_message();
+}
+/*
+$sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as JobNotes FROM Jobs
+	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+	WHERE JobStatus = '100' and Inactive = '0'
+	ORDER BY Name ";
+*/
+	
+	
+$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.event, TimeClockApp.Name, Location.LocName, Jobs.JobNotes  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
+LEFT JOIN Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0'
+LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installationID = '" . $_REQUEST['installationId'] . "' ";
 
 

@@ -20,7 +20,7 @@ StartEvent DATETIME NULL,
 StopEvent DATETIME NULL
 ) 
 
-INSERT INTO TimeClockApp (EmpNo, InstallationId, JobID, latitude, longitude, event) ('0195', 
+INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartEvent)
 */
 
 
