@@ -58,7 +58,7 @@ if (!$db)
 	$i++;
 if (isset($error))
 {
-	$db['error'[ = $error;
+	$db['error'] = $error;
 }
 
 
