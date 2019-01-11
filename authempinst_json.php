@@ -22,7 +22,7 @@ if ($_REQUEST['checkinStatus'] == 'Stop')
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
 }
-elseif ($_REQUEST['checkinStatus'] == 'Start');
+elseif ($_REQUEST['checkinStatus'] == 'Start')
 {
 	$sql2 = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartTime, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',
 	        '" . $_REQUEST['latitude'] . "','" . $_REQUEST['longitude'] . "','" . $_REQUEST['event'] . "','" . $time . "','1');";
