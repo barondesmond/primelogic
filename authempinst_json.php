@@ -60,7 +60,6 @@ if (!$db)
 if (isset($error))
 {
 	$db['error'][] = $error;
-	$db['sql'][] = $sql;
 	$db['sql'][] = $sql1;
 	$db['sql'][] = $sql2;
 }
