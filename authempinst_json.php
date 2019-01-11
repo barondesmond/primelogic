@@ -46,6 +46,7 @@ WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installation
 
 
 $res = mssql_query($sql);
+$error = mssql_get_last_message();
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
@@ -59,11 +60,16 @@ if (!$db)
 if (isset($error))
 {
 	$db['error'] = $error;
+
 }
 
 
 header('Content-Type: application/json');
 
-echo json_encode($db);
-
+$json =  json_encode($db);
+if ($db['error'])
+{
+	error_log($json);
+}
+echo $json;
 ?>
