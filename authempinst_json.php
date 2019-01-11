@@ -18,7 +18,7 @@ $time = date("Y:m:d H:i:s", time());
 
 if ($_REQUEST['checkinStatus'] == 'Stop')
 {
-	$sql = "UPDATE TimeClockApp SET EventStop = '$time' WHERE EmpNo = '" . $_REQUEST['EmpNo'] "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '0'";
+	$sql = "UPDATE TimeClockApp SET EventStop = '$time' WHERE EmpNo = '" . $_REQUEST['EmpNo'] .  "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '0'";
 	$res = @mssql_query($sql);
 	$error = mssql_get_last_message();
 }

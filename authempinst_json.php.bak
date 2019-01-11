@@ -56,7 +56,10 @@ if (!$db)
 
 	$db['id'] = $i;
 	$i++;
-
+if (isset($error))
+{
+	$db['error'[ = $error;
+}
 
 
 header('Content-Type: application/json');
