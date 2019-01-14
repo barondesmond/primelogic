@@ -90,14 +90,14 @@ function mapquest_match($resp, $db)
 	for ($i=0; $i < count($resp['results']['locations'][$i]); $i++)
 	{
 		$loc = $resp['results']['locations'][$i];
-		print_r($resp['results']['locations']);
-		print_r($loc);
+		//print_r($resp['results']['locations']);
+		//print_r($loc);
 		if ($loc['street'] == $db['add1'])
 		{
 			//match
 			$match = $loc;
-			print_r($match);
-			exit;
+			//print_r($match);
+			//exit;
 			return $match;
 		}
 	}
@@ -131,11 +131,11 @@ if ( $_REQUEST['LocName'])
 	$_REQUEST['LocName'] = str_replace("'", "''", $_REQUEST['LocName']);
 
 	$sql = "SELECT Street, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
-	echo $sql;
+	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
-	print_r($error);
+	//print_r($error);
 	if ($loc['Street'])
 	{
 		$loca = $loc['Street'] ;
@@ -144,8 +144,8 @@ if ( $_REQUEST['LocName'])
 	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = mapquest_api($loca);
-	print_r($resp);
-	print_r($loc);
+	//print_r($resp);
+	//print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
 		$resp = $match;
