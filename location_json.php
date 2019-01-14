@@ -78,7 +78,7 @@ define('TCM', '
 function mapquest_api($loc)
 {
 
-	return json_decode(TCM, 1);
+	//return json_decode(TCM, 1);
 	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
 	$respJson = file_get_contents($url);
 	$resp = json_decode($respJson, 1);
@@ -154,7 +154,7 @@ if ( $_REQUEST['LocName'])
 
 }
 $db = array_merge($_REQUEST, $resp);
-$db[error] = $error;
+$db['error'] = $error;
 header('Content-Type: application/json');
 echo json_encode($db);
 

@@ -146,7 +146,7 @@ if ( $_REQUEST['LocName'])
 
 	$resp = mapquest_api($loca);
 	print_r($resp);
-	//print_r($loc);
+	print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
 		$resp = $match;
