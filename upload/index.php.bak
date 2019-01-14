@@ -9,6 +9,8 @@ $input = var_export($_SERVER, true);
 
 $file = fopen('test.file', 'w');
 fwrite($file, $input);
+$input2 = var_export($_REQUEST, true);
+fwrite($file, $input2);
 fclose($file);
 
 header('Content-Type: application/json');
