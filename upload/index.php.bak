@@ -2,7 +2,7 @@
 include("../_db_config.php");
 
 
-
+$inp = file_get_contents('php://input');
 
 $input = var_export($_SERVER, true);
 
@@ -17,6 +17,8 @@ fwrite($file, $input2);
 
 $input2 = var_export($_POST, true);
 fwrite($file, $input2);
+
+fwrite($file, $inp);
 fclose($file);
 
 header('Content-Type: application/json');

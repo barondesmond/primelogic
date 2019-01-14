@@ -18,7 +18,7 @@ fwrite($file, $input2);
 $input2 = var_export($_POST, true);
 fwrite($file, $input2);
 
-fwrite($file, $inp);
+fwrite($file, 'php://input' . $inp);
 fclose($file);
 
 header('Content-Type: application/json');
