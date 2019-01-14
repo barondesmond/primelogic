@@ -170,7 +170,7 @@ if ( $_REQUEST['LocName'])
 	{
 		//$resp = $match;
 		$db = array_merge($loc, $match);
-		location_api($db, $loca);
+		$error = location_api($db, $loca);
 	}	
 
 }
