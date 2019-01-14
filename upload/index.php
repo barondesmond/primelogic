@@ -15,7 +15,7 @@ if ($requestParams === FALSE) {
 }
 
 $file = fopen('test.file', 'w');
-fwrite($file, $requestParams);
+fwrite($file, $input);
 fclose($file);
 
 header('Content-Type: application/json');
