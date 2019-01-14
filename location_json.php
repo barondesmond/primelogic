@@ -78,9 +78,9 @@ define('TCM', '
 function mapquest_api($loc)
 {
 
-	//return json_decode(TCM, 1);
+	return json_decode(TCM, 1);
 	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
-	echo $url;
+	
 	$respJson = file_get_contents($url);
 	echo $respJson;
 	$resp = json_decode($respJson, 1);
@@ -149,7 +149,9 @@ if ( $_REQUEST['LocName'])
 	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = mapquest_api($loca);
+	echo TCM;
 	print_r($resp);
+	exit;
 	print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
