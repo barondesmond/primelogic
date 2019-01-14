@@ -108,8 +108,22 @@ function mapquest_match($resp, $db)
 
 return false;
 }
-		
+function location_api($resp, $loc)
+{
 
+	$sql = "INSERT INTO LocationApi (LocName, Add1, City, State, Zip, latitude, longitude) VALUES(";
+	$sql .= "'" . str_replace("'", "''", $resp['LocName']) . "',";
+	$sql .= "'" . str_replace("'", "''", $resp['Add1']) . "',";
+	$sql .= "'" . str_replace("'", "''", $resp['City']) . "',";
+	$sql .= "'" . str_replace("'", "''", $resp['State']) . "',";
+	$sql .= "'" . str_replace("'", "''", $resp['Zip']) . "',";
+	$sql .= "'" . $resp['latLng']['latitude'] . "',";
+	$sql .= "'" . $resp['latLng']['longitude'] . "',";
+	$sql .= "'" . str_replace("'", "''", $loc) . "'";
+	$sql .= ");";
+	mssql_query($sql);
+	return mssql_get_last_message();
+}
 
 function distance($lat1, $lon1, $lat2, $lon2) {
 
