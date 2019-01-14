@@ -149,10 +149,10 @@ if ( $_REQUEST['LocName'])
 	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = mapquest_api($loca);
-	echo TCM;
-	var_dump(json_decode(TCM));
-	var_dump(json_decode(TCM, true));
-	exit;
+	//echo TCM;
+	//var_dump(json_decode(TCM));
+	//var_dump(json_decode(TCM, true));
+	//exit;
 	print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
@@ -163,5 +163,6 @@ if ( $_REQUEST['LocName'])
 $db = array_merge($_REQUEST, $resp);
 $db['error'] = $error;
 header('Content-Type: application/json');
-echo json_encode($db);
+echo TCM;
+//echo json_encode($db);
 
