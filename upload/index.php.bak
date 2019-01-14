@@ -1,7 +1,9 @@
 <?php
 include("../_db_config.php");
 $bytesToRead = 4096000;
-$input = fread(STDIN, $bytesToRead ); // reads 4096K bytes from STDIN
+$stdin = fopen('php://stdin', 'r');
+
+$input = fread($stdin, $bytesToRead ); // reads 4096K bytes from STDIN
 if ($input === FALSE) {
    error_log("failed to read STDIN");
 }
