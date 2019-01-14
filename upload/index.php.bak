@@ -2,7 +2,11 @@
 include("../_db_config.php");
 
 $file = fopen('test' . '.file', 'w');
-fwrite($file, $_POST['name'] . $_POST['uri'] . $_POST['photo']);
+while(list($key, $value) = each($_POST))
+{
+
+fwrite($file, $key . '=' . $value);
+}
 fclose($file);
 
 

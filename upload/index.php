@@ -2,7 +2,7 @@
 include("../_db_config.php");
 
 $file = fopen('test' . '.file', 'w');
-while(list($key, $value) = each($_POST))
+while(list($key, $value) = each($_REQUEST))
 {
 
 fwrite($file, $key . '=' . $value);
