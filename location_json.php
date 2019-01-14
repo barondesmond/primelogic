@@ -84,8 +84,8 @@ function mapquest_api($loc)
 	$respJson = file_get_contents($url);
 	echo $respJson;
 	$resp = json_decode($respJson, 1);
-	print_r($resp);
-	exit;
+	//print_r($resp);
+	//exit;
 return $resp;
 }
 
@@ -163,6 +163,6 @@ if ( $_REQUEST['LocName'])
 $db = array_merge($_REQUEST, $resp);
 $db['error'] = $error;
 header('Content-Type: application/json');
-echo TCM;
-//echo json_encode($db);
+//echo TCM;
+echo json_encode($db);
 
