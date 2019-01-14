@@ -154,7 +154,7 @@ if ( $_REQUEST['LocName'])
 {
 	$_REQUEST['LocName'] = str_replace("'", "''", $_REQUEST['LocName']);
 
-	$sql = "SELECT Add1, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
+	$sql = "SELECT LocName,Add1, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
 	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
