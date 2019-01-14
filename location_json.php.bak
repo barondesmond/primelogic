@@ -137,7 +137,7 @@ if ( $_REQUEST['LocName'])
 	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = maquest_api($loca);
-	if ($match = mapquest_match($resp, $loc)
+	if ($match = mapquest_match($resp, $loc))
 	{
 		$resp = $match;
 	}	
