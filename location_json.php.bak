@@ -84,6 +84,7 @@ function mapquest_api($loc)
 	echo $respJson;
 	$resp = json_decode($respJson, 1);
 	print_r($resp);
+	exit;
 return $resp;
 }
 
