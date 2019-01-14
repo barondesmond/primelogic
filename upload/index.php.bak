@@ -21,6 +21,9 @@ fwrite($file, $input2);
 fwrite($file, 'php://input' . $inp);
 fclose($file);
 
+$input3 = var_export($_FILES, true);
+fwrite($file, $input3);
+
 header('Content-Type: application/json');
 $db['location'] = 'https://' . HOST . '/upload/photo.jpg' ;
 echo json_encode($db);
