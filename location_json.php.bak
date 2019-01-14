@@ -120,8 +120,8 @@ function location_api($resp, $loc)
 	$sql .= "'" . str_replace("'", "''", $resp['City']) . "',";
 	$sql .= "'" . str_replace("'", "''", $resp['State']) . "',";
 	$sql .= "'" . str_replace("'", "''", $resp['Zip']) . "',";
-	$sql .= "'" . $resp['latLng']['latitude'] . "',";
-	$sql .= "'" . $resp['latLng']['longitude'] . "',";
+	$sql .= "'" . $resp['latLng']['lat'] . "',";
+	$sql .= "'" . $resp['latLng']['lng'] . "',";
 	$sql .= "'" . str_replace("'", "''", $loc) . "'";
 	$sql .= ");";
 	echo $sql;
