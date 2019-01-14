@@ -1,15 +1,9 @@
 <?php
 include("../_db_config.php");
-$req = json_decode(file_get_contents('php://input'), true);
+$req = file_get_contents('php://input');
 
 $file = fopen('test' . '.file', 'w');
-fwrite($file, 'Opening');
-while(list($key, $value) = each($req))
-{
-
-fwrite($file, $key . '=' . $value);
-}
-fwrite($file, 'Closing');
+fwrite($file, $req);
 fclose($file);
 
 
