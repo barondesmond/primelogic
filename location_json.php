@@ -23,9 +23,9 @@ define('TCM', '
   "info": {
     "statuscode": 0,
     "copyright": {
-      "text": "© 2019 MapQuest, Inc.",
+      "text": " 2019 MapQuest, Inc.",
       "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
-      "imageAltText": "© 2019 MapQuest, Inc."
+      "imageAltText": " 2019 MapQuest, Inc."
     },
     "messages": []
   },
