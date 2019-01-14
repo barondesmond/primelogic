@@ -165,10 +165,12 @@ if ( $_REQUEST['LocName'])
 	if ($match = mapquest_match($resp, $loc))
 	{
 		$resp = $match;
+		$db = array_merge($_REQUEST, $resp);
+
+		location_api($db, $loca);
 	}	
 
 }
-$db = array_merge($_REQUEST, $resp);
 $db['error'] = $error;
 header('Content-Type: application/json');
 //echo TCM;
