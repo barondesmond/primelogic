@@ -154,8 +154,8 @@ if ( $_REQUEST['LocName'])
 
 	$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE 
-	LocName = '" . $_REQUEST['LocName'] . "'";
-	echo $sql;
+	Location.LocName = '" . $_REQUEST['LocName'] . "'";
+	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
