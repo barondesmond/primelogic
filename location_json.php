@@ -92,20 +92,16 @@ return $resp;
 function mapquest_match($resp, $db)
 {
 	print_r($resp);
-	for ($i=0; $i < count($resp['results']['locations'][$i]); $i++)
+	$loc = $resp['results']['0']['locations']['0'];
+	if ($loc['street'] == $db['add1'])
 	{
-		$loc = $resp['results']['locations'][$i];
-		print_r($resp['results']['locations']);
-		//print_r($loc);
-		if ($loc['street'] == $db['add1'])
-		{
 			//match
-			$match = $loc;
-			print_r($match);
-			exit;
-			return $match;
-		}
+		$match = $loc;
+			//print_r($match);
+			//exit;
+		return $match;
 	}
+	
 
 return false;
 }
