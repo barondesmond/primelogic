@@ -121,9 +121,10 @@ function location_api($resp, $loc)
 	$sql .= "'" . $resp['latLng']['longitude'] . "',";
 	$sql .= "'" . str_replace("'", "''", $loc) . "'";
 	$sql .= ");";
-	mssql_query($sql);
 	echo $sql;
 	exit;
+	mssql_query($sql);
+
 	return mssql_get_last_message();
 }
 
