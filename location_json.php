@@ -150,6 +150,8 @@ if ( $_REQUEST['LocName'])
 
 	$resp = mapquest_api($loca);
 	echo TCM;
+	$resp2 = json_decode(TCM);
+	var_dump($resp2);
 	print_r($resp);
 	exit;
 	print_r($loc);
