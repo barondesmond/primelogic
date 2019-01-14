@@ -128,6 +128,7 @@ function distance($lat1, $lon1, $lat2, $lon2) {
 
 if ( $_REQUEST['LocName'])
 {
+	$_REQUEST['LocName'] = addslashes($_REQUEST['LocName']);
 
 	$sql = "SELECT Street, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
 	$res = mssql_query($sql);

@@ -141,6 +141,8 @@ if ( $_REQUEST['LocName'])
 	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = mapquest_api($loca);
+	print_r($resp);
+	print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
 		$resp = $match;
