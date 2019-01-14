@@ -103,7 +103,7 @@ function mapquest_match($resp, $db)
 	}
 	else
 	{
-		return $loc;
+		return false;
 	}
 
 return false;
@@ -147,7 +147,7 @@ if ( $_REQUEST['LocName'])
 	//var_dump(json_decode(TCM));
 	//var_dump(json_decode(TCM, true));
 	//exit;
-	print_r($loc);
+	//print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
 		$resp = $match;
