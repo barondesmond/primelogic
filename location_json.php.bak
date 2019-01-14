@@ -12,22 +12,95 @@ http://www.mapquestapi.com/geocoding/v1/address?key=MAPQUEST_KEY=MSU Partnership
 LocName,
 latitude,
 longitude,
+1801 E Main Street, Tupelo, MS 38804
+$tcm['results']['locations'][$i]['street'] == $loc['add1'] ? match : ambiguous
+$loc = $tcm['results']['locations'][$i];
+$loc['street']
+
 */
-define('msu', '{"info":{"statuscode":0,"copyright":{"text":"\u00A9 2019 MapQuest, Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9 2019 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"Starkville, MS"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Starkville","adminArea5Type":"City","adminArea4":"Oktibbeha County","adminArea4Type":"County","adminArea3":"MS","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282027040","unknownInput":"","type":"s","latLng":{"lat":33.465871,"lng":-88.810235},"displayLatLng":{"lat":33.465871,"lng":-88.810235},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=N2FSccO8I7dE53zFgXAUQpJg7Q4PDwmj&type=map&size=225,160&locations=33.465871,-88.810235|marker-sm-50318A-1&scalebar=true&zoom=12&rand=938019522"}]}]}');
+define('TCM', '
+{
+  "info": {
+    "statuscode": 0,
+    "copyright": {
+      "text": "© 2019 MapQuest, Inc.",
+      "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+      "imageAltText": "© 2019 MapQuest, Inc."
+    },
+    "messages": []
+  },
+  "options": {
+    "maxResults": -1,
+    "thumbMaps": false,
+    "ignoreLatLngInput": false
+  },
+  "results": [
+    {
+      "providedLocation": {
+        "location": "1801 E Main Street, Tupelo, MS 38804"
+      },
+      "locations": [
+        {
+          "street": "1801 E Main St",
+          "adminArea6": "",
+          "adminArea6Type": "Neighborhood",
+          "adminArea5": "Tupelo",
+          "adminArea5Type": "City",
+          "adminArea4": "Lee",
+          "adminArea4Type": "County",
+          "adminArea3": "MS",
+          "adminArea3Type": "State",
+          "adminArea1": "US",
+          "adminArea1Type": "Country",
+          "postalCode": "38804-2934",
+          "geocodeQualityCode": "L1AAA",
+          "geocodeQuality": "ADDRESS",
+          "dragPoint": false,
+          "sideOfStreet": "L",
+          "linkId": "rnr3734152|i32549237",
+          "unknownInput": "",
+          "type": "s",
+          "latLng": {
+            "lat": 34.257765,
+            "lng": -88.667338
+          },
+          "displayLatLng": {
+            "lat": 34.257965,
+            "lng": -88.667341
+          }
+        }
+      ]
+    }
+  ]
+}');
 
 
-
-function mapquest_api($LocName, $loc)
+function mapquest_api($loc)
 {
 
-	return MSU;
+	return TCM;
 	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
 	$respJson = file_get_contents($url);
 	$resp = json_decode($respJson);
-
 return $resp;
 }
 
+function mapquest_exact($resp, $db)
+{
+	for ($i=0; $i < count($resp['results']['locations'][$i]; $i++)
+	{
+		$loc = $resp['results']['locations'][$i];
+		if ($loc['street'] == $db['add1'])
+		{
+			//match
+			$match = $loc;
+			return $match;
+		}
+	}
+
+return false;
+}
+		
 
 
 function distance($lat1, $lon1, $lat2, $lon2) {
@@ -55,19 +128,19 @@ if ( $_REQUEST['LocName'])
 	$sql = "SELECT Street, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
-	$loc = mssql_fetcn_assoc($res);
+	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
 	if ($loc['Street'])
 	{
 		$loca = $loc['Street'] ;
 	}
-	else
-	{
-		$loca = $_REQUEST['LocName'];
-	}
+
 	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = maquest_api($loca);
-	
+	if ($match = mapquest_match($resp, $loc)
+	{
+		$resp = $match;
+	}	
 
 }
 $db = array_merge($_REQUEST, $resp);

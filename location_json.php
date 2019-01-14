@@ -87,7 +87,7 @@ return $resp;
 
 function mapquest_exact($resp, $db)
 {
-	for ($i=0; $i < count($resp['results']['locations'][$i]; $i++)
+	for ($i=0; $i < count($resp['results']['locations'][$i]); $i++)
 	{
 		$loc = $resp['results']['locations'][$i];
 		if ($loc['street'] == $db['add1'])
