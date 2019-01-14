@@ -93,8 +93,8 @@ function mapquest_match($resp, $db)
 {
 	//print_r($resp);
 	$loc = $resp['results']['0']['locations']['0'];
-	print_r($loc);
-	print_r($db);
+	//print_r($loc);
+	//print_r($db);
 	if ($loc['street'] == $db['Add1'])
 	{
 			//match
@@ -114,7 +114,6 @@ function location_api($resp, $loc)
 {
 
 	print_r($resp);
-	exit;
 	$sql = "INSERT INTO LocationApi (LocName, Add1, City, State, Zip, latitude, longitude) VALUES(";
 	$sql .= "'" . str_replace("'", "''", $resp['LocName']) . "',";
 	$sql .= "'" . str_replace("'", "''", $resp['Add1']) . "',";
@@ -171,9 +170,8 @@ if ( $_REQUEST['LocName'])
 	//print_r($loc);
 	if ($match = mapquest_match($resp, $loc))
 	{
-		$resp = $match;
-		$db = array_merge($_REQUEST, $resp);
-
+		//$resp = $match;
+		$db = array_merge($_REQUEST, $match);
 		location_api($db, $loca);
 	}	
 
