@@ -81,7 +81,7 @@ function mapquest_api($loc)
 	return TCM;
 	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
 	$respJson = file_get_contents($url);
-	$resp = json_decode($respJson);
+	$resp = json_decode($respJson, 1);
 return $resp;
 }
 
