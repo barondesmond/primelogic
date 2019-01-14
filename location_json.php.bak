@@ -1,0 +1,77 @@
+<?php
+include("_db_config.php");
+
+/*
+LocName MSU Partnership School
+locations=33.465871,-88.810235
+Locations=33.44923,-88.8003
+
+
+
+http://www.mapquestapi.com/geocoding/v1/address?key=MAPQUEST_KEY=MSU Partnership School, Starkville, MS
+LocName,
+latitude,
+longitude,
+*/
+define('msu', '{"info":{"statuscode":0,"copyright":{"text":"\u00A9 2019 MapQuest, Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9 2019 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"Starkville, MS"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Starkville","adminArea5Type":"City","adminArea4":"Oktibbeha County","adminArea4Type":"County","adminArea3":"MS","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282027040","unknownInput":"","type":"s","latLng":{"lat":33.465871,"lng":-88.810235},"displayLatLng":{"lat":33.465871,"lng":-88.810235},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=N2FSccO8I7dE53zFgXAUQpJg7Q4PDwmj&type=map&size=225,160&locations=33.465871,-88.810235|marker-sm-50318A-1&scalebar=true&zoom=12&rand=938019522"}]}]}');
+
+
+
+function mapquest_api($LocName, $loc)
+{
+
+	return MSU;
+	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
+	$respJson = file_get_contents($url);
+	$resp = json_decode($respJson);
+
+return $resp;
+}
+
+
+
+function distance($lat1, $lon1, $lat2, $lon2) {
+
+    $pi80 = M_PI / 180;
+    $lat1 *= $pi80;
+    $lon1 *= $pi80;
+    $lat2 *= $pi80;
+    $lon2 *= $pi80;
+
+    $r = 6372.797; // mean radius of Earth in km
+    $dlat = $lat2 - $lat1;
+    $dlon = $lon2 - $lon1;
+    $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlon / 2) * sin($dlon / 2);
+    $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+    $km = $r * $c;
+
+    //echo '<br/>'.$km;
+    return $km;
+}
+
+if ( $_REQUEST['LocName'])
+{
+
+	$sql = "SELECT Street, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
+	$res = mssql_query($sql);
+	$error[] = mssql_get_last_message();
+	$loc = mssql_fetcn_assoc($res);
+	if ($loc['Street'])
+	{
+		$loca = $loc['Street'] ;
+	}
+	else
+	{
+		$loca = $_REQUEST['LocName'];
+	}
+	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
+
+	$resp = maquest_api($loca);
+	
+
+}
+$db = array_merge($_REQUEST, $resp);
+$db[error] = $error;
+header('Content-Type: application/json');
+echo json_encode($db);
+
