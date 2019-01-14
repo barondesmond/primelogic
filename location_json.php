@@ -111,6 +111,8 @@ return false;
 function location_api($resp, $loc)
 {
 
+	print_r($resp);
+	exit;
 	$sql = "INSERT INTO LocationApi (LocName, Add1, City, State, Zip, latitude, longitude) VALUES(";
 	$sql .= "'" . str_replace("'", "''", $resp['LocName']) . "',";
 	$sql .= "'" . str_replace("'", "''", $resp['Add1']) . "',";
