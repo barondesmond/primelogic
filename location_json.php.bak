@@ -125,6 +125,7 @@ function location_api($resp, $loc)
 	$sql .= "'" . str_replace("'", "''", $loc) . "'";
 	$sql .= ");";
 	echo $sql;
+	exit;
 	mssql_query($sql);
 
 	return mssql_get_last_message();

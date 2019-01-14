@@ -171,7 +171,7 @@ if ( $_REQUEST['LocName'])
 	if ($match = mapquest_match($resp, $loc))
 	{
 		//$resp = $match;
-		$db = array_merge($_REQUEST, $match);
+		$db = array_merge($loc, $match);
 		location_api($db, $loca);
 	}	
 
