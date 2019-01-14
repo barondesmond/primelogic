@@ -94,6 +94,8 @@ function mapquest_match($resp, $db)
 		{
 			//match
 			$match = $loc;
+			print_r($match);
+			exit;
 			return $match;
 		}
 	}
