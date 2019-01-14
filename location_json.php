@@ -87,6 +87,7 @@ return $resp;
 
 function mapquest_match($resp, $db)
 {
+	print_r($resp);
 	for ($i=0; $i < count($resp['results']['locations'][$i]); $i++)
 	{
 		$loc = $resp['results']['locations'][$i];
