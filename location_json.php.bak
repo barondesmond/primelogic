@@ -85,7 +85,7 @@ function mapquest_api($loc)
 return $resp;
 }
 
-function mapquest_exact($resp, $db)
+function mapquest_match($resp, $db)
 {
 	for ($i=0; $i < count($resp['results']['locations'][$i]); $i++)
 	{
