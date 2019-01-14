@@ -152,7 +152,7 @@ if ( $_REQUEST['LocName'])
 {
 	$_REQUEST['LocName'] = str_replace("'", "''", $_REQUEST['LocName']);
 
-	$sql = "SELECT LocName,Add1, City,State,Zip FROM Location LEFT JOIN LocationApi
+	$sql = "SELECT LocName,Add1, City,State,Zip FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE 
 	LocName = '" . $_REQUEST['LocName'] . "'";
 	//echo $sql;
@@ -169,6 +169,7 @@ if ( $_REQUEST['LocName'])
 			//$resp = $match;
 			$db = array_merge($loc, $match);
 			$error = location_api($db, $loca);
+			$db['error'] = $error;
 		}	
 	}
 	else
@@ -176,7 +177,6 @@ if ( $_REQUEST['LocName'])
 		$db = $loc;
 	}
 }
-$db['error'] = $error;
 header('Content-Type: application/json');
 //echo TCM;
 echo json_encode($db);
