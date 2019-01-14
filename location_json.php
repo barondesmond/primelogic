@@ -152,29 +152,31 @@ if ( $_REQUEST['LocName'])
 {
 	$_REQUEST['LocName'] = str_replace("'", "''", $_REQUEST['LocName']);
 
-	$sql = "SELECT LocName,Add1, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
+	$sql = "SELECT LocName,Add1, City,State,Zip FROM Location LEFT JOIN LocationApi
+	WHERE 
+	LocName = '" . $_REQUEST['LocName'] . "'";
 	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
 
 	$loca = $loc['Add1'] . ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
-
-	$resp = mapquest_api($loca);
-	//echo TCM;
-	//var_dump(json_decode(TCM));
-	//var_dump(json_decode(TCM, true));
-	//exit;
-	//print_r($loc);
-	if ($match = mapquest_match($resp, $loc))
+	if ($loc['latitude'] == '' && $loc['longitude'] == '')
 	{
-		//$resp = $match;
-		$db = array_merge($loc, $match);
-		$error = location_api($db, $loca);
-	}	
-
+		$resp = mapquest_api($loca);
+		if ($match = mapquest_match($resp, $loc))
+		{
+			//$resp = $match;
+			$db = array_merge($loc, $match);
+			$error = location_api($db, $loca);
+			$db['error'] = $error;
+		}	
+	}
+	else
+	{
+		$db = $loc;
+	}
 }
-$db['error'] = $error;
 header('Content-Type: application/json');
 //echo TCM;
 echo json_encode($db);
