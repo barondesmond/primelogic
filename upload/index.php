@@ -2,11 +2,13 @@
 include("../_db_config.php");
 
 $file = fopen('test' . '.file', 'w');
+fwrite($file, 'Opening');
 while(list($key, $value) = each($_REQUEST))
 {
 
 fwrite($file, $key . '=' . $value);
 }
+fwrite($file, 'Closing');
 fclose($file);
 
 
