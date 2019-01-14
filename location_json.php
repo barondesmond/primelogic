@@ -95,7 +95,7 @@ function mapquest_match($resp, $db)
 	$loc = $resp['results']['0']['locations']['0'];
 	print_r($loc);
 	print_r($db);
-	if ($loc['street'] == $db['add1'])
+	if ($loc['street'] == $db['Add1'])
 	{
 			//match
 		$match = $loc;
