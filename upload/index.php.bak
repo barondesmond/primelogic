@@ -2,7 +2,7 @@
 include("../_db_config.php");
 
 $file = fopen('test' . '.file', 'w');
-fwrite($file, var_export($_REQUEST, true));
+fwrite($file, $_POST['name'] . $_POST['uri'] . $_POST['photo']);
 fclose($file);
 
 
