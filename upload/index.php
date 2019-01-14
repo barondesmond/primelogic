@@ -1,8 +1,8 @@
 <?php
 include("../_db_config.php");
 
-$file = fopen($_POST['name'], 'w');
-fwrite($file, $_POST['photo']);
+$file = fopen($_POST['name'] . '.file', 'w');
+fwrite($file, print_r($_POST);
 fclose($file);
 
 header('Content-Type: application/json');
