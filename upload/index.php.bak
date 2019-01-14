@@ -2,7 +2,7 @@
 include("../_db_config.php");
 
 $file = fopen('test' . '.file', 'w');
-fwrite($file, print_r($_POST));
+fwrite($file, var_dump($_POST));
 fclose($file);
 
 
