@@ -134,18 +134,13 @@ if ( $_REQUEST['LocName'])
 {
 	$_REQUEST['LocName'] = str_replace("'", "''", $_REQUEST['LocName']);
 
-	$sql = "SELECT Street, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
+	$sql = "SELECT Add1, City,State,Zip FROM Location WHERE LocName = '" . $_REQUEST['LocName'] . "'";
 	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
-	//print_r($error);
-	if ($loc['Street'])
-	{
-		$loca = $loc['Street'] ;
-	}
 
-	$loca .= ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
+	$loca = $loc['Add1'] . ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 
 	$resp = mapquest_api($loca);
 	//echo TCM;

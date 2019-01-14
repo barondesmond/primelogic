@@ -101,7 +101,10 @@ function mapquest_match($resp, $db)
 			//exit;
 		return $match;
 	}
-	
+	else
+	{
+		return $loc;
+	}
 
 return false;
 }
