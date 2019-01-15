@@ -8,18 +8,9 @@ $input = var_export($_SERVER, true);
 
 
 $file = fopen('test.file', 'w');
-fwrite($file, $input);
-$input2 = var_export($_REQUEST, true);
-fwrite($file, $input2);
 
-$input2 = var_export($_GET, true);
-fwrite($file, $input2);
-
-$input2 = var_export($_POST, true);
-fwrite($file, $input2);
-
-fwrite($file, 'php://input' . $inp);
-
+fwrite($file, 'php://input ' . $inp);
+echo "files ";
 $input3 = var_export($_FILES, true);
 fwrite($file, $input3);
 
