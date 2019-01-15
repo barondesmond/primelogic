@@ -79,7 +79,7 @@ function mapquest_api($loc)
 {
 
 	//return json_decode(TCM, true);
-	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
+	$url = MAPQUEST_GEO_URL . '?key=' . MAPQUEST_KEY . '&location=' . urlencode($loc);
 	
 	$respJson = file_get_contents($url);
 	echo $respJson;

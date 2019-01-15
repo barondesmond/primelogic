@@ -174,6 +174,7 @@ if ( $_REQUEST['LocName'])
 		else
 		{
 			$db = $resp;
+		}
 	}
 	else
 	{
