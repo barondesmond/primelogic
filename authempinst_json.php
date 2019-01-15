@@ -14,10 +14,16 @@ INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhf
 */
 $sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "'' and installationId = '" . $_REQUEST['installationId'] . "'";
 $res = mssql_query($sql);
+$errors[] = mssql_get_last_message();
 if (!mssql_num_rows($res))
 {
-	$sql = "REPLACE INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
+	$sql = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
 	mssql_query($sql);
+	$errors[] = mssql_get_last_message();
+	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and installationid != '" . $_REQUEST['installationId'] . "'";
+	mssql_query($sql);
+	$errors[] = mssql_get_last_message();
+
 }
 
 $time = time();
