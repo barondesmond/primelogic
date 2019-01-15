@@ -26,7 +26,7 @@ elseif ($_REQUEST['checkinStatus'] == 'Start')
 {
 	$_REQUEST['StartTime'] = $time;
 	$_REQUEST['EmpActive'] = '1';
-	$array = array('EmpNo', 'InstallationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image');
+	$array = array('EmpNo', 'installationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image');
 	foreach ($array as $key)
 	{
 		if (isset($_REQUEST[$key]) && $_REQUEST[$key] != '')
