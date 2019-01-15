@@ -15,7 +15,6 @@ $name = basename($_FILES["photo"]['name']);
 $loc = $tmp_name . '/' . $name;
 move_uploaded_file($tmp_name, $loc);
    
-}
 header('Content-Type: application/json');
 $db['location'] = 'https://' . HOST . $loc ;
 echo json_encode($db);
