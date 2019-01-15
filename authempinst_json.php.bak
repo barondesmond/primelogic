@@ -24,8 +24,12 @@ if ($_REQUEST['checkinStatus'] == 'Stop')
 }
 elseif ($_REQUEST['checkinStatus'] == 'Start')
 {
-	$sql2 = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartTime, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',
-	        '" . $_REQUEST['latitude'] . "','" . $_REQUEST['longitude'] . "','" . $_REQUEST['event'] . "','" . $time . "','1');";
+	$sql2 = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartTime, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',";
+	if (!$_REQUEST['dev'])
+	{
+	        $sql2 .= "'" . $_REQUEST['latitude'] . "','" . $_REQUEST['longitude'] . "',";
+	}
+	$sql .= "'" . $_REQUEST['event'] . "','" . $time . "','1');";
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
 }
