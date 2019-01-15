@@ -32,9 +32,10 @@ elseif ($_REQUEST['checkinStatus'] == 'Start')
 			$k .= $key . ',';
 			$v .= "'" . str_replace("'", "''", $_REQUEST[$key]) . "',";
 		}
+
+	}
 		$k = substr($k, 0, strlen($k) - 1);
 		$v = substr($v, 0, strlen($v) - 1);
-	}
 	$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
 	
     @mssql_query($sql2);
