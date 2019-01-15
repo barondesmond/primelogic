@@ -12,7 +12,13 @@ authorized INT NOT NULL DEFAULT '0'
 /*
 INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhfladf');
 */
-
+$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "'' and installationId = '" . $_REQUEST['installationId'] . "'";
+$res = mssql_query($sql);
+if (!mssql_num_rows($res))
+{
+	$sql = "REPLACE INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
+	mssql_query($sql);
+}
 
 $time = time();
 
