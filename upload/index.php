@@ -16,5 +16,5 @@ $loc = $uploads_dir . '/' . $name;
 move_uploaded_file($tmp_name, $loc);
    
 header('Content-Type: application/json');
-$db['location'] = 'https://' . HOST . $loc ;
+$db['location'] = 'https://' . HOST . '/upload/' . $name ;
 echo json_encode($db);
