@@ -25,6 +25,7 @@ if ($_REQUEST['checkinStatus'] == 'Stop')
 elseif ($_REQUEST['checkinStatus'] == 'Start')
 {
 	$_REQUEST['StartTime'] = $time;
+	$_REQUEST['EmpActive'] = '1';
 	$array = array('EmpNo', 'InstallationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image');
 	foreach ($array as $key)
 	{
