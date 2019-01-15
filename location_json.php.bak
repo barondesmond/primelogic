@@ -78,7 +78,7 @@ define('TCM', '
 function mapquest_api($loc)
 {
 
-	return json_decode(TCM, true);
+	//return json_decode(TCM, true);
 	$url = MAPQUEST_GEO_URL . '&key=' . MAPQUEST_KEY . '&location=' . $loc;
 	
 	$respJson = file_get_contents($url);
@@ -154,8 +154,8 @@ if ( $_REQUEST['LocName'])
 
 	$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE 
-	LocName = '" . $_REQUEST['LocName'] . "'";
-	echo $sql;
+	Location.LocName = '" . $_REQUEST['LocName'] . "'";
+	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
