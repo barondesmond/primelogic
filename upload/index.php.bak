@@ -2,11 +2,10 @@
 include("../_db_config.php");
 
 
-$inp = file_get_contents('php://input');
 
 $file = fopen('test.file', 'w');
 
-fwrite($file, 'php://input ' . $inp);
+fwrite($file, var_export($_FILES, true));
 
 fclose($file);
 
