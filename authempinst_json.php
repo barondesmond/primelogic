@@ -27,7 +27,7 @@ elseif ($_REQUEST['checkinStatus'] == 'Start')
 	$array = array('EmpNo', 'InstallationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image');
 	foreach ($array as $key)
 	{
-		if (isset($_REQUEST[$key] && $_REQUEST[$key] != '')
+		if (isset($_REQUEST[$key]) && $_REQUEST[$key] != '')
 		{
 			$k .= $key . ',';
 			$v .= "'" . str_replace("'", "''", $_REQUEST[$key]) . "',";

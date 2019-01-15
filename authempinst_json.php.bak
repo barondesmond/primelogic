@@ -24,12 +24,19 @@ if ($_REQUEST['checkinStatus'] == 'Stop')
 }
 elseif ($_REQUEST['checkinStatus'] == 'Start')
 {
-	$sql2 = "INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartTime, EmpActive) VALUES ('" . $_REQUEST['EmpNo'] . "', '" . $_REQUEST['installationId'] . "', '" . $_REQUEST['Name'] ."',";
-	if (!$_REQUEST['dev'])
+	$array = array('EmpNo', 'InstallationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image');
+	foreach ($array as $key)
 	{
-	        $sql2 .= "'" . $_REQUEST['latitude'] . "','" . $_REQUEST['longitude'] . "',";
+		if (isset($_REQUEST[$key] && $_REQUEST[$key] != '')
+		{
+			$k .= $key . ',';
+			$v .= "'" . str_replace("'", "''", $_REQUEST[$key]) . "',";
+		}
+		$k = substr($k, 0, strlen($k) - 1);
+		$v = substr($v, 0, strlen($v) - 1);
 	}
-	$sql .= "'" . $_REQUEST['event'] . "','" . $time . "','1');";
+	$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
 }
