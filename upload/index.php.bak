@@ -12,7 +12,7 @@ fclose($file);
 $uploads_dir = '/upload';
 $tmp_name = $_FILES["photo"]['tmp_name'];
 $name = basename($_FILES["photo"]['name']);
-$loc = $tmp_name . '/' . $name;
+$loc = $uploads_dir . '/' . $name;
 move_uploaded_file($tmp_name, $loc);
    
 header('Content-Type: application/json');
