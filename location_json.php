@@ -83,6 +83,10 @@ function mapquest_api($loc)
 	
 	$respJson = file_get_contents($url);
 	echo $respJson;
+	$fd = './json/' . str_replace(' ', '/', $loc); 
+	$file = fopen($fd, "w");
+	fwrite($file, $respJson);
+	fclose($file);
 	$resp = json_decode($respJson, 1);
 	//print_r($resp);
 	//exit;
