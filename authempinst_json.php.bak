@@ -20,7 +20,7 @@ if (!mssql_num_rows($res))
 	$sql = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
 	mssql_query($sql);
 	$errors[] = mssql_get_last_message();
-	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "'";
+	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and installationid != '" . $_REQUEST['installationId'] . "'";
 	mssql_query($sql);
 	$errors[] = mssql_get_last_message();
 

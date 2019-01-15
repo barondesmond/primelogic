@@ -21,6 +21,8 @@ StopEvent DATETIME NULL
 ) 
 
 INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartEvent)
+$sql = "UPDATE TimeClockApp SET EventStop = '$time' WHERE EmpNo = '" . $_REQUEST['EmpNo'] "' and installationId = '" . $_REQUEST['installationId'] . "' and EmpActive = '0'";
+
 */
 
 
