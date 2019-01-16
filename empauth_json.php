@@ -41,8 +41,9 @@ if ($db['UAA'] != '')
 	if (!mssql_num_rows($res))
 	{
 		$sql = "INSERT INTO UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '0')";
-		mssql_query($sql);
+		@mssql_query($sql);
 		$errors[] = mssql_get_last_message();
+		$sa[] = $sql;
 	}
 }
 if (!isset($db))
