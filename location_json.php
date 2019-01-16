@@ -190,6 +190,7 @@ if ( $_REQUEST['LocName'])
 	else
 	{
 		$db = $loc;
+		$db[error] = $error;
 	}
 }
 header('Content-Type: application/json');
