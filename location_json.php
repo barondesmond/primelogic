@@ -82,7 +82,7 @@ function mapquest_api($loc)
 	$url = MAPQUEST_GEO_URL . '?key=' . MAPQUEST_KEY . '&location=' . urlencode($loc);
 	
 	$respJson = file_get_contents($url);
-	$fd = './json/' . $loc; 
+	$fd = '/var/www/html/primelogic/json/' . $loc . '.json'; 
 	$file = fopen($fd, "w");
 	fwrite($file, $respJson);
 	fclose($file);

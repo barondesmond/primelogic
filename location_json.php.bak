@@ -82,7 +82,6 @@ function mapquest_api($loc)
 	$url = MAPQUEST_GEO_URL . '?key=' . MAPQUEST_KEY . '&location=' . urlencode($loc);
 	
 	$respJson = file_get_contents($url);
-	echo $respJson;
 	$fd = './json/' . $loc; 
 	$file = fopen($fd, "w");
 	fwrite($file, $respJson);
