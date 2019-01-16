@@ -474,7 +474,7 @@ $res = mssql_query($sql);
 				$cb[$curEmailer]['html'] .= table_hd($cb[$curEmailer]['loc'], $cb[$curEmailer]['loc'], '', count($ik));
 			}
 		}
-		}
+		
 	}
 
 			if ($cb[$curEmailer]['html'] != '')
@@ -504,24 +504,24 @@ $res = mssql_query($sql);
 					$cb[$curEmailer]['html'] .= table_row($ct, $ik);
 					$cb[$curEmailer]['ci'] = '';
 					$ct['InvAmts'] = '0';
-					}
+				}
 				$cb[$curEmailer]['html'] .= '</table>';
 				$cb[$curEmailer]['html'] .= html_foot();
 					
-					$i++;
+				$i++;
 		
-						invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
+				invoice_email_report($curdb, $curEmailer, $cb[$curEmailer]['html'], $cb[$curEmailer]['ll'], $pdf[$curEmailer]);
 
-					unset($pdf[$curEmailer]);
-					unset($cb[$curEmailer]);
+				unset($pdf[$curEmailer]);
+				unset($cb[$curEmailer]);
 					
-					$curCustNo = '';
-					$curLocNo = '';
-					$html = '';
+				$curCustNo = '';
+				$curLocNo = '';
+				$html = '';
 					
 
-				}
 			}
+			
 return $noe;
 }
 function html_head($cl='*')
