@@ -21,6 +21,10 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		location_api($db);
 	}
+	if ($_REQUEST['latitude'] &&  $db['latitude'])
+	{
+		$db[distance] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
+	}
 	$i++;
 
 }
