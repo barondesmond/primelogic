@@ -40,16 +40,6 @@ $error[] = mssql_get_last_message();
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
-	if ($db['authorized'] == '')
-	{
-
-	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and installationid != '" . $_REQUEST['installationId'] . "'";
-	mssql_query($sql);
-	$errors[] = mssql_get_last_message();
-			$db['authorized'] = '0';
-	}
-	$db['id'] = $i;
-	$i++;
 
 if (!isset($db))
 {
@@ -59,7 +49,7 @@ if (!isset($db))
 if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1)
 {
 	$db['authorized'] = 0;
-	$sql = "UPDATE UserAppAuth SET authorized = '0', installationID = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "UPDATE UserAppAuth SET authorized = '0', installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	@mssql_query($sql);
 	$error[] = mssql_get_last_message();
 		$sa[] = $sql;
