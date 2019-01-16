@@ -91,6 +91,9 @@ function mapquest_api($loc)
 	else
 	{
 		$respJson = file_get_contents($fd);
+		echo $respJson;
+		echo "exited";
+		exit;
 	}
 	$resp = json_decode($respJson, 1);
 	//print_r($resp);
