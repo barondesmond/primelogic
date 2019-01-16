@@ -165,14 +165,14 @@ if ( $_REQUEST['LocName'])
 
 	$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE 
-	Location.LocName = '" . $_REQUEST['LocName'] . "'";
+	Location.LocName = '" . $_REQUEST['LocName'] . "' and Add1 != '' and City != '' and State != '' and Zip != ''";
 	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$loc = mssql_fetch_array($res, MSSQL_ASSOC);
 
 	$loca = $loc['Add1'] . ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
-	if ($loc['latitude'] == '' && $loc['longitude'] == '')
+	if ($loc['latitude'] == '' && $loc['longitude'] == '' && $loc['LocName'] != '')
 	{
 		$resp = mapquest_api($loca);
 		if ($match = mapquest_match($resp, $loc))
