@@ -21,7 +21,7 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 
 
 
-$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
+$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
 LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 WHERE Email != '' and Inactive = '0' $sel";
 $sa[] = $sql;

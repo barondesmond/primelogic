@@ -24,7 +24,7 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
 LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 WHERE Email != '' and Inactive = '0' $sel";
-		$sa[] = $sql;
+$sa[] = $sql;
 
 
 $res = mssql_query($sql);
@@ -34,7 +34,7 @@ $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 
-if ($db['UAA'] != '')
+if ($db['UAA'] == '')
 {
 	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
