@@ -1,84 +1,11 @@
 <?php
-include("_db_config.php");
-
-/*
-LocName MSU Partnership School
-locations=33.465871,-88.810235
-Locations=33.44923,-88.8003
 
 
-
-http://www.mapquestapi.com/geocoding/v1/address?key=MAPQUEST_KEY=MSU Partnership School, Starkville, MS
-LocName,
-latitude,
-longitude,
-1801 E Main Street, Tupelo, MS 38804
-$tcm['results']['locations'][$i]['street'] == $loc['add1'] ? match : ambiguous
-$loc = $tcm['results']['locations'][$i];
-$loc['street']
-
-*/
-define('TCM', '
-{
-  "info": {
-    "statuscode": 0,
-    "copyright": {
-      "text": " 2019 MapQuest, Inc.",
-      "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
-      "imageAltText": " 2019 MapQuest, Inc."
-    },
-    "messages": []
-  },
-  "options": {
-    "maxResults": -1,
-    "thumbMaps": false,
-    "ignoreLatLngInput": false
-  },
-  "results": [
-    {
-      "providedLocation": {
-        "location": "1801 E Main Street, Tupelo, MS 38804"
-      },
-      "locations": [
-        {
-          "street": "1801 E Main St",
-          "adminArea6": "",
-          "adminArea6Type": "Neighborhood",
-          "adminArea5": "Tupelo",
-          "adminArea5Type": "City",
-          "adminArea4": "Lee",
-          "adminArea4Type": "County",
-          "adminArea3": "MS",
-          "adminArea3Type": "State",
-          "adminArea1": "US",
-          "adminArea1Type": "Country",
-          "postalCode": "38804-2934",
-          "geocodeQualityCode": "L1AAA",
-          "geocodeQuality": "ADDRESS",
-          "dragPoint": false,
-          "sideOfStreet": "L",
-          "linkId": "rnr3734152|i32549237",
-          "unknownInput": "",
-          "type": "s",
-          "latLng": {
-            "lat": 34.257765,
-            "lng": -88.667338
-          },
-          "displayLatLng": {
-            "lat": 34.257965,
-            "lng": -88.667341
-          }
-        }
-      ]
-    }
-  ]
-}');
 
 
 function mapquest_api($loc)
 {
 
-	//return json_decode(TCM, true);
 	$fd = '/var/www/html/primelogic/json/' . $loc . '.json'; 
 	if (!file_exists($fd))
 	{
@@ -121,7 +48,7 @@ function mapquest_match($resp, $db)
 
 return false;
 }
-function location_api($resp, $loc)
+function location_api_insert($resp, $loc)
 {
 
 	$sql = "INSERT INTO LocationApi (LocName, Add1, City, State, Zip, latitude, longitude, location) VALUES(";
@@ -159,13 +86,15 @@ function distance($lat1, $lon1, $lat2, $lon2) {
     return $km;
 }
 
-if ( $_REQUEST['LocName'])
+function location_api($db)
 {
-	$_REQUEST['LocName'] = str_replace("'", "''", $_REQUEST['LocName']);
+if ( $db['LocName'])
+{
+	$db['LocName'] = str_replace("'", "''", $db['LocName']);
 
 	$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE 
-	Location.LocName = '" . $_REQUEST['LocName'] . "' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''";
+	Location.LocName = '" . $db['LocName'] . "' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''";
 	//echo $sql;
 	$res = mssql_query($sql);
 	$error[] = mssql_get_last_message();
@@ -179,7 +108,7 @@ if ( $_REQUEST['LocName'])
 		{
 			//$resp = $match;
 			$db = array_merge($loc, $match);
-			$error = location_api($db, $loca);
+			$error = location_api_insert($db, $loca);
 			$db['error'] = $error;
 		}
 		else
@@ -192,8 +121,8 @@ if ( $_REQUEST['LocName'])
 		$db = $loc;
 		$db[error] = $error;
 	}
+
+return $db;
 }
-header('Content-Type: application/json');
-//echo TCM;
-echo json_encode($db);
+
 
