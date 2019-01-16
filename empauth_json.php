@@ -34,11 +34,13 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 	if ($db['authorized'] == '')
 	{
-		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $db['EmpNo'] . "', '" . $_REQUEST['installationId'] . "')";
-		@mssql_query($sql2);
-		$error[] = mssql_get_last_message();
-		$sa[] = $sql2;
-		$db['authorized'] = '0';
+	$sql = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
+	mssql_query($sql);
+	$errors[] = mssql_get_last_message();
+	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and installationid != '" . $_REQUEST['installationId'] . "'";
+	mssql_query($sql);
+	$errors[] = mssql_get_last_message();
+			$db['authorized'] = '0';
 	}
 	$db['id'] = $i;
 	$i++;
