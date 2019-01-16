@@ -79,13 +79,19 @@ function mapquest_api($loc)
 {
 
 	//return json_decode(TCM, true);
-	$url = MAPQUEST_GEO_URL . '?key=' . MAPQUEST_KEY . '&location=' . urlencode($loc);
-	
-	$respJson = file_get_contents($url);
 	$fd = '/var/www/html/primelogic/json/' . $loc . '.json'; 
-	$file = fopen($fd, "w");
-	fwrite($file, $respJson);
-	fclose($file);
+	if (!file_exists($fd))
+	{
+		$url = MAPQUEST_GEO_URL . '?key=' . MAPQUEST_KEY . '&location=' . urlencode($loc);
+		$respJson = file_get_contents($url);
+		$file = fopen($fd, "w");
+		fwrite($file, $respJson);
+		fclose($file);
+	}
+	else
+	{
+		$respJson = file_get_contents($fd);
+	}
 	$resp = json_decode($respJson, 1);
 	//print_r($resp);
 	//exit;
