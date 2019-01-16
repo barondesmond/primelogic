@@ -16,7 +16,6 @@ $i=1;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
-	$js['jobs'][] = $db;
 	if ($db[latitude] == '')
 	{
 		location_api($db);
@@ -25,6 +24,8 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
 	}
+	$js['jobs'][] = $db;
+
 	$i++;
 
 }
