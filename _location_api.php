@@ -124,5 +124,5 @@ if ( $db['LocName'])
 
 return $db;
 }
-
+}
 
