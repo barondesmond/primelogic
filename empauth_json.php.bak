@@ -49,7 +49,7 @@ if (!isset($db))
 if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1)
 {
 	$db['authorized'] = 0;
-	$sql = "UPDATE UserAppAuth SET authorized = '0', installationID = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "UPDATE UserAppAuth SET authorized = '0', installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	@mssql_query($sql);
 	$error[] = mssql_get_last_message();
 		$sa[] = $sql;
