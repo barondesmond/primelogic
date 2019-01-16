@@ -11,7 +11,7 @@ fclose($file);
 
 $uploads_dir = '/var/www/html/primelogic/upload';
 $tmp_name = $_FILES["photo"]['tmp_name'];
-$name = basename($_FILES["photo"]['name']);
+$name = $time . '.' . basename($_FILES["photo"]['name']);
 $loc = $uploads_dir . '/' . $name;
 move_uploaded_file($tmp_name, $loc);
    
