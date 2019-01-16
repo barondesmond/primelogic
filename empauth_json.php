@@ -19,6 +19,14 @@ if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 	$sel = " and EmpName = '" . $_REQUEST['EmpName'] . "' and Email = '" . $_REQUEST['Email'] . "'";
 }
 
+$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "'";
+$res = mssql_query($sql);
+if (!mssql_num_rows($res))
+{
+	$sql = "INSERT INTO UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '0')";
+	mssql_query($sql);
+	$errors[] = mssql_get_last_message();
+}
 
 $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationID, UserAppAuth.authorized FROM Employee
 LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
@@ -34,9 +42,7 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 	if ($db['authorized'] == '')
 	{
-	$sql = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
-	mssql_query($sql);
-	$errors[] = mssql_get_last_message();
+
 	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and installationid != '" . $_REQUEST['installationId'] . "'";
 	mssql_query($sql);
 	$errors[] = mssql_get_last_message();
