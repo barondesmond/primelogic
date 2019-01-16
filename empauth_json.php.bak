@@ -33,6 +33,8 @@ $db = mssql_fetch_array($res);
 	{
 		$sql2 = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $db['EmpNo'] . "', '" . $_REQUEST['installationId'] . "')";
 		@mssql_query($sql2);
+		$error[] = mssql_get_last_message();
+
 		$db['authorized'] = '0';
 	}
 	$db['id'] = $i;
@@ -48,10 +50,11 @@ if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] ==
 	$db['authorized'] = 0;
 	$sql = "UPDATE UserAppAuth SET authorized = '0', installationID = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	@mssql_query($sql);
+	$error[] = mssql_get_last_message();
 }
 
 header('Content-Type: application/json');
-
+$db[error] = $error;
 echo json_encode($db);
 
 ?>

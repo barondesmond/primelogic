@@ -27,7 +27,7 @@ WHERE Email != '' and Inactive = '0' $sel";
 
 $res = mssql_query($sql);
 $i=1;
-$db = mssql_fetch_array($res);
+$db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 	if ($db['authorized'] == '')
 	{
