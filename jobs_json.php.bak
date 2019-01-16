@@ -1,5 +1,6 @@
 <?php
 include("_db_config.php");
+include("_location_api.php");
 //api app
 
 
@@ -16,6 +17,10 @@ while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
 	$js['jobs'][] = $db;
+	if ($db[latitude] == '')
+	{
+		location_api($db);
+	}
 	$i++;
 
 }
