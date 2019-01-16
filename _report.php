@@ -521,7 +521,7 @@ $res = mssql_query($sql);
 					
 
 				}
-	
+			}
 return $noe;
 }
 function html_head($cl='*')
