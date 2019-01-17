@@ -4,15 +4,15 @@ include("_location_api.php");
 //api app
 
 
-$js['title'] = 'Jobs List';
-$js['description'] = 'Job Name, Job Location';
+$js['title'] = 'Dispatch List';
+$js['description'] = 'Dispatch Name, Dispatch Location';
 $sql = "SELECT Dispatch.Dispatch, Dispatch.Notes, Location.LocName, DispTech.Status, LocationApi.latitude, LocationApi.longitude FROM DispTech
 INNER JOIN Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
-WHERE DispTech.Complete != 'Y'  and ServiceMan = '0001'
-
+WHERE DispTech.Complete != 'Y'  and ServiceMan = '" . $_REQUEST['EmpNo'] . "'
 ORDER BY DispTech.SortDate ASC ";
+
 $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_assoc($res))
