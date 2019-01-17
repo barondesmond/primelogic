@@ -1,5 +1,8 @@
 <?
 
+/*
+receive email web authorization and return textg
+*/
 function auth_email_confirm($email, $installationId, $hash)
 {
 	if ($hash == md5(SALTEMAIL . $email . $installationId)
@@ -25,6 +28,9 @@ WHERE Email = '" . $email . "'  and installationId = '" . $installationId . "'";
 }
 			
 
+/*
+send email and json response for email authorization
+*/
 
 function auth_email_send($email, $installationId)
 {
