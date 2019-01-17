@@ -5,7 +5,7 @@ receive email web authorization and return textg
 */
 function auth_email_confirm($email, $installationId, $hash)
 {
-	if ($hash == md5(SALTEMAIL . $email . $installationId)
+	if ($hash == md5(SALTEMAIL . $email . $installationId))
 	{
 		$sql = "SELECT Employee.EmpNo FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
