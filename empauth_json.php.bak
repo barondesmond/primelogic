@@ -68,8 +68,8 @@ if ($db['authorized'] == 0)
 	$db = array_merge($db, $db2);
 }
 header('Content-Type: application/json');
-$db[error] = $error;
-$db[sql] = $sa;
+$db['error'] = $error;
+$db['sql'] = $sa;
 echo json_encode($db);
 
 ?>
