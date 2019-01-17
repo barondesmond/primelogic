@@ -115,7 +115,7 @@ try {
 	{
 
 		$mail->AddEmbeddedImage($filename, $cid, $name);
-		echo "$filename $cid $name";
+		//echo "$filename $cid $name";
 
 	}
 	//$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:my-attach"> Here is an image!';
@@ -131,7 +131,7 @@ try {
 		}
 		else
 		{
-			echo "attached file $pdf";
+			//echo "attached file $pdf";
 			$mail->addAttachment($pdf);
 		}	
 	}
@@ -144,10 +144,10 @@ try {
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    //echo 'Message has been sent';
 	return true;
 } catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+    //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 	return false;
 }
 
