@@ -17,7 +17,7 @@ WHERE Email = '" . $email . "'  and installationId = '" . $installationId . "'";
 			$res = @mssql_query($sql) or die('Not Authorized');
 			$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "' and installationId = '" . $installationId . "'";
 			$res2 = @mssql_query($sql);
-			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
+			$db = @mssql_fetch_array($res2, MSSQL_ASSOC);
 			if ($db['authorized'] == 1)
 			{
 				return "You have been authorized $email";
