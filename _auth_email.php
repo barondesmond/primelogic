@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 receive email web authorization and return textg

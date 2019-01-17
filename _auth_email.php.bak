@@ -37,7 +37,7 @@ function auth_email_send($email, $installationId)
 	$hash = md5(SALTEMAIL . $email . $installationId);
 	
 	$sub = "Confirm TimeClock installation";
-	$body = "Please Confirm installation of TimeClock App for $email <A HREF=https://" . HOST . "/primelogic/auth_email.php?email=$email&installationId=$installationId&hash=$hash&EmpNo=>here</A>";
+	$body = "Please Confirm installation of TimeClock App for $email <A HREF=https://" . HOST . "/primelogic/auth_email.php?email=$email&installationId=$installationId&hash=$hash>here</A>";
 	email_report($email, $sub, $body);
 	$db['auth'] = "Email Authorization sent to $email";
 	$db['email'] = $email;
