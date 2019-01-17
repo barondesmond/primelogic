@@ -1,5 +1,7 @@
 <?php
 include("_db_config.php");
+include("_auth_email.php");
+include("_email.php");
 
 /* create*
 CREATE TABLE UserAppAuth (
@@ -60,7 +62,11 @@ if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] ==
 		$sa[] = $sql;
 
 }
-
+if ($db['authorized'] == 0)
+{
+	$db2 = auth_email_send($_REQUEST['email'], $_REQUEST['installationId']);
+	$db = array_merge($db, $db2);
+}
 header('Content-Type: application/json');
 $db[error] = $error;
 $db[sql] = $sa;
