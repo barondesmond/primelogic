@@ -21,7 +21,7 @@ define('OVERHEAD', '0.28');
 $jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 $i=0;
-$key = array('Type',  'Estimate', "MonthToDate", "WeekToDate", 'JobToDate', 'Variance');
+$key = array('Type',  'Estimate', "WeekToDate", "MonthToDate",  'JobToDate', 'Variance');
 $table = '';
 
 for ($i=0; $i < count($jobs); $i++)
@@ -48,7 +48,6 @@ for ($i=0; $i < count($jobs); $i++)
 	$row['MonthToDate'] = '';
 	$ov['JobToDate'] = $td['0']['Estimate'] * OVERHEAD;
 	$ov['Variance'] = '';
-	$table .= job_row($ov, $key);
 	$row['Type'] = 'Summary';
 	$row['Document'] = '';
 
