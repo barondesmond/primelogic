@@ -33,7 +33,7 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
 	}
-	$js['jobs'][] = $db;
+	$js['dispatchs'][] = $db;
 
 	$i++;
 

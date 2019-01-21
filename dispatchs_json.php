@@ -22,6 +22,7 @@ ORDER BY ServiceMan, DispTech.TPromDate DESC, DispTech.Priority ";
 
 $res = mssql_query($sql);
 $i=1;
+$js['dispatchs'] = null;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
