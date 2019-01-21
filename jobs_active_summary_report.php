@@ -17,11 +17,11 @@ define('OVERHEAD', '0.28');
 	$row = job_sum_array($gr,$row);
 	$row['Estimate'] = $row['Estimate'] * -1;
 */
-
+$title = 'Jobs Active Summary Report';
 $jobs = jobs_active_query($argv[2]);
 //print_r($jobs);
 
-$html = jobs_summary_report($jobs);
+$html = jobs_summary_report($jobs, $title);
 
 if ($_GET['print'])
 {
@@ -30,19 +30,19 @@ if ($_GET['print'])
 if ($argv[1])
 {
 
-	email_job_report($argv[1], 'Jobs Active Summary Report', $html);
+	email_job_report($argv[1], , $html);
 	echo "Report Emailed $argv[1];";
 }
 elseif ($_GET['email'] && email_validate($_GET['email']))
 {
-	email_job_report($_GET['email'], 'Jobs Active Summary Report', $html);
+	email_job_report($_GET['email'], $title, $html);
 	echo "Report Emailed " . $_GET['email'];
 }
 elseif (!$_GET['print'])
 {
 	foreach ($emails as $email)
 	{
-		email_job_report($email, 'Jobs Active Summary Report', $html);
+		email_job_report($email, $title, $html);
 	}
 }
 

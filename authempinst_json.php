@@ -40,7 +40,7 @@ elseif ($_REQUEST['checkinStatus'] == 'Start')
 {
 	$_REQUEST['StartTime'] = $time;
 	$_REQUEST['EmpActive'] = '1';
-	$array = array('EmpNo', 'installationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image');
+	$array = array('EmpNo', 'installationId', 'Name', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image', 'Screen');
 	foreach ($array as $key)
 	{
 		if (isset($_REQUEST[$key]) && $_REQUEST[$key] != '')
@@ -65,7 +65,7 @@ $sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as
 */
 	
 	
-$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.event, TimeClockApp.Name, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude  FROM Employee
+$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.event, TimeClockApp.Name, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
 LEFT JOIN Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0'

@@ -473,5 +473,76 @@ function job_details($gr)
 return $tb;
 }
 
+function jobs_summary_report($jobs)
+{
+
+$i=0;
+$key = array('Type',  'Estimate', "WeekToDate", "MonthToDate",  'JobToDate', 'Variance');
+$table = '';
+
+for ($i=0; $i < count($jobs); $i++)
+{
+	$job = $jobs[$i];
+
+	$gr = job_query($job['Name']);
+	$td = job_summary($gr);
+	//print_r($td);
+	if (!$hd)
+	{
+		$hd = $job;
+		$hd['title'] = 'Jobs Active Summary Report';
+		$table .= job_head($hd, $key);
+	}
+	$table .= job_summary_title($job, $key);
+	$table .= job_summary_hd($key);
+	$table .= job_summary_bar($key);
+
+	$ov['Type'] = 'Overhead/Burdens';
+	$ov['Document'] = '';
+	$ov['Estimate'] = $td['0']['Estimate'] * OVERHEAD;
+	$row['WeekToDate'] = '';
+	$row['MonthToDate'] = '';
+	$ov['JobToDate'] = $td['0']['Estimate'] * OVERHEAD;
+	$ov['Variance'] = '';
+	$row['Type'] = 'Summary';
+	$row['Document'] = '';
+
+	$row['Estimate'] = '0.00';
+	$row['WeekToDate'] = '0.00';
+	$row['MonthToDate'] = '0.00';
+
+	$row['JobToDate'] = '0.00';
+	$row['Variance'] = '0.00';
+	for ($t=0; $t< count($td); $t++)
+	{
+		$table .= job_row($td[$t], $key);
+		if ($t==0)
+		{
+			$table .= job_bar_dotted($key);
+		}
+		//$row['Estimate'] = $row['Estimate'] + $td[$t]['Estimate'];
+	
+
+	}
+		$table .= job_row($ov, $key);
+
+	$row['Estimate'] = $td[0]['Estimate'] - $td[1]['Estimate'] - $td[2]['Estimate'] - $ov['Estimate'];
+	$row['JobToDate'] = $td[0]['Estimate'] - $td[1]['JobToDate'] - $td[2]['JobToDate'] - $ov['Estimate'];
+	$row['Variance'] = $row['JobToDate'] - $row['Estimate'];
+		$table .= job_summary_bar($key, 'white');
+		$table .= job_row($row, $key);
+		$table .= job_summary_bar($key, 'white');
+		unset($row);
+	
+	if ($i > 2)
+	{
+		//break;
+		//$i = count($jobs);
+	}
+}
+$table .= job_foot($key);
+$html = '<html><body>' . $table . '</body></html>';
+return $html;
+}
 
 ?>
