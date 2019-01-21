@@ -10,14 +10,17 @@ else
 {
 	 $sel = " and ServiceMan = '" . $_REQUEST['ServiceMan'] . "'";
 }
-
+if ($_REQUEST['dev'] == true)
+{
+	$d = 'Dev';
+}
 $js['title'] = 'Dispatch List';
 $js['description'] = 'Dispatch Name, Dispatch Location';
-$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, LocationApi.latitude, LocationApi.longitude, ServiceMan FROM DispTech
+$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, LocationApi.latitude, LocationApi.longitude, ServiceMan FROM DispTech" . $d . "
 INNER JOIN Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
-WHERE DispTech.Complete != 'Y'  $sel
+WHERE DispTech.Complete != 'Y' and (DispTech.Status = 'Travel' or DispTech.Status = 'Working' or DispTech.Status = 'Pending') $sel
 ORDER BY ServiceMan, DispTech.TPromDate DESC, DispTech.Priority ";
 
 $res = mssql_query($sql);
