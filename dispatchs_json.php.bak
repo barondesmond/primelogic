@@ -4,7 +4,7 @@ include("_location_api.php");
 //api app
 if ($_REQUEST['dev'] == 'true')
 {
-
+	$sel = " and ServiceMan = '0001';
 }
 else
 {
