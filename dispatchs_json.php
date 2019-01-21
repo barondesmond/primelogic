@@ -15,7 +15,7 @@ $sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes a
 INNER JOIN Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
-WHERE DispTech.Complete != 'Y' and (DispTech.Status = 'Travel' or DispTech.Status = 'Working' or DispTech.Status = 'Pending') $sel
+WHERE DispTech.Complete != 'Y' and (DispTech.Status = 'Traveling' or DispTech.Status = 'Working' or DispTech.Status = 'Pending') $sel
 ORDER BY ServiceMan, DispTech.TPromDate DESC, DispTech.Priority ";
 
 $res = mssql_query($sql);

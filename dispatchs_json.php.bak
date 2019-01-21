@@ -11,7 +11,7 @@ if ($_REQUEST['dev'] == true)
 }
 $js['title'] = 'Dispatch List';
 $js['description'] = 'Dispatch Name, Dispatch Location';
-$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, LocationApi.latitude, LocationApi.longitude, ServiceMan FROM DispTech" . $d . "
+$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, LocationApi.latitude, LocationApi.longitude, ServiceMan FROM DispTech" . $d . " as DispTech
 INNER JOIN Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
