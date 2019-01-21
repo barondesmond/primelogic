@@ -17,7 +17,7 @@ $sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes, 
 INNER JOIN Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
-WHERE DispTech.Complete != 'Y'  
+WHERE DispTech.Complete != 'Y'  $sel
 ORDER BY ServiceMan, DispTech.TPromDate DESC, DispTech.Priority ";
 
 $res = mssql_query($sql);
@@ -33,7 +33,7 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
 	}
-	$js['jobs'][] = $db;
+	$js['dispatchs'][] = $db;
 
 	$i++;
 
