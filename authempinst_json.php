@@ -78,7 +78,7 @@ LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 LEFT JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
 LEFT JOIN DispTech" . $d . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $_REQUEST['EmpNo'] . "'
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
-LEFT JOIN LocationApi as DisLocApi ON DispLoc.LocName = DispLocApi.LocName
+LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 
 WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installationID = '" . $_REQUEST['installationId'] . "' ";
 
