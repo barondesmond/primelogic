@@ -2,14 +2,9 @@
 include("_db_config.php");
 include("_location_api.php");
 //api app
-if ($_REQUEST['dev'] == 'true')
-{
-	$sel = " and ServiceMan = '0001'";
-}
-else
-{
+
 	 $sel = " and ServiceMan = '" . $_REQUEST['ServiceMan'] . "'";
-}
+
 if ($_REQUEST['dev'] == true)
 {
 	$d = 'Dev';
