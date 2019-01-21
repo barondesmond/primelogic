@@ -13,7 +13,7 @@ else
 
 $js['title'] = 'Dispatch List';
 $js['description'] = 'Dispatch Name, Dispatch Location';
-$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes as DispatchNotes, Location.LocName, DispTech.Status, LocationApi.latitude, LocationApi.longitude, ServiceMan FROM DispTech
+$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, LocationApi.latitude, LocationApi.longitude, ServiceMan FROM DispTech
 INNER JOIN Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
@@ -28,7 +28,7 @@ while ($db = mssql_fetch_assoc($res))
 	$db['id'] = $i;
 	if ($db[latitude] == '')
 	{
-		location_api($db);
+		location_api($db['DispatchName');
 	}
 	if ($_REQUEST['latitude']!='null' && $_REQUEST['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
 	{

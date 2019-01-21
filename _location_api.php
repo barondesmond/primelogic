@@ -86,11 +86,11 @@ function distance($lat1, $lon1, $lat2, $lon2) {
     return $km;
 }
 
-function location_api($db)
+function location_api($location)
 {
-if ( $db['LocName'])
+if ( $location != '')
 {
-	$db['LocName'] = str_replace("'", "''", $db['LocName']);
+	$db['LocName'] = str_replace("'", "''", $location);
 
 	$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE 
