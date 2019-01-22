@@ -25,7 +25,7 @@ function dispatch_db($db, $dev='')
 		$db['error'] = "Invalid DispTech$dev state";
 		return $db;
 	}
-	$sdb = mssql_fetch_assoc($res_sel);
+	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
 	if (!$sbd)
 	{
 		$db['error'][] = 'Missing DispTech';
