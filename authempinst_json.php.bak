@@ -87,7 +87,7 @@ function dispatch_db($db, $dev='')
 		$db['error'] = "missing $up $dd $where ";
 		return $db;
 	}
-	if (@mssql_rows_affected() > 0 && $db['checkinStatus'] == 'Stop')
+	if ($db['checkinStatus'] == 'Stop')
 	{
 		for ($i=0; $i< count($array); $i++)
 		{
@@ -97,9 +97,13 @@ function dispatch_db($db, $dev='')
 				$db[$array[$i]]++;
 				$db[$array[$i]] = tr_pad($db[$array[$i]], 3, "0", STR_PAD_LEFT);
 			}
-
+			if ($array[$i] == 'Status')
+			{
+				$db['Status'] = 'Pending';
+			}
 			$v .= "'" . $db[$array[$i]] . "',";
 		}
+	
 		$v = substr($v, 0, strlen($v) - 1);		
 		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
 		$res2 = mssql_query($ins);
