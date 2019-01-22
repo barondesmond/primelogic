@@ -24,7 +24,7 @@ $js['dispatchs'] = null;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
-	if ($db[latitude] == '')
+	if ($db['latitude'] == '')
 	{
 		location_api($db['DispatchName']);
 	}

@@ -5,7 +5,7 @@ include("_location_api.php");
 
 	 $sel = " and ServiceMan = '" . $_REQUEST['ServiceMan'] . "'";
 
-if ($_REQUEST['dev'] == true)
+if ($_REQUEST['dev'] == 'true')
 {
 	$d = 'Dev';
 }
