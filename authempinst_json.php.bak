@@ -164,7 +164,7 @@ return $error;
 
 }
 
-if ($_REQUEST['dev'] == true)
+if ($_REQUEST['dev'] == 'true')
 {
 	$d = 'Dev';
 }
