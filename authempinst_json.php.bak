@@ -95,7 +95,7 @@ function dispatch_db($db, $dev='')
 			{
 				$db[$array[$i]] = (int) $db[$array[$i]];
 				$db[$array[$i]]++;
-				$db[$array[$i]] = tr_pad($db[$array[$i]], 3, "0", STR_PAD_LEFT);
+				$db[$array[$i]] = str_pad($db[$array[$i]], 3, "0", STR_PAD_LEFT);
 			}
 			if ($array[$i] == 'Status')
 			{

@@ -93,15 +93,15 @@ function dispatch_db($db, $dev='')
 		{
 			if ($array[$i] == 'Counter')
 			{
-				$db[$array[$i]] = (int) $db[$array[$i]];
-				$db[$array[$i]]++;
-				$db[$array[$i]] = str_pad($db[$array[$i]], 3, "0", STR_PAD_LEFT);
+				$sdb[$array[$i]] = (int) $sdb[$array[$i]];
+				$sdb[$array[$i]]++;
+				$sdb[$array[$i]] = str_pad($sdb[$array[$i]], 3, "0", STR_PAD_LEFT);
 			}
 			if ($array[$i] == 'Status')
 			{
-				$db['Status'] = 'Pending';
+				$sdb['Status'] = 'Pending';
 			}
-			$v .= "'" . $db[$array[$i]] . "',";
+			$v .= "'" . s$db[$array[$i]] . "',";
 		}
 	
 		$v = substr($v, 0, strlen($v) - 1);		
