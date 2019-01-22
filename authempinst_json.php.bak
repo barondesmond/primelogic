@@ -42,7 +42,7 @@ function dispatch_db($db, $dev='')
 		}
 	
 	}
-	if ($db['checkInStatus'] == 'Stop' )
+	if ($db['checkinStatus'] == 'Stop' )
 	{
 		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "' ";
 		if ($db['Status'] == 'Complete')
