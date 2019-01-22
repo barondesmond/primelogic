@@ -15,7 +15,7 @@ function dispatch_db($db, $dev)
 	}
 	elseif ($db['checkInStatus'] == 'Stop')
 	{
-		$ = "UPDATE DispTech$dev SET Status = 'Off Job'";
+		$up = "UPDATE DispTech$dev SET Status = 'Off Job'";
 	}
 
 	if ($db['checkInStatus'] == 'Stop')

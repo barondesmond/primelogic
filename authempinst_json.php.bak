@@ -5,7 +5,7 @@ function dispatch_db($db, $dev)
 {
 	$where = "WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "'";
 
-	if ($db['checkinStatus'] == 'Start')up
+	if ($db['checkinStatus'] == 'Start')
 	{
 		$up = "UPDATE DispTech$dev SET Status = " . $db['event'] . "'";
 	}
