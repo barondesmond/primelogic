@@ -30,7 +30,7 @@ function dispatch_db($db, $dev='')
 	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
 	if (!$sdb)
 	{
-		$db['error'][] = 'Missing DispTech';
+		$db['error'][] = 'Missing DispTech' . $dev;
 		$db['error'][] = $sel;
 		$db['error'][] = $sdb;
 		return $db;
@@ -69,7 +69,6 @@ function dispatch_db($db, $dev='')
 			$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
 
 			$dd .= " , Complete = 'Y' ";
-
 		}
 		else
 		{
