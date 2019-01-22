@@ -25,11 +25,11 @@ function dispatch_db($db, $dev='')
 	}
 	$sdb = mssql_fetch_assoc($res_sel);
 
-	$where = "WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending') and Counter = '" . $sdb['Counter'] . "'";
+	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending') and Counter = '" . $sdb['Counter'] . "' ";
 
 	if ($db['checkinStatus'] == 'Start')
 	{
-		$up = "UPDATE DispTech$dev SET Status = " . $db['event'] . "'";
+		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
 		if ($db['event'] == 'Traveling' && $sbd['Status'] == 'Pending')
 		{
 			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", time()) . "' ";
@@ -42,7 +42,7 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['checkInStatus'] == 'Stop' )
 	{
-		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "'";
+		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
 		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "'";
 		if ($db['Status'] == 'Complete')
 		{
