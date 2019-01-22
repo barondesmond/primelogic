@@ -105,13 +105,14 @@ function dispatch_db($db, $dev='')
 			}
 			$v .= "'" . $sdb[$array[$i]] . "',";
 		}
+		$v = substr($v, 0, strlen($v) - 1);		
+
 		for ($i=0;$i<count($blank); $i++)
 		{
 			$q .= " ," . $blank[$i] . " ";
 			$v .= " ,'' ";
 		}
 
-		$v = substr($v, 0, strlen($v) - 1);		
 		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
 		$res2 = mssql_query($ins);
 		$error[] = mssql_get_last_message();
