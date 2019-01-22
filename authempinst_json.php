@@ -50,7 +50,7 @@ function dispatch_db($db, $dev='')
 		}
 		if ($sdb['Status'] == 'Traveling')
 		{
-			$dd .= " , TimeOn = " . date("H:i:s", time() . "'";
+			$dd .= " , TimeOn = " . date("H:i:s", time()) . "'";
 		}
 	}
 	$sql = $up . $dd . $where;

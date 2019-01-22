@@ -42,7 +42,7 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['checkInStatus'] == 'Stop' )
 	{
-		$up = "UPDATE DispTech$dev SET Status = '" $db['event'] . "'";
+		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "'";
 		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "'";
 		if ($db['Status'] == 'Complete')
 		{
