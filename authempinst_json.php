@@ -101,7 +101,7 @@ function dispatch_db($db, $dev='')
 			{
 				$sdb['Status'] = 'Pending';
 			}
-			$v .= "'" . s$db[$array[$i]] . "',";
+			$v .= "'" . $sdb[$array[$i]] . "',";
 		}
 	
 		$v = substr($v, 0, strlen($v) - 1);		
