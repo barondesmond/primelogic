@@ -26,10 +26,11 @@ function dispatch_db($db, $dev='')
 		return $db;
 	}
 	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
-	if (!$sbd)
+	if (!$sdb)
 	{
 		$db['error'][] = 'Missing DispTech';
 		$db['error'][] = $sel;
+		$db['error'][] = $sdb;
 		return $db;
 	}
 	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending') and Counter = '" . $sdb['Counter'] . "' ";
@@ -37,7 +38,7 @@ function dispatch_db($db, $dev='')
 	if ($db['checkinStatus'] == 'Start')
 	{
 		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
-		if ($db['event'] == 'Traveling' && $sbd['Status'] == 'Pending')
+		if ($db['event'] == 'Traveling' && $sdb['Status'] == 'Pending')
 		{
 			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", time()) . "' ";
 		}
@@ -48,7 +49,7 @@ function dispatch_db($db, $dev='')
 		else
 		{
 			$db['error'][] = 'missing event';
-			$db['error'][] = $sbd;
+			$db['error'][] = $sdb;
 			$db['error'][] = $db;
 			return $db;
 		}
