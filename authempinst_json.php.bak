@@ -12,6 +12,8 @@ function dispatch_db($db, $dev='')
     //..TimeOn, TimeOff
 	$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
 	$q = '';
+	$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
+
 	for ($i=0; $i < count($array); $i++)
 	{
 		$q .= $array[$i] . ',';
@@ -103,7 +105,12 @@ function dispatch_db($db, $dev='')
 			}
 			$v .= "'" . $sdb[$array[$i]] . "',";
 		}
-	
+		for ($i=0;$i<count($blank); $i++)
+		{
+			$q .= " ," . $blank[$i] . " ";
+			$v .= " ,'' ";
+		}
+
 		$v = substr($v, 0, strlen($v) - 1);		
 		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
 		$res2 = mssql_query($ins);
