@@ -26,7 +26,12 @@ function dispatch_db($db, $dev='')
 		return $db;
 	}
 	$sdb = mssql_fetch_assoc($res_sel);
-
+	if (!$sbd)
+	{
+		$db['error'][] = 'Missing DispTech';
+		$db['error'][] = $sel;
+		return $db;
+	}
 	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending') and Counter = '" . $sdb['Counter'] . "' ";
 
 	if ($db['checkinStatus'] == 'Start')

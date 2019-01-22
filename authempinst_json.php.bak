@@ -36,9 +36,16 @@ function dispatch_db($db, $dev='')
 		{
 			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", time()) . "' ";
 		}
-		if ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
+		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
 		{
 			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
+		}
+		else
+		{
+			$db['error'][] = 'missing event';
+			$db['error'][] = $sbd;
+			$db['error'][] = $db;
+			return $db;
 		}
 	
 	}
