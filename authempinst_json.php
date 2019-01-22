@@ -1,28 +1,87 @@
 <?php
 include("_db_config.php");
 
-function dispatch_db($db, $dev)
+function dispatch_db($db, $dev='')
 {
-	$where = "WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "'";
+
+	//UPDATE DispTechDev SET DispDate = getdate()  WHERE Dispatch = '6555775' and Counter = '000' and Status = 'Traveling' and ServiceMan = '0195'
+	//..DateOff
+    //UPDATE DispTechDev SET DispTime = '" . date("H:i:s", time()) . "' WHERE Dispatch = '6555775' and Counter = '000' and Status = 'Traveling' and ServiceMan = '0195'
+    //..TimeOn, TimeOff
+	$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreate', 'HoursPayed');
+	$q = '';
+	for ($i=0; $i < count($array); $i++)
+	{
+		$q .= $array[$i] . ',';
+	}
+	$q = substr($q, 0, strlen($q) - 1);
+
+	$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending')";
+	$res_sel = mssql_query($sel);
+	if (!mssql_num_rows($res_sel))
+	{
+		$db['error'] = "Invalid DispTech$dev state";
+		return $db;
+	}
+	$sdb = mssql_fetch_assoc($res_sel);
+
+	$where = "WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending') and Counter = '" . $sdb['Counter'] . "'";
 
 	if ($db['checkinStatus'] == 'Start')
 	{
 		$up = "UPDATE DispTech$dev SET Status = " . $db['event'] . "'";
+		if ($db['event'] == 'Traveling' && $sbd['Status'] == 'Pending')
+		{
+			$dd = ", DispDate = getdate(), DispTime = '"  date("H:i:s", time()) . "' ";
+		}
+		if ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
+		{
+			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
+		}
+	
 	}
-	if ($db['checkInStatus'] == 'Stop' && $db['Complete'] == 'Y')
+	if ($db['checkInStatus'] == 'Stop' )
 	{
-		$up = "UPDATE DispTech$dev SET Status = 'Complete'";
+		$up = "UPDATE DispTech$dev SET Status = '" $db['event'] . "'";
+		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "'";
+		if ($db['Status'] == 'Complete')
+		{
+			$dd .= " , Complete = 'Y' ";
+		}
+		if ($sdb['Status'] == 'Traveling')
+		{
+			$dd .= " , TimeOn = " . date("H:i:s", time() . "'";
+		}
 	}
-	elseif ($db['checkInStatus'] == 'Stop')
+	$sql = $up . $dd . $where;
+	$res = @mssql_query($sql);
+	$error[] = mssql_get_last_message();
+
+	if (mssql_rows_affected($res) > 0 && $db['checkInStatus'] = 'Stop')
 	{
-		$up = "UPDATE DispTech$dev SET Status = 'Off Job'";
+		for ($i=0; $i< count($array); $i++)
+		{
+			if ($array[$i] == 'Counter')
+			{
+				$db[$array[$i]] = (int) $db[$array[$i]];
+				$db[$array[$i]]++;
+				$db[$array[$i]] = tr_pad($db[$array[$i]], 3, "0", STR_PAD_LEFT);
+			}
+
+			$v .= "'" . $db[$array[$i]] . "',";
+		}
+		$v = substr($v, 0, strlen($v) - 1);		
+		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
+		$res2 = mssql_query($ins);
+		$error[] = mssql_get_last_message();
 	}
 
-	if ($db['checkInStatus'] == 'Stop')
-	{
-
-	}
+return $error;
 }
+
+function timeclock_db($_REQUEST)
+{
+
 
 $time = time();
 
@@ -53,17 +112,34 @@ elseif ($_REQUEST['checkinStatus'] == 'Start')
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
 }
-/*
-$sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as JobNotes FROM Jobs
-	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
-	WHERE JobStatus = '100' and Inactive = '0'
-	ORDER BY Name ";
+return $error;
 
-*/
+}
+
 if ($_REQUEST['dev'] == true)
 {
 	$d = 'Dev';
 }
+
+if ($_REQUEST['Screen'] == 'Dispatch')
+{
+	$dbd = dispatch_db($_REQUEST, $d);
+	if (!$dbd['error'])
+	{
+		if ($error = timeclock_db($_REQUEST))
+		{
+			//error
+		}
+	}
+}
+else
+{
+	if ($error = timeclock_db($_REQUEST))
+	{
+		//error
+	}
+}
+
 	
 $sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
