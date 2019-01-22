@@ -91,6 +91,7 @@ if ($db['checkinStatus'] == 'Stop')
 	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
+	$error[] = $sql1;
 }
 elseif ($db['checkinStatus'] == 'Start')
 {
@@ -112,6 +113,7 @@ elseif ($db['checkinStatus'] == 'Start')
 	
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
+	$error[] = $sql2;
 }
 return $error;
 
@@ -159,6 +161,7 @@ WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installation
 
 $res = mssql_query($sql);
 $error[] = mssql_get_last_message();
+$error[] = $sql;
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
@@ -172,8 +175,7 @@ if (!$db)
 if (isset($error))
 {
 	$db['error'][] = $error;
-	$db['sql'][] = $sql1;
-	$db['sql'][] = $sql2;
+
 }
 
 
