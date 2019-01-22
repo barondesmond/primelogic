@@ -32,7 +32,7 @@ function dispatch_db($db, $dev='')
 		$up = "UPDATE DispTech$dev SET Status = " . $db['event'] . "'";
 		if ($db['event'] == 'Traveling' && $sbd['Status'] == 'Pending')
 		{
-			$dd = ", DispDate = getdate(), DispTime = '"  date("H:i:s", time()) . "' ";
+			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", time()) . "' ";
 		}
 		if ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
 		{
