@@ -129,9 +129,9 @@ if ($_REQUEST['Screen'] == 'Dispatch')
 	$error = dispatch_db($_REQUEST, $d);
 	if (!$error['error'])
 	{
-		if ($error = timeclock_db($_REQUEST))
+		if ($error2 = timeclock_db($_REQUEST))
 		{
-			//error
+			$error = array_merge($error, $error2);
 		}
 	}
 	
