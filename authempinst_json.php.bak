@@ -30,7 +30,14 @@ function dispatch_db($db, $dev='')
 	if ($db['checkinStatus'] == 'Start')
 	{
 		$up = "UPDATE DispTech$dev SET Status = " . $db['event'] . "'";
-		$dd = ", DispDate = getdate(), TimeOn = '" . date("H:i:s", time()) . "'";
+		if ($db['event'] == 'Traveling' && $sbd['Status'] == 'Pending')
+		{
+			$dd = ", DispDate = getdate(), DispTime = '"  date("H:i:s", time()) . "' ";
+		}
+		if ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
+		{
+			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
+		}
 	
 	}
 	if ($db['checkInStatus'] == 'Stop' )
@@ -40,6 +47,10 @@ function dispatch_db($db, $dev='')
 		if ($db['Status'] == 'Complete')
 		{
 			$dd .= " , Complete = 'Y' ";
+		}
+		if ($sdb['Status'] == 'Traveling')
+		{
+			$dd .= " , TimeOn = " . date("H:i:s", time() . "'";
 		}
 	}
 	$sql = $up . $dd . $where;
