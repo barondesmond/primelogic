@@ -87,7 +87,7 @@ function dispatch_db($db, $dev='')
 		$db['error'] = "missing $up $dd $where ";
 		return $db;
 	}
-	if (mssql_rows_affected($res) > 0 && $db['checkinStatus'] == 'Stop')
+	if (@mssql_rows_affected($res) > 0 && $db['checkinStatus'] == 'Stop')
 	{
 		for ($i=0; $i< count($array); $i++)
 		{
