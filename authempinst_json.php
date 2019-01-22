@@ -1,32 +1,28 @@
 <?php
 include("_db_config.php");
 
-/* create*
-CREATE TABLE UserAppAuth (
-EmpNo INT PRIMARY KEY NOT NULL,
-installationID varchar(255),
-authorized INT NOT NULL DEFAULT '0'
-)
-*/
-
-/*
-INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhfladf');
-*/
-/*
-$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "'' and installationId = '" . $_REQUEST['installationId'] . "'";
-$res = mssql_query($sql);
-$errors[] = mssql_get_last_message();
-if (!mssql_num_rows($res))
+function dispatch_db($db, $dev)
 {
-	$sql = "INSERT INTO UserAppAuth (EmpNo, installationId) VALUES('" . $_REQUEST['EmpNo'] . "','" . $_REQUEST['installationId'] . "'";
-	mssql_query($sql);
-	$errors[] = mssql_get_last_message();
-	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '0' WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and installationid != '" . $_REQUEST['installationId'] . "'";
-	mssql_query($sql);
-	$errors[] = mssql_get_last_message();
+	$where = "WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "'";
 
+	if ($db['checkinStatus'] == 'Start')up
+	{
+		$up = "UPDATE DispTech$dev SET Status = " . $db['event'] . "'";
+	}
+	if ($db['checkInStatus'] == 'Stop' && $db['Complete'] == 'Y')
+	{
+		$up = "UPDATE DispTech$dev SET Status = 'Complete'";
+	}
+	elseif ($db['checkInStatus'] == 'Stop')
+	{
+		$ = "UPDATE DispTech$dev SET Status = 'Off Job'";
+	}
+
+	if ($db['checkInStatus'] == 'Stop')
+	{
+
+	}
 }
-*/
 
 $time = time();
 
