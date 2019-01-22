@@ -42,21 +42,36 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['checkInStatus'] == 'Stop' )
 	{
-		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
-		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "'";
+		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "' ";
 		if ($db['Status'] == 'Complete')
 		{
+			$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
+
 			$dd .= " , Complete = 'Y' ";
+
 		}
+		else
+		{
+			$up = "UPDATE DispTech$dev SET Status = 'Off Job' ";
+		}
+
 		if ($sdb['Status'] == 'Traveling')
 		{
-			$dd .= " , TimeOn = " . date("H:i:s", time()) . "'";
+			$dd .= " , TimeOn = " . date("H:i:s", time()) . "' ";
 		}
 	}
-	$sql = $up . $dd . $where;
-	$res = @mssql_query($sql);
-	$error[] = mssql_get_last_message();
-	$error[] = $sql;
+	if ($up != '' && $dd != '' && $where != '')
+	{
+		$sql = $up . $dd . $where;
+		$res = @mssql_query($sql);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql;
+	}
+	else
+	{
+		$db['error'] = "missing $up $dd $where ";
+		return $db;
+	}
 	if (mssql_rows_affected($res) > 0 && $db['checkInStatus'] = 'Stop')
 	{
 		for ($i=0; $i< count($array); $i++)

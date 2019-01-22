@@ -3,7 +3,9 @@ include("_db_config.php");
 
 function dispatch_db($db, $dev='')
 {
-
+	$up = '';
+	$dd = '';
+	$where = '';
 	//UPDATE DispTechDev SET DispDate = getdate()  WHERE Dispatch = '6555775' and Counter = '000' and Status = 'Traveling' and ServiceMan = '0195'
 	//..DateOff
     //UPDATE DispTechDev SET DispTime = '" . date("H:i:s", time()) . "' WHERE Dispatch = '6555775' and Counter = '000' and Status = 'Traveling' and ServiceMan = '0195'
@@ -60,7 +62,7 @@ function dispatch_db($db, $dev='')
 			$dd .= " , TimeOn = " . date("H:i:s", time()) . "' ";
 		}
 	}
-	if ($up && $dd && $where)
+	if ($up != '' && $dd != '' && $where != '')
 	{
 		$sql = $up . $dd . $where;
 		$res = @mssql_query($sql);
