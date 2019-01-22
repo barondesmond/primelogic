@@ -48,7 +48,7 @@ function dispatch_db($db, $dev='')
 		{
 			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
 		}
-		elseif ($db['Event'] == 'Working' && $sdb['Status'] == 'Pending')
+		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Pending')
 		{
 			$dd = ", DispDate = getdate(), DispTime = '" . date("H:i:s", time()) . "', TimeOn = '" . date("H:i:s", time()) . "' ";
 		}
