@@ -56,7 +56,7 @@ function dispatch_db($db, $dev='')
 	$sql = $up . $dd . $where;
 	$res = @mssql_query($sql);
 	$error[] = mssql_get_last_message();
-
+	$error[] = $sql;
 	if (mssql_rows_affected($res) > 0 && $db['checkInStatus'] = 'Stop')
 	{
 		for ($i=0; $i< count($array); $i++)
@@ -74,6 +74,7 @@ function dispatch_db($db, $dev='')
 		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
 		$res2 = mssql_query($ins);
 		$error[] = mssql_get_last_message();
+		$error[] = $ins;
 	}
 
 return $error;

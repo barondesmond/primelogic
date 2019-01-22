@@ -124,14 +124,15 @@ if ($_REQUEST['dev'] == true)
 
 if ($_REQUEST['Screen'] == 'Dispatch')
 {
-	$dbd = dispatch_db($_REQUEST, $d);
-	if (!$dbd['error'])
+	$error = dispatch_db($_REQUEST, $d);
+	if (!$error['error'])
 	{
 		if ($error = timeclock_db($_REQUEST))
 		{
 			//error
 		}
 	}
+	
 }
 else
 {
