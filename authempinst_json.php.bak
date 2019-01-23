@@ -48,7 +48,7 @@ function dispatch_db($db, $dev='')
 		{
 			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
 			$tcq = TimeClockQuery($db, $dev);
-			$tsql = "UPDATE TimeClock SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+			$tsql = "UPDATE TimeClockApp SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 			@mssql_query($tsql);
 			$error[] = mssql_get_last_message();
 			$error[] = $tsql;
@@ -84,9 +84,9 @@ function dispatch_db($db, $dev='')
 	if ($db['checkinStatus'] == 'Stop' )
 	{
 		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "' ";
-		if ($db['Status'] == 'Complete')
+		if ($db['event'] == 'Working' || $db['event'] == 'Complete')
 		{
-			$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
+			$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
 
 			$dd .= " , Complete = 'Y' ";
 		}

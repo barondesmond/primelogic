@@ -84,16 +84,8 @@ function dispatch_db($db, $dev='')
 	if ($db['checkinStatus'] == 'Stop' )
 	{
 		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "' ";
-		if ($db['Status'] == 'Complete')
-		{
-			$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
-
-			$dd .= " , Complete = 'Y' ";
-		}
-		else
-		{
-			$up = "UPDATE DispTech$dev SET Status = 'Off Job' ";
-		}
+		$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
+		$dd .= " , Complete = 'Y' ";
 
 		if ($sdb['Status'] == 'Traveling')
 		{
