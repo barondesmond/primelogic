@@ -48,7 +48,7 @@ function dispatch_db($db, $dev='')
 		{
 			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
 			$tcq = TimeClockQuery($db, $dev);
-			$tsql = "UPDATE TimeClock SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+			$tsql = "UPDATE TimeClockApp SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 			@mssql_query($tsql);
 			$error[] = mssql_get_last_message();
 			$error[] = $tsql;

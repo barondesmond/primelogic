@@ -47,6 +47,26 @@ function dispatch_db($db, $dev='')
 		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
 		{
 			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
+			$tcq = TimeClockQuery($db, $dev);
+			$tsql = "UPDATE TimeClock SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+			@mssql_query($tsql);
+			$error[] = mssql_get_last_message();
+			$error[] = $tsql;
+			if ($up != '' && $dd != '' && $where != '')
+			{
+				$sql = $up . $dd . $where;
+				$res = @mssql_query($sql);
+				$error[] = mssql_get_last_message();
+				$error[] = $sql;
+				$error['error'] = 'Changed Event Updated TimeClockApp';
+				return $error;
+			}
+			else
+			{
+				$error['error'] = "missing $up $dd $where ";
+				return $error;
+			}
+			
 		}
 		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Pending')
 		{
@@ -193,7 +213,8 @@ else
 	}
 }
 
-	
+function TimeClockQuery($req, $dev='')
+{
 $sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
@@ -201,11 +222,11 @@ LEFT JOIN Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and J
 LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 LEFT JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
-LEFT JOIN DispTech" . $d . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $_REQUEST['EmpNo'] . "'
+LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "'
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 
-WHERE Employee.EmpNo = '" . $_REQUEST['EmpNo'] . "' and UserAppAuth.installationID = '" . $_REQUEST['installationId'] . "' ";
+WHERE Employee.EmpNo = '" . $req['EmpNo'] . "' and UserAppAuth.installationID = '" . $req['installationId'] . "' ";
 
 
 $res = mssql_query($sql);
@@ -213,6 +234,11 @@ $error[] = mssql_get_last_message();
 $error[] = $sql;
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
+
+return $db;
+}
+
+$db = TimeClockQuery($_REQUEST, $d);
 
 if (!$db)
 {
