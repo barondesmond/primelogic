@@ -168,6 +168,10 @@ if ($_REQUEST['dev'] == 'true')
 {
 	$d = 'Dev';
 }
+else
+{
+	$d = '';
+}
 
 if ($_REQUEST['Screen'] == 'Dispatch')
 {
