@@ -1,7 +1,7 @@
 <?php
 include("_db_config.php");
 
-function add_note($db, $dev)
+function add_note($db, $dev='')
 {
 	$tcq = TimeClockQuery($db, $dev);
 	$note = 'add' . $db['Screen'] . 'Note';
