@@ -37,7 +37,7 @@ while ($db = mssql_fetch_assoc($res))
 	$i++;
 
 }
-
+$js['sql'] = $sql;
 header('Content-Type: application/json');
 
 echo json_encode($js);
