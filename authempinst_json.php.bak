@@ -17,6 +17,9 @@ function add_note($db, $dev)
 		$error[] = $sql;
 		return $error;
 	}
+	$error['error'] = 'No Screen Handler ' . $db['Screen'] ;
+return $error;
+
 }
 		
 function dispatch_db($db, $dev='')
