@@ -265,9 +265,9 @@ else
 
 
 $note = "add" . $_REQUEST['Screen'] . "Note";
-if ($_REQUEST[$note] != '' && $_REQUEST['checkinStatus'] == 'addNote')
+if ($_REQUEST['checkinStatus'] == 'addNote' && $error = add_note($db, $d))
 {
-	$error = add_note($db, $d);
+	
 }
 
 $db = TimeClockQuery($_REQUEST, $d);

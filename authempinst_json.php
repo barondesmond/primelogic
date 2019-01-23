@@ -265,7 +265,7 @@ else
 
 
 $note = "add" . $_REQUEST['Screen'] . "Note";
-if ($_REQUEST['checkinStatus'] == 'addNote' && $error = add_note($db, $d))
+if ($error = add_note($_REQUEST, $d))
 {
 	
 }
