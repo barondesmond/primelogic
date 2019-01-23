@@ -1,6 +1,27 @@
 <?php
 include("_db_config.php");
 
+function add_note($db, $dev)
+{
+	$tcq = TimeClockQuery($db, $dev);
+
+	if ($db['Screen'] == 'Dispatch' && $db['AddDispatchNote'] != '')
+	{
+		$sql = "UPDATE Dispatch$dev SET Notes = '" . $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . " " . $db['AddDispatchNote'] . " WHERE Dispatch = '" . $db['Dispatch'] . "'";
+	}
+	
+	if ($sql != '')
+	{
+		@mssql_query($sql);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql;
+		return $error;
+	}
+	$error['error'] = 'No Screen Handler ' $db['Screen'] ;
+return $error;
+
+}
+		
 function dispatch_db($db, $dev='')
 {
 	$up = '';
@@ -228,6 +249,12 @@ $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 return $db;
+}
+
+$note = "Add" . $_REQUEST['Screen'] . "Note";
+if ($_REQUEST[$note] != '')
+{
+	$error = add_note($db, $d);
 }
 
 $db = TimeClockQuery($_REQUEST, $d);
