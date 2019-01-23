@@ -8,7 +8,8 @@ function add_note($db, $dev)
 
 	if ($db['Screen'] == 'Dispatch' && $db[$note] != '')
 	{
-		$sql = "UPDATE Dispatch$dev SET Notes = '" . $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . " " . $db['AddDispatchNote'] . " WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db['AddDispatchNote'] . "\r\n";
+		$sql = "UPDATE Dispatch$dev SET Notes = '" . $addNote . " WHERE Dispatch = '" . $db['Dispatch'] . "'";
 	}
 	
 	if ($sql != '')

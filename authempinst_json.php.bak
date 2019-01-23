@@ -4,8 +4,9 @@ include("_db_config.php");
 function add_note($db, $dev)
 {
 	$tcq = TimeClockQuery($db, $dev);
+	$note = 'add' . $db['Screen'] . 'Note';
 
-	if ($db['Screen'] == 'Dispatch' && $db['AddDispatchNote'] != '')
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '')
 	{
 		$sql = "UPDATE Dispatch$dev SET Notes = '" . $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . " " . $db['AddDispatchNote'] . " WHERE Dispatch = '" . $db['Dispatch'] . "'";
 	}
@@ -17,7 +18,6 @@ function add_note($db, $dev)
 		$error[] = $sql;
 		return $error;
 	}
-	$note = 'Add' . $db['Screen'] . 'Note';
 
 	$error['error'] = 'No Screen Handler ' . $db['Screen'] . ' ' . $db[$note];
 return $error;
@@ -26,6 +26,11 @@ return $error;
 		
 function dispatch_db($db, $dev='')
 {
+
+	if ($db['checkinStatus'] != 'Start' && $db['checkinStatus'] != 'Stop')
+	{
+		return false;
+	}
 	$up = '';
 	$dd = '';
 	$where = '';
@@ -199,6 +204,34 @@ return $error;
 
 }
 
+
+function TimeClockQuery($req, $dev='')
+{
+$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
+INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
+LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
+LEFT JOIN Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0'
+LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
+LEFT JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
+LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "'
+LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
+LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
+
+WHERE Employee.EmpNo = '" . $req['EmpNo'] . "' and UserAppAuth.installationID = '" . $req['installationId'] . "' ";
+
+
+$res = mssql_query($sql);
+$error[] = mssql_get_last_message();
+$error[] = $sql;
+$i=1;
+$db = mssql_fetch_array($res, MSSQL_ASSOC);
+
+return $db;
+}
+
+//Main Api Render
+
 if ($_REQUEST['dev'] == 'true')
 {
 	$d = 'Dev';
@@ -228,33 +261,10 @@ else
 	}
 }
 
-function TimeClockQuery($req, $dev='')
-{
-$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
-INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
-LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
-LEFT JOIN Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0'
-LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
-LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
-LEFT JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
-LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "'
-LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
-LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 
-WHERE Employee.EmpNo = '" . $req['EmpNo'] . "' and UserAppAuth.installationID = '" . $req['installationId'] . "' ";
-
-
-$res = mssql_query($sql);
-$error[] = mssql_get_last_message();
-$error[] = $sql;
-$i=1;
-$db = mssql_fetch_array($res, MSSQL_ASSOC);
-
-return $db;
-}
 
 $note = "Add" . $_REQUEST['Screen'] . "Note";
-if ($_REQUEST[$note] != '')
+if ($_REQUEST[$note] != '' && $_REQUEST['checkinStatus'] == 'addNote')
 {
 	$error = add_note($db, $d);
 }
