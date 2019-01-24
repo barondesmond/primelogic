@@ -27,7 +27,7 @@ function add_note($db, $dev='')
 	if ($db['Screen'] == 'Employee' && $db[$note] != '')
 	{
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
-		$sql = "UPDATE TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+		$sql = "UPDATE TimeClockApp as TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 	}
 	if ($sql != '')
 	{
