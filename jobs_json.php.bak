@@ -3,10 +3,13 @@ include("_db_config.php");
 include("_location_api.php");
 //api app
 
+if ($_REQUEST['dev'] == 'true')
+{
+	$dev = 'Dev';
 
 $js['title'] = 'Jobs List';
 $js['description'] = 'Job Name, Job Location';
-$sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as JobNotes, LocationApi.latitude, LocationApi.longitude FROM Jobs
+$sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as JobNotes, LocationApi.latitude, LocationApi.longitude FROM Jobs$dev as Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 	LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE JobStatus = '100' and Inactive = '0' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''
