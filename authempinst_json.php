@@ -6,17 +6,24 @@ function add_note($db, $dev='')
 	$tcq = TimeClockQuery($db, $dev);
 	$note = 'add' . $db['Screen'] . 'Note';
 
-	if ($db['Screen'] == 'Dispatch' && $db[$note] != '')
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
 	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
 		$sql = "UPDATE Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'";
 	}
-	if ($db['Screen'] == 'Job' && $db[$note] != '')
+	elseif ($db['Screen'] == 'Dispatch')
+	{
+		return false;
+	}
+	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
 	{
 		$addNote = $tcq['JobNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
 		$sql = "UPDATE Job$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";
 	}
-
+	elseif ($db['Screen'] == 'Job')
+	{
+		return false;
+	}
 	if ($db['Screen'] == 'Employee' && $db[$note] != '')
 	{
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
@@ -277,7 +284,7 @@ else
 $note = "add" . $_REQUEST['Screen'] . "Note";
 if ($error = add_note($_REQUEST, $d))
 {
-	
+	//yay
 }
 
 $db = TimeClockQuery($_REQUEST, $d);
