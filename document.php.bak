@@ -14,5 +14,3 @@ if ($_REQUEST['Name'])
 		 exit;
 	}
  }
- 
-
