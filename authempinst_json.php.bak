@@ -25,7 +25,7 @@ function dispatch_hours($db, $dev = '')
 			}
 			if ($hr['TimeOn'] != '' && $hr['TimeOff'] != '')
 			{
-				$db['Traveling'] = $db['Traveling'] + ((strtotime($hr['TimeOn']) - strtotime($hr['DispTime']) / (60*60));
+				$db['Traveling'] = $db['Traveling'] + ((strtotime($hr['TimeOn']) - strtotime($hr['DispTime'])) / (60*60));
 			}
 	
 		}
