@@ -6,4 +6,4 @@ SELECT * INTO DispatchDev FROM Dispatch;
 SELECT * INTO JobsDev FROM Jobs;
 UPDATE DispTechDev SET ServiceMan = '0195' WHERE ServiceMan = '0173';
 DELETE FROM TimeClockApp WHERE EmpNo = '0195'; 
-DELETE FROM DispTechDev WHERE Status != 'Pending' and ServiceMan = '0195';
+DELETE FROM DispTechDev WHERE Status IN ( 'Traveling', 'Working') and ServiceMan = '0195';

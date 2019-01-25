@@ -276,7 +276,7 @@ $error[] = mssql_get_last_message();
 $error[] = $sql;
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-	if ($db['Dispatch'] != '' && $db['Screen'] = 'DispatchComplete')
+	if ($db['Dispatch'] != '')
 	{
 		$db = dispatch_hours($db, $dev);
 	}
