@@ -5,14 +5,29 @@ function dispatch_hours($db, $dev = '')
 {
 	if ($db['Dispatch']!='')
 	{
-		$sql = "SELECT DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "SELECT Status, DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res = mssql_query($sql);
 		$db['Working'] = 0;
 		$db['Traveling'] = 0;
 		while ($hr = msssql_fetch_array($res, MSSQL_ASSOC))
 		{
-			$db['Working'] = $db['Working'] + ((strtotime($hr['TimeOff']) - strtotime($hr['TimeOn'])) / (60*60));
-			$db['Traveling'] = $db['Traveling'] + ((strtotime($hr['TimeOn']) - strtotime($hr['DispTime']) / (60*60));
+			if ($hr['Status'] == 'Working' && $hr['TimeOff'] == '')
+			{
+				$hr['TimeOff'] = date("Y-m-d: H:i:s", time());
+			}
+			if ($hr['Status'] == 'Traveling' && $hr['TimeOn'] != '')
+			{
+				$hr['TimeOn'] == date("Y-m-d: H:i:s", time());
+			}
+			if ($hr['TimeOff'] != '' && $hr['TimeOn'] != '')
+			{
+				$db['Working'] = $db['Working'] + ((strtotime($hr['TimeOff']) - strtotime($hr['TimeOn'])) / (60*60));
+			}
+			if ($hr['TimeOn'] != '' && $hr['TimeOff'] != '')
+			{
+				$db['Traveling'] = $db['Traveling'] + ((strtotime($hr['TimeOn']) - strtotime($hr['DispTime']) / (60*60));
+			}
+	
 		}
 	}
 return $db;
