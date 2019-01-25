@@ -2,7 +2,7 @@
 include("_db_config.php");
 
 
-if ($_REQUEST['file'])
+if ($_REQUEST['file'] && file_exists($file))
 {
 	    $filename = $_REQUEST['file'];
 
