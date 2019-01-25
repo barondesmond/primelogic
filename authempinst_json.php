@@ -1,6 +1,23 @@
 <?php
 include("_db_config.php");
 
+function dispatch_hours($db, $dev = '')
+{
+	if ($db['Dispatch']!='')
+	{
+		$sql = "SELECT DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$res = mssql_query($sql);
+		$db['Working'] = 0;
+		$db['Traveling'] = 0;
+		while ($hr = msssql_fetch_array($res, MSSQL_ASSOC))
+		{
+			$db['Working'] = $db['Working'] + ((strtotime($hr['TimeOff']) - strtotime($hr['TimeOn'])) / (60*60));
+			$db['Traveling'] = $db['Traveling'] + ((strtotime($hr['TimeOn']) - strtotime($hr['DispTime']) / (60*60));
+		}
+	}
+return $db;
+}
+
 function add_note($db, $dev='')
 {
 	$tcq = TimeClockQuery($db, $dev);
@@ -244,7 +261,10 @@ $error[] = mssql_get_last_message();
 $error[] = $sql;
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-
+	if ($db['Dispatch'] != '')
+	{
+		$db = dispatch_hours($db, $dev);
+	}
 return $db;
 }
 
