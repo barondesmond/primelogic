@@ -9,7 +9,7 @@ function dispatch_hours($db, $dev = '')
 		$res = mssql_query($sql);
 		$db['Working'] = 0;
 		$db['Traveling'] = 0;
-		while ($hr = msssql_fetch_array($res, MSSQL_ASSOC))
+		while ($hr = mssql_fetch_array($res, MSSQL_ASSOC))
 		{
 			if ($hr['Status'] == 'Working' && $hr['TimeOff'] == '')
 			{
