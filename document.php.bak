@@ -29,7 +29,7 @@ if ($_REQUEST['Name'])
 		 //header("Content-Disposition:attachment;filename='" . $db['Name'] . $db['Extension'] . "'");
 		 $fd = "/var/www/pdf/" . $db['Name'] . $db['Extension'];
 		 $file = fopen($fd, 'w');
-		 fwrite($file, $db['Document']);
+		 fwrite($file, hex2bin($db['Document']));
 		 echo "Written $fd";
 		 fclose($file);
 
