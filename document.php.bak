@@ -14,7 +14,10 @@ if ($_REQUEST['file'] && file_exists($file))
     header('Content-Length: ' . filesize($filename));
     readfile($filename);
 }
-
+elseif ($_REQUEST['file'])
+{
+	echo "error " . $_REQUEST['file'];
+}
 if ($_REQUEST['Name'])
 {
  $sql = "SELECT * FROM DocAttach WHERE Name = '" . $_REQUEST['Name'] . "'";
