@@ -1,6 +1,20 @@
 <?php
 include("_db_config.php");
 
+
+if ($_REQUEST['file'])
+{
+	    $filename = $_REQUEST['file'];
+
+    $fileinfo = pathinfo($filename);
+    $sendname = $fileinfo['filename'] . '.' . strtoupper($fileinfo['extension']);
+
+    header('Content-Type: application/pdf');
+    header("Content-Disposition: attachment; filename=\"$sendname\"");
+    header('Content-Length: ' . filesize($filename));
+    readfile($filename);
+}
+
 if ($_REQUEST['Name'])
 {
  $sql = "SELECT * FROM DocAttach WHERE Name = '" . $_REQUEST['Name'] . "'";
