@@ -28,10 +28,9 @@ if ($_REQUEST['Name'])
 	     //header("Content-type:application/pdf");
 		 //header("Content-Disposition:attachment;filename='" . $db['Name'] . $db['Extension'] . "'");
 		 $fd = "/var/www/pdf/" . $db['Name'] . $db['Extension'];
-		 $file = fopen($fd, 'w');
-		 fwrite($file, hex2bin($db['Document']));
-		 echo "Written $fd";
-		 fclose($file);
+    header('Content-Type: application/pdf');
+    header("Content-Disposition: attachment; filename=\"$fd\"");
+		 echo hex2bin($db['Document']);
 
 		 exit;
 	}

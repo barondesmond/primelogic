@@ -30,7 +30,7 @@ if ($_REQUEST['Name'])
 		 $fd = "/var/www/pdf/" . $db['Name'] . $db['Extension'];
     header('Content-Type: application/pdf');
     header("Content-Disposition: attachment; filename=\"$fd\"");
-		 echo hex2bin($db['Document']);
+		 echo base64_decode($db['Document']);
 
 		 exit;
 	}
