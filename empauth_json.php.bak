@@ -42,7 +42,7 @@ if (!isset($db))
 	$db['authorized'] = 0;
 	header('Content-Type: application/json');
 	//$db['error'] = $error;
-	$db['sql'] = $sa;
+	//$db['sql'] = $sa;
 	echo json_encode($db);
 	exit;
 }

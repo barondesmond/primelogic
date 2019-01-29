@@ -36,7 +36,7 @@ $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 
-if (!isset($db))
+if (!isset($db) || $db['EmpNo'] == '')
 {
 	$db['error'] = 'Not Authorized';
 	$db['authorized'] = 0;
