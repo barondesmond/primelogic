@@ -60,7 +60,7 @@ if ($db['UAA'] == '')
 	}
 }
 
-if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1)
+if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1 || ($db['EmpNo'] != '' && $db['authorized'] == 0 && $db['installationId'] != $_REQUEST['installationId']))
 {
 	$db['authorized'] = 0;
 	$sql = "UPDATE UserAppAuth SET authorized = '0', installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
