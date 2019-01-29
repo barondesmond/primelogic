@@ -16,7 +16,7 @@ INSERT INTO UserAppAuth (EmpNo, installationID) VALUES ('0195', 'askdfhahlkjsdhf
 */
 
 
-if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
+if ($_REQUEST['EmpName']   && $_REQUEST['Email'])
 {
 	$sel = " and EmpName = '" . $_REQUEST['EmpName'] . "' and Email = '" . $_REQUEST['Email'] . "'";
 }
@@ -36,6 +36,17 @@ $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 
+if (!isset($db))
+{
+	$db['error'] = 'Employee Missing';
+	$db['authorized'] = 0;
+	header('Content-Type: application/json');
+	$db['error'] = $error;
+	$db['sql'] = $sa;
+	echo json_encode($db);
+	exit;
+}
+
 if ($db['UAA'] == '')
 {
 	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
@@ -48,11 +59,7 @@ if ($db['UAA'] == '')
 		$sa[] = $sql;
 	}
 }
-if (!isset($db))
-{
-	$db['error'] = 'Employee Missing';
-	$db['authorized'] = 0;
-}
+
 if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1)
 {
 	$db['authorized'] = 0;
