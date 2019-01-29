@@ -38,10 +38,10 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 if (!isset($db))
 {
-	$db['error'] = 'Employee Missing';
+	$db['error'] = 'Not Authorized';
 	$db['authorized'] = 0;
 	header('Content-Type: application/json');
-	$db['error'] = $error;
+	//$db['error'] = $error;
 	$db['sql'] = $sa;
 	echo json_encode($db);
 	exit;
