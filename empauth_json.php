@@ -36,7 +36,7 @@ $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 
-if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] != '')
+if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
 {
 	$db['error'] = 'Not Authorized';
 	$db['authorized'] = 0;
