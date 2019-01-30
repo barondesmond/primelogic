@@ -1,7 +1,7 @@
 <?php
 include("_db_config.php");
 
-$sql = "SELECT * FROM TimeClockApp WHERE Posted = ''";
+$sql = "SELECT * FROM TimeClockApp WHERE Posted is NULL";
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
