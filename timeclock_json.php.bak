@@ -2,7 +2,7 @@
 include("_db_config.php");
 
 $sql = "SELECT * FROM TimeClockApp
-INNER JOIN Employee ON TimeClockAdd.EmpNo = Employee.EmpNo
+INNER JOIN Employee ON TimeClockApp.EmpNo = Employee.EmpNo
 WHERE Posted is NULL";
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
