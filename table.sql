@@ -7,17 +7,23 @@ CREATE SEQUENCE TimeClockAppCounter
 /*
 CREATE TABLE TimeClockApp ( 
 TimeClockID int PRIMARY KEY CLUSTERED DEFAULT (NEXT VALUE FOR TimeClockAppCounter),  
-EmpNo INT NOT NULL DEFAULT '0', 
+EmpNo VARCHAR(4) NOT NULL DEFAULT '', 
 installationID VARCHAR(255) NOT NULL DEFAULT '',
 Name varchar(10) NOT NULL DEFAULT '',
-DispatchID varchar(10) NOT NULL DEFAULT '',
 latitude DECIMAL(19,9) NOT NULL DEFAULT '0',
 longitude DECIMAL(19,9) NOT NULL DEFAULT '0',
 violation varchar(255) NOT NULL DEFAULT '',
 event VARCHAR(10) not NULL DEFAULT '',
 EmpActive INT NOT NULL DEFAULT '1',
-StartEvent DATETIME NULL,
-StopEvent DATETIME NULL
+StartTime INT NULL,
+StopTime INT NULL,
+image VARCHAR(255) NULL,
+Dispatch VARCHAR(15) NULL,
+Screen VARCHAR(255) NULL,
+EmployeeNotes VARCHAR(255) NULL,
+document VARCHAR(255) NULL,
+CustSign VARCHAR(255) NULL,
+Posted VARCHAR(255) NULL
 ) 
 
 INSERT INTO TimeClockApp (EmpNo, InstallationId, Name, latitude, longitude, event, StartEvent)
@@ -28,7 +34,7 @@ $sql = "UPDATE TimeClockApp SET EventStop = '$time' WHERE EmpNo = '" . $_REQUEST
 
 /* create*
 CREATE TABLE UserAppAuth (
-EmpNo INT PRIMARY KEY NOT NULL,
+EmpNo VACHAR(4) PRIMARY KEY NOT NULL,
 installationID varchar(255),
 authorized INT NOT NULL DEFAULT '0'
 )

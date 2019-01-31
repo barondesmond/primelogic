@@ -7,6 +7,8 @@ $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
+	$db['StartDate'] = date("Y-m-d H:i:s", $db['StartTime']);
+	$db['StopDate'] = date("Y-m-d H:i:s", $db['StopTime']);
 	$data['TimeClock'][] = $db;
 }
 
