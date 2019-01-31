@@ -312,14 +312,22 @@ else
 	{
 		//error
 	}
+
 }
 
 
 
 $note = "add" . $_REQUEST['Screen'] . "Note";
-if ($error = add_note($_REQUEST, $d))
+if ($error2 = add_note($_REQUEST, $d))
 {
-	//yay
+	if ($error)
+	{
+		$error = array_merge($error, $error2);
+	}
+	else
+	{
+		$error = $error2;
+	}
 }
 
 $db = TimeClockQuery($_REQUEST, $d);
