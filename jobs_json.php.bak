@@ -6,7 +6,7 @@ include("_location_api.php");
 if ($_REQUEST['dev'] == 'true')
 {
 	$dev = 'Dev';
-
+}
 $js['title'] = 'Jobs List';
 $js['description'] = 'Job Name, Job Location';
 $sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as JobNotes, LocationApi.latitude, LocationApi.longitude FROM Jobs$dev as Jobs

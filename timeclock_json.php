@@ -1,8 +1,51 @@
 <?php
 include("_db_config.php");
+include("_user_app_auth.php");
+
+
+$auth = UserAppAuth($_REQUEST);
+if ($auth['authorized'] != '1')
+{
+	header('Content-Type: application/json');
+	echo json_encode($data);
+	exit;
+}
+
+//tc is TimeClockID array 
+//tk is TimeClockID key
+//tv is TimeClock Start/Stop array
+function timeclock_update($tc)
+{
+
+
+	foreach ($tc as $tk => $tv)
+	{
+		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']))
+		{
+			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
+			$res = mssql_query($sql);
+			$error[] = mssql_get_last_message();
+			$error[] = $sql;
+		}
+		else
+		{
+			$error[] = 'Invalid Parameters timeclock_update';
+		}
+	}
+
+return $error;
+
+}
+
+if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
+{
+	$error = timeclock_update($_REQUEST['TimeClockID']);
+	$data['error'] = $error;
+}
+
 
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
-INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
+INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
 LEFT JOIN Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name 
 LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
