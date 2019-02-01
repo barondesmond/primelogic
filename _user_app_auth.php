@@ -1,4 +1,4 @@
-<?
+<?php
 
 function UserAppAuth($db)
 {
@@ -17,6 +17,4 @@ return $db;
 }
 
 
-
-?>
 	
