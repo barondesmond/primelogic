@@ -42,6 +42,11 @@ if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 	$error = timeclock_update($_REQUEST['TimeClockID']);
 	$data['error'] = $error;
 }
+elseif ($_REQUEST['timeclock_update'])
+{
+	$error[] = 'error timeclock update';
+	$error[] = var_export($_REQUEST['TimeClockID']);
+}
 
 
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
