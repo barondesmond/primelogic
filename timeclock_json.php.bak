@@ -1,9 +1,7 @@
 <?php
 include("_db_config.php");
 include("_user_app_auth.php");
-//tc is TimeClockID array 
-//tk is TimeClockID key
-//tv is TimeClock Start/Stop array
+
 
 $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
@@ -12,6 +10,10 @@ if ($auth['authorized'] != '1')
 	echo json_encode($data);
 	exit;
 }
+
+//tc is TimeClockID array 
+//tk is TimeClockID key
+//tv is TimeClock Start/Stop array
 function timeclock_update($tc)
 {
 
