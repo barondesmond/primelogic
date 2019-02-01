@@ -7,7 +7,7 @@ function UserAppAuth($db)
 	$res = mssql_query($sql);
 	$db = mssql_fetch_array($res, MSSQL_ASSOC);
 
-if (!isset($db['authorized']))
+if (!isset($db['authorized'])
 {
 	$db['authorized'] = '0';
 }
