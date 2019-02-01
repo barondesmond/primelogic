@@ -48,7 +48,7 @@ if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 }
 elseif ($_REQUEST['timeclock_update'])
 {
-	$error[] = 'error timeclock update';
+	$error[] = 'error timeclock update request';
 	$error[] = var_export($_REQUEST['TimeClockID']);
 }
 
