@@ -32,7 +32,7 @@ function timeclock_update($tc)
 			$error[] = 'Invalid Parameters timeclock_update';
 		}
 	}
-if (!$error)
+if (!isset($error))
 	{
 	$error[] = 'error timclock update';
 	$error[] = $tc;
