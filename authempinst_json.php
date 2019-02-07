@@ -216,7 +216,7 @@ function dispatch_db($db, $dev='')
 	elseif ($db['checkinStatus'] == 'Stop' && $db['Complete'] == 'Y')
 	{
 		//dont insert new disptech
-		$sql = "UPDATE Dispatch$dev SET Complete = gettime() WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "UPDATE Dispatch$dev SET Complete = getdate() WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res = mssql_query($sql);
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;

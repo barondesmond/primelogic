@@ -184,7 +184,7 @@ function dispatch_db($db, $dev='')
 		$db['error'] = "missing $up $dd $where ";
 		return $db;
 	}
-	if ($db['checkinStatus'] == 'Stop' && ($db['Complete'] != 'Y')
+	if ($db['checkinStatus'] == 'Stop' && $db['Complete'] != 'Y')
 	{
 		for ($i=0; $i< count($array); $i++)
 		{
