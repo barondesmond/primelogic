@@ -184,7 +184,7 @@ function dispatch_db($db, $dev='')
 		$db['error'] = "missing $up $dd $where ";
 		return $db;
 	}
-	if ($db['checkinStatus'] == 'Stop')
+	if ($db['checkinStatus'] == 'Stop' && ($db['Complete'] != 'Y')
 	{
 		for ($i=0; $i< count($array); $i++)
 		{
@@ -213,6 +213,14 @@ function dispatch_db($db, $dev='')
 		$error[] = mssql_get_last_message();
 		$error[] = $ins;
 	}
+	elseif ($db['checkinStatus'] == 'Stop' && $db['Complete'] == 'Y')
+	{
+		//dont insert new disptech
+		$sql = "UPDATE Dispatch$dev SET Complete = gettime() WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$res = mssql_query($sql);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql;
+	}
 
 return $error;
 }
@@ -225,7 +233,11 @@ $time = time();
 
 if ($db['checkinStatus'] == 'Stop')
 {
-	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
+	if ($db['Complete'] == 'Y')
+	{
+		$complete = ", customer = '" . $db['customer'] . "', customerimage = '" . $db['customerimage'] . "'";
+	}
+	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
 	$error[] = $sql1;
