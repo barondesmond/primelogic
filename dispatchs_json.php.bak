@@ -7,6 +7,7 @@ $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
+	$auth['dispatchs'] = null;
 	echo json_encode($auth);
 	exit;
 }
