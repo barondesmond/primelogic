@@ -30,7 +30,7 @@ if ($_GET['print'])
 if ($argv[1])
 {
 
-	email_job_report($argv[1], , $html);
+	email_job_report($argv[1], $title, $html);
 	echo "Report Emailed $argv[1];";
 }
 elseif ($_GET['email'] && email_validate($_GET['email']))
