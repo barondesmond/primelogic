@@ -134,7 +134,8 @@ if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 elseif ($_REQUEST['timeclock_update'])
 {
 	$error[] = 'error timeclock update request';
-	$error[] = var_export($_REQUEST['TimeClockID']);
+	//$error[] = var_export($_REQUEST['TimeClockID']);
+	$data['error'] = $error;
 }
 if ($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
@@ -144,7 +145,7 @@ if ($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUE
 elseif ($_REQUEST['timeclock_add'])
 {
 	$error[] = 'error timeclock add request';
-	$error[] = var_export($_REQUEST);
+	$data['error'] = $error;
 }
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
