@@ -136,7 +136,7 @@ elseif ($_REQUEST['timeclock_update'])
 	$error[] = 'error timeclock update request';
 	$error[] = var_export($_REQUEST['TimeClockID']);
 }
-if (isset($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'] && isset($_REQUEST['Screen']) && isset($_REQUEST['event'])
+if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
 	$error = timeclock_add($_REQUEST);
 	$data['error'] = $error;

@@ -16,7 +16,7 @@ function timeclock_add($db)
 {
 	$sql = "SELECT * FORM UserAuthApp WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
-	$uaa mssql_fetch_array($res, MSSQL_ASSOC);
+	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))
 	{
 		return $error[] = 'Missing UserAuthApp ' . $db['EmpNo'];
