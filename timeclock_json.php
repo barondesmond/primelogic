@@ -45,7 +45,7 @@ function timeclock_update($tc)
 
 	foreach ($tc as $tk => $tv)
 	{
-		$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$TimeClockID'";
+		$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$tk'";
 		$res = mssql_query($sql);
 		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
 
