@@ -11,6 +11,51 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
+
+function timeclock_add($db)
+{
+	$sql = "SELECT * FORM UserAuthApp WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$res = mssql_query($sql);
+	$uaa mssql_fetch_array($res, MSSQL_ASSOC);
+	if (!isset($uaa))
+	{
+		return array('Missing UserAuthApp ' . $db['EmpNo']);
+	}
+	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
+	{
+		$db = array_merge($_REQUEST, $uaa);
+
+		$db['StartTime'] = strtotime($db['StartDate']);
+		$db['StopTime'] = strtotime($db['StopDate']);
+		$db['EmpActive'] = '0';
+		if ($db['Screen'] == 'Job')
+		{
+			$db['Name'] = $db['JD'];
+		}
+		if ($db['Screen'] == 'Dispatch')
+		{
+			$db['Dispatch'] = $db['JD'];
+		}
+		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'EmpActive',  'Screen');
+		foreach ($array as $key)
+		{
+			if (isset($db[$key]) && $db[$key] != '')
+			{
+				$k .= $key . ',';
+				$v .= "'" . str_replace("'", "''", $db[$key]) . "',";
+			}
+
+		}
+		$k = substr($k, 0, strlen($k) - 1);
+		$v = substr($v, 0, strlen($v) - 1);
+		$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	
+		 @mssql_query($sql2);
+
+	}
+}
+
+
 //tc is TimeClockID array 
 //tk is TimeClockID key
 //tv is TimeClock Start/Stop array
@@ -83,8 +128,16 @@ elseif ($_REQUEST['timeclock_update'])
 	$error[] = 'error timeclock update request';
 	$error[] = var_export($_REQUEST['TimeClockID']);
 }
-
-
+if (isset($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'] && isset($_REQUEST['Screen']) && isset($_REQUEST['event'])
+{
+	$error = timeclock_add($_REQUEST);
+	$data['error'] = $error;
+}
+else
+{
+	$error[] = 'error timeclock add request';
+	$error[] = var_export($_REQUEST);
+}
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 

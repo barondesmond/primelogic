@@ -19,14 +19,48 @@ function timeclock_add($db)
 	$uaa mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))
 	{
-		return array('Missing UserAuthApp ' . $db['EmpNo']);
+		return $error[] = 'Missing UserAuthApp ' . $db['EmpNo'];
 	}
 	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
 	{
-		$_REQUEST = array_merge($_REQUEST, $uaa);
-		include_once("authemps_json.php");
-		exit;
+		$db = array_merge($_REQUEST, $uaa);
+
+		$db['StartTime'] = strtotime($db['StartDate']);
+		$db['StopTime'] = strtotime($db['StopDate']);
+		$db['EmpActive'] = '0';
+		if ($db['Screen'] == 'Job')
+		{
+			$db['Name'] = $db['JD'];
+		}
+		if ($db['Screen'] == 'Dispatch')
+		{
+			$db['Dispatch'] = $db['JD'];
+		}
+		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'EmpActive',  'Screen');
+		foreach ($array as $key)
+		{
+			if (isset($db[$key]) && $db[$key] != '')
+			{
+				$k .= $key . ',';
+				$v .= "'" . str_replace("'", "''", $db[$key]) . "',";
+			}
+
+		}
+		$k = substr($k, 0, strlen($k) - 1);
+		$v = substr($v, 0, strlen($v) - 1);
+		$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	
+		 @mssql_query($sql2);
+		$error[] = mssql_get_last_message();
+		
 	}
+	else
+	{
+		$error[] = 'Invalid parameters for timeclock_add';
+		$error[] = var_export($db);
+	}
+return $error;
+
 }
 
 
@@ -102,7 +136,7 @@ elseif ($_REQUEST['timeclock_update'])
 	$error[] = 'error timeclock update request';
 	$error[] = var_export($_REQUEST['TimeClockID']);
 }
-if (isset($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'])
+if (isset($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'] && isset($_REQUEST['Screen']) && isset($_REQUEST['event'])
 {
 	$error = timeclock_add($_REQUEST);
 	$data['error'] = $error;
