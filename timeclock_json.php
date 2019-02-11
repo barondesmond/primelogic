@@ -14,18 +14,21 @@ if ($auth['authorized'] != '1')
 //tc is TimeClockID array 
 //tk is TimeClockID key
 //tv is TimeClock Start/Stop array
-function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
+function validate_timeclock_update($TimeClockID, $StartDate, $StopDate)
 {
 	$r1 = time() - 86400*30;
 	$r2 = time() - 86400*30;
 
 	$t1 = strtotime($StartDate);
 	$t2 = strtotime($StopDate);
+	$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$TimeClockID'";
+	$res = mssql_query($sql);
+	$tca = mssql_fetch_array($res, MSSQL_ASSOC);
 	if ($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1)
 	{
 		return false;
 	}
-	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime < '$t1' and StopTime > '$t1') or (StartTime < '$t2' and StopTime > '$t2'))  and EmpNo = '$EmpNo'";
+	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime < '$t1' and StopTime > '$t1') or (StartTime < '$t2' and StopTime > '$t2'))  and EmpNo = '" . $tca['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (isset($db))
@@ -42,7 +45,7 @@ function timeclock_update($tc)
 
 	foreach ($tc as $tk => $tv)
 	{
-		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tv['EmpNo'], $tv['StartDate'], $tv['StopDate']))
+		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tv['StartDate'], $tv['StopDate']))
 		{
 
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
