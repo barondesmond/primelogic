@@ -42,7 +42,7 @@ function timeclock_update($tc)
 
 	foreach ($tc as $tk => $tv)
 	{
-		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tv['EmpNo'], $tv['StartDate'], $tv['StopDate'])
+		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tv['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
 
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
