@@ -22,7 +22,7 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 	$t1 = strtotime($StartDate);
 	$t2 = strtotime($StopDate);
 
-	if ($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1)
+	if ($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400))
 	{
 		return false;
 	}

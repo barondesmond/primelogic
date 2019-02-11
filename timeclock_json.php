@@ -11,6 +11,25 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
+
+function timeclock_add($db)
+{
+	$sql = "SELECT * FORM UserAuthApp WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$res = mssql_query($sql);
+	$uaa mssql_fetch_array($res, MSSQL_ASSOC);
+	if (!isset($uaa))
+	{
+		return array('Missing UserAuthApp ' . $db['EmpNo']);
+	}
+	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
+	{
+		$_REQUEST = array_merge($_REQUEST, $uaa);
+		include_once("authemps_json.php");
+		exit;
+	}
+}
+
+
 //tc is TimeClockID array 
 //tk is TimeClockID key
 //tv is TimeClock Start/Stop array
@@ -83,8 +102,16 @@ elseif ($_REQUEST['timeclock_update'])
 	$error[] = 'error timeclock update request';
 	$error[] = var_export($_REQUEST['TimeClockID']);
 }
-
-
+if (isset($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'])
+{
+	$error = timeclock_add($_REQUEST);
+	$data['error'] = $error;
+}
+else
+{
+	$error[] = 'error timeclock add request';
+	$error[] = var_export($_REQUEST);
+}
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
