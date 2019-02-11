@@ -57,7 +57,7 @@ function timeclock_update($tc)
 		}
 		else
 		{
-			$error[] = 'Invalid Parameters timeclock_update TimeClockID ' . $tk .'EmpNo ' .  $tv['EmpNo'] . ' StartDate ' . $tv['StartDate'] . ' StopDate ' . $tv['StopDate'];
+			$error[] = 'Invalid Parameters timeclock_update TimeClockID ' . $tk .'EmpNo ' .  $tca['EmpNo'] . ' StartDate ' . $tv['StartDate'] . ' StopDate ' . $tv['StopDate'];
 		}
 	}
 if (!isset($error))
