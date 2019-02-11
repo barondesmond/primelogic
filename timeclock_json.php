@@ -53,7 +53,7 @@ function timeclock_add($db)
 	
 		 @mssql_query($sql2);
 		$error[] = mssql_get_last_message();
-		
+		$error[] = $sql2;
 	}
 	else
 	{

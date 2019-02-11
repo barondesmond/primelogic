@@ -14,12 +14,12 @@ if ($auth['authorized'] != '1')
 
 function timeclock_add($db)
 {
-	$sql = "SELECT * FROM UserAuthApp WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))
 	{
-		$error[] = 'Missing UserAuthApp ' . $db['EmpNo'];
+		$error[] = 'Missing UserAppAuth ' . $db['EmpNo'];
 		return $error;
 	}
 	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
