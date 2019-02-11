@@ -29,15 +29,25 @@ function timeclock_add($db)
 		$db['StartTime'] = strtotime($db['StartDate']);
 		$db['StopTime'] = strtotime($db['StopDate']);
 		$db['EmpActive'] = '0';
-		if ($db['Screen'] == 'Job')
+		if ($db['Screen'] == 'Job' && $db['JD'] != '')
 		{
 			$db['Name'] = $db['JD'];
 		}
-		if ($db['Screen'] == 'Dispatch')
+		elseif ($db['Screen'] == 'Job')
+		{
+			$error[] = 'Missing Job';
+			return $error;
+		}
+		if ($db['Screen'] == 'Dispatch' && $db['JD'] != '')
 		{
 			$db['Dispatch'] = $db['JD'];
 		}
-		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'EmpActive',  'Screen');
+		elseif ($db['Screen'] == 'Dispatch')
+		{
+			return $error;
+		}
+
+		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen');
 		foreach ($array as $key)
 		{
 			if (isset($db[$key]) && $db[$key] != '')

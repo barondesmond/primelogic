@@ -37,7 +37,7 @@ function timeclock_add($db)
 		{
 			$db['Dispatch'] = $db['JD'];
 		}
-		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'EmpActive',  'Screen');
+		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen');
 		foreach ($array as $key)
 		{
 			if (isset($db[$key]) && $db[$key] != '')
@@ -53,7 +53,7 @@ function timeclock_add($db)
 	
 		 @mssql_query($sql2);
 		$error[] = mssql_get_last_message();
-		
+		$error[] = $sql2;
 	}
 	else
 	{
