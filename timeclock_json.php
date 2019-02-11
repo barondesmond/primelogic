@@ -14,7 +14,7 @@ if ($auth['authorized'] != '1')
 
 function timeclock_add($db)
 {
-	$sql = "SELECT * FORM UserAuthApp WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "SELECT * FROM UserAuthApp WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))

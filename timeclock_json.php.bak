@@ -19,7 +19,8 @@ function timeclock_add($db)
 	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))
 	{
-		return $error[] = 'Missing UserAuthApp ' . $db['EmpNo'];
+		$error[] = 'Missing UserAuthApp ' . $db['EmpNo'];
+		return $error;
 	}
 	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
 	{
