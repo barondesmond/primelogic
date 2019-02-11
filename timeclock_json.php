@@ -17,7 +17,7 @@ if ($auth['authorized'] != '1')
 function validate_timeclock_update($TimeClockID, $StartDate, $StopDate)
 {
 	$r1 = time() - 86400*30;
-	$r2 = time() - 86400*30;
+	$r2 = time() + 86400*30;
 
 	$t1 = strtotime($StartDate);
 	$t2 = strtotime($StopDate);
