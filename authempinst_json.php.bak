@@ -50,7 +50,7 @@ function add_note($db, $dev='')
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
 	{
 		$addNote = $tcq['JobNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
-		$sql = "UPDATE Job$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";
+		$sql = "UPDATE Jobs$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";
 	}
 	elseif ($db['Screen'] == 'Job')
 	{
