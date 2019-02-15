@@ -38,12 +38,18 @@ function query_table($tdb)
 	for ($i=0; $i < count($tdb); $i++)
 	{
 		$table .= query_row($tdb[$i]);
-		if ($i%10 == 0)
+		if ($i%10 == 0 && $i != 0)
 		{
 			$table .= query_foot($tdb[$i]);
 			$table .= query_head($tdb[$i]);
 		}
+		if ($i%100 == 0 && $i != 0)
+		{
+			$table .= query_foot($tdb[$i]);
+			return $table;
+		}
 	}
+	$table .= query_foot($tdb[$i]);
 return $table;
 }
 
