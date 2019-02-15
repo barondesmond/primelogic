@@ -1,5 +1,53 @@
 <?php
 
+function query_head($db)
+{
+
+		$table = '<table><tr>';
+		foreach ($db as $key)
+		{
+			$table .= '<td>$key</td>';
+		}
+		$table .= '</tr>';	
+		return $table;
+	
+return $table;
+}
+
+function query_foot($db)
+{
+	$table = '</table>';
+return $table;
+}
+
+function query_row($db, $reset='0')
+{
+		$row = '<tr>';
+		foreach ($db as $key=>$val)
+		{
+			$row .= '<td>$val</td>';
+		}
+		$row .= '</tr>';
+return $row;
+}
+
+function query_table($tdb)
+{
+	$table = query_head($tdb[0]);
+	$i=0;
+	for ($i=0; $i < count($tdb); $i++)
+	{
+		$table .= query_row($tdb[$i]);
+		if ($i%10 == 0)
+		{
+			$table .= query_foot($tdb[$i]);
+			$table .= query_head($tdb[$i]);
+		}
+	}
+return $table;
+}
+
+
 function dbn_table_column($db, $var2, $dl=array())
 {
 	$nd = '1';

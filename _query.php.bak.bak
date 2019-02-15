@@ -1,6 +1,6 @@
 <?php
 
-function query_head($db)
+function query_head($db, $reset = '0')
 {
 
 		$table = '<table><tr>';
@@ -11,12 +11,6 @@ function query_head($db)
 		$table .= '</tr>';	
 		return $table;
 	
-return $table;
-}
-
-function query_foot($db)
-{
-	$table = '</table>';
 return $table;
 }
 
@@ -31,6 +25,7 @@ function query_row($db, $reset='0')
 return $row;
 }
 
+
 function dbn_table_column($db, $var2, $dl=array())
 {
 	$nd = '1';
@@ -38,7 +33,7 @@ function dbn_table_column($db, $var2, $dl=array())
 	//echo $sql3;
 	mssql_query($sql3);
 
-	$sql3 = "SELECT " . '[' . $db['ColumnName'] . ']' . " FROM " . '[' . $db['TableName'] . ']' . " WHERE " . '[' . $db['ColumnName'] . ']' . "= '$var2';";
+	$sql3 = "SELECT " . '[' . $db['ColumnName'] . ']' . "FROM " . '[' . $db['TableName'] . ']' . " WHERE " . '[' . $db['ColumnName'] . ']' . "= '$var2';";
 	error_log($sql3);
 			//echo "$sql3 \r\n";
 
