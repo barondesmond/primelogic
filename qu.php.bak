@@ -27,9 +27,9 @@ if ($_GET['query'])
 	$x=0;
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		show_data($db);
+		$table[] = $db;
 	}
-	show_data(array(), '1');
+	query_table($table);
 
 
 
