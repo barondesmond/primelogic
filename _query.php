@@ -4,7 +4,7 @@ function query_head($db)
 {
 
 		$table = '<table border=1><tr>';
-		foreach ($db as $key)
+		foreach ($db as $key=>$val)
 		{
 			$table .= '<td>' . $key . '</td>';
 		}
