@@ -13,7 +13,7 @@ function dbn_table_column($db, $var2, $dl=array())
 
 	$res3 = @mssql_query($sql3);
 	
-		$db2 = @mssql_fetch_array($res3, MSSQL_ASSOC))
+		$db2 = @mssql_fetch_array($res3, MSSQL_ASSOC)
 		if ($db2[total] > 0)
 		{
 			$dl[$db['DBN']][$db['TableName']][$db['ColumnName']] = $var2;
