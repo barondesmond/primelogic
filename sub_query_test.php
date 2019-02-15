@@ -66,7 +66,7 @@ foreach ($dl as $k1 => $db2)
 	{
 		foreach ($db3 as $k3 => $val)
 		{
-			$query = "SELECT * FROM $k1.$k2 WHERE $k3 = '$val'";
+			$query = "SELECT * FROM $k2 WHERE $k3 = '$val'";
 			$query = urlencode($query);
 			echo "$k1, $k2, $k3 = <A HREF=qu.php?query=$query target=_new>$val</A> <BR>\r\n";
 		}
