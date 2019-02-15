@@ -41,13 +41,9 @@ function query_table($tdb)
 		if ($i%10 == 0 && $i != 0 && $i != count($tdb)-1 && isset($tdb[$i+1]))
 		{
 			$table .= query_foot($tdb[$i]);
-			$table .= query_head($tdb[$i]);
-		}
-		if ($i%100 == 0 && $i != 0)
-		{
-			$table .= query_foot($tdb[$i]);
 			return $table;
 		}
+
 	}
 	$table .= query_foot($tdb[$i]);
 return $table;
