@@ -7,7 +7,7 @@ function dbn_table_column($db, $var2, $dl=array())
 	//echo $sql3;
 	mssql_query($sql3);
 
-	$sql3 = "SELECT " . '[' . $db['ColumnName'] . ']' . "FROM " . '[' . $db['TableName'] . ']' . " WHERE " . '[' . $db['ColumnName'] . ']' . "= '$var2';";
+	$sql3 = "SELECT " . '[' . $db['ColumnName'] . ']' . " FROM " . '[' . $db['TableName'] . ']' . " WHERE " . '[' . $db['ColumnName'] . ']' . "= '$var2';";
 	error_log($sql3);
 			//echo "$sql3 \r\n";
 
