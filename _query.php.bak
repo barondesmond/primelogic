@@ -15,6 +15,7 @@ static $hdr;
 		if ($nt != '')
 		{
 			unset($hdr);
+			unset($rows);
 			return false;
 		}
 	}
