@@ -3,7 +3,7 @@
 function query_head($db)
 {
 
-		$table = '<table><tr>';
+		$table = '<table border=1><tr>';
 		foreach ($db as $key)
 		{
 			$table .= '<td>' . $key . '</td>';

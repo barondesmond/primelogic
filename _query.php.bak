@@ -6,7 +6,7 @@ function query_head($db)
 		$table = '<table><tr>';
 		foreach ($db as $key)
 		{
-			$table .= '<td>$key</td>';
+			$table .= '<td>' . $key . '</td>';
 		}
 		$table .= '</tr>';	
 		return $table;
@@ -25,7 +25,7 @@ function query_row($db, $reset='0')
 		$row = '<tr>';
 		foreach ($db as $key=>$val)
 		{
-			$row .= '<td>$val</td>';
+			$row .= '<td>' . $val . '</td>';
 		}
 		$row .= '</tr>';
 return $row;
