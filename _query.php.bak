@@ -31,6 +31,23 @@ function query_row($db, $reset='0')
 return $row;
 }
 
+function query_table($tdb)
+{
+	$table = query_head($tdb[0]);
+	$i=0;
+	for ($i=0; $i < count($tdb); $i++)
+	{
+		$table .= query_row($tdb[$i]);
+		if ($i%10 == 0)
+		{
+			$table .= query_foot($tdb[$i]);
+			$table .= query_head($tdb[$i]);
+		}
+	}
+return $table;
+}
+
+
 function dbn_table_column($db, $var2, $dl=array())
 {
 	$nd = '1';
