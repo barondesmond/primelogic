@@ -38,7 +38,7 @@ function TimeKeyTable($table, $key, $value)
 {
 	global $tsmap;
 	$map = $tsmap[$key];
-	$sql = "SELECT [$key] as $map, [$value] FROM $table";
+	$sql = "SELECT [$key] as [$map], [$value] FROM $table";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
