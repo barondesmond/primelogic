@@ -22,6 +22,7 @@ function TimeKeyTable($table, $key, $value)
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
+		print_r($db);
 		$js[$table][$db[$key]] = $db[$value];
 	}
 return $js;
