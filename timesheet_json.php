@@ -36,8 +36,6 @@ WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
 
 function TimeKeyTable($table, $key, $value)
 {
-	global $tsmap;
-	$map = $tsmap[$key];
 	$sql = "SELECT [$key] , [$value] FROM $table";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
@@ -63,19 +61,39 @@ function TimesheetConfig($timekey)
 return $js;
 }
 
-function timesheet_add($timekey, $db, $dev='')
+function timesheet_add($timesheet, $dbs, $dev='')
 {
+	if (isset($dbs[0]))
+	{
+		foreach ($dbs as $db)
+		{
+			$error[] = timesheet_add($timesheet, $db, $dev);
+		}
+		return $error;
+	}
+	$db = $dbs;
+	foreach ($timesheet as $key);
+	{
+		if (isset($db[$key]))
+		{
+			$k .= "'$key',";
+			$v .= "'" . $db[$key] . "',";
+		}
+	}
+	$k = substr($k, 0, strlen($k) - 1);
+	$v = substr($k, 0, strlen($v) - 1);
 
-$sql = "INSERT INTO PRTimeEntry$dev";
+$sql = "INSERT INTO PRTimeEntry$dev ($k) VALUES ($v)";
+$res = @mssql_query($sql);
 
-return false;
+return mssql_get_last_message();
 }
 
 
 $js = TimesheetConfig($timekey);
 if (isset($_REQUEST['timesheet_add']) && $_REQUEST['TimeSheet'])
 {
-	$js['Timesheet'] = timesheet_add($_REQUEST['Timesheet'], $_REQUEST['dev']);
+	$js['error'][] = timesheet_add($timesheet, $_REQUEST['TimeSheet'], $_REQUEST['dev']);
 }
 
 
