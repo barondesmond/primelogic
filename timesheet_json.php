@@ -1,5 +1,20 @@
 <?php
 include("_db_config.php");
+include("_user_app_auth.php");
+
+$auth = UserAppAuth($_REQUEST);
+if ($auth['authorized'] != '1')
+{
+	header('Content-Type: application/json');
+	echo json_encode($data);
+	exit;
+}
+
+	$timekey['PRPayItem']['ItemID'] = 'Name';
+	$timekey['JobClass']['JobClassID'] = 'Name';
+	$timekey['SlDept']['DeptID'] = 'Desc';
+	$timekey['PRWorkComp']['ID'] = 'Desc';
+
 /*
 
 SELECT PRTimeEntry.ID, TimesheetID, PRTimeEntry.EmpNo, PRTimeEntry.Date, PRTimeEntry.Hours, Jobs.Name as Jobs, Dispatch.Dispatch, PRPayItem.Name as PRPayItem, JobClass.Name as JobClass, SlDept.[Desc] as SlDept, LedgerTrans.TransDesc as LedgerTransDesc, LedgerTrans.TransMemo as LedgerTransMemo, LedgerEntry.[TransDesc] as LedgerEntryDesc, LedgerEntry.TransMemo as LedgerEntryMemo, PRWorkComp.Desc as PRWorkComp FROM PRTimeEntry 
@@ -27,13 +42,10 @@ function TimeKeyTable($table, $key, $value)
 return $js;
 }
 
-function TimesheetConfig()
+function TimesheetConfig($timekey)
 {
 
-	$timekey['PRPayItem']['ItemID'] = 'Name';
-	$timekey['JobClass']['JobClassID'] = 'Name';
-	$timekey['SlDept']['DeptID'] = 'Desc';
-	$timekey['PRWorkComp']['ID'] = 'Desc';
+
 	foreach ($timekey as $table=>$keydb)
 	{
 		foreach ($keydb as $key=>$value)
@@ -46,7 +58,22 @@ function TimesheetConfig()
 return $js;
 }
 
+function timesheet_add($db, $dev='')
+{
+
+$sql = "INSERT INTO PRTimeEntry$dev";
+
+return false;
+}
+
+
 $js = TimesheetConfig();
+if ($_REQUEST['timesheet_add'] && $_REQUEST['TimeSheet'])
+{
+	$js['Timesheet'] = timesheet_add($_REQUEST['Timesheet'], $_REQUEST['dev']);
+}
+
+
 
 	header('Content-Type: application/json');
 	echo json_encode($js);
