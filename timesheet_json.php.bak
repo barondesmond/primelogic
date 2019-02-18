@@ -15,6 +15,9 @@ if ($auth['authorized'] != '1')
 	$timekey['SlDept']['DeptID'] = 'Desc';
 	$timekey['PRWorkComp']['ID'] = 'Desc';
 
+	$timesheet = array('ID', 'EmpNo', 'Date', 'Hours', 'PayItemID', 'Dispatch', 'JobID', 'JobClassID', 'DeptID', 'ItemID', 'Desc', 'Billable', 'Invoided', 'TimesheetOrder', 'Processed', 'WorkCompID');
+	$tsmap =  array('PayItemId' => 'ItemID', 'JobClassID' => 'JobClassID', 'DeptID' => 'DeptID', 'WorkCompID' => 'ID');
+
 /*
 
 SELECT PRTimeEntry.ID, TimesheetID, PRTimeEntry.EmpNo, PRTimeEntry.Date, PRTimeEntry.Hours, Jobs.Name as Jobs, Dispatch.Dispatch, PRPayItem.Name as PRPayItem, JobClass.Name as JobClass, SlDept.[Desc] as SlDept, LedgerTrans.TransDesc as LedgerTransDesc, LedgerTrans.TransMemo as LedgerTransMemo, LedgerEntry.[TransDesc] as LedgerEntryDesc, LedgerEntry.TransMemo as LedgerEntryMemo, PRWorkComp.Desc as PRWorkComp FROM PRTimeEntry 
@@ -33,7 +36,9 @@ WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
 
 function TimeKeyTable($table, $key, $value)
 {
-	$sql = "SELECT [$key], [$value] FROM $table";
+	global $tsmap;
+	$map = $tsmap[$key];
+	$sql = "SELECT [$key] as $map, [$value] FROM $table";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
@@ -58,7 +63,7 @@ function TimesheetConfig($timekey)
 return $js;
 }
 
-function timesheet_add($db, $dev='')
+function timesheet_add($timekey, $db, $dev='')
 {
 
 $sql = "INSERT INTO PRTimeEntry$dev";
