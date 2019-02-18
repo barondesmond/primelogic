@@ -39,6 +39,11 @@ while (time() < $end && $ct_today <99)
 function send_json_file($entry)
 {
 	global $er_array;
+	if (filesize($entry) > 1024*1024)
+	{
+		echo filesize($entry);
+		exit;
+	}
 	$json = file_get_contents($entry);
 	
 	$db = json_decode($json, 1);
