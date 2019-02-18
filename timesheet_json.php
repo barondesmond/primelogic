@@ -31,13 +31,13 @@ function TimesheetConfig()
 {
 
 	$timekey['PRPayTable']['ItemID'] = 'Name';
-	foreach ($timekey as $table)
+	foreach ($timekey as $table=>$keydb)
 	{
-		foreach ($table as $key=>$value)
+		foreach ($keydb as $key=>$value)
 		{
-			$db = TimeKeyTable(${table}, $key, $value);
+			$db = TimeKeyTable($table, $key, $value);
 			
-			$js[$table] = $db[${table}];
+			$js[$table] = $db[$table];
 		}
 	}
 return $js;
