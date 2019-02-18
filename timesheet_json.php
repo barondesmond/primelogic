@@ -67,8 +67,8 @@ return false;
 }
 
 
-$js = TimesheetConfig();
-if ($_REQUEST['timesheet_add'] && $_REQUEST['TimeSheet'])
+$js = TimesheetConfig($timekey);
+if (isset($_REQUEST['timesheet_add']) && $_REQUEST['TimeSheet'])
 {
 	$js['Timesheet'] = timesheet_add($_REQUEST['Timesheet'], $_REQUEST['dev']);
 }

@@ -6,7 +6,7 @@ $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
-	echo json_encode($data);
+	echo json_encode($auth);
 	exit;
 }
 
@@ -67,7 +67,7 @@ return false;
 }
 
 
-$js = TimesheetConfig();
+$js = TimesheetConfig($timekey);
 if ($_REQUEST['timesheet_add'] && $_REQUEST['TimeSheet'])
 {
 	$js['Timesheet'] = timesheet_add($_REQUEST['Timesheet'], $_REQUEST['dev']);
