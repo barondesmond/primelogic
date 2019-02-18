@@ -82,6 +82,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 		}
 		
 		$enc =json_encode($db);
+		echo "filesize = " . strlen($enc);
 		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.email';
 		$stream = fopen($file, 'w');
 		fwrite($stream, $enc);
