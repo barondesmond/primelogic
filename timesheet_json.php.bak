@@ -19,12 +19,9 @@ WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
 function TimeKeyTable($table, $key, $value)
 {
 	$sql = "SELECT $key, $value FROM $table";
-	echo $sql;
 	$res = mssql_query($sql);
-	echo mssql_get_last_message();
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		print_r($db);
 		$js[$table][$db[$key]] = $db[$value];
 	}
 return $js;
