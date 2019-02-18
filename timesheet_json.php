@@ -19,14 +19,14 @@ function TimeKeyTable($key, $value)
 {
 	$sql = "SELECT $key, $value FROM $table";
 	$res = mssql_query($sql);
-	while ($db = mssql_fetch_array($res, MSSQL_ASSOC)
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		$js[$table][$db[$key]] = $db[$value];
 	}
 return $js;
 }
 
-$timekey= array('PRPayTable'=> array('key'=>'ItemID', 'value'=>'Name'));
+$timekey= array('PRPayTable'=>'ItemID' =>'Name'));
 print_r($timekey);
 
 ?>
