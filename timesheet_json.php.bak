@@ -31,6 +31,9 @@ function TimesheetConfig()
 {
 
 	$timekey['PRPayItem']['ItemID'] = 'Name';
+	$timekey['JobClass']['JobClassID'] = 'Name';
+	$timekey['SlDept']['DeptID'] = 'Desc';
+	$timekey['PRWorkComp']['ID'] = 'Desc';
 	foreach ($timekey as $table=>$keydb)
 	{
 		foreach ($keydb as $key=>$value)
