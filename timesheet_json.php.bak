@@ -61,8 +61,17 @@ function TimesheetConfig($timekey)
 return $js;
 }
 
-function timesheet_add($timesheet, $db, $dev='')
+function timesheet_add($timesheet, $dbs, $dev='')
 {
+	if (isset($dbs[0]))
+	{
+		foreach ($dbs as $db)
+		{
+			$error[] = timesheet_add($timesheet, $db, $dev);
+		}
+		return $error;
+	}
+	$db = $dbs;
 	foreach ($timesheet as $key);
 	{
 		if (isset($db[$key]))
