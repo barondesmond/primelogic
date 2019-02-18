@@ -15,7 +15,7 @@ WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
 */
 
 
-function TimeKeyTable($key, $value)
+function TimeKeyTable($table, $key, $value)
 {
 	$sql = "SELECT $key, $value FROM $table";
 	$res = mssql_query($sql);
@@ -26,9 +26,27 @@ function TimeKeyTable($key, $value)
 return $js;
 }
 
-$timekey['PRPayTable']['ItemID'] = 'Name';
+function TimesheetConfig()
+{
 
-var_dump($timekey);
+	$timekey['PRPayTable']['ItemID'] = 'Name';
+	foreach ($timekey as $table)
+	{
+		foreach ($table as $key=>$value)
+		{
+			$db = TimeKeyTable($table, $key, $value);
+			$js[$table] = $db[$table];
+		}
+	}
+return $js;
+}
+
+$js = TimesheetConfig();
+
+	header('Content-Type: application/json');
+	echo json_encode($js);
+	exit;
+
 
 ?>
 
