@@ -18,6 +18,7 @@ WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
 function TimeKeyTable($table, $key, $value)
 {
 	$sql = "SELECT $key, $value FROM $table";
+	echo $sql;
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
@@ -35,6 +36,7 @@ function TimesheetConfig()
 		foreach ($table as $key=>$value)
 		{
 			$db = TimeKeyTable($table, $key, $value);
+			
 			$js[$table] = $db[$table];
 		}
 	}

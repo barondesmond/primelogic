@@ -35,9 +35,9 @@ function TimesheetConfig()
 	{
 		foreach ($table as $key=>$value)
 		{
-			$db = TimeKeyTable($table, $key, $value);
+			$db = TimeKeyTable(${table}, $key, $value);
 			
-			$js[$table] = $db[$table];
+			$js[$table] = $db[${table}];
 		}
 	}
 return $js;
