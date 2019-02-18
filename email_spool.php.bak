@@ -41,8 +41,7 @@ function send_json_file($entry)
 	global $er_array;
 	if (filesize($entry) > 1024*1024)
 	{
-		echo filesize($entry);
-		exit;
+		echo "filesize = " . filesize($entry);
 	}
 	$json = file_get_contents($entry);
 	
