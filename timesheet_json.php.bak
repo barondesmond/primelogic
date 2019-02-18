@@ -16,7 +16,7 @@ if ($auth['authorized'] != '1')
 	$timekey['PRWorkComp']['ID'] = 'Desc';
 
 	$timesheet = array('ID', 'EmpNo', 'Date', 'Hours', 'PayItemID', 'Dispatch', 'JobID', 'JobClassID', 'DeptID', 'ItemID', 'Desc', 'Billable', 'Invoided', 'TimesheetOrder', 'Processed', 'WorkCompID');
-	$tsmap =  array('PayItemId' => 'ItemID', 'JobClassID' => 'JobClassID', 'DeptID' => 'DeptID', 'WorkCompID' => 'ID');
+	$tsmap =  array('ItemID' => 'PayItemID', 'JobClassID' => 'JobClassID', 'DeptID' => 'DeptID', 'ID' => 'WorkCompID');
 
 /*
 
