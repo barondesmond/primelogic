@@ -30,7 +30,7 @@ return $js;
 function TimesheetConfig()
 {
 
-	$timekey['PRPayTable']['ItemID'] = 'Name';
+	$timekey['PRPayItem']['ItemID'] = 'Name';
 	foreach ($timekey as $table=>$keydb)
 	{
 		foreach ($keydb as $key=>$value)
