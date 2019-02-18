@@ -26,7 +26,8 @@ function TimeKeyTable($key, $value)
 return $js;
 }
 
-$timekey = 'PRPayTable'->'ItemID' ->'Name';
+$timekey['PRPayTable']['ItemID'] = 'Name';
+
 var_dump($timekey);
 
 ?>
