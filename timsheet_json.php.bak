@@ -1,0 +1,15 @@
+<?php
+/*
+
+SELECT PRTimeEntry.ID, TimesheetID, PRTimeEntry.EmpNo, PRTimeEntry.Date, PRTimeEntry.Hours, Jobs.Name as Jobs, Dispatch.Dispatch, PRPayItem.Name as PRPayItem, JobClass.Name as JobClass, SlDept.[Desc] as SlDept, LedgerTrans.TransDesc as LedgerTransDesc, LedgerTrans.TransMemo as LedgerTransMemo, LedgerEntry.[TransDesc] as LedgerEntryDesc, LedgerEntry.TransMemo as LedgerEntryMemo FROM PRTimeEntry 
+LEFT JOIN PRPayItem ON PRTimeEntry.PayItemID = PRPayItem.ItemID
+LEFT JOIN Dispatch ON PRTimeEntry.Dispatch = Dispatch.Dispatch
+LEFT JOIN Jobs ON PRTimeEntry.JobID = Jobs.JobID
+LEFT JOIN JobClass ON PRTimeEntry.JobClassID = JobClass.JobClassID
+LEFT JOIN SlDept ON PRTimeEntry.DeptID = SlDept.DeptID
+LEFT JOIN FinLedger as LedgerTrans ON PRTimeEntry.LedgerTransID = LedgerTrans.TransID
+LEFT JOIN PRWorkComp ON PRTimeEntry.WorkCompID = PRWorkComp.ID
+LEFT JOIN FinLedger as LedgerEntry ON PRTimeEntry.LedgerEntryID = LedgerEntry.EntryID
+
+WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
+*/
