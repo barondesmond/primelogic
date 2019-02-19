@@ -127,6 +127,13 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	$res2 = mssql_query($sql2);
 	$db2 = mssql_fetch_array($res2, MSSQL_ASSOC);
 	$db['ItemID'] = $db2['ItemID'];
+	if ($db['JobID'] != '')
+	{
+		$sql3 = "SELECT JobClassID FROM FinLedger WHERE JobID= '" .$db['JobID'] . "' and JobClassID != ''";
+		$res3 = mssql_query($sql3);
+		$db3 = mssql_fetch_assoc($res3, MSSQL_ASSOC);
+		$db['JobClassID'] = $db3['JobClassID'];
+	}
 	if ($db['StopTime'] && $db['StartTime'])
 	{
 		$js['TimeSheet'][] = $db;
