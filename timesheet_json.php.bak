@@ -114,7 +114,7 @@ INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
 WHERE Posted is NULL and TimeClockApp.StartTime > " . $_REQUEST['StartTime'] . " and TimeClockApp.StopTime < " . $_REQUEST['StopTime'];
 $res = mssql_query($sql);
-while ($db = mssql_fetch_array($res, MSSQL_ASSOC);
+while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$db['Date'] = date("M d Y", $db['StartTime']) . '12:00:00:00AM';
 	$db['Hours'] = round($db['StopTime'] - $db['StartTime'] / (60*60), 2);

@@ -118,7 +118,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$db['Date'] = date("M d Y", $db['StartTime']) . '12:00:00:00AM';
 	$db['Hours'] = round($db['StopTime'] - $db['StartTime'] / (60*60), 2);
-	$js['TimeSheet'][$_REQUEST['EmpNo'][] = $db;
+	$js['TimeSheet'][$_REQUEST['EmpNo']][] = $db;
 }	
 
 	header('Content-Type: application/json');
