@@ -123,6 +123,10 @@ WHERE Posted is NULL and TimeClockApp.StartTime > " . $_REQUEST['StartTime'] . "
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
+	$sql2 = "SELECT * FROM PRPayItem WHERE Name = 'Regular Payroll'";
+	$res2 = mssql_query($sql2);
+	$db2 = mssql_fetch_array($res2, MSSQL_ASSOC);
+	$db['ItemID'] = $db2['ItemID'];
 	if ($db['StopTime'] && $db['StartTime'])
 	{
 		$js['TimeSheet'][] = $db;
