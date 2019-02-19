@@ -118,13 +118,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	if ($db['StopTime'] && $db['StartTime'])
 	{
-		$db['Date'] = date("M d Y", $db['StartTime']) . '12:00:00:00AM';
-		$db['Hours'] = round(($db['StopTime'] - $db['StartTime']) / (60*60), 2);
-		if (isset($js['TimeSheet'][$_REQUEST['EmpNo']][$db['Date']]))
-		{
-			$db['Hours'] = $js['TimeSheet'][$_REQUEST['EmpNo']][$db['Date']]['Hours'] + $db['Hours'];
-		}
-		$js['TimeSheet'][$_REQUEST['EmpNo']][$db['Date']] = $db;
+		$js['TimeSheet'][] = $db;
 	}
 }	
 
