@@ -109,7 +109,7 @@ if (!$_REQUEST['StartTime'])
 	$_REQUEST['StopTime'] = time();
 }
 
-$sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, Jobs.JobID  FROM Employee
+$sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, Jobs.JobID, Jobs.DefaultDeptID as DeptID  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
 LEFT JOIN Jobs ON TimeClockApp.Name = Jobs.Name
