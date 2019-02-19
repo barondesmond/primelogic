@@ -36,7 +36,13 @@ WHERE Date > DATEADD(month, -1, getdate()) ORDER BY Date DESC
 
 function TimeKeyTable($table, $key, $value)
 {
+	$where['PRPayItem'] = " WHERE ItemType = '100' and PayType = '100' ";
+
 	$sql = "SELECT [$key] , [$value] FROM $table";
+	if (isset($where[$table]))
+	{
+		$sql .= $where['PRPayItem'];
+	}
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
