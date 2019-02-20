@@ -1,8 +1,14 @@
 <?php
 include("_db_config.php");
 include("_user_app_auth.php");
-
-
+if (!isset($_REQUEST['StartTime']))
+{
+	$_REQUEST['StartTime'] = '0';
+}
+if (!sset($_REQUEST['StopTime']))
+{
+	$_REQUEST['StopTime'] = time();
+}
 $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
@@ -168,7 +174,7 @@ LEFT JOIN Dispatch" . $dev . " as Dispatch ON TimeClockApp.Dispatch = Dispatch.D
 LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status 
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
-WHERE Posted is NULL";
+WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'];
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
