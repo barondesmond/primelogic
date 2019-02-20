@@ -131,7 +131,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		$sql3 = "SELECT JobClassID FROM FinLedger WHERE JobID= '" .$db['JobID'] . "' and JobClassID != ''";
 		$res3 = mssql_query($sql3);
-		$db3 = mssql_fetch_assoc($res3, MSSQL_ASSOC);
+		$db3 = mssql_fetch_array($res3, MSSQL_ASSOC);
 		$db['JobClassID'] = $db3['JobClassID'];
 	}
 	if ($db['StopTime'] && $db['StartTime'])
