@@ -118,7 +118,7 @@ if (!$_REQUEST['StartTime'])
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, Employee.WorkComp, Jobs.JobID, Jobs.DefaultDeptID as DeptID FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 INNER JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
-INNER JOIN Jobs ON TimeClockApp.Name = Jobs.Name
+LEFT JOIN Jobs ON TimeClockApp.Name = Jobs.Name
 WHERE Posted is NULL and TimeClockApp.StartTime > " . $_REQUEST['StartTime'] . " and TimeClockApp.StopTime < " . $_REQUEST['StopTime'];
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
