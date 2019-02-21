@@ -41,11 +41,11 @@ function timesheet_prhours($req, $PRHours, $dev = '')
 	{
 			$k = '';
 			$v = '';
-			$req->Hours = $Hours;
-			$req->PayItemID = $PayItemID;
+			$req['Hours'] = $Hours;
+			$req['PayItemID'] = $PayItemID;
 			foreach ($keys as $key)
 			{
-				if (isset($req->$key))
+				if (isset($req[$key]))
 				{
 					$k .= "'$key',";
 					$v .= "'$req->$db',";

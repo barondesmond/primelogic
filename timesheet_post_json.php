@@ -48,7 +48,7 @@ function timesheet_prhours($req, $PRHours, $dev = '')
 				if (isset($req[$key]))
 				{
 					$k .= "'$key',";
-					$v .= "'$req->$db',";
+					$v .= "'$req[$key]',";
 				}
 			}
 	$sql = "INSERT INTO PRHours$dev ($k) VALUES ($v)";
