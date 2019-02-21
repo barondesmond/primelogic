@@ -67,40 +67,9 @@ function TimesheetConfig($timekey)
 return $js;
 }
 
-function timesheet_add($timesheet, $dbs, $dev='')
-{
 
-	foreach ($dbs as $db)
-	{
-		$k = '';
-		$v = '';
-	
-		foreach ($timesheet as $key);
-		{
-			if (isset($db[$key]))
-			{
-				$k .= ",'$key'";
-				$v .= ",'" . $db[$key] . "'";				
-			}
-		}
-		$db['ID'] = md5(time() . microtime() . $v);
-	}
-$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
-$res = @mssql_query($sql);
 
-return mssql_get_last_message();
-}
 
-function timeclock_post($dbs, $dev='')
-{
-	foreach ($dbs as $db)
-	{
-		$sql = "UPDATE TimeClockApp SET posted = 'Y' WHERE TimeClockID = '" . $db['TimeClockID'] . "'";
-		$res = mssql_query($sql);
-		$error[] = mssql_get_last_message();
-	}
-return $error;
-}
 
 
 $js = TimesheetConfig($timekey);
@@ -125,11 +94,6 @@ while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 }
 
 
-if (isset($_REQUEST['timesheet_add']) && $_REQUEST['TimeSheet'] && $_REQUEST['TimeClock'])
-{
-	$js['error'][] = timesheet_add($timesheet, $_REQUEST['TimeSheet'], $_REQUEST['dev']);
-	$js['error'][] = timeclock_post($_REQUEST['TimeClock'], $_REQUEST['dev']);
-}
 if (!$_REQUEST['StartTime'])
 {
 	$_REQUEST['StartTime'] = 0;
