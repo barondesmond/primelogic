@@ -57,6 +57,7 @@ function timesheet_prhours($req, $PRHours, $dev = '')
 	$sql = "INSERT INTO PRHours$dev ($k) VALUES ($v)";
 	$res = @mssql_query($sql);
 	$error[] = mssql_get_last_message();
+	$error[] = $sql;
 	}
 return $error;
 }

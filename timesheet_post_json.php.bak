@@ -22,7 +22,7 @@ function timesheet_add($timesheet, $dbs, $dev='')
 		{
 			if (isset($db[$key]))
 			{
-				$k .= ",'$key'";
+				$k .= ",$key";
 				$v .= ",'" . $db[$key] . "'";				
 			}
 		}
@@ -47,7 +47,7 @@ function timesheet_prhours($req, $PRHours, $dev = '')
 			{
 				if (isset($req[$key]))
 				{
-					$k .= "'$key',";
+					$k .= "$key,";
 					$v .= "'$req[$key]',";
 				}
 	
