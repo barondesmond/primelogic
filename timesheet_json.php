@@ -116,7 +116,7 @@ WHERE Name IN ('Regular Payroll', 'Sick/Personal Day', 'Vacation Day', 'Over Tim
 $res2 = mssql_query($sql2);
 $error[] = mssql_get_last_message();
 $error[] = $sql2;
-print_r($error);
+//print_r($error);
 while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 {
 
