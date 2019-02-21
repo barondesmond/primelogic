@@ -114,11 +114,13 @@ $sql2 = "SELECT PRPayItem.Name, ItemID, PayItemID, PRHours.PRHoursID, Hours, Emp
 LEFT JOIN PRHours ON PRPayItem.ItemID = PRHours.PayItemID and StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['EmpNo'] . "'  
 WHERE PayType = '100' and Name IN ('Regular Payroll', 'Sick/Personal Day', 'Vacation Day', 'Over Time Pay'); ";
 $res2 = mssql_query($sql2);
+$error[] = mssql_get_last_message();
+$error[] = $sql2;
 while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 {
 
 	$js['PRHours'][] = $pr;
-	print_r($pr);
+	
 }
 
 

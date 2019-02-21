@@ -118,6 +118,7 @@ while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 {
 
 	$js['PRHours'][] = $pr;
+	print_r($pr);
 }
 
 
