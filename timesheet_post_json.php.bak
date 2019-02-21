@@ -34,6 +34,33 @@ $res = @mssql_query($sql);
 return mssql_get_last_message();
 }
 
+function timesheet_prhours($req, $PRHours, $dev = '')
+{
+	$keys = array('EmpNo', 'StartTime', 'StopTime', 'PayItemID', 'Hours');
+	foreach ($PRHours as $PayItemID=>$Hours)
+	{
+			$k = '';
+			$v = '';
+			$req->Hours = $Hours;
+			$req->PayItemID = $PayItemID;
+			foreach ($keys as $key)
+			{
+				if (isset($req->$key))
+				{
+					$k .= "'$key',";
+					$v .= "'$req->$db',";
+				}
+			}
+	$sql = "INSERT INTO PRHours$dev ($k) VALUES ($v)";
+	$res = @mssql_query($sql);
+	$error[] = mssql_get_last_message();
+	}
+return $error;
+}
+				
+	$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
+			
+
 	header('Content-Type: application/json');
 	echo json_encode($_REQUEST);
 exit;
