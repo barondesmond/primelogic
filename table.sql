@@ -1,3 +1,19 @@
+
+CREATE SEQUENCE PRHoursCounter 
+    AS int  
+    START WITH 1  
+    INCREMENT BY 1 ;  
+
+CREATE TABLE PRHours 
+(PRHoursID int PRIMARY KEY CLUSTERED DEFAULT (NEXT VALUE FOR PRHoursCounter),  
+EmpNo VARCHAR(4),
+StartTime INT,
+StopTime INT,
+Hours FLOAT,
+PayItemID VARCHAR(36));
+
+
+
 CREATE SEQUENCE TimeClockAppCounter 
     AS int  
     START WITH 1  
