@@ -34,7 +34,7 @@ $res = @mssql_query($sql);
 return mssql_get_last_message();
 }
 
-function timesheet_prhours($req, $PRHours, $dev = '')
+function timesheet_prhours($req, $PRHours)
 {
 	$keys = array('EmpNo', 'StartTime', 'StopTime', 'PayItemID', 'Hours');
 	foreach ($PRHours as $PayItemID=>$Hours)
@@ -54,7 +54,7 @@ function timesheet_prhours($req, $PRHours, $dev = '')
 			}
 		$k = substr($k, 0, strlen($k)-1);
 		$v = substr($v, 0, strlen($v)-1);
-	$sql = "INSERT INTO PRHours$dev ($k) VALUES ($v)";
+	$sql = "INSERT INTO PRHours ($k) VALUES ($v)";
 	$res = @mssql_query($sql);
 	$error[] = mssql_get_last_message();
 	$error[] = $sql;
