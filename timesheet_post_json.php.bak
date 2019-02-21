@@ -35,6 +35,6 @@ return mssql_get_last_message();
 }
 
 	header('Content-Type: application/json');
-	json_encode($_REQUEST);
+	echo json_encode($_REQUEST);
 exit;
 ?>
