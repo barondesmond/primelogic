@@ -89,7 +89,7 @@ $error[] = $sql2;
 while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 {
 
-	$js['PRHours'][$pr['ItemId']] = $pr;
+	$js['PRHours'][$pr['ItemID']] = $pr;
 	
 }
 
