@@ -18,7 +18,7 @@ function timesheet_add($id, $row, $Dates, $dev='')
 		$k = '';
 		$v = '';
 	
-	foreach ($timesheet as $key);
+	foreach ($timesheet as $key=> $def);
 	{
 		if (isset($time[$key]))
 		{
@@ -28,7 +28,7 @@ function timesheet_add($id, $row, $Dates, $dev='')
 		else
 		{
 			$k .= ",$key";
-			$v .= ",''";
+			$v .= ",'$def'";
 		}
 	}
 	$db['ID'] = md5(time() . microtime() . $v);
