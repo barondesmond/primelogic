@@ -74,6 +74,8 @@ function timesheet_prhours($req, $PRHours, $dev='')
 			}
 		$k = substr($k, 0, strlen($k)-1);
 		$v = substr($v, 0, strlen($v)-1);
+	if ($Hours > 0)
+	{
 	$sql = "INSERT INTO PRHours ($k) VALUES ($v)";
 //	echo $sql;
 	$res = @mssql_query($sql);
@@ -92,7 +94,7 @@ function timesheet_prhours($req, $PRHours, $dev='')
 				$error = array_merge($error, $errors3);
 			}
 		}
-
+	}
 	}
 return $error;
 }
