@@ -51,7 +51,7 @@ return $error;
 
 }
 
-function timesheet_prhours($req, $PRHours)
+function timesheet_prhours($req, $PRHours, $dev='')
 {
 	$error = '';
 	$keys = array('EmpNo', 'StartTime', 'StopTime', 'PayItemID', 'Hours');
@@ -61,11 +61,13 @@ function timesheet_prhours($req, $PRHours)
 			$v = '';
 			$req['Hours'] = $Hours;
 			$req['PayItemID'] = $PayItemID;
+			$req['Date'] = date("M d Y", $req['StartTime']) . ' 12:00:00:00 AM';
+
 			foreach ($keys as $key)
 			{
 				if (isset($req[$key]))
 				{
-					$k .= "$key,";
+					$k .= '[' . $key . '],';
 					$v .= "'$req[$key]',";
 				}
 	
@@ -76,11 +78,21 @@ function timesheet_prhours($req, $PRHours)
 //	echo $sql;
 	$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
+
 		if ($mes != '')
 		{
 			$error[] = $mes;
 			$error[] = $sql;
 		}
+		if ($req['PayItemID'] != 'TCHours')
+		{
+			$errors3 =timesheet_add($req, $dev);
+			if (is_array($errors3))
+			{
+				$error = array_merge($error, $errors3);
+			}
+		}
+
 	}
 return $error;
 }
