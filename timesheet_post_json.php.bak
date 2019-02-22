@@ -33,8 +33,8 @@ function timesheet_add($row, $dev='')
 	}
 	$row['ID'] = md5(time() . microtime() . $v);
 	$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $row['ID'] . "' $v)";
-	echo $sql;
-	//$res = @mssql_query($sql);
+	//echo $sql;
+	$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
 	if ($mes != '')
 	{
@@ -69,8 +69,8 @@ function timesheet_prhours($req, $PRHours)
 		$k = substr($k, 0, strlen($k)-1);
 		$v = substr($v, 0, strlen($v)-1);
 	$sql = "INSERT INTO PRHours ($k) VALUES ($v)";
-	echo $sql;
-	//$res = @mssql_query($sql);
+//	echo $sql;
+	$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
 		if ($mes != '')
 		{
