@@ -92,8 +92,13 @@ while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 	$js['PRHours'][$pr['ItemID']] = $pr;
 	
 }
-
-
+$sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['EmpNo'] . "'";
+$res3 = @mssql_query($sql3);
+$post = @mssql_fetch_array($res3, MSSQL_ASSOC);
+if (isset($post))
+{
+	$js['Post'] = $post;
+}
 if (!$_REQUEST['StartTime'])
 {
 	$_REQUEST['StartTime'] = 0;
