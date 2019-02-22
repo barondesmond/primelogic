@@ -47,7 +47,7 @@ function query_table($tdb)
 	for ($i=$cur; $i < count($tdb); $i++)
 	{
 		$table .= query_row($tdb[$i]);
-		if ($i%10 == 0 && $i != 0 && $i != count($tdb)-1 && isset($tdb[$i+1]))
+		if ($i%10 == 0 && $i != $cur && $i != count($tdb)-1 && isset($tdb[$i+1]))
 		{
 			$table .= query_foot($tdb[$i]);
 			if ($cur >0)
