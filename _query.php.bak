@@ -53,12 +53,12 @@ function query_table($tdb)
 			if ($cur >0)
 			{
 				$prev = $cur - 10;
-				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $prev . ">Prev<A> ";
+				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $prev . ">Prev</A> ";
 			}
 			$next = $cur + 10;
 			if ($next <= count($tdb))
 			{
-				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $next . ">Next<A> ";
+				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $next . ">Next</A> ";
 			} 
 			return $table;
 		}
