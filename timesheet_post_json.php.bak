@@ -33,6 +33,7 @@ function timesheet_add($id, $row, $Dates, $dev='')
 	}
 	$db['ID'] = md5(time() . microtime() . $v);
 	$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
+	echo $sql;
 	//$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
 	if ($mes != '')
@@ -68,6 +69,7 @@ function timesheet_prhours($req, $PRHours)
 		$k = substr($k, 0, strlen($k)-1);
 		$v = substr($v, 0, strlen($v)-1);
 	$sql = "INSERT INTO PRHours ($k) VALUES ($v)";
+	echo $sql;
 	//$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
 		if ($mes != '')
@@ -84,7 +86,7 @@ return $error;
 	{
 		$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
 	}	
-	print_r($_REQUEST);
+	//print_r($_REQUEST);
 	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
 	{
@@ -94,7 +96,7 @@ return $error;
 			{
 				if (isset($_REQUEST[$id][urlencode($Date)]))
 				{
-					print_r($_REQUEST[$id][urlencode($Date)]);
+					//print_r($_REQUEST[$id][urlencode($Date)]);
 					$_REQUEST[$id]['Date'] = $Date;
 					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][urlencode($Date)];
 					$error2 = timesheet_add($id, $_REQUEST[$id]);
@@ -106,7 +108,7 @@ return $error;
 			}
 		}
 	}
-	exit;
+	
 	header('Content-Type: application/json');
 	echo json_encode($_REQUEST);
 exit;
