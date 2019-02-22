@@ -42,8 +42,8 @@ function query_table($tdb)
 		$cur = $_REQUEST['cur'];
 	}
 	unset($_REQUEST['cur']);
-	$table = query_head($tdb[0]);
-	print_r($tdb[0]);
+	$table = query_head($tdb[$cur]);
+	print_r($tdb[$cur]);
 	for ($i=$cur; $i <= count($tdb); $i++)
 	{
 		print_r($tdb[$i]);
