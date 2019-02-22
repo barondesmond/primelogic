@@ -1,8 +1,14 @@
 
+CREATE SEQUENCE PRHoursCounter 
+    AS int  
+    START WITH 1  
+    INCREMENT BY 1 ;  
+
 CREATE TABLE PRHours 
-(PRHoursID VARCHAR(36), 
+(PRHoursID int PRIMARY KEY CLUSTERED DEFAULT (NEXT VALUE FOR PRHoursCounter),  
 EmpNo VARCHAR(4),
-Date DATETIME NOT NULL,
+StartTime INT,
+StopTime INT,
 Hours FLOAT,
 PayItemID VARCHAR(36));
 
