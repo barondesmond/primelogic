@@ -37,7 +37,7 @@ function query_table($tdb)
 	{
 		$_REQUEST['cur'] = 0;
 	}
-	if ($_REQUEST['cur'])
+	if (isset($_REQUEST['cur']))
 	{
 		$cur = $_REQUEST['cur'];
 	}
