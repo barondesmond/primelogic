@@ -33,14 +33,32 @@ return $row;
 
 function query_table($tdb)
 {
+	if (!isset($_REQUEST['cur']))
+	{
+		$_REQUEST['cur'] = 0;
+	}
+	if ($_REQUEST['cur'])
+	{
+		$cur = $_REQUEST['cur'];
+	}
 	$table = query_head($tdb[0]);
-	$i=0;
-	for ($i=0; $i < count($tdb); $i++)
+	
+	for ($i=$cur; $i < count($tdb); $i++)
 	{
 		$table .= query_row($tdb[$i]);
 		if ($i%10 == 0 && $i != 0 && $i != count($tdb)-1 && isset($tdb[$i+1]))
 		{
 			$table .= query_foot($tdb[$i]);
+			if ($cur >0)
+			{
+				$prev = $cur - 10;
+				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?query=" . http_build_query($_REQUEST) . "&cur=" . $prev . ">Prev<A> ";
+			}
+			$next = $cur + 10;
+			if ($next <= count($tdb))
+			{
+				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?query=" . http_build_query($_REQUEST) . "&cur=" . $next . ">Next<A> ";
+			} 
 			return $table;
 		}
 
