@@ -78,9 +78,12 @@ function timesheet_prhours($req, $PRHours)
 	}
 return $error;
 }
+	$_REQUEST['error'] = array();
 	$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
-	$_REQUEST['error'] = $error1;
-	
+	if (is_array($error1))
+	{
+		$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
+	}	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
 	{
 		foreach($_REQUEST['ids'] as $i=>$id)
@@ -92,7 +95,10 @@ return $error;
 					$_REQUEST[$id]['Date'] = $Date;
 					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][$Date];
 					$error2 = timesheet_add($id, $_REQUEST[$id]);
-					$error = array_merge($error, $error2);
+					if (is_array($error2))
+					{
+						$_REQUEST['error'] = array_merge($_REQUEST['error'], $error2);
+					}		
 				}
 			}
 		}

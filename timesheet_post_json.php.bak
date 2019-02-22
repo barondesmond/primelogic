@@ -48,6 +48,7 @@ return $error;
 
 function timesheet_prhours($req, $PRHours)
 {
+	$error = '';
 	$keys = array('EmpNo', 'StartTime', 'StopTime', 'PayItemID', 'Hours');
 	foreach ($PRHours as $PayItemID=>$Hours)
 	{
@@ -84,7 +85,7 @@ return $error;
 	{
 		foreach($_REQUEST['ids'] as $i=>$id)
 		{
-			foreach ($_REQUEST['Dates'] as $j->$Date)
+			foreach ($_REQUEST['Dates'] as $j=>$Date)
 			{
 				if (isset($_REQUEST[$id][$Date]))
 				{
