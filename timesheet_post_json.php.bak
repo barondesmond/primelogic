@@ -94,7 +94,7 @@ return $error;
 			{
 				if (isset($_REQUEST[$id][urlencode($Date)]))
 				{
-					print_r($_REQUEST[$id][urlencode($Date]);
+					print_r($_REQUEST[$id][urlencode($Date)];
 					$_REQUEST[$id]['Date'] = $Date;
 					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][urlencode($Date)];
 					$error2 = timesheet_add($id, $_REQUEST[$id]);
