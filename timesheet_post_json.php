@@ -84,6 +84,8 @@ return $error;
 	{
 		$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
 	}	
+	print_r($_REQUEST);
+	exit;
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
 	{
 		foreach($_REQUEST['ids'] as $i=>$id)
