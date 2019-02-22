@@ -84,15 +84,15 @@ return $error;
 	{
 		$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
 	}	
-	print_r($_REQUEST);
-	exit;
+	//print_r($_REQUEST);
+	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
 	{
 		foreach($_REQUEST['ids'] as $i=>$id)
 		{
 			foreach ($_REQUEST['Dates'] as $j=>$Date)
 			{
-				if (isset($_REQUEST[$id][$Date]))
+				if (isset($_REQUEST[$id][urlencode($Date)]))
 				{
 					print_r($_REQUEST[$id][$date]);
 					$_REQUEST[$id]['Date'] = $Date;

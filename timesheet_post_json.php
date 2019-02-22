@@ -84,7 +84,7 @@ return $error;
 	{
 		$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
 	}	
-	//print_r($_REQUEST);
+	print_r($_REQUEST);
 	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
 	{
@@ -94,9 +94,9 @@ return $error;
 			{
 				if (isset($_REQUEST[$id][urlencode($Date)]))
 				{
-					print_r($_REQUEST[$id][$date]);
+					print_r($_REQUEST[$id][urlencode($Date]);
 					$_REQUEST[$id]['Date'] = $Date;
-					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][$Date];
+					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][urlencode($Date)];
 					$error2 = timesheet_add($id, $_REQUEST[$id]);
 					if (is_array($error2))
 					{
@@ -106,6 +106,7 @@ return $error;
 			}
 		}
 	}
+	exit;
 	header('Content-Type: application/json');
 	echo json_encode($_REQUEST);
 exit;
