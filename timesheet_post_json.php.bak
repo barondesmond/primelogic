@@ -20,14 +20,13 @@ function timesheet_add($row, $dev='')
 	
 	foreach ($timesheet as $key=> $def)
 	{
+		$k .= ',[' . $key . ']';
 		if (isset($row[$key]))
 		{
-			$k .= ",$key";
 			$v .= ",'" . $row[$key] . "'";				
 		}
 		else
 		{
-			$k .= ",$key";
 			$v .= ",'$def'";
 		}
 	}

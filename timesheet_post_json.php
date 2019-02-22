@@ -108,18 +108,11 @@ return $error;
 			}
 		}
 	}
-	if (isset($_REQUEST['PRHours']['TCHours']) && $tchours == $_REQUEST['PRHours']['TCHours]'])
-	{
 		$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
 		if (is_array($error1))
 		{
 			$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
 		}
-	}		
-	else
-	{
-		$error[] = 'error hours TCHours mismatch';
-	}
 	//print_r($_REQUEST);
 	
 	header('Content-Type: application/json');
