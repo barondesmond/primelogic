@@ -12,7 +12,7 @@ if ($auth['authorized'] != '1')
 
 function timesheet_add($row, $dev='')
 {
-
+	$error = '';
 	$timesheet = array('TimeSheetID'=>'', 'EmpNo' => '', 'Date' => '', 'Hours' => '0', 'PayItemID'=>'',  'Dispatch'=>'', 'JobID'=>'', 'JobClassID'=>'', 'DeptID'=>'', 'ItemID'=>'', 'Desc'=>'', 'Billable'=>'0', 'Invoiced' =>'0', 'TimesheetOrder'=>'0', 'Processed'=>'0', 'LedgerTransID'=>'', 'WorkCompID'=>'', 'RateOverride'=>'0', 'LedgerEntryID'=>'');
 
 		$k = '';
@@ -81,6 +81,7 @@ function timesheet_prhours($req, $PRHours)
 return $error;
 }
 
+	$_REQUEST['error'] = array();
 	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']) && isset($_REQUEST['TSEmpNo']))
 	{
@@ -108,7 +109,6 @@ return $error;
 			}
 		}
 	}
-	$_REQUEST['error'] = array();
 	if (isset($_REQUEST['PRHours']['TCHours']) && $tchours == $_REQUEST['PRHours']['TCHours]'])
 	{
 		$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
