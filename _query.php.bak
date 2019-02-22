@@ -44,7 +44,7 @@ function query_table($tdb)
 	unset($_REQUEST['cur']);
 	$table = query_head($tdb[0]);
 	
-	for ($i=$cur; $i < count($tdb); $i++)
+	for ($i=$cur; $i <= count($tdb); $i++)
 	{
 		$table .= query_row($tdb[$i]);
 		if ($i%10 == 0 && $i != $cur)
