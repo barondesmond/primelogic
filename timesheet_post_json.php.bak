@@ -10,7 +10,7 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
-function timesheet_add($id, $row, $Dates, $dev='')
+function timesheet_add($row, $dev='')
 {
 
 	$timesheet = array('TimeSheetID'=>'', 'EmpNo' => '', 'Date' => '', 'Hours' => '0', 'PayItemID'=>'',  'Dispatch'=>'', 'JobID'=>'', 'JobClassID'=>'', 'DeptID'=>'', 'ItemID'=>'', 'Desc'=>'', 'Billable'=>'0', 'Invoiced' =>'0', 'TimesheetOrder'=>'0', 'Processed'=>'0', 'LedgerTransID'=>'', 'WorkCompID'=>'', 'RateOverride'=>'0', 'LedgerEntryID'=>'');
@@ -20,10 +20,10 @@ function timesheet_add($id, $row, $Dates, $dev='')
 	
 	foreach ($timesheet as $key=> $def)
 	{
-		if (isset($time[$key]))
+		if (isset($row[$key]))
 		{
 			$k .= ",$key";
-			$v .= ",'" . $db[$key] . "'";				
+			$v .= ",'" . $row[$key] . "'";				
 		}
 		else
 		{
@@ -32,7 +32,7 @@ function timesheet_add($id, $row, $Dates, $dev='')
 		}
 	}
 	$db['ID'] = md5(time() . microtime() . $v);
-	$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
+	$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $row['ID'] . " $v)";
 	echo $sql;
 	//$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
@@ -99,7 +99,7 @@ return $error;
 					//print_r($_REQUEST[$id][urlencode($Date)]);
 					$_REQUEST[$id]['Date'] = $Date;
 					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][urlencode($Date)];
-					$error2 = timesheet_add($id, $_REQUEST[$id]);
+					$error2 = timesheet_add($_REQUEST[$id], $_REQUEST['Dev']);
 					if (is_array($error2))
 					{
 						$_REQUEST['error'] = array_merge($_REQUEST['error'], $error2);
