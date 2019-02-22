@@ -65,7 +65,6 @@ function timesheet_prhours($req, $PRHours)
 	}
 return $error;
 }
-				
 	$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
 	$_REQUEST['error'] = $error1;		
 

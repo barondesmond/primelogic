@@ -74,13 +74,13 @@ return $js;
 
 $js = TimesheetConfig($timekey);
 
-if (!isset($_REQUEST['EmpNo']))
+if (!isset($_REQUEST['TSEmpNo']))
 {
-	$_REQUEST['EmpNo'] = '0';
+	$_REQUEST['TSEmpNo'] = '0';
 }
 
 $sql2 = "SELECT PRPayItem.Name, ItemID, PayItemID, PRHours.PRHoursID, Hours, EmpNo, StartTime, StopTime FROM PRPayItem
-LEFT JOIN PRHours ON PRPayItem.ItemID = PRHours.PayItemID and StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['EmpNo'] . "'  
+LEFT JOIN PRHours ON PRPayItem.ItemID = PRHours.PayItemID and StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['TSEmpNo'] . "'  
 WHERE Name IN ('Regular Payroll', 'Sick/Personal Day', 'Vacation Day', 'Over Time Pay'); ";
 $res2 = mssql_query($sql2);
 $error[] = mssql_get_last_message();
@@ -92,7 +92,7 @@ while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 	$js['PRHours'][$pr['ItemID']] = $pr;
 	
 }
-$sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['EmpNo'] . "'";
+$sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['TSEmpNo'] . "' and PayItemID = 'TSHours' ";
 $res3 = @mssql_query($sql3);
 $post = @mssql_fetch_array($res3, MSSQL_ASSOC);
 if (isset($post))
