@@ -95,7 +95,7 @@ while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 $sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['TSEmpNo'] . "' and PayItemID = 'TSHours' ";
 $res3 = @mssql_query($sql3);
 $post = @mssql_fetch_array($res3, MSSQL_ASSOC);
-if (isset($post))
+if (isset($post['PayItemID']))
 {
 	$js['Post'] = $post;
 }
