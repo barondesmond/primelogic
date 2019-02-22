@@ -10,6 +10,11 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
+if ($_REQUEST['EmpNo'] && $_REQUEST['TSEmpNo'])
+{
+	$_REQUEST['EmpNo'] = $_REQUEST['TSEmpNo'];
+}
+
 function timesheet_add($row, $dev='')
 {
 	$error = '';
