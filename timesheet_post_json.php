@@ -32,7 +32,7 @@ function timesheet_add($row, $dev='')
 		}
 	}
 	$row['ID'] = md5(time() . microtime() . $v);
-	$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $row['ID'] . "' $v)";
+	$sql = "INSERT INTO PRTimeEntry$dev (ID $k) VALUES ('" . $row['ID'] . "' $v)";
 	//echo $sql;
 	$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();

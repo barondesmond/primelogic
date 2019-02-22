@@ -81,6 +81,7 @@ function timesheet_prhours($req, $PRHours)
 return $error;
 }
 
+	$_REQUEST['error'] = array();
 	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']) && isset($_REQUEST['TSEmpNo']))
 	{
@@ -108,7 +109,6 @@ return $error;
 			}
 		}
 	}
-	$_REQUEST['error'] = array();
 	if (isset($_REQUEST['PRHours']['TCHours']) && $tchours == $_REQUEST['PRHours']['TCHours]'])
 	{
 		$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
