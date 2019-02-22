@@ -18,34 +18,32 @@ function timesheet_add($id, $row, $Dates, $dev='')
 		$k = '';
 		$v = '';
 	
-		foreach ($timesheet as $key);
+	foreach ($timesheet as $key);
+	{
+		if (isset($time[$key]))
 		{
-			if (isset($time[$key]))
-			{
-				$k .= ",$key";
-				$v .= ",'" . $db[$key] . "'";				
-			}
-			else
-			{
-				$k .= ",$key";
-				$v .= ",''";
-			}
+			$k .= ",$key";
+			$v .= ",'" . $db[$key] . "'";				
 		}
-			$db['ID'] = md5(time() . microtime() . $v);
-			$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
-			$res = @mssql_query($sql);
-			$mes = mssql_get_last_message();
-			if ($mes != '')
-			{
-				$error[] = $mes;
-				$error[] = $sql;
-			}
+		else
+		{
+			$k .= ",$key";
+			$v .= ",''";
+		}
 	}
+	$db['ID'] = md5(time() . microtime() . $v);
+	$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
+	$res = @mssql_query($sql);
+	$mes = mssql_get_last_message();
+	if ($mes != '')
+	{
+		$error[] = $mes;
+		$error[] = $sql;
+	}
+	
 
 return $error;
 
-
-return mssql_get_last_message();
 }
 
 function timesheet_prhours($req, $PRHours)

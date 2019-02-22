@@ -10,26 +10,40 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
-function timesheet_add($timesheet, $dbs, $dev='')
+function timesheet_add($id, $row, $Dates, $dev='')
 {
 
-	foreach ($dbs as $db)
-	{
+	$timesheet = array('TimeSheetID'=>'', 'EmpNo' => '', 'Date' => '', 'Hours' => '0', 'PayItemID'=>'',  'Dispatch'=>'', 'JobID'=>'', 'JobClassID'=>'', 'DeptID'=>'', 'ItemID'=>'', 'Desc'=>'', 'Billable'=>'0', 'Invoiced' =>'0', 'TimesheetOrder'=>'0', 'Processed'=>'0', 'LedgerTransID'=>'', 'WorkCompID'=>'', 'RateOverride'=>'0', 'LedgerEntryID'=>'');
+
 		$k = '';
 		$v = '';
 	
 		foreach ($timesheet as $key);
 		{
-			if (isset($db[$key]))
+			if (isset($time[$key]))
 			{
 				$k .= ",$key";
 				$v .= ",'" . $db[$key] . "'";				
 			}
+			else
+			{
+				$k .= ",$key";
+				$v .= ",''";
+			}
 		}
-		$db['ID'] = md5(time() . microtime() . $v);
+			$db['ID'] = md5(time() . microtime() . $v);
+			$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
+			$res = @mssql_query($sql);
+			$mes = mssql_get_last_message();
+			if ($mes != '')
+			{
+				$error[] = $mes;
+				$error[] = $sql;
+			}
 	}
-$sql = "INSERT INTO PRTimeEntry$dev ('ID' $k) VALUES ('" . $db['ID'] . " $v)";
-$res = @mssql_query($sql);
+
+return $error;
+
 
 return mssql_get_last_message();
 }
@@ -66,8 +80,24 @@ function timesheet_prhours($req, $PRHours)
 return $error;
 }
 	$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
-	$_REQUEST['error'] = $error1;		
-
+	$_REQUEST['error'] = $error1;
+	
+	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
+	{
+		foreach($_REQUEST['ids'] as $i=>$id)
+		{
+			foreach ($_REQUEST['Dates'] as $j->$Date)
+			{
+				if (isset($_REQUEST[$id][$Date]))
+				{
+					$_REQUEST[$id]['Date'] = $Date;
+					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][$Date];
+					$error2 = timesheet_add($id, $_REQUEST[$id]);
+					$error = array_merge($error, $error2);
+				}
+			}
+		}
+	}
 	header('Content-Type: application/json');
 	echo json_encode($_REQUEST);
 exit;
