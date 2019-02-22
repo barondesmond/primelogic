@@ -109,7 +109,7 @@ return $error;
 		}
 	}
 	$_REQUEST['error'] = array();
-	if ($tchours == $_REQUEST['PRHours']['TCHours]'))
+	if (isset($_REQUEST['PRHours']['TCHours']) && $tchours == $_REQUEST['PRHours']['TCHours]'])
 	{
 		$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
 		if (is_array($error1))

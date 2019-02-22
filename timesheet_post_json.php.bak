@@ -80,16 +80,11 @@ function timesheet_prhours($req, $PRHours)
 	}
 return $error;
 }
-	$_REQUEST['error'] = array();
-	$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
-	if (is_array($error1))
-	{
-		$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
-	}	
-	//print_r($_REQUEST);
+
 	
 	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']) && isset($_REQUEST['TSEmpNo']))
 	{
+		$tchours = 0;
 		foreach($_REQUEST['ids'] as $i=>$id)
 		{
 			foreach ($_REQUEST['Dates'] as $j=>$Date)
@@ -101,6 +96,10 @@ return $error;
 					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][urlencode($Date)];
 					$_REQUEST[$id]['EmpNo'] = $_REQUEST['TSEmpNo'];
 					$error2 = timesheet_add($_REQUEST[$id], $_REQUEST['Dev']);
+					if (!is_array($error2))
+					{
+						$tchours = $tchours + $_REQUEST[$id]['Hours'];
+					}
 					if (is_array($error2))
 					{
 						$_REQUEST['error'] = array_merge($_REQUEST['error'], $error2);
@@ -109,6 +108,20 @@ return $error;
 			}
 		}
 	}
+	$_REQUEST['error'] = array();
+	if ($tchours == $_REQUEST['PRHours']['TCHours]'))
+	{
+		$error1 = timesheet_prhours($_REQUEST, $_REQUEST['PRHours'], $_REQUEST['Dev']);
+		if (is_array($error1))
+		{
+			$_REQUEST['error'] = array_merge($_REQUEST['error'], $error1);
+		}
+	}		
+	else
+	{
+		$error[] = 'error hours TCHours mismatch';
+	}
+	//print_r($_REQUEST);
 	
 	header('Content-Type: application/json');
 	echo json_encode($_REQUEST);
