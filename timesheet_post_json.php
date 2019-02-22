@@ -88,7 +88,7 @@ return $error;
 	}	
 	//print_r($_REQUEST);
 	
-	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']))
+	if (isset($_REQUEST['ids']) && isset($_REQUEST['Dates']) && isset($_REQUEST['TSEmpNo']))
 	{
 		foreach($_REQUEST['ids'] as $i=>$id)
 		{
@@ -99,6 +99,7 @@ return $error;
 					//print_r($_REQUEST[$id][urlencode($Date)]);
 					$_REQUEST[$id]['Date'] = $Date;
 					$_REQUEST[$id]['Hours'] = $_REQUEST[$id][urlencode($Date)];
+					$_REQUEST[$id]['EmpNo'] = $_REQUEST['TSEmpNo'];
 					$error2 = timesheet_add($_REQUEST[$id], $_REQUEST['Dev']);
 					if (is_array($error2))
 					{
