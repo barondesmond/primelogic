@@ -18,7 +18,7 @@ function timesheet_add($id, $row, $Dates, $dev='')
 		$k = '';
 		$v = '';
 	
-	foreach ($timesheet as $key=> $def);
+	foreach ($timesheet as $key=> $def)
 	{
 		if (isset($time[$key]))
 		{
