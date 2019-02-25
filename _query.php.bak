@@ -41,7 +41,7 @@ function query_table($tdb, $cur=0)
 		if ($i%10 == 0 && $i != $cur)
 		{
 			$table .= query_foot($tdb[$i]);
-			if ($cur >0)
+			if ($cur >9)
 			{
 				$prev = $cur - 10;
 				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $prev . ">Prev</A> ";
@@ -64,7 +64,7 @@ function query($query, $cur=0)
 	$query .= " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
 	$res = mssql_query($query);
 	//echo	mssql_get_last_message();
-	if (!$res && $mes = mssql_get_last_message($res))
+	if ((!$res || mssql_num_rows($res) == 0) && $mes = mssql_get_last_message($res))
 	{
 		echo "$mes";
 	}
