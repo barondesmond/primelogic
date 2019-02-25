@@ -75,6 +75,8 @@ function query($query, $cur=0)
 	}
 	$table = query_table($tdb);
 
+return $table;
+}
 
 
 function dbn_table_column($db, $var2, $dl=array())

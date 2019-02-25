@@ -73,7 +73,7 @@ function query($query, $cur=0)
 	{
 		$tdb[] = $db;
 	}
-	$table = query_table($tdb);
+	$table = query_table($tdb, $cur);
 
 return $table;
 }
