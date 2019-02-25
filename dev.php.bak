@@ -55,6 +55,8 @@ $tc = array('EmpNo'=>'0195', 'installationId'=> 'Test', 'event'=>'Working', 'Emp
 	
 }	
 
-print_r($sql)
-;
+foreach ($sql as $id=>$q)
+{
+	mssql($q);
+}
 		
