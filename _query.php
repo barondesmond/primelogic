@@ -80,8 +80,16 @@ return $table;
 
 function query($query, $cur=0)
 {
-	$query2 = $query . " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
-	$res = mssql_query($query2);
+	if (strpos($query, 'ORDER BY') > 0)
+	{
+		$query2 = $query . " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
+		$order = 1;
+	}
+	else
+	{
+		$query2 = $query;
+	}
+		$res = mssql_query($query2);
 	echo mssql_get_last_message();
 	if ((!$res || mssql_num_rows($res) == 0))
 	{
@@ -92,7 +100,14 @@ function query($query, $cur=0)
 	{
 		$tdb[] = $db;
 	}
-	$table = query_table($tdb);
+	if (isset($order))
+	{
+		$table = query_table($tdb);
+	}
+	else
+	{
+		$table = _query_table($tdb, $cur);
+	}
 
 return $table;
 }

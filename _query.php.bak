@@ -87,7 +87,6 @@ function query($query, $cur=0)
 	{
 		echo "$mes";
 	}
-	echo $query;
 
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
