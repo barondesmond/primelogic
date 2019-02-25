@@ -14,22 +14,20 @@ if ($_GET['query'])
 	echo $query;	
 
 	echo '</textarea><input type=submit></form>';
-
+	if (!isset($_REQUEST['cur']))
+	{
+		$_REQUEST['cur'] = 0;
+	}
+	if (isset($_REQUEST['cur']))
+	{
+		$cur = $_REQUEST['cur'];
+	}
+	$table = query($query, $cur);
+	unset($_REQUEST['cur']);
 
 
 	
-	$res = mssql_query($query);
-	echo	mssql_get_last_message();
-	if (!$res && $mes = mssql_get_last_message($res))
-	{
-		echo "$mes";
-	}
-	$x=0;
-	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
-	{
-		$tdb[] = $db;
-	}
-	$table = query_table($tdb);
+
 	echo $table;
 
 

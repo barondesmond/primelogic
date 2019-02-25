@@ -27,10 +27,10 @@ if ($_GET['query'])
 	$x=0;
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
-		$table[] = $db;
+		$tdb[] = $db;
 	}
-	query_table($table);
-
+	$table = query_table($tdb);
+	echo $table;
 
 
 
