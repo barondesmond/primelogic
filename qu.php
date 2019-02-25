@@ -22,8 +22,8 @@ if ($_GET['query'])
 	{
 		$cur = $_REQUEST['cur'];
 	}
-	$table = query($query, $cur);
 	unset($_REQUEST['cur']);
+	$table = query($query, $cur);
 
 
 	

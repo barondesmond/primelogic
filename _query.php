@@ -41,7 +41,7 @@ function query_table($tdb, $cur=0)
 		if ($i%10 == 0 && $i != $cur)
 		{
 			$table .= query_foot($tdb[$i]);
-			if ($cur >0)
+			if ($cur >9)
 			{
 				$prev = $cur - 10;
 				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $prev . ">Prev</A> ";
