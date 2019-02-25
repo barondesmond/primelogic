@@ -67,8 +67,9 @@ function query($query, $cur=0)
 	if ((!$res || mssql_num_rows($res) == 0))
 	{
 		echo "$mes";
-		echo $query;
 	}
+	echo $query;
+
 	$x=0;
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
