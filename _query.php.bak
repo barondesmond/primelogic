@@ -64,7 +64,7 @@ function query($query, $cur=0)
 	$query .= " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
 	$res = mssql_query($query);
 	//echo	mssql_get_last_message();
-	if ((!$res || mssql_num_rows($res) == 0) && $mes = mssql_get_last_message($res))
+	if ((!$res || mssql_num_rows($res) == 0) && $mes = mssql_get_last_message())
 	{
 		echo "$mes";
 	}
