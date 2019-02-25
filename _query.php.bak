@@ -31,7 +31,25 @@ function query_row($db, $reset='0')
 return $row;
 }
 
-function query_table($tdb, $cur=0)
+function query_table($tdb)
+{
+
+	$table = query_head($tdb[0]);
+
+
+
+	for ($i=0; $i <= count($tdb); $i++)
+	{
+		$table .= query_row($tdb[$i]);
+
+	}
+
+	
+	$table .= query_foot($tdb[$i]);
+return $table;
+}
+
+function _query_table($tdb, $cur=0)
 {
 
 	$table = query_head($tdb[$cur]);
@@ -59,10 +77,11 @@ function query_table($tdb, $cur=0)
 return $table;
 }
 
+
 function query($query, $cur=0)
 {
-	$query .= " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
-	$res = mssql_query($query);
+	$query2 = $query . " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
+	$res = mssql_query($query2);
 	echo mssql_get_last_message();
 	if ((!$res || mssql_num_rows($res) == 0))
 	{
