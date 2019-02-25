@@ -1,7 +1,7 @@
 <?php
 include("_db_config.php");
 
-
+unset($sql);
 $sql[] = "DROP TABLE JobsDev";
 $sql[] = "DROP TABLE DispatchDev"; 
 $sql[] = "DROP TABLE DispTechDev";
