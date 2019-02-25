@@ -36,7 +36,7 @@ $ar = get_period_bounds();
 $st = $ar[0];
 $sp = $ar[1];
 $day = 86400;
-$work = 86400/8;
+$work = 86400/3;
 for ($i=$st; $i<$sp; $i = $i + $day)
 {
 

@@ -36,8 +36,8 @@ $ar = get_period_bounds();
 $st = $ar[0];
 $sp = $ar[1];
 $day = 86400;
-$work = 86400/3;
-for ($i=$st; $i<$sp; $i = $i + $day)
+$work = 86400/6;
+for ($i=$st; $i<$sp; $i = $i + $day/2)
 {
 
 $tc = array('EmpNo'=>'0195', 'installationId'=> 'Test', 'event'=>'Working', 'EmpActive'=>'0', 'Screen'=>'Employee', 'StartTime'=>$i, 'StopTime'=>$i+$work);
