@@ -31,17 +31,9 @@ function query_row($db, $reset='0')
 return $row;
 }
 
-function query_table($tdb)
+function query_table($tdb, $cur=0)
 {
-	if (!isset($_REQUEST['cur']))
-	{
-		$_REQUEST['cur'] = 0;
-	}
-	if (isset($_REQUEST['cur']))
-	{
-		$cur = $_REQUEST['cur'];
-	}
-	unset($_REQUEST['cur']);
+
 	$table = query_head($tdb[$cur]);
 	for ($i=$cur; $i <= count($tdb); $i++)
 	{
@@ -64,6 +56,25 @@ function query_table($tdb)
 
 	}
 	$table .= query_foot($tdb[$i]);
+return $table;
+}
+
+function query($query, $cur=0)
+{
+	$query .= " OFFSET $cur ROWS FETCH NEXT 10 ROWS ONLY ";
+	$res = mssql_query($query);
+	//echo	mssql_get_last_message();
+	if (!$res && $mes = mssql_get_last_message($res))
+	{
+		echo "$mes";
+	}
+	$x=0;
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+		$tdb[] = $db;
+	}
+	$table = query_table($tdb);
+
 return $table;
 }
 
