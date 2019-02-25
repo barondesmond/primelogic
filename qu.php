@@ -24,6 +24,7 @@ if ($_GET['query'])
 	}
 	unset($_REQUEST['cur']);
 	$table = query($query, $cur);
+	echo '<p>';
 			if ($cur >9)
 			{
 				$prev = $cur - 10;
