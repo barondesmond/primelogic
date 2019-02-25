@@ -89,12 +89,11 @@ function query($query, $cur=0)
 	}
 	echo $query;
 
-	$x=0;
 	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 	{
 		$tdb[] = $db;
 	}
-	$table = query_table($tdb, $cur);
+	$table = query_table($tdb);
 
 return $table;
 }
