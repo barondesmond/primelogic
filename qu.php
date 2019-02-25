@@ -24,7 +24,16 @@ if ($_GET['query'])
 	}
 	unset($_REQUEST['cur']);
 	$table = query($query, $cur);
-
+			if ($cur >9)
+			{
+				$prev = $cur - 10;
+				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $prev . ">Prev</A> ";
+			}
+			$next = $cur + 10;
+			if ($next <= count($tdb))
+			{
+				echo "<A HREF=" . $_SERVER[PHP_SELF] . "?" . http_build_query($_REQUEST) . "&cur=" . $next . ">Next</A> ";
+			} 
 
 	
 
