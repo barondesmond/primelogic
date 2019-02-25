@@ -40,7 +40,7 @@ $work = 86400/8;
 for ($i=$st; $i<$sp; $i = $i + $day)
 {
 
-$tc = array('EmpNo'=>'0195', 'installationId'=> 'Test', 'event'=>'Working', 'EmpActive'=>'0', 'Screen'=>'Employee', 'StartTime'=>$st, 'StopTime'=>$st+$work);
+$tc = array('EmpNo'=>'0195', 'installationId'=> 'Test', 'event'=>'Working', 'EmpActive'=>'0', 'Screen'=>'Employee', 'StartTime'=>$i, 'StopTime'=>$i+$work);
 	$k = '';
 	$v = '';
 
