@@ -189,7 +189,7 @@ $res3 = @mssql_query($sql3);
 $post = @mssql_fetch_array($res3, MSSQL_ASSOC);
 if (isset($post['PayItemID']))
 {
-	$data['Post'][$db['EmpNo'] = $post;
+	$data['Post'][$db['EmpNo']] = $post;
 }
 
 }
