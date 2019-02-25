@@ -5,7 +5,7 @@ if (!isset($_REQUEST['StartTime']))
 {
 	$_REQUEST['StartTime'] = '0';
 }
-if (!sset($_REQUEST['StopTime']))
+if (!isset($_REQUEST['StopTime']))
 {
 	$_REQUEST['StopTime'] = time();
 }
