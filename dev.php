@@ -49,6 +49,8 @@ $tc = array('EmpNo'=>'0195', 'installationId'=> 'Test', 'event'=>'Working', 'Emp
 		$k .= "$key,";
 		$v .= "'$val',";
 	}
+	$k = substr($k, 0, strlen($k)-1);
+	$v = substr($v, 0, strlen($v)-1);
 	$sql[] = "INSERT INTO TimeCLockApp ($k) VALUES ($v)";
 	
 }	

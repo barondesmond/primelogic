@@ -33,8 +33,8 @@ $sql[] = "DELETE FROM PRHours WHERE EmpNo = '0195'";
 	}
 
 $ar = get_period_bounds();
-$St = $ar[0];
-$Sp = $ar[1];
+$st = $ar[0];
+$sp = $ar[1];
 $day = 86400;
 $work = 86400/8;
 for ($i=$st; $i<$sp; $i = $i + $day)
