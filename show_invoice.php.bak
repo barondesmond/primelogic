@@ -1,0 +1,5 @@
+<?php
+if ($_REQUEST['Invoice'])
+{
+	$file = '/var/www/pdf/' . $_REQUEST['Invoice'] . '.pdf';
+	$file = file_get_contents
