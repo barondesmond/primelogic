@@ -36,10 +36,10 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('TCPDF Example 051');
-$pdf->SetSubject('TCPDF Tutorial');
-$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+$pdf->SetAuthor('Prime Logic');
+$pdf->SetTitle('Prime Logic Invoice');
+$pdf->SetSubject('Prime Logic Invoice');
+$pdf->SetKeywords('TCPDF, PDF, invoice, prime, logic');
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -128,7 +128,7 @@ $pdf->setPageMark();
 	$pdf->SetFont('helvetica', '', 10);
 	$pdf -> writeHTMLCell('20', '5', '179', '209', '<b>' . money_format('%.2n', $dbs['Tax']) . '</b>' , $border, '', '', '', 'R');
 
-	$pdf -> writeHTMLCell('20', '5', '159', '215', '<b>' . $dbs['InvDate'] . '</b>' , $border, '', '', '', 'R');
+	$pdf -> writeHTMLCell('20', '5', '159', '215', '<b>' . $dbs['DueDate'] . '</b>' , $border, '', '', '', 'R');
 	$pdf -> writeHTMLCell('20', '5', '179', '215', '<b>' . money_format('%.2n', $dbs['AmtCharge']) . '</b>' , $border, '', '', '', 'R');
 	$pdf->SetFont('helvetica', '', 11);
 
