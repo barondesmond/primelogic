@@ -112,6 +112,7 @@ function invoice_row($db = '', $key = '')
 return $row;
 }
 
+//Not Used
 function invoice_tax_due($db = '')
 {
 	$key = array('', '','', 'Tax1');
@@ -134,6 +135,7 @@ function invoice_tax_due($db = '')
 	return invoice_row($db);
 }
 
+///Not Used
 function invoice_total_due_by($db = '')
 {
 	$key = array('', '', 'DueDate', 'InvAmt');
@@ -175,7 +177,7 @@ function invoice_blank()
 function invoice_init($dbs='', $db='')
 {
 
-	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PONum', 'InvAmt', 'LastName', 'Tax');
+	$key = array('Invoice', 'InvDate', 'DueDate', 'ServiceDate', 'PONum', 'InvAmt', 'LastName', 'Tax', 'AmtCharge');
 		$dbs['LastName'] = '#Lafayette Co. CHancery Clerk';
 		$dbs['Invoice'] = '000000';
 		$dbs['InvDate'] = '12/12/1970';
