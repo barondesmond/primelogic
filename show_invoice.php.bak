@@ -2,4 +2,9 @@
 if ($_REQUEST['Invoice'])
 {
 	$file = '/var/www/pdf/' . $_REQUEST['Invoice'] . '.pdf';
-	$file = file_get_contents
+	$pdf = file_get_contents($file);
+	header("Content-type:application/pdf");
+	header("Content-Disposition:inline;filename='$file");
+	echo $pdf;
+
+}
