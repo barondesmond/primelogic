@@ -76,7 +76,13 @@ define('TCM', '
 
 
 $db = location_api($_REQUEST['LocName']);
-header('Content-Type: application/json');
 //echo TCM;
-echo json_encode($db);
-
+if ($_REQUEST['array'])
+{
+	print_r(json_encode($db, 1);
+}
+else
+{
+	header('Content-Type: application/json');
+	echo json_encode($db);
+}
