@@ -75,7 +75,7 @@ define('TCM', '
 }');
 
 
-$db = location_api($db);
+$db = location_api($_REQUEST);
 header('Content-Type: application/json');
 //echo TCM;
 echo json_encode($db);
