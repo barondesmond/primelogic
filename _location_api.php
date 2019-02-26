@@ -114,6 +114,7 @@ if ( $location != '')
 		else
 		{
 			$db = $resp;
+			$db['nomatch'] = $Location;
 		}
 	}
 	else
