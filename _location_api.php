@@ -113,8 +113,9 @@ if ( $location != '')
 		}
 		else
 		{
+
+			$resp['nomatch'] = $location .' ' . $resp['results']['0']['locations']['0'] . ' ' .  $db['Add1'];
 			$db = $resp;
-			$db['nomatch'] = $Location;
 		}
 	}
 	else
