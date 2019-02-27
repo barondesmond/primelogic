@@ -121,7 +121,7 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
-$dir = '/var/www/html/primelogic/uploads/';
+$dir = '/var/www/html/primelogic/upload/';
 $files = scandir($dir);
 $js['files'] = $files;
 	foreach ($files as $id=>$file)

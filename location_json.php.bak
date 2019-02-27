@@ -123,7 +123,7 @@ if ($auth['authorized'] != '1')
 
 $dir = '/var/www/html/primelogic/uploads/';
 $files = scandir($dir);
-$js[files] = $files;
+$js['files'] = $files;
 	foreach ($files as $id=>$file)
 	{
 		if ($db = parse_file($file))
