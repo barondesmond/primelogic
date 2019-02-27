@@ -123,7 +123,7 @@ if ($auth['authorized'] != '1')
 
 $dir = '/var/www/html/primelogic/uploads/';
 $files = scandir($dir);
-$js[files] = $files;
+$js['files'] = $files;
 	foreach ($files as $id=>$file)
 	{
 		if ($db = parse_file($file))
@@ -138,7 +138,7 @@ $js[files] = $files;
 		$js['location'][$location] = $db;
 	}
 	header('Content-Type: application/json');
-	echo json_encode($db);
+	echo json_encode($js);
 	exit;
 }
 
