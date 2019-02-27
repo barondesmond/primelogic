@@ -151,6 +151,24 @@ $js['files'] = $files;
 				$js['locationapi'][$location] = $db;	
 			}
 	}
+	foreach ($js['LocName'] as $id=> $LocName)
+	{
+		if (isset($js[$LocName][$id]))
+		{
+			$db = $js[$locname][$id];
+		}
+		if (isset($js['locationapi'][$LocName]))
+		{
+			$db2 = $js['locationapi'][$LocName];
+		}
+		if (isset($db['latitude']) && isset($db['longitude']) && isset($db2['latitude']) && isset($db2['longitude']))
+		{
+			$db['distance'] = distance($db['latitude'], $db['longitude'], $db2['latitude'], $db2['longitude']);
+			$js[$locname][$id] = $db;
+		}
+		unset($db);
+		unset($db2);
+	}
 	header('Content-Type: application/json');
 	echo json_encode($js);
 	exit;
