@@ -80,6 +80,8 @@ function parse_file($file)
 	$exp = explode($file);
 	if (count($exp) != count($key))
 	{
+		print_r($exp);
+		
 		return false;
 	}
 	for ($i=0;$i< count($exp); $i++)
