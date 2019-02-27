@@ -91,6 +91,11 @@ function parse_file($file)
 	}
 	$db['latitude'] = $db['latitude1'] . '.' . $db['latitude2'];
 	$db['longitude'] = $db['longitude1'] . '.' . $db['longitude2'];
+	unset ($db['latitude1']);
+	unset($db['latitude2']);
+	unset($db['longitude1']);
+	unset($db['longitude2']);
+
 $db['file'] = $file;
 return $db;
 
