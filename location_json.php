@@ -166,6 +166,12 @@ $js['files'] = $files;
 			$db['distance'] = distance($db['latitude'], $db['longitude'], $db2['latitude'], $db2['longitude']);
 			$js[$locname][$id] = $db;
 		}
+		else
+		{
+			print_r($db);
+			print_r($db2);
+			exit;
+		}
 		unset($db);
 		unset($db2);
 	}
