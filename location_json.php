@@ -74,15 +74,83 @@ define('TCM', '
   ]
 }');
 
+function parse_file($file)
+{
+	$key = array('time', 'EmpNo', 'Desc', 'LocName', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
+	$exp = explode($file);
+	if (count($exp) != count($key))
+	{
+		return false;
+	}
+	for ($i=0;$i< count($exp); $i++)
+	{
+		$db[$key[$i]] = $exp[$i];
+	}
+	$db['latitude'] = $db['latitude1'] . '.' . $db['latitude2'];
+	$db['longitude'] = $db['longitude1'] . '.' . $db['longitude2'];
+$db['file'] = $file;
+return $db;
 
+}
+
+
+if (isset($_REQUEST['LocName']))
+{
 $db = location_api($_REQUEST['LocName']);
 //echo TCM;
 if (isset($_REQUEST['array']))
 {
 	print_r($db);
+	exit;
 }
 else
 {
 	header('Content-Type: application/json');
 	echo json_encode($db);
+	exit;
 }
+}
+else
+{
+
+$auth = UserAppAuth($_REQUEST);
+if ($auth['authorized'] != '1')
+{
+	header('Content-Type: application/json');
+	echo json_encode($auth);
+	exit;
+}
+
+$dir = '/var/www/html/primelogic/uploads/';
+$files = scandir($dir);
+	foreach ($dir as $id=>$file)
+	{
+		if ($db = parse_file($file))
+		{
+			$js[$db['LocName']][$id] = $db;
+			$js['LocName'][$id] = $db['LocName'];
+		}
+	}
+	foreach ($js['LocName'] as $id=>$location)
+	{
+		$db = location_api($location);
+		$js['location'][$location] = $db;
+	}
+	header('Content-Type: application/json');
+	echo json_encode($db);
+	exit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -79,7 +79,7 @@ $db = location_api($_REQUEST['LocName']);
 //echo TCM;
 if (isset($_REQUEST['array']))
 {
-	print_r(json_encode($db, 1));
+	print_r($db);
 }
 else
 {
