@@ -129,6 +129,7 @@ $files = scandir($dir);
 $js['files'] = $files;
 	foreach ($files as $id=>$file)
 	{
+		$js['what'][$id] = $file;
 		$db = parse_file($file);
 		
 			$js[$db['LocName']][$id] = $db;
