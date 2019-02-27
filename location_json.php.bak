@@ -128,11 +128,11 @@ $files = scandir($dir);
 $js['files'] = $files;
 	foreach ($files as $id=>$file)
 	{
-		if ($db = parse_file($file))
-		{
+		$db = parse_file($file);
+		
 			$js[$db['LocName']][$id] = $db;
 			$js['LocName'][$id] = $db['LocName'];
-		}
+		
 	}
 	foreach ($js['LocName'] as $id=>$location)
 	{
