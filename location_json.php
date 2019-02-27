@@ -137,8 +137,14 @@ $js['files'] = $files;
 	}
 	foreach ($js['LocName'] as $id=>$location)
 	{
-		$db = location_api($location);
-		$js['location'][$location] = $db;
+		$sql = "SELECT * FROM Location WHERE LocName = '$location'";
+		$res = mssql_query($sql);
+		$lc = mssql_fetch_array($res, MSSQL_ASSOC);
+		if ($lc)
+		{
+			$db = location_api($location);
+			$js['location'][$location] = array_merge($lc, $db);
+		
 	}
 	header('Content-Type: application/json');
 	echo json_encode($js);

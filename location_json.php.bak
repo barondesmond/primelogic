@@ -80,11 +80,11 @@ function parse_file($file)
 	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
-		print_r($exp);
+		//print_r($exp);
 		
 		return false;
 	}
-	print_r($exp);
+	//print_r($exp);
 	for ($i=0;$i< count($exp); $i++)
 	{
 		$db[$key[$i]] = $exp[$i];
@@ -129,12 +129,11 @@ $files = scandir($dir);
 $js['files'] = $files;
 	foreach ($files as $id=>$file)
 	{
-		$js['what'][$id] = $file;
-		$db = parse_file($file);
-		
+		if ($db = parse_file($file))
+		{
 			$js[$db['LocName']][$id] = $db;
 			$js['LocName'][$id] = $db['LocName'];
-		
+		}
 	}
 	foreach ($js['LocName'] as $id=>$location)
 	{
