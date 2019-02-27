@@ -112,7 +112,7 @@ else
 }
 else
 {
-
+include("_userappauth.php");
 $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
@@ -139,7 +139,7 @@ $files = scandir($dir);
 	header('Content-Type: application/json');
 	echo json_encode($db);
 	exit;
-
+}
 
 
 
