@@ -132,9 +132,9 @@ $js['files'] = $files;
 		if ($db = parse_file($file))
 		{
 			$sql = "SELECT * FROM Location WHERE LocName = '" . $db['LocName'] .  "'";
-			$res = mssql_query($sql);
-			$lc = mssql_fetch_array($res, MSSQL_ASSOC);
-			if ($lc)
+			$res = @mssql_query($sql);
+			$lc = @mssql_fetch_array($res, MSSQL_ASSOC);
+			if (isset($lc))
 			{
 				$js[$db['LocName']][$id] = $db;
 				$js['LocName'][$id] = $db['LocName'];
