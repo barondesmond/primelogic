@@ -112,7 +112,7 @@ else
 }
 else
 {
-include("_userappauth.php");
+include("_user_app_auth.php");
 $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
