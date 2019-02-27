@@ -131,26 +131,25 @@ $js['files'] = $files;
 	{
 		if ($db = parse_file($file))
 		{
-			$js[$db['LocName']][$id] = $db;
-			$js['LocName'][$id] = $db['LocName'];
+			$sql = "SELECT * FROM Location WHERE LocName = '" . $db['LocName'] "'";
+			$res = mssql_query($sql);
+			$lc = mssql_fetch_array($res, MSSQL_ASSOC);
+			if ($lc)
+			{
+				$js[$db['LocName']][$id] = $db;
+				$js['LocName'][$id] = $db['LocName'];
+				$js['location'][$db['LocName']] = $lc;
+			}
 		}
 	}
-	foreach ($js['LocName'] as $id=>$location)
+	foreach ($js['location'] as $location=>$lc)
 	{
-		$sql = "SELECT * FROM Location WHERE LocName = '$location'";
-		$res = mssql_query($sql);
-		$lc = mssql_fetch_array($res, MSSQL_ASSOC);
-		if ($lc)
-		{
+
 			$db = location_api($location);
-			$js['location'][$location] = array_merge($lc, $db);
-		}
-		else
-		{
-			unset($js['LocName'][$id]);
-			unset($js[$location][$id]);
-		}	
-		
+			if ($db)
+			{
+				$js['locationapi'][$location] = $db;	
+			}
 	}
 	header('Content-Type: application/json');
 	echo json_encode($js);
