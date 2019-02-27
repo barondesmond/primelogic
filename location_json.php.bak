@@ -77,7 +77,7 @@ define('TCM', '
 function parse_file($file)
 {
 	$key = array('time', 'EmpNo', 'Desc', 'LocName', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
-	$exp = explode($file);
+	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
 		print_r($exp);
