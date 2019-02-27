@@ -162,7 +162,7 @@ $js['files'] = $files;
 	{
 		if (isset($js[$LocName][$id]))
 		{
-			$db = $js[$locname][$id];
+			$db = $js[$LocName][$id];
 		}
 		if (isset($js['locationapi'][$LocName]))
 		{
@@ -171,7 +171,7 @@ $js['files'] = $files;
 		if (isset($db['latitude']) && isset($db['longitude']) && isset($db2['latitude']) && isset($db2['longitude']))
 		{
 			$db['distance'] = distance($db['latitude'], $db['longitude'], $db2['latitude'], $db2['longitude']);
-			$js[$locname][$id] = $db;
+			$js[$LocName][$id] = $db;
 		}
 		else
 		{
