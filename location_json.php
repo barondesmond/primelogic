@@ -150,6 +150,13 @@ $js['files'] = $files;
 			{
 				$js['locationapi'][$location] = $db;	
 			}
+			else
+			{
+				$db['LocName'] = $location;
+				$db['latitude'] = '0';
+				$db['longitude'] = '0';
+				$js['locationapi'][$location] = $db;
+			}
 	}
 	foreach ($js['LocName'] as $id=> $LocName)
 	{
