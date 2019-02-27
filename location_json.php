@@ -136,7 +136,7 @@ $js['files'] = $files;
 			$lc = @mssql_fetch_array($res, MSSQL_ASSOC);
 			if (isset($lc['LocName']))
 			{
-				$js[[$db['LocName'][$id] = $db;
+				$js[[$db['LocName']][$id] = $db;
 				$js['LocName'][$id] = $db['LocName'];
 				$js['location'][$db['LocName']] = $lc;
 			}

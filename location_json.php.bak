@@ -136,7 +136,7 @@ $js['files'] = $files;
 			$lc = @mssql_fetch_array($res, MSSQL_ASSOC);
 			if (isset($lc['LocName']))
 			{
-				$js[$db['LocName']][$id] = $db;
+				$js[[$db['LocName'][$id] = $db;
 				$js['LocName'][$id] = $db['LocName'];
 				$js['location'][$db['LocName']] = $lc;
 			}
@@ -171,13 +171,7 @@ $js['files'] = $files;
 		if (isset($db['latitude']) && isset($db['longitude']) && isset($db2['latitude']) && isset($db2['longitude']))
 		{
 			$db['distance'] = distance($db['latitude'], $db['longitude'], $db2['latitude'], $db2['longitude']);
-			$js[$LocName][$id] = $db;
-		}
-		else
-		{
-			print_r($db);
-			print_r($db2);
-			exit;
+			$js['locrow'][$LocName][] = $db;
 		}
 		unset($db);
 		unset($db2);
