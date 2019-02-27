@@ -144,6 +144,12 @@ $js['files'] = $files;
 		{
 			$db = location_api($location);
 			$js['location'][$location] = array_merge($lc, $db);
+		}
+		else
+		{
+			unset($js['LocName'][$id]);
+			unset($js[$location][$id]);
+		}	
 		
 	}
 	header('Content-Type: application/json');
