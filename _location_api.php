@@ -144,6 +144,8 @@ if ( $location != '')
 		if ($match = mapquest_match($resp, $loc))
 		{
 			//$resp = $match;
+			print_r($match);
+			exit;
 			$db = array_merge($match, $loc);
 			//$error = location_api_insert($db, $loca);
 			//$db['error'] = $error;
