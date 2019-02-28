@@ -19,9 +19,8 @@ if ($_REQUEST['dev'] == 'true')
 }
 $js['title'] = 'Jobs List';
 $js['description'] = 'Job Name, Job Location';
-$sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Jobs.JobNotes as JobNotes, LocationApi.latitude, LocationApi.longitude FROM Jobs$dev as Jobs
+$sql = "SELECT  Jobs.Name as Name, Location.LocName as LocName, Location.Add1, Location.City, Location.State, Location.Zip,Jobs.JobNotes as JobNotes, Location.latitude, Location.longitude FROM Jobs$dev as Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
-	LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 	WHERE JobStatus = '100' and Inactive = '0' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''
 	ORDER BY LocName ";
 $res = mssql_query($sql);

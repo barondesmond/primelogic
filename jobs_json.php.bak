@@ -7,7 +7,7 @@ $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
-	echo json_encode($data);
+	echo json_encode($auth);
 	exit;
 }
 include("_location_api.php");
