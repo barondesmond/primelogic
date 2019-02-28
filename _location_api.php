@@ -115,7 +115,7 @@ if ( $location != '')
 		if ($match = mapquest_match($resp, $loc))
 		{
 			//$resp = $match;
-			$db = array_merge($loc, $match);
+			$db = array_merge($match, $loc);
 			$error = location_api_insert($db, $loca);
 			$db['error'] = $error;
 		}
