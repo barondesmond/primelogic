@@ -95,12 +95,12 @@ function location_int_gps($int)
 	if (substr($int, 0, 1) == '-')
 	{
 		$lat1 = substr($int,0,2);
-		$lat2 = substr($int,2, strlen($int));
+		$lat2 = substr($int,3, strlen($int));
 	}
 	else
 	{
 		$lat1 = substr($int, 0, 1);
-		$lat2 = substr($int, 1, strlen($int));
+		$lat2 = substr($int, 2, strlen($int));
 	}
 		$int = $lat1 . '.' . $lat2;	
 
