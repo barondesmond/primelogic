@@ -109,15 +109,15 @@ if ( $location != '')
 		$loc = $db;
 		$loca = $loc['Add1'] . ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 	}
-	if ($loc['latitude'] == '' && $loc['longitude'] == '' && $loc['LocName'] != '')
+	if ($loc['latitude'] == '0' && $loc['longitude'] == '0' && $loc['LocName'] != '')
 	{
 		$resp = mapquest_api($loca);
 		if ($match = mapquest_match($resp, $loc))
 		{
 			//$resp = $match;
 			$db = array_merge($match, $loc);
-			$error = location_api_insert($db, $loca);
-			$db['error'] = $error;
+			//$error = location_api_insert($db, $loca);
+			//$db['error'] = $error;
 		}
 		else
 		{
