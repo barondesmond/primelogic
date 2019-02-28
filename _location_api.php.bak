@@ -31,6 +31,7 @@ function mapquest_match($resp, $db)
 {
 	//print_r($resp);
 	$loc = $resp['results']['0']['locations']['0'];
+	return $loc;
 	//print_r($loc);
 	//print_r($db);
 	if (trim($loc['street']) == trim($db['Add1']) || $loc['geocodeQualityCode'] == 'P1AAA')

@@ -31,6 +31,8 @@ function mapquest_match($resp, $db)
 {
 	//print_r($resp);
 	$loc = $resp['results']['0']['locations']['0'];
+	$loc['latitude'] = $resp['latLng']['lat'];
+	$loc['longitude'] = $resp['latLng']['lng']; 
 	return $loc;
 	//print_r($loc);
 	//print_r($db);
