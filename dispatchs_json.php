@@ -38,9 +38,15 @@ $js['dispatchs'] = null;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
-	if ($db['latitude'] == '')
+	$db['latitude'] = location_int_gps($db['latitude']);
+	$db['longitude'] = location_int_gps($db['longitude']);
+
+	if ($db['latitude'] == '' || $db['latitude'] == '0')
 	{
-		location_api($db['DispatchName']);
+		$loc = location_api($db['LocName'], $db);
+		$db['latitude'] = $loc['latitude'];
+		$db['longitude'] = $loc['longitude'];
+
 	}
 	if ($_REQUEST['latitude']!='null' && $_REQUEST['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
 	{
