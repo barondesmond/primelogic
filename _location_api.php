@@ -111,6 +111,8 @@ if ( $location != '')
 	}
 	if (($loc['latitude'] == '0' || $loc['latitude'] == '') && $loca != '')
 	{
+		unset($loc['latitude']);
+		unset($loc['longitude']);
 		$resp = mapquest_api($loca);
 		if ($match = mapquest_match($resp, $loc))
 		{
