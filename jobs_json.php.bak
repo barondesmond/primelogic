@@ -2,7 +2,6 @@
 include("_db_config.php");
 include("_user_app_auth.php");
 
-
 $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
@@ -28,6 +27,9 @@ $i=1;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
+	$db['latitude'] = location_int_gps($db['latitude']);
+	$db['longitude'] = location_int_gps($db['longitude']);
+
 	if ($db['latitude'] == '' || $db['latitude'] == '0')
 	{
 		$loc = location_api($db['LocName'], $db);
