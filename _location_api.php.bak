@@ -86,6 +86,28 @@ function distance($lat1, $lon1, $lat2, $lon2) {
     return $km;
 }
 
+function location_int_gps($int)
+{
+	if (strpos('.', $int) === true)
+	{
+		return $int;
+	}
+	if (substr($int, 0, 1) == '-')
+	{
+		$lat1 = substr($int,0,2);
+		$lat2 = substr($int,2, strlen($int));
+	}
+	else
+	{
+		$lat1 = substr($int, 0, 1);
+		$lat2 = substr($int, 1, strlen($int);
+	}
+		$int = $lat1 . '.' . $lat2;	
+
+return $int;
+}
+
+
 function location_api($location, $db = '')
 {
 if ( $location != '')

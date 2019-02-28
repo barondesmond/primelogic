@@ -100,7 +100,7 @@ function location_int_gps($int)
 	else
 	{
 		$lat1 = substr($int, 0, 1);
-		$lat2 = substr($int, 1, strlen($int);
+		$lat2 = substr($int, 1, strlen($int));
 	}
 		$int = $lat1 . '.' . $lat2;	
 
