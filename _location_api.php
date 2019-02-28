@@ -109,7 +109,7 @@ if ( $location != '')
 		$loc = $db;
 		$loca = $loc['Add1'] . ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 	}
-	if ($loc['latitude'] == '0' && $loc['longitude'] == '0' && $loc['LocName'] != '')
+	if (($loc['latitude'] == '0' || $loc['latitude'] == '') && $loca != '')
 	{
 		$resp = mapquest_api($loca);
 		if ($match = mapquest_match($resp, $loc))
