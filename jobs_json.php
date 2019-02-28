@@ -28,9 +28,12 @@ $i=1;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
-	if ($db[latitude] == '')
+	if ($db['latitude'] == '' || $db['latitude'] == '0')
 	{
-		location_api($db['LocName']);
+		$loc = location_api($db['LocName']);
+		$db['latitude'] = $loc['latitude'];
+		$db['longitude'] = $loc['longitude'];
+
 	}
 	if ($_REQUEST['latitude']!='null' && $_REQUEST['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
 	{
