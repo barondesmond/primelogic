@@ -157,6 +157,7 @@ function location_file_update($db)
 	if  (rename($db['file'], $file)
 	{
 		$db['newfile'] = $file;
+		$db['error'] = 'Success';
 	}
 	else
 	{
