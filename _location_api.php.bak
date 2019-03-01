@@ -151,7 +151,7 @@ static $files;
 	{
 		if ($lc = location_parse_file($file))
 		{
-			if (isset($lc['location']) && $location == $lc['LocName'])
+			if (isset($lc['location']) && $location == $lc['location'])
 			{
 				$js[$lc['location']][$id] = $lc;
 				$js['location'][$id] = $db['location'];
