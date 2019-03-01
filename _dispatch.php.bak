@@ -42,7 +42,7 @@ while ($db = mssql_fetch_assoc($res))
 
 }
 $js['sql'] = $sql;
-return js;
+return $js;
 
 }
 
