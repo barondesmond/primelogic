@@ -29,7 +29,13 @@ if ($auth['authorized'] != '1')
 	echo json_encode($auth);
 	exit;
 }
-
+if (isset($_REQUEST['location_update'])
+	{
+		$js = location_update($_REQUEST);
+		header('Content-Type: application/json');
+		echo json_encode($js);
+		exit;
+	}
 
 	$js = location_query();
 
