@@ -55,7 +55,7 @@ if ($auth['authorized'] != '1')
 	echo json_encode($js);
 	exit;
 
-
+}
 
 
 
