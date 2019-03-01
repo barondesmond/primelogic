@@ -103,6 +103,7 @@ if ($auth['authorized'] != '1')
 	echo json_encode($auth);
 	exit;
 }
+include("_job.php");
 	$jq = jobs_query($dev);
 	$js = array();
 
