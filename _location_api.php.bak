@@ -149,7 +149,7 @@ function location_file_update($db)
 		}
 		else
 		{
-			$db['error'] = 'missing ' $key;
+			$db['error'] = 'missing ' . $key;
 			return $db;
 		}
 	}
