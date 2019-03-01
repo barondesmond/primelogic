@@ -104,7 +104,7 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 include("_job.php");
-	$jq = jobs_query($dev);
+	$jq = jobs_query($_REQUEST['dev']);
 	$js = array();
 	
 
@@ -115,6 +115,15 @@ include("_job.php");
 			location_override($lc['location'], $lc, $js);
 		}
 	}
+	$jd = dispatch_query($_REQUEST['dev']);
+	foreach ($jd['jobs'] as $id=>$lc)
+	{
+		if (!isset($js['locationapi'][$lc['location']]))
+		{
+			location_override($lc['location'], $lc, $js);
+		}
+	}
+
 	foreach ($js['location'] as $id=> $location)
 	{
 		if (isset($js[$location][$id]))
