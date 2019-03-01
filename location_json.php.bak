@@ -106,7 +106,7 @@ if ($auth['authorized'] != '1')
 include("_job.php");
 	$jq = jobs_query($dev);
 	$js = array();
-
+	
 
 	foreach ($jq['jobs'] as $id=>$lc)
 	{
