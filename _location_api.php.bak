@@ -189,13 +189,13 @@ function location_update($db)
 		else
 		{
 			$lp['error'] = 'Missing File Parse Error';
-			$lp['file'] = $_REQUEST['file'];
+			$lp['file'] = $db['file'];
 		}
 	}
 	else
 	{
 		$lp['error'] = 'Missing File';
-		$lp['file'] = $_REQUEST['file'];
+		$lp['file'] = $db['file'];
 	}
 return $lp;
 

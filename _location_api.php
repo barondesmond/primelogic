@@ -154,7 +154,9 @@ function location_file_update($db)
 		}
 	}
 	$file = substr($file, 0, strlen($file) - 1);
-	if  (rename($db['file'], $file))
+	$dir = '/var/www/html/primelogic/upload';
+
+	if  (rename($dir . $db['file'], $dir . $file))
 	{
 		$db['newfile'] = $file;
 		$db['error'] = 'Success';
@@ -168,7 +170,7 @@ return $db;
 
 function location_update($db)
 {
-	if (isset($db['file']) && file_exists($db['file']))
+	if (isset($db['file']))
 	{
 		if ($lp = location_parse_file($db['file']))
 		{
