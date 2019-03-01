@@ -137,6 +137,37 @@ return $db;
 
 }
 
+function location_query()
+{
+
+static $files;
+	
+	if (!isset($files))
+	{
+		$dir = '/var/www/html/primelogic/upload/';
+		$files = scandir($dir);
+	}
+	$js['files'] = $files;
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, longitude, latitude FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
+			$res = mssql_query($sql);
+			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
+			if (isset($lc['location']) && isset($db['location']) && $db['location'] == $lc['location'])
+			{
+				$js[$lc['location']][$id] = $lc;
+				$js['location'][$id] = $db['location'];
+				$js['locationapi'][$db['location']] = $db;
+			}
+		}
+	}
+return $js;
+}
+
+
+
 function location_override($location, $db, &$js)
 {
 static $files;
