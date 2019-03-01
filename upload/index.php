@@ -3,7 +3,7 @@ include("../_db_config.php");
 
 if ($_REQUEST['show'] && $_REQUEST['file'])
 {
-	$filename = basename($_REQUEST['file'];
+	$filename = basename(urldecode($_REQUEST['file']));
 	$file_extension = strtolower(substr(strrchr($filename,"."),1));
 
 	switch( $file_extension ) {
