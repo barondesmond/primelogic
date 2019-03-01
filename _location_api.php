@@ -152,7 +152,7 @@ static $files;
 	{
 		if ($lc = location_parse_file($file))
 		{
-			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, longitude, latitude FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
+			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, longitude, latitude, Location.Add1, Location.City, Location.State, Location.Zip FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
 			$res = mssql_query($sql);
 			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
 			$db['latitude'] = location_int_gps($db['latitude']);
