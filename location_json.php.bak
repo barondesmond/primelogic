@@ -31,7 +31,7 @@ if ($auth['authorized'] != '1')
 }
 
 
-	$js = jobs_query();
+	$js = location_query();
 
 	foreach ($js['location'] as $id=> $location)
 	{

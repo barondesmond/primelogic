@@ -137,6 +137,70 @@ return $db;
 
 }
 
+function location_file_update($db)
+{
+	$file = '';
+	$update = array('time', 'EmpNo', 'Desc', 'location', 'latitude', 'longitude', 'AcceptDeny', 'ext');
+	foreach ($update as $num=>$key)
+	{
+		if (isset($db[$key]))
+		{
+			$file .= $db[$key] . '.';
+		}
+		else
+		{
+			$db['error'] = 'missing ' $key;
+			return $db;
+		}
+	}
+	$file = substr($file, 0, strlen($file) - 1);
+	if  (rename($db['file'], $file)
+	{
+		$db['newfile'] = $file;
+		$db['error'] = 'Success';
+	}
+	else
+	{
+		$db['error'] = 'file ' . $db['file'] . ' failed to move ' . $file;
+	}
+return $db;
+}
+
+function location_update($db)
+{
+	if (isset($db['file']) && file_exists($db['file']))
+	{
+		if ($lp = location_parse_file($db['file'))
+		{
+			if (isset($db['Accept']))
+			{
+				$lp['AcceptDeny'] = $db['Accept'];
+			}
+			elseif (isset($db['Deny']))
+			{
+				$lp['AcceptDeny'] = $db['Deny'];
+			}
+			else
+			{
+				$lp['error'] = 'Missing Parameter Accept/Deny';
+			}
+			$lp = location_file_update($lp);
+		}
+		else
+		{
+			$lp['error'] = 'Missing File Parse Error';
+			$lp['file'] = $_REQUEST['file'];
+		}
+	}
+	else
+	{
+		$lp['error'] = 'Missing File';
+		$lp['file'] = $_REQUEST['file'];
+	}
+return $lp;
+
+}
+
 function location_query()
 {
 
