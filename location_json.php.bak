@@ -127,7 +127,7 @@ if ($auth['authorized'] != '1')
 		if (isset($db['latitude']) && isset($db['longitude']) && isset($db2['latitude']) && isset($db2['longitude']))
 		{
 			$db['distance'] = distance($db['latitude'], $db['longitude'], $db2['latitude'], $db2['longitude']);
-			$js['locrow'][$LocName][] = $db;
+			$js['locrow'][$location][] = $db;
 		}
 		unset($db);
 		unset($db2);

@@ -109,7 +109,7 @@ if ($auth['authorized'] != '1')
 
 	foreach ($jq['jobs'] as $id=>$lc)
 	{
-		if (!isset($js['location'][$lc['location']))
+		if (!isset($js['locationapi'][$lc['location']]))
 		{
 			location_override($lc['location'], $lc, $js);
 		}
