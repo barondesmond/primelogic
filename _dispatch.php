@@ -1,26 +1,10 @@
 <?php
-include("_db_config.php");
-include("_user_app_auth.php");
-
-
-$auth = UserAppAuth($_REQUEST);
-if ($auth['authorized'] != '1')
+function dispatch_query$ServiceMan = '', $dev='')
 {
-	header('Content-Type: application/json');
-	$auth['dispatchs'] = null;
-	echo json_encode($auth);
-	exit;
-}
 
-include("_location_api.php");
+$sel = " and ServiceMan = '$ServiceMan'";
 
-
-
-//api app
-
-	 $sel = " and ServiceMan = '" . $_REQUEST['ServiceMan'] . "'";
-
-if ($_REQUEST['dev'] == 'true')
+if ($dev == 'true')
 {
 	$d = 'Dev';
 }
@@ -58,8 +42,8 @@ while ($db = mssql_fetch_assoc($res))
 
 }
 $js['sql'] = $sql;
-header('Content-Type: application/json');
+return js;
 
-echo json_encode($js);
+}
 
 ?>
