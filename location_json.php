@@ -74,32 +74,7 @@ define('TCM', '
   ]
 }');
 
-function parse_file($file)
-{
-	$key = array('time', 'EmpNo', 'Desc', 'LocName', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
-	$exp = explode('.', $file);
-	if (count($exp) != count($key))
-	{
-		//print_r($exp);
-		
-		return false;
-	}
-	//print_r($exp);
-	for ($i=0;$i< count($exp); $i++)
-	{
-		$db[$key[$i]] = $exp[$i];
-	}
-	$db['latitude'] = $db['latitude1'] . '.' . $db['latitude2'];
-	$db['longitude'] = $db['longitude1'] . '.' . $db['longitude2'];
-	unset ($db['latitude1']);
-	unset($db['latitude2']);
-	unset($db['longitude1']);
-	unset($db['longitude2']);
 
-$db['file'] = $file;
-return $db;
-
-}
 
 
 if (isset($_REQUEST['LocName']))
@@ -128,40 +103,13 @@ if ($auth['authorized'] != '1')
 	echo json_encode($auth);
 	exit;
 }
+	$jq = jobs_query($dev);
+	$js = array();
 
-$dir = '/var/www/html/primelogic/upload/';
-$files = scandir($dir);
-$js['files'] = $files;
-	foreach ($files as $id=>$file)
-	{
-		if ($db = parse_file($file))
-		{
-			$sql = "SELECT * FROM Location WHERE LocName = '" . $db['LocName'] .  "'";
-			$res = @mssql_query($sql);
-			$lc = @mssql_fetch_array($res, MSSQL_ASSOC);
-			if (isset($lc['LocName']))
-			{
-				$js[$lc['LocName']][$id] = $db;
-				$js['LocName'][$id] = $db['LocName'];
-				$js['location'][$db['LocName']] = $lc;
-			}
-		}
-	}
-	foreach ($js['location'] as $location=>$lc)
-	{
 
-			$db = location_api($location);
-			if ($db)
-			{
-				$js['locationapi'][$location] = $db;	
-			}
-			else
-			{
-				$db['LocName'] = $location;
-				$db['latitude'] = '0';
-				$db['longitude'] = '0';
-				$js['locationapi'][$location] = $db;
-			}
+	foreach ($jq as $job=>$lc)
+	{
+		location_override($lc['location'], $lc, $js);
 	}
 	foreach ($js['LocName'] as $id=> $LocName)
 	{

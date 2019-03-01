@@ -110,6 +110,57 @@ function location_int_gps($int)
 return $int;
 }
 
+function location_parse_file($file)
+{
+	$key = array('time', 'EmpNo', 'Desc', 'LocName', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
+	$exp = explode('.', $file);
+	if (count($exp) != count($key))
+	{
+		//print_r($exp);
+		
+		return false;
+	}
+	//print_r($exp);
+	for ($i=0;$i< count($exp); $i++)
+	{
+		$db[$key[$i]] = $exp[$i];
+	}
+	$db['latitude'] = $db['latitude1'] . '.' . $db['latitude2'];
+	$db['longitude'] = $db['longitude1'] . '.' . $db['longitude2'];
+	unset ($db['latitude1']);
+	unset($db['latitude2']);
+	unset($db['longitude1']);
+	unset($db['longitude2']);
+
+$db['file'] = $file;
+return $db;
+
+}
+
+function location_override($location, $db, &$js)
+{
+static $files;
+	
+	if (!isset($files))
+	{
+		$dir = '/var/www/html/primelogic/upload/';
+		$files = scandir($dir);
+	}
+	$js['files'] = $files;
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+			if (isset($lc['LocName']) && $location == $lc['LocName'])
+			{
+				$js[$lc['LocName']][$id] = $db;
+				$js['LocName'][$id] = $db['LocName'];
+				$js['location'][$db['LocName']] = $lc;
+			}
+		}
+	}
+return $js;
+}
 
 function location_api($location, $db = '')
 {
