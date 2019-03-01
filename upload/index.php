@@ -1,7 +1,21 @@
 <?php
 include("../_db_config.php");
 
+if ($_REQUEST['show'] && $_REQUEST['file'])
+{
+	$filename = basename($_REQUEST['file'];
+	$file_extension = strtolower(substr(strrchr($filename,"."),1));
 
+	switch( $file_extension ) {
+	 case "gif": $ctype="image/gif"; break;
+	 case "png": $ctype="image/png"; break;
+	 case "jpeg":
+	 case "jpg": $ctype="image/jpeg"; break;
+	 default:
+	}
+	header('Content-type: ' . $ctype);
+	$image = readfile($_REQUEST['file']);
+}	
 
 $file = fopen('test.file', 'w');
 
