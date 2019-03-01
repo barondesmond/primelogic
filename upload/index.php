@@ -14,7 +14,7 @@ if ($_REQUEST['show'] && $_REQUEST['file'])
 	 default:
 	}
 	header('Content-type: ' . $ctype);
-	$image = readfile($_REQUEST['file']);
+	$image = readfile(urldecode($_REQUEST['file']));
 }	
 
 $file = fopen('test.file', 'w');
