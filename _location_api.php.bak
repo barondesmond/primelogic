@@ -153,9 +153,9 @@ static $files;
 		{
 			if (isset($lc['location']) && $location == $lc['LocName'])
 			{
-				$js[$lc['location']][$id] = $db;
+				$js[$lc['location']][$id] = $lc;
 				$js['location'][$id] = $db['location'];
-				$js['location'][$db['location']] = $lc;
+				$js['locationapi'][$db['location']] = $db;
 			}
 		}
 	}
