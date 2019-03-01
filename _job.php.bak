@@ -473,7 +473,7 @@ function job_details($gr)
 return $tb;
 }
 
-function jobs_summary_report($jobs)
+function jobs_summary_report($jobs, $title = 'Jobs Active Summary Report')
 {
 
 $i=0;
@@ -490,7 +490,7 @@ for ($i=0; $i < count($jobs); $i++)
 	if (!$hd)
 	{
 		$hd = $job;
-		$hd['title'] = 'Jobs Active Summary Report';
+		$hd['title'] = $title;
 		$table .= job_head($hd, $key);
 	}
 	$table .= job_summary_title($job, $key);
