@@ -1,5 +1,5 @@
 <?php
-function dispatch_query($ServiceMan = '', $dev='')
+function dispatch_query$ServiceMan = '', $dev='')
 {
 
 $sel = " and ServiceMan = '$ServiceMan'";
