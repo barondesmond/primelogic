@@ -579,4 +579,5 @@ while ($db = mssql_fetch_assoc($res))
 }
 
 return $js;
+}
 ?>
