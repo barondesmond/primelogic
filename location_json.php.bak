@@ -103,35 +103,26 @@ if ($auth['authorized'] != '1')
 	echo json_encode($auth);
 	exit;
 }
-	$js = jobs_query($dev);
+	$jq = jobs_query($dev);
+	$js = array();
 
 
-
-	foreach ($js['location'] as $location=>$lc)
+	foreach ($jq['jobs'] as $id=>$lc)
 	{
-
-			$db = location_api($location);
-			if ($db)
-			{
-				$js['locationapi'][$location] = $db;	
-			}
-			else
-			{
-				$db['LocName'] = $location;
-				$db['latitude'] = '0';
-				$db['longitude'] = '0';
-				$js['locationapi'][$location] = $db;
-			}
-	}
-	foreach ($js['LocName'] as $id=> $LocName)
-	{
-		if (isset($js[$LocName][$id]))
+		if (!isset($js['location'][$lc['location']))
 		{
-			$db = $js[$LocName][$id];
+			location_override($lc['location'], $lc, $js);
 		}
-		if (isset($js['locationapi'][$LocName]))
+	}
+	foreach ($js['location'] as $id=> $location)
+	{
+		if (isset($js[$location][$id]))
 		{
-			$db2 = $js['locationapi'][$LocName];
+			$db = $js[$location][$id];
+		}
+		if (isset($js['locationapi'][$location]))
+		{
+			$db2 = $js['locationapi'][$location];
 		}
 		if (isset($db['latitude']) && isset($db['longitude']) && isset($db2['latitude']) && isset($db2['longitude']))
 		{

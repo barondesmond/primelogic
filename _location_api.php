@@ -112,7 +112,7 @@ return $int;
 
 function location_parse_file($file)
 {
-	$key = array('time', 'EmpNo', 'Desc', 'LocName', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
+	$key = array('time', 'EmpNo', 'Desc', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
 	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
@@ -151,11 +151,11 @@ static $files;
 	{
 		if ($lc = location_parse_file($file))
 		{
-			if (isset($lc['LocName']) && $location == $lc['LocName'])
+			if (isset($lc['location']) && $location == $lc['LocName'])
 			{
-				$js[$lc['LocName']][$id] = $db;
-				$js['LocName'][$id] = $db['LocName'];
-				$js['location'][$db['LocName']] = $lc;
+				$js[$lc['location']][$id] = $lc;
+				$js['location'][$id] = $db['location'];
+				$js['locationapi'][$db['location']] = $db;
 			}
 		}
 	}

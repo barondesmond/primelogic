@@ -107,24 +107,27 @@ if ($auth['authorized'] != '1')
 	$js = array();
 
 
-	foreach ($jq as $job=>$lc)
+	foreach ($jq['jobs'] as $id=>$lc)
 	{
-		location_override($lc['location'], $lc, $js);
-	}
-	foreach ($js['LocName'] as $id=> $LocName)
-	{
-		if (isset($js[$LocName][$id]))
+		if (!isset($js['location'][$lc['location']))
 		{
-			$db = $js[$LocName][$id];
+			location_override($lc['location'], $lc, $js);
 		}
-		if (isset($js['locationapi'][$LocName]))
+	}
+	foreach ($js['location'] as $id=> $location)
+	{
+		if (isset($js[$location][$id]))
 		{
-			$db2 = $js['locationapi'][$LocName];
+			$db = $js[$location][$id];
+		}
+		if (isset($js['locationapi'][$location]))
+		{
+			$db2 = $js['locationapi'][$location];
 		}
 		if (isset($db['latitude']) && isset($db['longitude']) && isset($db2['latitude']) && isset($db2['longitude']))
 		{
 			$db['distance'] = distance($db['latitude'], $db['longitude'], $db2['latitude'], $db2['longitude']);
-			$js['locrow'][$LocName][] = $db;
+			$js['locrow'][$location][] = $db;
 		}
 		unset($db);
 		unset($db2);
