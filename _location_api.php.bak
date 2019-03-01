@@ -154,7 +154,7 @@ function location_file_update($db)
 		}
 	}
 	$file = substr($file, 0, strlen($file) - 1);
-	if  (rename($db['file'], $file)
+	if  (rename($db['file'], $file))
 	{
 		$db['newfile'] = $file;
 		$db['error'] = 'Success';

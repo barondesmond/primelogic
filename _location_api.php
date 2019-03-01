@@ -170,7 +170,7 @@ function location_update($db)
 {
 	if (isset($db['file']) && file_exists($db['file']))
 	{
-		if ($lp = location_parse_file($db['file'))
+		if ($lp = location_parse_file($db['file']))
 		{
 			if (isset($db['Accept']))
 			{
