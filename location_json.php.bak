@@ -104,6 +104,8 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 include("_job.php");
+include("_dispatch.php");
+
 	$jq = jobs_query($_REQUEST['dev']);
 	$js = array();
 	

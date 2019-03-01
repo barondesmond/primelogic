@@ -118,7 +118,7 @@ include("_dispatch.php");
 		}
 	}
 	$jd = dispatch_query($_REQUEST['dev']);
-	foreach ($jd['jobs'] as $id=>$lc)
+	foreach ($jd['dispatchs'] as $id=>$lc)
 	{
 		if (!isset($js['locationapi'][$lc['location']]))
 		{
