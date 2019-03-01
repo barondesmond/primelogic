@@ -29,8 +29,7 @@ if ($auth['authorized'] != '1')
 	echo json_encode($auth);
 	exit;
 }
-include("_job.php");
-include("_dispatch.php");
+
 
 	$js = jobs_query();
 
@@ -55,9 +54,6 @@ include("_dispatch.php");
 	header('Content-Type: application/json');
 	echo json_encode($js);
 	exit;
-}
-
-
 
 
 
