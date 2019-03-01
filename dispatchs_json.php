@@ -18,7 +18,7 @@ include("_dispatch.php");
 
 //api app
 
-$js = dispatch_query($_REQUEST['ServiceMain'], $_REQUEST['dev']);
+$js = dispatch_query($_REQUEST['ServiceMan'], $_REQUEST['dev']);
 header('Content-Type: application/json');
 
 echo json_encode($js);

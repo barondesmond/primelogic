@@ -13,7 +13,7 @@ if ($auth['authorized'] != '1')
 }
 
 include("_location_api.php");
-
+include("_dispatch.php");
 
 
 //api app
