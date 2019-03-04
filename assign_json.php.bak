@@ -13,12 +13,15 @@ if ($auth['authorized'] != '1')
 }
 
 include("_location_api.php");
-include("_dispatch.php");
+include("_job.php");
+include("_employees.php");
 
 
 //api app
 
-$js = dispatch_query($_REQUEST['ServiceMan'], $_REQUEST['dev']);
+$js = jobs_query($_REQUEST['dev']);
+$js = array_merge($js, employees_query($_REQUEST['dev']);
+
 header('Content-Type: application/json');
 
 echo json_encode($js);

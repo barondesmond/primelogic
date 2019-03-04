@@ -20,7 +20,7 @@ include("_employees.php");
 //api app
 
 $js = jobs_query($_REQUEST['dev']);
-$js = array_merge($js, employees_query($_REQUEST['dev']);
+$js = array_merge($js, employees_query($_REQUEST['dev']));
 
 header('Content-Type: application/json');
 
