@@ -37,7 +37,7 @@ $js['numEmp'] = 0;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
-	$js['jobgroup'][] = $db;
+	$js['jobgroups'][] = $db;
 	$js['numEmp'] = $i;
 	$i++;
 }

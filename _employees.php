@@ -24,7 +24,7 @@ while ($db = mssql_fetch_assoc($res))
 return $js;
 }
 
-function job_group_query($dev='')
+function jobgroups_query($dev='')
 {
 
 
