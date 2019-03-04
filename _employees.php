@@ -1,16 +1,7 @@
 <?php
-include("_db_config.php");
-include("_user_app_auth.php");
 
-
-$auth = UserAppAuth($_REQUEST);
-if ($auth['authorized'] != '1')
+function employees_query($dev='')
 {
-	header('Content-Type: application/json');
-	echo json_encode($data);
-	exit;
-}
-//api app
 
 if ($_REQUEST['EmpName'] && $_REQUEST['Email'])
 {
@@ -30,8 +21,5 @@ while ($db = mssql_fetch_assoc($res))
 	$i++;
 }
 
-header('Content-Type: application/json');
-
-echo json_encode($js);
-
-?>
+return $js;
+}

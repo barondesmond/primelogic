@@ -7,13 +7,20 @@ $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
-	echo json_encode($data);
+	$auth['dispatchs'] = null;
+	echo json_encode($auth);
 	exit;
 }
-//api app
-include("_employees.php");
-employees_query();
 
+include("_location_api.php");
+include("_job.php");
+include("_employees.php");
+
+
+//api app
+
+$js = jobs_query($_REQUEST['dev']);
+$js = array_merge($js, employees_query($_REQUEST['dev']);
 
 header('Content-Type: application/json');
 

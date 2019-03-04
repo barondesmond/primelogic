@@ -7,14 +7,18 @@ $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
-	echo json_encode($data);
+	$auth['dispatchs'] = null;
+	echo json_encode($auth);
 	exit;
 }
+
+include("_location_api.php");
+include("_dispatch.php");
+
+
 //api app
-include("_employees.php");
-employees_query();
 
-
+$js = dispatch_query($_REQUEST['ServiceMan'], $_REQUEST['dev']);
 header('Content-Type: application/json');
 
 echo json_encode($js);
