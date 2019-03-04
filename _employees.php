@@ -30,7 +30,7 @@ function jobgroups_query($dev='')
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, JobGroup';
-$sql = "SELECT * FROM JobGroup ";
+$sql = "SELECT * FROM JobGroup ORDER BY JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
 $js['numEmp'] = 0;
