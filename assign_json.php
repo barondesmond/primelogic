@@ -45,7 +45,7 @@ if (isset($_REQUEST['add_job_group_employee']))
 					$mes = mssql_get_last_message();
 					if ($mes != '')
 					{
-						$js['error'][] = $mes 
+						$js['error'][] = $mes; 
 						$js['error'][] = $sql;						}
 					}
 				}
@@ -58,7 +58,7 @@ if (isset($_REQUEST['add_job_group_employee']))
 					$mes = mssql_get_last_message();
 					if ($mes != '')
 					{
-						$js['error'][] = $mes 
+						$js['error'][] = $mes;
 						$js['error'][] = $sql;
 					}
 				}
