@@ -53,7 +53,7 @@ if (isset($_REQUEST['add_job_group_employee']))
 			{
 				foreach ($_REQUEST['Job'] as $Job)
 				{
-					$sql = "INSERT INTO JobGroupEmployee (JobGroup, Job) VALUES ('$JobGroup', '$Job')";
+					$sql = "INSERT INTO JobGroupEmployee (JobGroupID, Job) VALUES ('$JobGroup', '$Job')";
 					$res = mssql_query($sql);
 					$mes = mssql_get_last_message();
 					if ($mes != '')
@@ -65,6 +65,12 @@ if (isset($_REQUEST['add_job_group_employee']))
 			}
 		}
 		header('Content-Type: application/json');
+		if (!isset($js['error']))
+		{
+			$js = $_REQUEST;
+			$js['success'] = '1';
+			
+		}
 		echo json_encode($js);
 		exit;
 	}
