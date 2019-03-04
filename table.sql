@@ -1,4 +1,34 @@
 
+
+CREATE SEQUENCE JobGroupCounter 
+    AS int  
+    START WITH 1  
+    INCREMENT BY 1 ;  
+
+CREATE TABLE JobGroup
+(JobGroupID int PRIMARY KEY CLUSTERED DEFAULT (NEXT VALUE FOR JobGroupCounter),  
+JobGroup VARCHAR (20) NOT NULL DEFAULT '',
+CONSTRAINT [JB_id] UNIQUE NONCLUSTERED
+(
+[JobGroup]
+)
+
+);
+
+CREATE TABLE JobGroupEmployee(
+JobGroupID int NOT NULL,  
+ 
+EmpNo VARCHAR(4) NOT NULL DEFAULT '', 
+Job varchar(10) NOT NULL DEFAULT ''
+CONSTRAINT [UQ_codes] UNIQUE NONCLUSTERED
+(
+   [EmpNo], [Job], [JobGroupID]
+)
+
+);
+
+  ADD CONSTRAINT ucCodes UNIQUE (fcode, scode, dcode)
+
 CREATE SEQUENCE PRHoursCounter 
     AS int  
     START WITH 1  

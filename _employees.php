@@ -23,3 +23,24 @@ while ($db = mssql_fetch_assoc($res))
 
 return $js;
 }
+
+function job_group_query($dev='')
+{
+
+
+$js['title'] = 'Group List';
+$js['description'] = 'JobGroupID, JobGroup';
+$sql = "SELECT * FROM JobGroup ";
+$res = mssql_query($sql);
+$i=1;
+$js['numEmp'] = 0;
+while ($db = mssql_fetch_assoc($res))
+{
+	$db['id'] = $i;
+	$js['jobgroups'][] = $db;
+	$js['numEmp'] = $i;
+	$i++;
+}
+
+return $js;
+}
