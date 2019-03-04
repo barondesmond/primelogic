@@ -19,7 +19,7 @@ include("_employees.php");
 
 //api app
 
-if ($_REQUEST['add_job_group'])
+if (isset($_REQUEST['add_job_group']))
 {
 	$sql = "INSERT INTO JobGroup (JobGroup) VALUES('" . $_REQUEST['JobGroup'] . "')";
 	$res = mssql_query($sql);
@@ -30,6 +30,48 @@ if ($_REQUEST['add_job_group'])
 	exit;
 }
 
+if (isset($_REQUEST['add_job_group_employee']))
+{
+	if (isset($_REQUEST['JobGroup'])
+	{
+		foreach ($_REQUEST['JobGroup'] as $JobGroup)
+		{
+				if (isset($_REQUEST['Employee']))
+				{
+					foreach ($_REQUEST['Employee']	as $EmpNo)
+					{
+						$sql = "INSERT INTO JobGroupEmployee (JobGroup, EmpNo) VALUES ('$JobGroup', '$EmpNo')";
+						$res = mssql_query($sql);
+						$mes = mssql_get_last_message();
+						if ($mes != '')
+						{
+							$js['error'][] = $mes 
+							$js['error'][] = $sql;
+						}
+				}
+				if (isset($_REQUEST['Job']))
+				{
+					foreach ($_REQUEST['Job'] as $Job)
+					{
+						$sql = "INSERT INTO JobGroupEmployee (JobGroup, Job) VALUES ('$JobGroup', '$Job')";
+						$res = mssql_query($sql);
+						$mes = mssql_get_last_message();
+						if ($mes != '')
+						{
+							$js['error'][] = $mes 
+							$js['error'][] = $sql;
+						}
+					}
+				}
+		}
+	}
+	else
+	{
+		$js['error'][] = 'No Job Group Selected';
+		header('Content-Type: application/json');
+		echo json_encode($js);
+		exit;
+	}
 
 $js = jobs_query($_REQUEST['dev']);
 $js = array_merge($js, employees_query($_REQUEST['dev']));
