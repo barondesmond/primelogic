@@ -30,7 +30,7 @@ function jobgroups_query($dev='')
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, JobGroup';
-$sql = "SELECT * FROM JobGroup ORDER BY JobGroupID ASC ";
+$sql = "SELECT * FROM JobGroup WHERE JobGroup != '' ORDER BY JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
 $js['numEmp'] = 0;
@@ -38,6 +38,26 @@ while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
 	$js['jobgroups'][] = $db;
+	$js['numEmp'] = $i;
+	$i++;
+}
+
+return $js;
+}
+
+function jobgroupemployees_query($dev='')
+{
+
+$js['title'] = 'Group List';
+$js['description'] = 'JobGroupID, JobGroup';
+$sql = "SELECT * FROM JobGroup WHERE JobGroup != '' ORDER BY JobGroupID ASC ";
+$res = mssql_query($sql);
+$i=1;
+$js['numEmp'] = 0;
+while ($db = mssql_fetch_assoc($res))
+{
+	$db['id'] = $i;
+	$js['jobgroupemployees'][] = $db;
 	$js['numEmp'] = $i;
 	$i++;
 }
