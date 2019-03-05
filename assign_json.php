@@ -40,7 +40,7 @@ if (isset($_REQUEST['add_job_group_employee']))
 			{
 				foreach ($_REQUEST['Employee']	as $EmpNo)
 				{
-					$sql = "INSERT INTO JobGroupEmployee (JobGroupID, EmpNo) VALUES ('$JobGroup', '$EmpNo')";
+					$sql = "REPLACE INTO JobGroupEmployee (JobGroupID, EmpNo) VALUES ('$JobGroup', '$EmpNo')";
 					$res = mssql_query($sql);
 					$mes = mssql_get_last_message();
 					if ($mes != '')
@@ -53,7 +53,7 @@ if (isset($_REQUEST['add_job_group_employee']))
 			{
 				foreach ($_REQUEST['Job'] as $Job)
 				{
-					$sql = "INSERT INTO JobGroupEmployee (JobGroupID, Job) VALUES ('$JobGroup', '$Job')";
+					$sql = "REPLACE INTO JobGroupEmployee (JobGroupID, Job) VALUES ('$JobGroup', '$Job')";
 					$res = mssql_query($sql);
 					$mes = mssql_get_last_message();
 					if ($mes != '')
