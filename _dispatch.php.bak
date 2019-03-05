@@ -2,8 +2,10 @@
 function dispatch_query($ServiceMan = '', $dev='')
 {
 
-$sel = " and ServiceMan = '$ServiceMan'";
-
+	if ($ServiceMain != '')
+	{
+		$sel = " and ServiceMan = '$ServiceMan'";
+	}
 if ($dev == 'true')
 {
 	$d = 'Dev';
