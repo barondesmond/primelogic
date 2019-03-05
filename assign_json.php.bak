@@ -86,6 +86,7 @@ if (isset($_REQUEST['add_job_group_employee']))
 $js = jobs_query($_REQUEST['dev']);
 $js = array_merge($js, employees_query($_REQUEST['dev']));
 $js = array_merge($js, jobgroups_query($_REQUEST['dev']));
+$js = array_merge($js, jobgroupemployees_query($_REQUEST['dev']));
 
 
 header('Content-Type: application/json');
