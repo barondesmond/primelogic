@@ -581,7 +581,7 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
 	}
-	if ($jge['numEmp']==0 || !isset($jge) || jobgroupemployee_selected('Job', $db['Name'], $jge))
+	if ($jge['numEmp']==0 || !isset($jge) || jobgroupemployee_selected('Job', $db['Name'], $jge['jobgroupemployees']))
 	{
 		$js['jobs'][] = $db;
 
