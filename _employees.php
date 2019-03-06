@@ -82,6 +82,7 @@ function jobgroupemployee_selected($key, $id, $jobgroupemployees='')
 			{
 				return true;
 			}
+		}
 		else
 		{
 			if ($jobgroupemployee->$key==$id)
