@@ -52,6 +52,10 @@ function jobgroupemployees_query($dev='', $ServiceMan='')
 	{
 		$sel = " WHERE ge.EmpNo = '$ServiceMan' and je.Job != '' ";
 	}
+	else
+	{
+		$sel = " WHERE ge.EmpNo != '' and je.Job != '' ";
+	}
 
 
 $js['title'] = 'Group List';

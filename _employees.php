@@ -60,10 +60,11 @@ function jobgroupemployees_query($dev='', $ServiceMan='')
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, EmpNo, Job';
-$sql = "SELECT ge.JobGroupID, ge.EmpNo, je.Job, JobGroup, Location.LocName FROM JobGroupEmployee as ge INNER JOIN JobGroupEmployee as je ON ge.JobGroupID = je.JobGroupID
+$sql = "SELECT ge.JobGroupID, Employees.EmpName, ge.EmpNo, je.Job, JobGroup, Location.LocName FROM JobGroupEmployee as ge INNER JOIN JobGroupEmployee as je ON ge.JobGroupID = je.JobGroupID
 INNER JOIN JobGroup ON je.JobGroupID = JobGroup.JobGroupID
 INNER JOIN Jobs ON je.Job = Jobs.Name 
 INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+INNER JOIN Employees ON ge.EmpNo = Employees.EmpNo
 $sel ORDER BY ge.JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
