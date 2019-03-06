@@ -64,8 +64,16 @@ if (isset($_REQUEST['delete_job_group_employee']))
 				}
 			}
 		}
-
 	}
+		header('Content-Type: application/json');
+		if (!isset($js['error']))
+		{
+			$js = $_REQUEST;
+			$js['success'] = '1';
+			
+		}
+		echo json_encode($js);
+		exit;
 }
 
 if (isset($_REQUEST['add_job_group_employee']))
