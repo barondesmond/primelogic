@@ -19,11 +19,6 @@ include("_employees.php");
 
 //api app
 
-if (@isset($jobgroupemployees))
-{
-	echo "No Job Group Employees";
-	exit;
-}
 
 if (isset($_REQUEST['add_job_group']))
 {
