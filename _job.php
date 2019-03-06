@@ -550,7 +550,7 @@ return $html;
 function jobs_query($dev='', $ServiceMan='')
 {
 
-	if ($ServiceMan != '' && function_exists('jobgroupemployees_query'))
+	if ($ServiceMan != '')
 	{
 		$jge = jobgroupemployees_query($dev, $ServiceMan);
 	}

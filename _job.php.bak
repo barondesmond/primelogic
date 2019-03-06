@@ -545,8 +545,16 @@ $html = '<html><body>' . $table . '</body></html>';
 return $html;
 }
 
+
+
 function jobs_query($dev='', $ServiceMan='')
 {
+
+	if ($ServiceMan != '' && function_exists('jobgroupemployees_query'))
+	{
+		$jge = jobgroupemployees_query($dev, $ServiceMan);
+	}
+
 $js['title'] = 'Jobs List';
 $js['description'] = 'Job Name, Job Location';
 $sql = "SELECT  Jobs.Name as Name, Location.CustNo, Location.LocNo, Location.LocName as LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, Location.Add1, Location.City, Location.State, Location.Zip,Jobs.JobNotes as JobNotes, Location.latitude, Location.longitude FROM Jobs$dev as Jobs
@@ -557,6 +565,8 @@ $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_assoc($res))
 {
+	if ($jge['numEmp']==0 || !isset($jge) || jobgroupemployee_selected('Job', $db['Name'], $jge))
+	{	
 	$db['id'] = $i;
 	$db['latitude'] = location_int_gps($db['latitude']);
 	$db['longitude'] = location_int_gps($db['longitude']);
@@ -572,10 +582,11 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
 	}
+	
 	$js['jobs'][] = $db;
 
 	$i++;
-
+	}
 }
 
 return $js;
