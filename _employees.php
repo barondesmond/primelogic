@@ -78,8 +78,13 @@ function jobgroupemployee_selected($key, $id, $jobgroupemployees='')
 	
 		if (is_array($jobgroupemployee))
 		{
+			
 			if ($jobgroupemployee[$key] == $id)
 			{
+				if ($_REQUEST['debug'])
+				{
+					echo "jge = $jobgroupemployee[$key] $id $key <BR>\r\n";
+				}
 				return true;
 			}
 		}
