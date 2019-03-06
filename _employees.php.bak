@@ -50,13 +50,13 @@ function jobgroupemployees_query($dev='', $ServiceMan='')
 
 	if ($ServiceMan != '')
 	{
-		$sel = " WHERE EmpNo = '$ServiceMan' ";
+		$sel = " WHERE ge.EmpNo = '$ServiceMan' and je.Job != '' ";
 	}
 
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, EmpNo, Job';
-$sql = "SELECT * FROM JobGroupEmployee $sel ORDER BY JobGroupID ASC ";
+$sql = "SELECT ge.JobGroupID, ge.EmpNo, je.Job FROM JobGroupEmployee as ge INNER JOIN JobGroupEmployee as je ON ge.JobGroupID = je.JobGroupID  $sel ORDER BY ge.JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
 $js['numEmp'] = 0;
