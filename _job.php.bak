@@ -587,6 +587,10 @@ while ($db = mssql_fetch_assoc($res))
 
 	$i++;
 	}
+	else
+	{
+		$js['jobsnotauthorized'][] =$db;
+	}
 }
 	if ($jge['numEmp'] > 0)
 	{
