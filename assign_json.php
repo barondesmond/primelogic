@@ -77,13 +77,15 @@ if (isset($_REQUEST['delete_job_group_employee']))
 	else
 	{
 		$keys = array('JobGroup', 'Job', 'Employee');
+		$keyv = array('JobGroup'=> 'JobGroupID', 'Job'=>'Job', 'Employee'=> 'EmpNo');
 		foreach ($keys as $key)
 		{
+
 			if (isset($_REQUEST[$key]))
 			{
 				foreach($_REQUEST[$key] as $keyid)
 				{
-					$sql = "DELETE FROM JobGroupEmployee WHERE " . $key . "='" . $keyid . "'";
+					$sql = "DELETE FROM JobGroupEmployee WHERE " . $keyv[$key] . "='" . $keyid . "'";
 					$res = mssql_query($sql);
 					$mes = mssql_get_last_message();
 					if ($mes != '')
