@@ -75,11 +75,12 @@ function jobgroupemployee_selected($key, $id, $jobgroupemployees='')
 {
 	foreach ($jobgroupemployees as $jobgroupemployee)
 	{
-		print_r($jobgroupemployee);
-		echo "key = $key id = $id ";
+	
 
 		if ($jobgroupemployee->$key==$id)
 		{
+				print_r($jobgroupemployee);
+		echo "key = $key id = $id ";
 			return true;
 		}
 	
