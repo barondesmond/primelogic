@@ -64,7 +64,7 @@ $sql = "SELECT ge.JobGroupID, Employees.EmpName, ge.EmpNo, je.Job, JobGroup, Loc
 INNER JOIN JobGroup ON je.JobGroupID = JobGroup.JobGroupID
 INNER JOIN Jobs ON je.Job = Jobs.Name 
 INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
-INNER JOIN Employees ON ge.EmpNo = Employees.EmpNo
+INNER JOIN Employee ON ge.EmpNo = Employees.EmpNo
 $sel ORDER BY ge.JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
