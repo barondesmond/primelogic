@@ -40,7 +40,7 @@ if (isset($_REQUEST['delete_job_group_employee']))
 			{
 				foreach ($_REQUEST['Employee']	as $EmpNo)
 				{
-					$sql = "DELETE FROM JobGroupEmployee WHERE JobGroupID = '$JobGroup' and  EmpNo =  '$EmpNo' ";
+					$sql = "DELETE FROM JobGroupEmployee WHERE JobGroupID = '" . $JobGroup . "' and  EmpNo =  '" . $EmpNo . "' ";
 					$res = mssql_query($sql);
 					$mes = mssql_get_last_message();
 					if ($mes != '')
@@ -53,7 +53,7 @@ if (isset($_REQUEST['delete_job_group_employee']))
 			{
 				foreach ($_REQUEST['Job'] as $Job)
 				{
-					$sql = "DELETE FROM JobGroupEmployee WHERE JobGroupID = '$JobGroup' and  Job =  '$Job' ";
+					$sql = "DELETE FROM JobGroupEmployee WHERE JobGroupID = '" . $JobGroup . "' and  Job =  '" . $Job ."' ";
 					$res = mssql_query($sql);
 					$mes = mssql_get_last_message();
 					if ($mes != '')

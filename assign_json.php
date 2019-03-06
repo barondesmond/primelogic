@@ -32,7 +32,7 @@ if (isset($_REQUEST['add_job_group']))
 
 if (isset($_REQUEST['delete_job_group_employee']))
 {
-	if (isset($_REQUEST['JobGroup']))
+	if (isset($_REQUEST['JobGroup']) && (isset($_REQUEST['Job']) || isset($_REQUEST['Employee'])))
 	{
 		foreach ($_REQUEST['JobGroup'] as $JobGroup)
 		{
@@ -76,8 +76,31 @@ if (isset($_REQUEST['delete_job_group_employee']))
 	}
 	else
 	{
-		$js['error'][] = 'No Job Group Selected';
+		$keys = array('JobGroup', 'Job', 'Employee');
+		foreach ($keys as $key)
+		{
+			if (isset($_REQUEST[$key]))
+			{
+				foreach($_REQUEST[$key] as $keyid)
+				{
+					$sql = "DELETE FROM JobGroupEmployee WHERE " . $key . "='" . $keyid . "'";
+					$res = mssql_query($sql);
+					$mes = mssql_get_last_message();
+					if ($mes != '')
+					{
+						$js['error'][] = $mes;
+						$js['error'][] = $sql;
+					}
+				}
+			}
+		}
 		header('Content-Type: application/json');
+		if (!isset($js['error']))
+		{
+			$js = $_REQUEST;
+			$js['success'] = '1';
+			
+		}
 		echo json_encode($js);
 		exit;
 	}
