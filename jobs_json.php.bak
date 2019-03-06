@@ -9,6 +9,7 @@ if ($auth['authorized'] != '1')
 	echo json_encode($auth);
 	exit;
 }
+include("_job.php");
 include("_location_api.php");
 //api app
 

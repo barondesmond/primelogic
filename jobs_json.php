@@ -17,7 +17,9 @@ if ($_REQUEST['dev'] == 'true')
 {
 	$dev = 'Dev';
 }
-$js = jobs_query($dev);
+
+
+$js = jobs_query($dev, $_REQUEST['ServiceMan']);
 
 header('Content-Type: application/json');
 
