@@ -590,7 +590,7 @@ while ($db = mssql_fetch_assoc($res))
 }
 	if ($jge['numEmp'] > 0)
 	{
-		$js = array_merge($js, $jge);
+		$js = array_merge($jge, $js);
 	}
 
 return $js;
