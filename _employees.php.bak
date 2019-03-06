@@ -50,7 +50,7 @@ function jobgroupemployees_query($dev='', $ServiceMan='')
 
 	if ($ServiceMan != '')
 	{
-		$sel = " WHERE EmppNo = '$ServiceMan' ";
+		$sel = " WHERE EmpNo = '$ServiceMan' ";
 	}
 
 
