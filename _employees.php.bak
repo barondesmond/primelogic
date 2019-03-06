@@ -82,5 +82,6 @@ function jobgroupemployee_selected($key, $id, $jobgroupemployees='')
 		}
 	
 	}
+return false;
 }
 
