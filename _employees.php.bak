@@ -45,12 +45,18 @@ while ($db = mssql_fetch_assoc($res))
 return $js;
 }
 
-function jobgroupemployees_query($dev='')
+function jobgroupemployees_query($dev='', $ServiceMan='')
 {
+
+	if ($ServiceMan != '')
+	{
+		$sel = " WHERE EmppNo = '$ServiceMan' ";
+	}
+
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, EmpNo, Job';
-$sql = "SELECT * FROM JobGroupEmployees ORDER BY JobGroupID ASC ";
+$sql = "SELECT * FROM JobGroupEmployee $sel ORDER BY JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
 $js['numEmp'] = 0;
@@ -64,3 +70,17 @@ while ($db = mssql_fetch_assoc($res))
 
 return $js;
 }
+
+function jobgroupemployee_selected($key, $id, $jobgroupemployees='')
+{
+	foreach ($jobgroupemployees as $jobgroupemployee)
+	{
+
+		if ($jobgroupemployee->$key==$id)
+		{
+			return true;
+		}
+	
+	}
+}
+
