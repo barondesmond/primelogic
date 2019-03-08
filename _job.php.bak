@@ -324,7 +324,7 @@ function jobs_active_query($Name = '')
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		if (!isset($jb[$db['Name']))
+		if (!isset($jb[$db['Name']]))
 		{
 			$jb[$db['Name']] = $db;
 			$jobs[] = $db;
