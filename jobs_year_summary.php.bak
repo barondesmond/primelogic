@@ -17,32 +17,40 @@ define('OVERHEAD', '0.28');
 	$row = job_sum_array($gr,$row);
 	$row['Estimate'] = $row['Estimate'] * -1;
 */
-if ($argv[3])
+if (isset($argv[3]))
 {
-	$Email = $argv[1];
+	$Email = $argv[3];
 }
-if ($argv[1])
+if (isset($argv[1]))
 {
 	$Year = $argv[1];
 }
-if ($argv[2])
+if (isset($argv[2]))
 {
 	$Amount = $argv[2];
 }
-if ($_GET['Email')
+if (isset($_GET['Email']))
 {
 	$Email = $_GET['Email'];
 }
-if ($_GET['Amount'])
+if (isset($_GET['Amount']))
 {
 	$Amount = $_GET['Amount'];
 }
-if ($_GET['Year'])
+if (isset($_GET['Year']))
 {
 	$Year = $_GET['Year'];
 }
 
-$jobs = jobs_year_query($Year = '', $Amount = '0');
+if (!isset($Year)
+{
+	$Year = '2018';
+}
+if (!isset($Amount))
+{
+	$Amount = '10000';
+}
+$jobs = jobs_year_query($Year, $Amount);
 $title = 'Jobs Year ' . $Year . ' Amount ' . $Amount . ' Summary Report';
 
 //print_r($jobs);

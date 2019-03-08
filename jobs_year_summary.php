@@ -42,7 +42,7 @@ if (isset($_GET['Year']))
 	$Year = $_GET['Year'];
 }
 
-if (!isset($Year)
+if (!isset($Year))
 {
 	$Year = '2018';
 }
