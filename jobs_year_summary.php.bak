@@ -17,28 +17,49 @@ define('OVERHEAD', '0.28');
 	$row = job_sum_array($gr,$row);
 	$row['Estimate'] = $row['Estimate'] * -1;
 */
-$title = 'Jobs Active Summary Report';
-$jobs = jobs_active_query($argv[2]);
+if ($argv[3])
+{
+	$Email = $argv[1];
+}
+if ($argv[1])
+{
+	$Year = $argv[1];
+}
+if ($argv[2])
+{
+	$Amount = $argv[2];
+}
+if ($_GET['Email')
+{
+	$Email = $_GET['Email'];
+}
+if ($_GET['Amount'])
+{
+	$Amount = $_GET['Amount'];
+}
+if ($_GET['Year'])
+{
+	$Year = $_GET['Year'];
+}
+
+$jobs = jobs_year_query($Year = '', $Amount = '0');
+$title = 'Jobs Year ' . $Year . ' Amount ' . $Amount . ' Summary Report';
+
 //print_r($jobs);
 
 $html = jobs_summary_report($jobs, $title);
 
-if ($_GET['print'])
+if ($_GET['print'] || !isset($argv))
 {
 	echo $html;
 }
-if ($argv[1])
+if ($Email != '' && email_validate($Email))
 {
 
-	email_job_report($argv[1], $title, $html);
-	echo "Report Emailed $argv[1];";
+	email_job_report($Email, $title, $html);
+	echo "Report Emailed $Email";
 }
-elseif ($_GET['email'] && email_validate($_GET['email']))
-{
-	email_job_report($_GET['email'], $title, $html);
-	echo "Report Emailed " . $_GET['email'];
-}
-elseif (!$_GET['print'])
+elseif (!isset($_GET['print']) && !isset($Email))
 {
 	foreach ($emails as $email)
 	{
