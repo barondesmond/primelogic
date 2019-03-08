@@ -56,18 +56,26 @@ function send_json_file($entry)
 		$stream = fopen($file, 'w');
 		fwrite($stream, $db['body']);
 		fclose($stream);
-		if (is_array($db['pdf']))
+		if (filesize($file) > 102*1024)
 		{
-			$db['pdf'][] = $file;
-		}
-		elseif ($db['pdf'] != '')
-		{
-			$db['pdf'][] = $db['pdf'];
-			$db['pdf'][] = $file;
+			if (is_array($db['pdf']))
+			{
+				$db['pdf'][] = $file;
+			}
+			elseif ($db['pdf'] != '')
+			{
+				$db['pdf'][] = $db['pdf'];
+				$db['pdf'][] = $file;
+			}
+			else
+			{
+				$db['pdf'] = $file;
+			}
 		}
 		else
 		{
-			$db['pdf'] = $file;
+			unlink($file);
+			unset($filebody);
 		}
 
 	}

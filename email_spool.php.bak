@@ -52,9 +52,9 @@ function send_json_file($entry)
 	if ($filebody)
 	{
 
-		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.html';
+		$file = DIRD . time() . '.' . $db['email'] . '.' . urlencode($db['subject']) .  '.html';
 		$stream = fopen($file, 'w');
-		fwrite($stream, $enc);
+		fwrite($stream, $db['body']);
 		fclose($stream);
 		if (is_array($db['pdf']))
 		{
