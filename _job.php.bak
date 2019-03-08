@@ -554,7 +554,7 @@ function jobs_query($dev='', $ServiceMan='')
 	{
 		$jge = jobgroupemployees_query($dev, $ServiceMan);
 	}
-
+$js['numEmp'] = 0;
 $js['title'] = 'Jobs List';
 $js['description'] = 'Job Name, Job Location';
 $sql = "SELECT  Jobs.Name as Name, Location.CustNo, Location.LocNo, Location.LocName as LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, Location.Add1, Location.City, Location.State, Location.Zip,Jobs.JobNotes as JobNotes, Location.latitude, Location.longitude FROM Jobs$dev as Jobs
@@ -584,14 +584,18 @@ while ($db = mssql_fetch_assoc($res))
 	if ($jge['numEmp']==0 || !isset($jge) || jobgroupemployee_selected('Job', $db['Name'], $jge['jobgroupemployees']))
 	{
 		$js['jobs'][] = $db;
-
+		$js['numEmp']++;
 		$i++;
 	}
 	else
 	{
-		//$js['jobsnotauthorized'][] =$db;
+		$js['jobsnotauthorized'][] =$db;
 	}
-}
+}	
+	if ($js['numEmp'] == '0')
+	{
+		$js['jobs'] = $js['jobsnotauthorized'];
+	}	
 	if ($jge['numEmp'] > 0)
 	{
 		$js = array_merge($jge, $js);

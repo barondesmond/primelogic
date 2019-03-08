@@ -316,7 +316,29 @@ function jobs_active_query($Name = '')
 	}
 	$sql = "SELECT Jobs.Name, Location.LocName as LastName FROM Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+
 	WHERE JobStatus = '100' and Inactive = '0' $nas
+	ORDER BY Name 
+	";
+	
+	$res = mssql_query($sql);
+	while ($db = mssql_fetch_assoc($res))
+	{
+		$jobs[] = $db;
+	}
+
+return $jobs;
+
+}
+
+function jobs_year_query($Year = '', $Amount = '0')
+{
+	$Year2 = $Year + 1;
+	$sql = "SELECT Jobs.Name, Location.LocName as LastName FROM Jobs
+	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+	INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
+
+	WHERE CostType = '0' and Amount > '$Amount' and Start > '$Year-01-01T00:00:00.000' and ProjEnd < '$Year-01-01T00:00:00.000'
 	ORDER BY Name 
 	";
 	
