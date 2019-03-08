@@ -61,7 +61,7 @@ if ($_GET['print'] || !isset($argv))
 {
 	echo $html;
 }
-if ($Email != '' && email_validate($Email))
+elseif ($Email != '' && email_validate($Email))
 {
 
 	email_job_report($Email, $title, $html);
