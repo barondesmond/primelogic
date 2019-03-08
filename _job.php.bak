@@ -326,7 +326,7 @@ function jobs_active_query($Name = '')
 	{
 		if (!isset($jb[$db['Name']))
 		{
-			$jb[$db['Name'] = $db;
+			$jb[$db['Name']] = $db;
 			$jobs[] = $db;
 		}
 	}
