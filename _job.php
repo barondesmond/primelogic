@@ -338,7 +338,7 @@ function jobs_year_query($Year = '', $Amount = '0')
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 	INNER JOIN FinLedger ON Jobs.JobID = FinLedger.JobID
 
-	WHERE CostType = '0' and Amount > '$Amount' and Start > '$Year-01-01T00:00:00.000' and ProjEnd < '$Year-01-01T00:00:00.000'
+	WHERE CostType = '0' and Amount > '$Amount' and Start > '$Year-01-01T00:00:00.000' and ProjEnd < '$Year2-01-01T00:00:00.000'
 	ORDER BY Name 
 	";
 	
