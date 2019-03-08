@@ -52,7 +52,7 @@ function send_json_file($entry)
 	if ($filebody)
 	{
 
-		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.file';
+		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.html';
 		$stream = fopen($file, 'w');
 		fwrite($stream, $enc);
 		fclose($stream);

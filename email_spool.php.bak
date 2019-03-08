@@ -39,14 +39,38 @@ while (time() < $end && $ct_today <99)
 function send_json_file($entry)
 {
 	global $er_array;
+	$filebody = false;
 	if (filesize($entry) > 102*1024)
 	{
 		echo "filesize = " . filesize($entry);
+		$filebody = true;
 	}
 	$json = file_get_contents($entry);
 	
 	$db = json_decode($json, 1);
 	print_r($db);
+	if ($filebody)
+	{
+
+		$file = DIRD . time() . '.' . $email . '.' . urlencode($subject) .  '.file';
+		$stream = fopen($file, 'w');
+		fwrite($stream, $enc);
+		fclose($stream);
+		if (is_array($db['pdf']))
+		{
+			$db['pdf'][] = $file;
+		}
+		elseif ($db['pdf'] != '')
+		{
+			$db['pdf'][] = $db['pdf'];
+			$db['pdf'][] = $file;
+		}
+		else
+		{
+			$db['pdf'] = $file;
+		}
+
+	}
 	if (email_report($db['email'], $db['subject'], $db['body'], $db['filename'], $db['cid'], $db['name'], $db['pdf'], $db['func']))
 	{
 		echo "file $entry sent";
@@ -54,6 +78,10 @@ function send_json_file($entry)
 		{
 			echo "file $entry deleted";
 			return true;
+		}
+		if ($filebody && $file != '')
+		{
+			unlink($file);
 		}
 	}
 	else
