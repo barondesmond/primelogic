@@ -324,7 +324,11 @@ function jobs_active_query($Name = '')
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		$jobs[] = $db;
+		if (!isset($jb[$db['Name']))
+		{
+			$jb[$db['Name'] = $db;
+			$jobs[] = $db;
+		}
 	}
 
 return $jobs;
@@ -345,7 +349,7 @@ function jobs_year_query($Year = '', $Amount = '0')
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		$jobs[] = $db;
+		$jobs[$db['Name'] = $db;
 	}
 
 return $jobs;
