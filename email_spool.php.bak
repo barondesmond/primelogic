@@ -39,7 +39,7 @@ while (time() < $end && $ct_today <99)
 function send_json_file($entry)
 {
 	global $er_array;
-	if (filesize($entry) > 1024*1024)
+	if (filesize($entry) > 102*1024)
 	{
 		echo "filesize = " . filesize($entry);
 	}
