@@ -65,6 +65,7 @@ $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	unset($db['TimeClockID']);
+	$db['installationId'] = $db['installationID'];
 	$db['checkinStatus'] = 'Stop';
 	print_r($db);
 
