@@ -71,21 +71,13 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 if ($db['Screen'] == 'Dispatch')
 {
 	$error = dispatch_db($db, $dev, $yestertime );
-	if (!$error['error'])
-	{
-		if ($error2 = timeclock_db($db, $yestertime))
-		{
-			$error = array_merge($error, $error2);
-		}
-	}
-	
+	$error2 = timeclock_db($db, $yestertime))
+	$error = array_merge($error, $error2);
 }
 else
 {
-	if ($error = timeclock_db($db))
-	{
-		//error
-	}
+	$error = timeclock_db($db))
+	
 
 }
 print_r($error);
