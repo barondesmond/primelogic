@@ -32,6 +32,7 @@ while ($db = mssql_fetch_assoc($res))
 		$db['Screen'] = 'Dispatch';
 		$db['event'] = $db['Status'];
 		$db['EmpActive'] = '1';
+		print_r($db);
 		if ($db['StartTime'] = convert_date_time($db['DispDate'], $db['TimeOn']))
 		{
 			print_r($db);
