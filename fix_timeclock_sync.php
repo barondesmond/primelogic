@@ -1,5 +1,6 @@
 <?php
 include("_db_config.php");
+include("_timeclockapp.php");
 
 
 function convert_date_time($date, $time)
@@ -36,8 +37,11 @@ while ($db = mssql_fetch_assoc($res))
 		print_r($db);
 		if ($db['StartTime'] = convert_date_time($db['DispDate'], $db['TimeOn']))
 		{
-			print_r($db);
-			exit;
+			$db['violation'] = 'Sync Error';
+			$db['checkinStatus'] = 'Start';
+			$resp = timeclock_db($db);
+			print_r($resp);
+			
 		}
 	}
 
