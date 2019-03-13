@@ -40,6 +40,7 @@ while ($db = mssql_fetch_assoc($res))
 			$db['violation'] = 'Sync Error';
 			$db['checkinStatus'] = 'Start';
 			$resp = timeclock_db($db);
+			$db['installationId'] = $db['installationID'];
 			print_r($resp);
 			
 		}

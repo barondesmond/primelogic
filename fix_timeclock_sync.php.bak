@@ -38,9 +38,10 @@ while ($db = mssql_fetch_assoc($res))
 		if ($db['StartTime'] = convert_date_time($db['DispDate'], $db['TimeOn']))
 		{
 			$db['violation'] = 'Sync Error';
-		
+			$db['checkinStatus'] = 'Start';
+			$resp = timeclock_db($db);
+			print_r($resp);
 			
-			exit;
 		}
 	}
 
