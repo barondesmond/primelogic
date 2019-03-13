@@ -76,7 +76,7 @@ if ($db['Screen'] == 'Dispatch')
 }
 else
 {
-	$error = timeclock_db($db))
+	$error = timeclock_db($db);
 	
 
 }
