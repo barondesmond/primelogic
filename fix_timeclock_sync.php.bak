@@ -49,9 +49,15 @@ while ($db = mssql_fetch_assoc($res))
 	}
 
 }
+
+echo "Jan 25 2019 12:00:00:000AM";
+
+
 $newdate = date("Y-m-d", time()) . ' 00:00:00';
 echo "the day is $newdate";
 $yestertime = strtotime($newdate);
+$yesterdate = date("m d Y", $yestertime) . '12:00:00:000AM';
+exit;
 $sql = "SELECT TimeClockApp.* FROM TimeCLockApp
 WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
 echo $sql;

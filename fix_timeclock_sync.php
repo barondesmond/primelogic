@@ -57,6 +57,7 @@ $newdate = date("Y-m-d", time()) . ' 00:00:00';
 echo "the day is $newdate";
 $yestertime = strtotime($newdate);
 $yesterdate = date("m d Y", $yestertime) . '12:00:00:000AM';
+echo "Yesterdate is " . $yesterdate;
 exit;
 $sql = "SELECT TimeClockApp.* FROM TimeCLockApp
 WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
