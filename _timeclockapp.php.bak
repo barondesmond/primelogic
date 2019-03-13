@@ -1,8 +1,12 @@
 <?php
 
-function dispatch_db($db, $dev='')
+function dispatch_db($db, $dev='', $time = '')
 {
 
+	if ($time == '')
+	{
+		$time = time();
+	}
 	if ($db['checkinStatus'] != 'Start' && $db['checkinStatus'] != 'Stop')
 	{
 		return false;
@@ -46,7 +50,7 @@ function dispatch_db($db, $dev='')
 		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
 		if ($db['event'] == 'Traveling' && $sdb['Status'] == 'Pending')
 		{
-			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", time()) . "' ";
+			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", $time) . "' ";
 		}
 		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Traveling')
 		{
@@ -74,7 +78,7 @@ function dispatch_db($db, $dev='')
 		}
 		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Pending')
 		{
-			$dd = ", DispDate = getdate(), DispTime = '" . date("H:i:s", time()) . "', TimeOn = '" . date("H:i:s", time()) . "' ";
+			$dd = ", DispDate = getdate(), DispTime = '" . date("H:i:s", $time) . "', TimeOn = '" . date("H:i:s", $time) . "' ";
 		}
 		else
 		{
@@ -87,13 +91,13 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['checkinStatus'] == 'Stop' )
 	{
-		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", time()) . "' ";
+		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", $time) . "' ";
 		$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
 		$dd .= " , Complete = 'Y' ";
 
 		if ($sdb['Status'] == 'Traveling')
 		{
-			$dd .= " , TimeOn = '" . date("H:i:s", time()) . "' ";
+			$dd .= " , TimeOn = '" . date("H:i:s", $time) . "' ";
 		}
 	}
 	if ($up != '' && $dd != '' && $where != '')

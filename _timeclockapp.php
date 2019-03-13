@@ -91,7 +91,7 @@ function dispatch_db($db, $dev='', $time = '')
 	}
 	if ($db['checkinStatus'] == 'Stop' )
 	{
-		$dd = ", DateOff = getdate(), TimeOff = '" . date("H:i:s", $time) . "' ";
+		$dd = ", DateOff = '" . date("M d Y ", $yestertime) . '12:00:00:000AM' . "', TimeOff = '" . date("H:i:s", $time) . "' ";
 		$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
 		$dd .= " , Complete = 'Y' ";
 
