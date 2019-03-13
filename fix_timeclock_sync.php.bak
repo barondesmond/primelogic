@@ -16,11 +16,14 @@ function convert_date_time($date, $time)
 return false;
 }
 
-
+if ($argv['1'])
+{
+	$dev = 'Dev';
+}
 //Fix Sync Errors Dispatch
 
 $sql = "SELECT UserAppAuth.*, DispTech.* FROM UserAppAuth
-INNER JOIN DispTech ON EmpNo = ServiceMan 
+INNER JOIN DispTech$dev ON EmpNo = ServiceMan 
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and EmpActive = '1'
 WHERE DispTech.Status IN ('Traveling', 'Working') and TimeClockApp.EmpNo is NULL";
 
