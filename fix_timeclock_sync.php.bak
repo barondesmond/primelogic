@@ -27,7 +27,7 @@ while ($db = mssql_fetch_assoc($res))
 {
 	print_r($db);
 
-	if ($db['DispDate'] != '' && $db['TimeOn'] != '' && $db['TimeOff'] == '' && $db['DateOff'] == '')
+	if ($db['DispDate'] != '' && $db['TimeOn'] != '')
 	{
 		$db['Screen'] = 'Dispatch';
 		$db['event'] = $db['Status'];

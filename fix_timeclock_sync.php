@@ -7,6 +7,7 @@ function convert_date_time($date, $time)
 	$expday = explode(' ', $date);
 	$day = $expday[0] . ' ' . $expday[1] . ' ' . $expday[2] . 	$time;
 	$StartTime = strtotime($day);
+	echo "Start Date " . date($StartTime);
 	if ($StartTime > 0)
 	{
 		return $StartTime;
