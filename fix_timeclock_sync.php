@@ -58,5 +58,30 @@ echo $sql;
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
+	unset($db['TimeClockID']);
+	$db['checkinStatus'] = 'Stop';
 	print_r($db);
+
+if ($db['Screen'] == 'Dispatch')
+{
+	$error = dispatch_db($db, $dev);
+	if (!$error['error'])
+	{
+		if ($error2 = timeclock_db($db))
+		{
+			$error = array_merge($error, $error2);
+		}
+	}
+	
+}
+else
+{
+	if ($error = timeclock_db($db))
+	{
+		//error
+	}
+
+}
+print_r($error);
+
 }

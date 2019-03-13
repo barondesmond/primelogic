@@ -42,7 +42,7 @@ while ($db = mssql_fetch_assoc($res))
 			$db['checkinStatus'] = 'Start';
 			$db['installationId'] = $db['installationID'];
 			print_r($db);
-			$resp = timeclock_db($db);
+			$resp = timeclock_db($db, $db['StartTime']);
 			print_r($resp);
 			
 		}

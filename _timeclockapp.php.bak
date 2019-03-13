@@ -1,11 +1,13 @@
 <?php
 
 
-function timeclock_db($db)
+function timeclock_db($db, $time = '')
 {
 
-
-$time = time();
+	if ($time == '')
+	{
+		$time = time();
+	}
 
 if ($db['checkinStatus'] == 'Stop')
 {
