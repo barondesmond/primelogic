@@ -49,7 +49,7 @@ while ($db = mssql_fetch_assoc($res))
 	}
 
 }
-$newdate = date("Y-m-d", time() . ' 00:00:00';
+$newdate = date("Y-m-d", time()) . ' 00:00:00';
 
 $yestertime = strtotime($newdate);
 $sql = "SELECT TimeClockApp.* FROM TimeCLockApp
