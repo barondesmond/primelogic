@@ -50,7 +50,7 @@ while ($db = mssql_fetch_assoc($res))
 
 }
 $newdate = date("Y-m-d", time()) . ' 00:00:00';
-
+echo "the day is $newdate";
 $yestertime = strtotime($newdate);
 $sql = "SELECT TimeClockApp.* FROM TimeCLockApp
 WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
