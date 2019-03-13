@@ -27,20 +27,19 @@ WHERE DispTech.Status IN ('Traveling', 'Working') and TimeClockApp.EmpNo is NULL
 $res = mssql_query($sql);
 while ($db = mssql_fetch_assoc($res))
 {
-	print_r($db);
 
 	if ($db['DispDate'] != '' && $db['TimeOn'] != '')
 	{
 		$db['Screen'] = 'Dispatch';
 		$db['event'] = $db['Status'];
 		$db['EmpActive'] = '1';
-		print_r($db);
 		if ($db['StartTime'] = convert_date_time($db['DispDate'], $db['TimeOn']))
 		{
 			$db['violation'] = 'Sync Error';
 			$db['checkinStatus'] = 'Start';
-			$resp = timeclock_db($db);
 			$db['installationId'] = $db['installationID'];
+			print_r($db);
+			$resp = timeclock_db($db);
 			print_r($resp);
 			
 		}
