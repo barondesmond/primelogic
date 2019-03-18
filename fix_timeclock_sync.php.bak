@@ -74,10 +74,11 @@ while ($db = mssql_fetch_assoc($res))
 		if ($db['DispTime'] != $db['TimeOn'])
 		{
 			$db['event'] = 'Traveling';
-			$db['EmpActive'] = '1';
+
 			$resp = timeclock_state($db, $db['DispTime'], $db['TimeOn']);
 		}
 			$db['event'] = 'Working';
+			$db['EmpActive'] = '1';
 
 		$resp = timeclock_state($db, $db['TimeOn'], $db['TimeOff']);
 
