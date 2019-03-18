@@ -112,7 +112,58 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 return true;
 
 }
-function timeclock_update($tc)
+
+function timeclock_dispatch_update($tc, $dev='')
+{
+	//Traveling DispTime TimeOn
+	//Working TimeOn TimeOff
+	$sql = "SELECT * FROM DispTech$dev as DispTech WHERE DispTech.Dispatch = '" .  $tc['Dispatch'] . " and Counter = '" . $tc['Counter'] . "' and ServiceMan = '" . $tc['EmpNo'] . "'";
+	$res = mssql_query($sql);
+	if ($dis = mssql_fetch_assoc($res))
+	{
+		$StartHour = date("H:i:s", $tc['StartTime');
+		$StopHour = date("H:i:s", $tc['StopTime']);
+
+		if ($tc['event'] == 'Traveling')
+		{
+			
+			$sql = "UPDATE DispTech$dev SET DispTime = '$StartHour', TimeOn = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch']  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$res = mssql_query($sql);
+			$mes = mssql_get_last_message();
+			if ($mes != '')
+			{
+				$error[] = $mes;
+				$error[] = $sql;
+			}
+			return $error;
+		}
+		if ($tc['event'] == 'Working')
+		{
+			
+			$sql = "UPDATE DispTech$dev SET TimeOn = '$StartHour', TimeOff = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch']  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$res = mssql_query($sql);
+			$mes = mssql_get_last_message();
+			if ($mes != '')
+			{
+				$error[] = $mes;
+				$error[] = $sql;
+			}
+			return $error;
+		}
+		$error[] = 'No Valid Event at DispTech' . $dev . ' ' $tc['event'] . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+		return $error;
+	}
+	else
+	{
+		$error[] = 'No Valid DispTech' . $dev . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+	
+		return $error;
+	}
+//not valid or possible
+return false;
+}
+
+function timeclock_update($tc, $dev='')
 {
 
 
@@ -126,9 +177,19 @@ function timeclock_update($tc)
 		{
 
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
-			$res = mssql_query($sql);
-			$error[] = mssql_get_last_message();
-			$error[] = $sql;
+			$mes = mssql_get_last_message();
+			if ($mes != '')
+			{
+				$error[] = $mes;
+				$error[] = $sql;
+			}
+			if ($tc['Screen'] == 'Dispatch')
+			{
+				$error2 = timeclock_dispatch_update($tc, $dev='');
+				if (isset($error2))
+				{
+					$error = array_merge($error, $error2);
+				}
 		}
 		else
 		{
@@ -146,7 +207,7 @@ return $error;
 
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
-	$error = timeclock_update($_REQUEST['TimeClockID']);
+	$error = timeclock_update($_REQUEST['TimeClockID'], $_REQUEST['dev']);
 	$data['error'] = $error;
 }
 elseif ($_REQUEST['timeclock_update'])
