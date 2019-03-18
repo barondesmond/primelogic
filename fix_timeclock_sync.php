@@ -42,7 +42,7 @@ function convert_date_time($date, $time)
 		}
 		$fields++;
 	}
-	
+	$day = $day . ' ' . $time;
 	echo $day;
 	$StartTime = strtotime($day);
 	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
