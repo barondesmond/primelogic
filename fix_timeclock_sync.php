@@ -2,7 +2,7 @@
 include("_db_config.php");
 include("_timeclockapp.php");
 
-function timeclock_state($db, $TimeOn, $TimeOff)
+function timeclock_state($db, $TimeOn, $TimeOff, $dev='')
 {
 
 	if ($db['StartTime'] = convert_date_time($db['DispDate'], $TimeOn))
@@ -59,7 +59,7 @@ if ($argv['1'])
 }
 
 $sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
-INNER JOIN DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
+INNER JOIN DispTech$dev as DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
 WHERE TimeClockApp.TimeClockID is NULL and DispTech.Status = 'Complete' 
 ORDER BY DispDate ASC, DispTech.Counter ASC";
@@ -92,7 +92,7 @@ exit;
 //Fix Sync Errors Dispatch
 
 $sql = "SELECT UserAppAuth.*, DispTech.* FROM UserAppAuth
-INNER JOIN DispTech$dev ON EmpNo = ServiceMan 
+INNER JOIN DispTech$dev as DispTech ON EmpNo = ServiceMan 
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and EmpActive = '1'
 WHERE DispTech.Status IN ('Traveling', 'Working') and TimeClockApp.EmpNo is NULL";
 
