@@ -130,11 +130,10 @@ function timeclock_dispatch_update($tc, $dev='')
 			$sql = "UPDATE DispTech$dev SET DispTime = '$StartHour', TimeOn = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch'] .  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
-			if ($mes != '')
-			{
+	
 				$error[] = $mes;
 				$error[] = $sql;
-			}
+
 			return $error;
 		}
 		if ($tc['event'] == 'Working')
@@ -178,11 +177,9 @@ function timeclock_update($tc, $dev='')
 
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
 			$mes = mssql_get_last_message();
-			if ($mes != '')
-			{
+
 				$error[] = $mes;
 				$error[] = $sql;
-			}
 			if ($tk['Screen'] == 'Dispatch')
 			{
 				$error2 = timeclock_dispatch_update($tc, $dev='');
