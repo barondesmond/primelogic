@@ -205,9 +205,9 @@ if (!isset($error))
 return $error;
 
 }
-if (isset($_REQUEST['dev']))
+if (isset($_REQUEST['Dev']))
 {
-	$dev = $_REQUEST['dev'];
+	$dev = $_REQUEST['Dev'];
 }
 else
 {
@@ -216,7 +216,7 @@ else
 
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
-	$error = timeclock_update($_REQUEST['TimeClockID'], $_REQUEST['dev']);
+	$error = timeclock_update($_REQUEST['TimeClockID'], $dev);
 	$data['error'] = $error;
 }
 elseif (isset($_REQUEST['timeclock_update']))
