@@ -6,6 +6,7 @@ include("_timeclockapp.php");
 function convert_date_time($date, $time)
 {
 	$expday = explode(' ', $date);
+	print_r($expday);
 	$day = $expday[0] . ' ' . $expday[1] . ' ' . $expday[2] . 	$time;
 	$StartTime = strtotime($day);
 	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
