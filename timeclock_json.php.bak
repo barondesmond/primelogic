@@ -180,7 +180,7 @@ function timeclock_update($tc, $dev='')
 
 				$error[] = $mes;
 				$error[] = $sql;
-			if ($tk['Screen'] == 'Dispatch')
+			if ($tv['Screen'] == 'Dispatch')
 			{
 				$error2 = timeclock_dispatch_update($tc, $dev='');
 				if (isset($error2))

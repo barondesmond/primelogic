@@ -182,7 +182,7 @@ function timeclock_update($tc, $dev='')
 				$error[] = $sql;
 			if ($tv['Screen'] == 'Dispatch')
 			{
-				$error2 = timeclock_dispatch_update($tc, $dev='');
+				$error2 = timeclock_dispatch_update($tc, $dev);
 				if (isset($error2))
 				{
 					$error = array_merge($error, $error2);
