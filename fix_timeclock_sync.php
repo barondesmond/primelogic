@@ -7,6 +7,18 @@ function convert_date_time($date, $time)
 {
 	$expday = explode(' ', $date);
 	print_r($expday);
+	$fields = 0;
+	$i=0;
+	while ($i < 2 && isset($expday[$fields]) && $fields < count($expday))
+	{
+		if ($expday[$fields] != '')
+		{
+			$day .= $expday[$fields] . ' ';
+			$i++;
+		}
+		$fields++;
+	}
+
 	$day = $expday[0] . ' ' . $expday[1] . ' ' . $expday[2] . 	$time;
 	$StartTime = strtotime($day);
 	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
