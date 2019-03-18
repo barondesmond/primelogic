@@ -24,12 +24,37 @@ if ($argv['1'])
 $sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
 INNER JOIN DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
-WHERE TimeClockApp.TimeClockID is NULL
+WHERE TimeClockApp.TimeClockID is NULL amd DispTech.Status != 'Pending' and DispTech.Status != 'Off Job'
 ORDER BY DispDate ASC, DispTech.Counter ASC";
 $res = mssql_query($sql);
 while ($db = mssql_fetch_assoc($res))
 {
 	print_r($db);
+	if ($db['DispDate'] != '')
+	{
+
+		$db['Screen'] = 'Dispatch';
+		$db['event'] = $db['Status'];
+		$db['EmpActive'] = '1';
+		if ($db['StartTime'] = convert_date_time($db['DispDate'], $db['TimeOn']))
+		{
+			$db['violation'] = 'Sync Error';
+			$db['checkinStatus'] = 'Start';
+			$db['installationId'] = $db['installationID'];
+			print_r($db);
+			$resp = timeclock_db($db, $db['StartTime']);
+			print_r($resp);
+			if ($db['Status'] == 'Complete' && $db['StopTime'] === convert_date_time($db['DateOff'], $db['TimeOff']))
+			{
+				$db['ckeckinStatus'] == 'Stop';
+				$db['installationId'] = $db['installationID'];
+				print_r($db);
+				$resp = timeclock_db($db, $db['StopTime']);
+				print_r($resp);
+			}
+		}
+	}
+	exit;
 }
 exit;
 
