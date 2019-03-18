@@ -2,6 +2,29 @@
 include("_db_config.php");
 include("_timeclockapp.php");
 
+function timeclock_state($db, $TimeOn, $TimeOff)
+{
+
+	if ($db['StartTime'] = convert_date_time($db['DispDate'], $TimeOn))
+		{
+			$db['violation'] = 'Sync Error';
+			$db['checkinStatus'] = 'Start';
+			$db['installationId'] = $db['installationID'];
+			print_r($db);
+			$resp = timeclock_db($db, $db['StartTime']);
+			print_r($resp);
+			if ($db['Status'] == 'Complete' && $db['StopTime'] == convert_date_time($db['DateOff'], $TimeOff))
+			{
+				$db['ckeckinStatus'] == 'Stop';
+				print_r($db);
+				$resp = timeclock_db($db, $db['StopTime']);
+				print_r($resp);
+			}
+		}
+	}
+return $resp;
+}
+
 
 function convert_date_time($date, $time)
 {
@@ -38,7 +61,7 @@ if ($argv['1'])
 $sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
 INNER JOIN DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
-WHERE TimeClockApp.TimeClockID is NULL and DispTech.Status != 'Pending' and DispTech.Status != 'Off Job'
+WHERE TimeClockApp.TimeClockID is NULL and DispTech.Status == 'Complete' 
 ORDER BY DispDate ASC, DispTech.Counter ASC";
 $res = mssql_query($sql);
 while ($db = mssql_fetch_assoc($res))
@@ -48,24 +71,17 @@ while ($db = mssql_fetch_assoc($res))
 	{
 
 		$db['Screen'] = 'Dispatch';
-		$db['event'] = $db['Status'];
-		$db['EmpActive'] = '1';
-		if ($db['StartTime'] = convert_date_time($db['DispDate'], $db['TimeOn']))
+		if ($db['DispTime'] != $db['TimeOn'])
 		{
-			$db['violation'] = 'Sync Error';
-			$db['checkinStatus'] = 'Start';
-			$db['installationId'] = $db['installationID'];
-			print_r($db);
-			$resp = timeclock_db($db, $db['StartTime']);
-			print_r($resp);
-			if ($db['Status'] == 'Complete' && $db['StopTime'] == convert_date_time($db['DateOff'], $db['TimeOff']))
-			{
-				$db['ckeckinStatus'] == 'Stop';
-				print_r($db);
-				$resp = timeclock_db($db, $db['StopTime']);
-				print_r($resp);
-			}
+			$db['event'] = 'Traveling';
+			$db['EmpActive'] = '1';
+			$resp = timeclock_state($db, $db['DispTime'], $db['TimeOn']);
 		}
+		$resp = timeclock_state($db, $db['TimeOn'], $db['TimeOff']);
+
+
+
+	
 	}
 	exit;
 }
