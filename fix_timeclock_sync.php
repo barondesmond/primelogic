@@ -15,7 +15,7 @@ function timeclock_state($db, $TimeOn, $TimeOff)
 			print_r($resp);
 			if ($db['Status'] == 'Complete' && $db['StopTime'] == convert_date_time($db['DateOff'], $TimeOff))
 			{
-				$db['ckeckinStatus'] == 'Stop';
+				$db['ckeckinStatus'] = 'Stop';
 				print_r($db);
 				$resp = timeclock_db($db, $db['StopTime']);
 				print_r($resp);
@@ -78,7 +78,7 @@ while ($db = mssql_fetch_assoc($res))
 			$resp = timeclock_state($db, $db['DispTime'], $db['TimeOn']);
 		}
 		$resp = timeclock_state($db, $db['TimeOn'], $db['TimeOff']);
-
+		$db['
 
 
 	
