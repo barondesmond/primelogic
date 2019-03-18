@@ -78,8 +78,6 @@ while ($db = mssql_fetch_assoc($res))
 			$resp = timeclock_state($db, $db['DispTime'], $db['TimeOn']);
 		}
 		$resp = timeclock_state($db, $db['TimeOn'], $db['TimeOff']);
-		$db['
-
 
 	
 	}
