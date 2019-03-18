@@ -9,17 +9,19 @@ function convert_date_time($date, $time)
 	print_r($expday);
 	$fields = 0;
 	$i=0;
+	$day = '';
 	while ($i < 2 && isset($expday[$fields]) && $fields < count($expday))
 	{
-		if ($expday[$fields] != '')
+		if (trim($expday[$fields]) != '')
 		{
 			$day .= $expday[$fields] . ' ';
 			$i++;
 		}
 		$fields++;
 	}
-
+	
 	$day = $expday[0] . ' ' . $expday[1] . ' ' . $expday[2] . 	$time;
+	echo $day;
 	$StartTime = strtotime($day);
 	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
 	if ($StartTime > 0)
