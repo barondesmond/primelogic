@@ -10,7 +10,7 @@ function convert_date_time($date, $time)
 	$fields = 0;
 	$i=0;
 	$day = '';
-	while ($i < 2 && isset($expday[$fields]) && $fields < count($expday))
+	while ($i < 3 && isset($expday[$fields]) && $fields < count($expday))
 	{
 		if (trim($expday[$fields]) != '')
 		{

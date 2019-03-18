@@ -20,7 +20,6 @@ function convert_date_time($date, $time)
 		$fields++;
 	}
 	
-	$day = $expday[0] . ' ' . $expday[1] . ' ' . $expday[2] . 	$time;
 	echo $day;
 	$StartTime = strtotime($day);
 	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
