@@ -26,7 +26,7 @@ INNER JOIN DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DA
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
 WHERE TimeClockApp.TimeClockID is NULL
 ORDER BY DispDate ASC, DispTech.Counter ASC";
-$res = mssql_querhy($sql);
+$res = mssql_query($sql);
 while ($db = mssql_fetch_assoc($res))
 {
 	print_r($db);

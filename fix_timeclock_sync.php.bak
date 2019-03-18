@@ -20,6 +20,20 @@ if ($argv['1'])
 {
 	$dev = 'Dev';
 }
+
+$sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
+INNER JOIN DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
+LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
+WHERE TimeClockApp.TimeClockID is NULL
+ORDER BY DispDate ASC, DispTech.Counter ASC";
+$res = mssql_querhy($sql);
+while ($db = mssql_fetch_assoc($res))
+{
+	print_r($db);
+}
+exit;
+
+
 //Fix Sync Errors Dispatch
 
 $sql = "SELECT UserAppAuth.*, DispTech.* FROM UserAppAuth
