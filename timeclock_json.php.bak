@@ -113,7 +113,7 @@ return true;
 
 }
 
-function timeclock_dispatch_update($tc, $dev)
+function timeclock_dispatch_update($tc, $dev='')
 {
 	//Traveling DispTime TimeOn
 	//Working TimeOn TimeOff
@@ -150,17 +150,20 @@ function timeclock_dispatch_update($tc, $dev)
 			}
 			return $error;
 		}
-		return false;
+		$error[] = 'No Valid Event at DispTech' . $dev . ' ' $tc['event'] . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+		return $error;
 	}
 	else
 	{
-		return false;
+		$error[] = 'No Valid DispTech' . $dev . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+	
+		return $error;
 	}
-
+//not valid or possible
 return false;
 }
 
-function timeclock_update($tc)
+function timeclock_update($tc, $dev='')
 {
 
 
@@ -180,6 +183,13 @@ function timeclock_update($tc)
 				$error[] = $mes;
 				$error[] = $sql;
 			}
+			if ($tc['Screen'] == 'Dispatch')
+			{
+				$error2 = timeclock_dispatch_update($tc, $dev='');
+				if (isset($error2))
+				{
+					$error = array_merge($error, $error2);
+				}
 		}
 		else
 		{
@@ -197,7 +207,7 @@ return $error;
 
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
-	$error = timeclock_update($_REQUEST['TimeClockID']);
+	$error = timeclock_update($_REQUEST['TimeClockID'], $_REQUEST['dev']);
 	$data['error'] = $error;
 }
 elseif ($_REQUEST['timeclock_update'])
