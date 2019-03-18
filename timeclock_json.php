@@ -205,6 +205,10 @@ if (!isset($error))
 return $error;
 
 }
+if (isset($_REQUEST['dev']))
+{
+	$dev = $_REQUEST['dev'];
+}
 
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
