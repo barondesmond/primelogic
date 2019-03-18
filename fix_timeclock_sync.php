@@ -84,7 +84,7 @@ while ($db = mssql_fetch_assoc($res))
 
 	
 	}
-	exit;
+
 }
 exit;
 
