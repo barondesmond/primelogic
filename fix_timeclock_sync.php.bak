@@ -47,7 +47,6 @@ while ($db = mssql_fetch_assoc($res))
 			if ($db['Status'] == 'Complete' && $db['StopTime'] === convert_date_time($db['DateOff'], $db['TimeOff']))
 			{
 				$db['ckeckinStatus'] == 'Stop';
-				$db['installationId'] = $db['installationID'];
 				print_r($db);
 				$resp = timeclock_db($db, $db['StopTime']);
 				print_r($resp);
