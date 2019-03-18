@@ -77,9 +77,9 @@ while ($db = mssql_fetch_assoc($res))
 			$db['EmpActive'] = '1';
 			$resp = timeclock_state($db, $db['DispTime'], $db['TimeOn']);
 		}
-		$resp = timeclock_state($db, $db['TimeOn'], $db['TimeOff']);
-		$db['
+			$db['event'] = 'Working';
 
+		$resp = timeclock_state($db, $db['TimeOn'], $db['TimeOff']);
 
 	
 	}
