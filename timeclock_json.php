@@ -219,18 +219,18 @@ if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 	$error = timeclock_update($_REQUEST['TimeClockID'], $_REQUEST['dev']);
 	$data['error'] = $error;
 }
-elseif ($_REQUEST['timeclock_update'])
+elseif (isset($_REQUEST['timeclock_update']))
 {
 	$error[] = 'error timeclock update request';
 	//$error[] = var_export($_REQUEST['TimeClockID']);
 	$data['error'] = $error;
 }
-if ($_REQUEST['timeclock_add'] && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
+if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
 	$error = timeclock_add($_REQUEST);
 	$data['error'] = $error;
 }
-elseif ($_REQUEST['timeclock_add'])
+elseif (isset($_REQUEST['timeclock_add']))
 {
 	$error[] = 'error timeclock add request';
 	$data['error'] = $error;
