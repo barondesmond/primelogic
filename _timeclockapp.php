@@ -180,7 +180,7 @@ elseif ($db['checkinStatus'] == 'Start')
 {
 	$db['StartTime'] = $time;
 	$db['EmpActive'] = '1';
-	$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image', 'Screen');
+	$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image', 'Screen', 'Counter', 'JobID');
 	foreach ($array as $key)
 	{
 		if (isset($db[$key]) && $db[$key] != '')
