@@ -6,7 +6,7 @@ function timeclock_state($db, $TimeOn, $TimeOff)
 {
 
 	if ($db['StartTime'] = convert_date_time($db['DispDate'], $TimeOn))
-		{
+	{
 			$db['violation'] = 'Sync Error';
 			$db['checkinStatus'] = 'Start';
 			$db['installationId'] = $db['installationID'];
@@ -20,7 +20,7 @@ function timeclock_state($db, $TimeOn, $TimeOff)
 				$resp = timeclock_db($db, $db['StopTime']);
 				print_r($resp);
 			}
-		}
+		
 	}
 return $resp;
 }
