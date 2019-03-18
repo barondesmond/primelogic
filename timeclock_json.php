@@ -176,6 +176,7 @@ function timeclock_update($tc, $dev='')
 		{
 
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
+			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
 
 				$error[] = $mes;
@@ -214,23 +215,23 @@ else
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
 	$error = timeclock_update($_REQUEST['TimeClockID'], $dev);
-	$data['error'] = $error;
+
 }
 elseif (isset($_REQUEST['timeclock_update']))
 {
 	$error[] = 'error timeclock update request';
-	//$error[] = var_export($_REQUEST['TimeClockID']);
-	$data['error'] = $error;
+
+
 }
 if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
 	$error = timeclock_add($_REQUEST);
-	$data['error'] = $error;
+
 }
 elseif (isset($_REQUEST['timeclock_add']))
 {
 	$error[] = 'error timeclock add request';
-	$data['error'] = $error;
+
 }
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
@@ -246,6 +247,8 @@ WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
+$data['error'] = array_merge($data['error'], $error);
+
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$db['StartDate'] = date("Y:m:d H:i:s ", $db['StartTime']);
