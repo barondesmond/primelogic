@@ -13,7 +13,7 @@ function timeclock_state($db, $TimeOn, $TimeOff)
 			print_r($db);
 			$resp = timeclock_db($db, $db['StartTime']);
 			print_r($resp);
-			if ($db['Status'] == 'Complete' && $db['StopTime'] == convert_date_time($db['DateOff'], $TimeOff))
+			if ($db['Status'] == 'Complete' && $db['StopTime'] = convert_date_time($db['DateOff'], $TimeOff))
 			{
 				$db['checkinStatus'] = 'Stop';
 				print_r($db);
