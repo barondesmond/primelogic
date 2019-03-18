@@ -150,7 +150,7 @@ function timeclock_dispatch_update($tc, $dev='')
 			}
 			return $error;
 		}
-		$error[] = 'No Valid Event at DispTech' . $dev . ' ' $tc['event'] . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+		$error[] = 'No Valid Event at DispTech' . $dev . ' ' . $tc['event'] . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
 		return $error;
 	}
 	else

@@ -190,6 +190,7 @@ function timeclock_update($tc, $dev='')
 				{
 					$error = array_merge($error, $error2);
 				}
+			}
 		}
 		else
 		{
