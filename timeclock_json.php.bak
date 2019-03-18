@@ -121,7 +121,7 @@ function timeclock_dispatch_update($tc, $dev='')
 	$res = mssql_query($sql);
 	if ($dis = mssql_fetch_assoc($res))
 	{
-		$StartHour = date("H:i:s", $tc['StartTime');
+		$StartHour = date("H:i:s", $tc['StartTime']);
 		$StopHour = date("H:i:s", $tc['StopTime']);
 
 		if ($tc['event'] == 'Traveling')

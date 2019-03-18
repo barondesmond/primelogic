@@ -127,7 +127,7 @@ function timeclock_dispatch_update($tc, $dev='')
 		if ($tc['event'] == 'Traveling')
 		{
 			
-			$sql = "UPDATE DispTech$dev SET DispTime = '$StartHour', TimeOn = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch']  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$sql = "UPDATE DispTech$dev SET DispTime = '$StartHour', TimeOn = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch'] .  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
 			if ($mes != '')
@@ -140,7 +140,7 @@ function timeclock_dispatch_update($tc, $dev='')
 		if ($tc['event'] == 'Working')
 		{
 			
-			$sql = "UPDATE DispTech$dev SET TimeOn = '$StartHour', TimeOff = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch']  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$sql = "UPDATE DispTech$dev SET TimeOn = '$StartHour', TimeOff = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch'] . "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
 			if ($mes != '')
