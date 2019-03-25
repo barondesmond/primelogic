@@ -227,11 +227,15 @@ if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset(
 {
 	$error = timeclock_add($_REQUEST);
 
+
 }
 elseif (isset($_REQUEST['timeclock_add']))
 {
 	$error[] = 'error timeclock add request';
-
+	header('Content-Type: application/json');
+	$data = array_merge($error, $_REQUEST);
+	echo json_encode($data);
+	exit;
 }
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
