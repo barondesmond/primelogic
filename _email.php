@@ -76,7 +76,7 @@ function email_unsubscribe($email)
 		return true;
 	}
 return false;
-
+}
 
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '', $func = '' )
 {

@@ -66,6 +66,18 @@ function email_from_gcf($func='')
 return EMAIL_USERNAME_FROM;
 }
 
+function email_unsubscribe($email)
+{
+	$sql = "SELECT * FROM EmailUnsubscribe WHERE Email = '$email'";
+	$res = mssql_query($sql);
+	$db = mssql_fetch_assoc($res);
+	if ($db['Email'] == $email)
+	{
+		return true;
+	}
+return false;
+
+
 function email_report($email, $subject, $body, $filename='', $cid='', $name='', $pdf = '', $func = '' )
 {
 
@@ -73,6 +85,10 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 	{
 		$func = trim($_SERVER['PHP_SELF']);
 	}	
+	if (email_unsubscribe($email))
+	{
+		return true;
+	}
 	if (SPOOLWRITE=='write')
 	{
 		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf', 'func');
