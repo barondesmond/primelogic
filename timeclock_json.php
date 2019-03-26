@@ -215,18 +215,29 @@ else
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
 	$error = timeclock_update($_REQUEST['TimeClockID'], $dev);
+	header('Content-Type: application/json');
+	$data = array_merge($error, $_REQUEST);
+	echo json_encode($data);
+	exit;
 
 }
 elseif (isset($_REQUEST['timeclock_update']))
 {
 	$error[] = 'error timeclock update request';
+	header('Content-Type: application/json');
+	$data = array_merge($error, $_REQUEST);
+	echo json_encode($data);
+	exit;
 
 
 }
 if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
 	$error = timeclock_add($_REQUEST);
-
+	header('Content-Type: application/json');
+	$data = array_merge($error, $_REQUEST);
+	echo json_encode($data);
+	exit;
 
 }
 elseif (isset($_REQUEST['timeclock_add']))
