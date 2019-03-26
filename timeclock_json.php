@@ -38,7 +38,10 @@ function timeclock_add($db)
 		$db['EmpActive'] = '0';
 		if ($db['Screen'] == 'Job' && $db['JD'] != '')
 		{
-			$db['Name'] = $db['JD'];
+			$exp = explode(':', $db['JD']);
+			
+			$db['Name'] = $exp[0];
+			$db['JobID'] = $exp[1];
 		}
 		elseif ($db['Screen'] == 'Job')
 		{
@@ -47,14 +50,18 @@ function timeclock_add($db)
 		}
 		if ($db['Screen'] == 'Dispatch' && $db['JD'] != '')
 		{
-			$db['Dispatch'] = $db['JD'];
+			$exp = explode(':', $db['JD']);
+
+			$db['Dispatch'] = $exp[0];
+			$db['Counter'] = $exp[1];
 		}
 		elseif ($db['Screen'] == 'Dispatch')
 		{
+			$error[] = 'Mising Dispatch';
 			return $error;
 		}
 
-		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen');
+		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen', 'Counter', 'JobID');
 		foreach ($array as $key)
 		{
 			if (isset($db[$key]) && $db[$key] != '')
