@@ -583,6 +583,7 @@ function jobs_query($dev='', $ServiceMan='')
 	if ($ServiceMan != '')
 	{
 		$jge = jobgroupemployees_query($dev, $ServiceMan);
+		$js['jge'] = $jge;
 	}
 $js['numEmp'] = 0;
 $js['title'] = 'Jobs List';
