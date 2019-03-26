@@ -69,6 +69,7 @@ $sel  ORDER BY ge.JobGroupID ASC ";
 $res = mssql_query($sql);
 $i=1;
 $js['numEmp'] = 0;
+$js['sql'] = $sql;
 while ($db = mssql_fetch_assoc($res))
 {
 	$db['id'] = $i;
