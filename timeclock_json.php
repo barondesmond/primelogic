@@ -19,7 +19,7 @@ if ($auth['authorized'] != '1')
 
 
 
-function timeclock_add($db)
+function timeclock_add($db, $dev)
 {
 	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
@@ -240,7 +240,7 @@ elseif (isset($_REQUEST['timeclock_update']))
 }
 if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
-	$error = timeclock_add($_REQUEST);
+	$error = timeclock_add($_REQUEST, $dev);
 	header('Content-Type: application/json');
 	$data = array_merge($error, $_REQUEST);
 	echo json_encode($data);
