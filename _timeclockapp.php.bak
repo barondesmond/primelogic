@@ -291,11 +291,11 @@ function dispatch_add($db ,$dev='')
 		$TimeOff = date("H:i:s", $db['StopTime']);
 		if ($db['event'] == 'Traveling' && $sdb['Status'] == 'Pending')
 		{
-			$dd = ", DispDate = '" . $dispdate . "' , DispTime = '"  . date("H:i:s", $TimeOn) . "', TimeOn = '" . $TimeOff . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
+			$dd = ", DispDate = '" . $dispdate . "' , DispTime = '"  . $TimeOn . "', TimeOn = '" . $TimeOff . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
 		}
 		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Pending')
 		{
-			$dd = ", DispDate = '" . $dispdate . "', DispTime = '" . date("H:i:s", $TimeOn) . "', TimeOn = '" . date("H:i:s", $TimeOn) . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
+			$dd = ", DispDate = '" . $dispdate . "', DispTime = '" . $TimeOn . "', TimeOn = '" . $TimeOn . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
 		}
 		else
 		{
