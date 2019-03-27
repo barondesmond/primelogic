@@ -227,7 +227,7 @@ function timeclock_update($tc, $dev='')
 
 				$error[] = $mes;
 				$error[] = $sql;
-			if ($tv['Screen'] == 'Dispatch')
+			if ($tca['Screen'] == 'Dispatch')
 			{
 				$error2 = timeclock_dispatch_update($tca, $dev);
 				if (isset($error2))
