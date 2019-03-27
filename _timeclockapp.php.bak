@@ -257,6 +257,17 @@ function dispatch_add($db ,$dev='')
 	{
 		$time = time();
 	}
+
+	$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
+	$q = '';
+	$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
+
+	for ($i=0; $i < count($array); $i++)
+	{
+		$q .= $array[$i] . ',';
+	}
+	$q = substr($q, 0, strlen($q) - 1);
+
 	$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $db['Counter'] . "' ";
 	$res_sel = mssql_query($sel);
 	if (!mssql_num_rows($res_sel))
@@ -273,15 +284,7 @@ function dispatch_add($db ,$dev='')
 		return $db;
 	}
 
-	$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
-	$q = '';
-	$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
 
-	for ($i=0; $i < count($array); $i++)
-	{
-		$q .= $array[$i] . ',';
-	}
-	$q = substr($q, 0, strlen($q) - 1);
 
 
 	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $sdb['Counter'] . "' ";
