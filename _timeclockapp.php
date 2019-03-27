@@ -163,7 +163,7 @@ function timeclock_dispatch_update($tc, $dev='')
 {
 	//Traveling DispTime TimeOn
 	//Working TimeOn TimeOff
-	$sql = "SELECT * FROM DispTech$dev as DispTech WHERE DispTech.Dispatch = '" .  $tc['Dispatch'] . " and Counter = '" . $tc['Counter'] . "' and ServiceMan = '" . $tc['EmpNo'] . "'";
+	$sql = "SELECT * FROM DispTech$dev as DispTech WHERE DispTech.Dispatch = '" .  $tc['Dispatch'] . " and Counter = '" . $tc['Counter'] . "' and ServiceMan = '" . $tc['ServiceMan'] . "'";
 	$res = mssql_query($sql);
 	if ($dis = mssql_fetch_assoc($res))
 	{
