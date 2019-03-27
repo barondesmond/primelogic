@@ -272,16 +272,14 @@ function dispatch_add($db ,$dev='')
 	$res_sel = mssql_query($sel);
 	if (!mssql_num_rows($res_sel))
 	{
-		$db['error'] = "Invalid DispTech$dev state";
-		return $db;
+		$error[]  = "Invalid DispTech$dev state";
+		return $error;
 	}
 	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
 	if (!$sdb)
 	{
-		$db['error'][] = 'Missing DispTech' . $dev;
-		$db['error'][] = $sel;
-		$db['error'][] = $sdb;
-		return $db;
+		$error[] = 'Missing DispTech' . $dev;
+		return $error;
 	}
 
 
@@ -304,10 +302,8 @@ function dispatch_add($db ,$dev='')
 		}
 		else
 		{
-			$db['error'][] = 'missing event';
-			$db['error'][] = $sdb;
-			$db['error'][] = $db;
-			return $db;
+			$error[]  = 'missing event';
+			return $error;
 		}
 
 	if ($up != '' && $dd != '' && $where != '')

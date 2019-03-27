@@ -253,10 +253,7 @@ return $error;
 function dispatch_add($db ,$dev='')
 {
 
-	if ($time == '')
-	{
-		$time = time();
-	}
+	
 
 	$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
 	$q = '';
@@ -289,12 +286,12 @@ function dispatch_add($db ,$dev='')
 
 		$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
 		//Dec 5 2018 12:00:00:000AM
-		$dispdate =  date("M d Y ", $time) . '12:00:00:000AM';
+		$dispdate =  date("M d Y ", $db['StartTime']) . '12:00:00:000AM';
 		$TimeOn = date("H:i:s", $db['StartTime']);
 		$TimeOff = date("H:i:s", $db['StopTime']);
 		if ($db['event'] == 'Traveling' && $sdb['Status'] == 'Pending')
 		{
-			$dd = ", DispDate = '" . $dispdate . "' , DispTime = '"  . date("H:i:s", $time) . "', TimeOn = '" . $TimeOff . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
+			$dd = ", DispDate = '" . $dispdate . "' , DispTime = '"  . date("H:i:s", $TimeOn) . "', TimeOn = '" . $TimeOff . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
 		}
 		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Pending')
 		{
