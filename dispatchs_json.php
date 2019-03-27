@@ -17,7 +17,10 @@ include("_dispatch.php");
 
 
 //api app
-
+if (isset($_REQUEST['Dev']) && $_REQUEST['Dev'] == 'Dev')
+{
+	$_REQUEST['dev'] = 'true';
+}
 $js = dispatch_query($_REQUEST['ServiceMan'], $_REQUEST['dev']);
 header('Content-Type: application/json');
 
