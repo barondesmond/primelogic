@@ -87,7 +87,7 @@ function timeclock_add($db, $dev)
 
 			$db['Dispatch'] = $exp[0];
 			$db['Counter'] = $exp[1];
-			$resp = dispatch_add($db, $db['StartTime'], $dev);
+			$resp = dispatch_add($db, $dev);
 			if (!isset($resp['Dispatch']))
 			{
 				$error[] = 'Dispatch Error';
