@@ -81,7 +81,6 @@ WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
-$data['error'] = array_merge($data['error'], $error);
 
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
