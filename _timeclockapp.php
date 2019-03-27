@@ -27,7 +27,7 @@ return $resp;
 function convert_date_time($date, $time)
 {
 	$expday = explode(' ', $date);
-	print_r($expday);
+	//print_r($expday);
 	$fields = 0;
 	$i=0;
 	$day = '';
@@ -41,9 +41,9 @@ function convert_date_time($date, $time)
 		$fields++;
 	}
 	$day = $day . ' ' . $time;
-	echo $day;
+	//echo $day;
 	$StartTime = strtotime($day);
-	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
+	//echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
 	if ($StartTime > 0)
 	{
 		return $StartTime;
@@ -87,6 +87,12 @@ function timeclock_add($db, $dev)
 
 			$db['Dispatch'] = $exp[0];
 			$db['Counter'] = $exp[1];
+			$resp = dispatch_add($db, $db['StartTime'], $dev);
+			if (!isset($resp['Dispatch']))
+			{
+				$error[] = 'Dispatch Error';
+				return $error;
+			}
 		}
 		elseif ($db['Screen'] == 'Dispatch')
 		{
@@ -244,6 +250,102 @@ return $error;
 
 }
 
+function dispatch_add($db ,$dev='')
+{
+
+	if ($time == '')
+	{
+		$time = time();
+	}
+	$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $db['Counter'] . "' ";
+	$res_sel = mssql_query($sel);
+	if (!mssql_num_rows($res_sel))
+	{
+		$db['error'] = "Invalid DispTech$dev state";
+		return $db;
+	}
+	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
+	if (!$sdb)
+	{
+		$db['error'][] = 'Missing DispTech' . $dev;
+		$db['error'][] = $sel;
+		$db['error'][] = $sdb;
+		return $db;
+	}
+
+	$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
+	$q = '';
+	$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
+
+	for ($i=0; $i < count($array); $i++)
+	{
+		$q .= $array[$i] . ',';
+	}
+	$q = substr($q, 0, strlen($q) - 1);
+
+
+	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $sdb['Counter'] . "' ";
+
+		$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
+		//Dec 5 2018 12:00:00:000AM
+		$dispdate =  date("M d Y ", $time) . '12:00:00:000AM';
+		$TimeOn = date("H:i:s", $db['StartTime']);
+		$TimeOff = date("H:i:s", $db['StopTime']);
+		if ($db['event'] == 'Traveling' && $sdb['Status'] == 'Pending')
+		{
+			$dd = ", DispDate = '" . $dispdate . "' , DispTime = '"  . date("H:i:s", $time) . "', TimeOn = '" . $TimeOff . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
+		}
+		elseif ($db['event'] == 'Working' && $sdb['Status'] == 'Pending')
+		{
+			$dd = ", DispDate = '" . $dispdate . "', DispTime = '" . date("H:i:s", $TimeOn) . "', TimeOn = '" . date("H:i:s", $TimeOn) . "', TimeOff = '" . $TimeOff . "', DateOff = '" . $dispdate . "' ";
+		}
+		else
+		{
+			$db['error'][] = 'missing event';
+			$db['error'][] = $sdb;
+			$db['error'][] = $db;
+			return $db;
+		}
+
+	if ($up != '' && $dd != '' && $where != '')
+	{
+		$sql = $up . $dd . $where;
+		$res = @mssql_query($sql);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql;
+	}
+
+		for ($i=0; $i< count($array); $i++)
+		{
+			if ($array[$i] == 'Counter')
+			{
+				$sdb[$array[$i]] = (int) $sdb[$array[$i]];
+				$sdb[$array[$i]]++;
+				$sdb[$array[$i]] = str_pad($sdb[$array[$i]], 3, "0", STR_PAD_LEFT);
+			}
+			if ($array[$i] == 'Status')
+			{
+				$sdb['Status'] = 'Pending';
+			}
+			$v .= "'" . $sdb[$array[$i]] . "',";
+		}
+		$v = substr($v, 0, strlen($v) - 1);		
+
+		for ($i=0;$i<count($blank); $i++)
+		{
+			$q .= " ," . $blank[$i] . " ";
+			$v .= " ,'' ";
+		}
+
+		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
+		$res2 = mssql_query($ins);
+		$error[] = mssql_get_last_message();
+		$error[] = $ins;
+	}
+	$resp = array_merge($db, $error);
+	$resp = array_merge($resp, $sdb);
+return $resp;
+}
 
 
 function dispatch_db($db, $dev='', $time = '')

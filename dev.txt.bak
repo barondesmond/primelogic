@@ -5,8 +5,8 @@ DROP TABLE PRTimeEntryDev;
 SELECT * INTO DispTechDev FROM DispTech; 
 SELECT * INTO DispatchDev FROM Dispatch;
 SELECT * INTO JobsDev FROM Jobs;
-SELECT * INTO PRTimeEntryDev FROM PRTimeEntry
+SELECT * INTO PRTimeEntryDev FROM PRTimeEntry;
 UPDATE DispTechDev SET ServiceMan = '0195' WHERE ServiceMan = '0173';
-DELETE FROM TimeClockApp WHERE EmpNo = '0195'; 
+DELETE FROM TimeClockApp ; 
 DELETE FROM DispTechDev WHERE Status IN ( 'Traveling', 'Working') and ServiceMan = '0195';
-DELETE FROM PRHours WHERE EmpNo = '0195'
+DELETE FROM PRHours;

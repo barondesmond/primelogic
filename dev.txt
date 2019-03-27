@@ -1,12 +1,21 @@
 DROP TABLE JobsDev;
-DROP TABLE DispatchDev; 
-DROP TABLE DispTechDev; 
+
 DROP TABLE PRTimeEntryDev;
 SELECT * INTO DispTechDev FROM DispTech; 
 SELECT * INTO DispatchDev FROM Dispatch;
 SELECT * INTO JobsDev FROM Jobs;
 SELECT * INTO PRTimeEntryDev FROM PRTimeEntry;
-UPDATE DispTechDev SET ServiceMan = '0195' WHERE ServiceMan = '0173';
 DELETE FROM TimeClockApp ; 
-DELETE FROM DispTechDev WHERE Status IN ( 'Traveling', 'Working') and ServiceMan = '0195';
+DROP TABLE DispTechDev; 
 DELETE FROM PRHours;
+
+DROP TABLE DispatchDev; 
+DROP TABLE DispTechDev; 
+SELECT * INTO DispTechDev FROM DispTech; 
+SELECT * INTO DispatchDev FROM Dispatch;
+UPDATE DispTechDev SET ServiceMan = '0195' WHERE ServiceMan = '0173';
+DELETE FROM DispTechDev WHERE Status IN ( 'Traveling', 'Working') and ServiceMan = '0195';
+
+
+
+
