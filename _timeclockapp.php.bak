@@ -201,7 +201,7 @@ function timeclock_dispatch_update($tc, $dev='')
 	else
 	{
 		$error[] = 'No Valid DispTech' . $dev . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
-	
+		$error[] = $sql;
 		return $error;
 	}
 //not valid or possible
