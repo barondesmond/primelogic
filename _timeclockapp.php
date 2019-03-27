@@ -8,15 +8,15 @@ function timeclock_state($db, $TimeOn, $TimeOff, $dev='')
 			$db['violation'] = 'Sync Error';
 			$db['checkinStatus'] = 'Start';
 			$db['installationId'] = $db['installationID'];
-			print_r($db);
+	
 			$resp = timeclock_db($db, $db['StartTime']);
-			print_r($resp);
+
 			if ($db['Status'] == 'Complete' && $db['StopTime'] = convert_date_time($db['DateOff'], $TimeOff))
 			{
 				$db['checkinStatus'] = 'Stop';
-				print_r($db);
+	
 				$resp = timeclock_db($db, $db['StopTime']);
-				print_r($resp);
+
 			}
 		
 	}

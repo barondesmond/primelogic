@@ -10,6 +10,7 @@ if ($dev == 'true')
 {
 	$d = 'Dev';
 }
+
 $js['title'] = 'Dispatch List';
 $js['description'] = 'Dispatch Name, Dispatch Location';
 $sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, DispTech.Counter, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, Location.latitude, Location.longitude, ServiceMan, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, Location.Add1, Location.Add2, Location.City, Location.State,Location.Zip, Location.Phone1 FROM DispTech" . $d . " as DispTech
