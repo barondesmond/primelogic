@@ -30,7 +30,7 @@ while ($db = mssql_fetch_assoc($res))
 
 	if ($db['latitude'] == '' || $db['latitude'] == '0')
 	{
-		$loc = location_api($db['LocName'], $db);
+		$loc = location_api($db['DispatchName'], $db);
 		$db['latitude'] = $loc['latitude'];
 		$db['longitude'] = $loc['longitude'];
 
