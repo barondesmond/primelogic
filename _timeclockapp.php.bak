@@ -341,7 +341,7 @@ function dispatch_add($db ,$dev='')
 		$res2 = mssql_query($ins);
 		$error[] = mssql_get_last_message();
 		$error[] = $ins;
-	}
+
 	$resp = array_merge($db, $error);
 	$resp = array_merge($resp, $sdb);
 return $resp;
