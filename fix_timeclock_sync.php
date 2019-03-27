@@ -2,56 +2,6 @@
 include("_db_config.php");
 include("_timeclockapp.php");
 
-function timeclock_state($db, $TimeOn, $TimeOff, $dev='')
-{
-
-	if ($db['StartTime'] = convert_date_time($db['DispDate'], $TimeOn))
-	{
-			$db['violation'] = 'Sync Error';
-			$db['checkinStatus'] = 'Start';
-			$db['installationId'] = $db['installationID'];
-			print_r($db);
-			$resp = timeclock_db($db, $db['StartTime']);
-			print_r($resp);
-			if ($db['Status'] == 'Complete' && $db['StopTime'] = convert_date_time($db['DateOff'], $TimeOff))
-			{
-				$db['checkinStatus'] = 'Stop';
-				print_r($db);
-				$resp = timeclock_db($db, $db['StopTime']);
-				print_r($resp);
-			}
-		
-	}
-return $resp;
-}
-
-
-function convert_date_time($date, $time)
-{
-	$expday = explode(' ', $date);
-	print_r($expday);
-	$fields = 0;
-	$i=0;
-	$day = '';
-	while ($i < 3 && isset($expday[$fields]) && $fields < count($expday))
-	{
-		if (trim($expday[$fields]) != '')
-		{
-			$day .= $expday[$fields] . ' ';
-			$i++;
-		}
-		$fields++;
-	}
-	$day = $day . ' ' . $time;
-	echo $day;
-	$StartTime = strtotime($day);
-	echo "Start Date " . date("Y:m:d H:i:s", $StartTime);
-	if ($StartTime > 0)
-	{
-		return $StartTime;
-	}
-return false;
-}
 
 if ($argv['1'])
 {

@@ -86,7 +86,7 @@ while ($db = mssql_fetch_assoc($res))
 	}
 
 }
-exit;
+
 
 
 //Fix Sync Errors Dispatch

@@ -1,6 +1,196 @@
 <?php
 
+function timeclock_add($db, $dev)
+{
+	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$res = mssql_query($sql);
+	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
+	if (!isset($uaa))
+	{
+		$error[] = 'Missing UserAppAuth ' . $db['EmpNo'];
+		return $error;
+	}
+	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
+	{
+		$db = array_merge($_REQUEST, $uaa);
 
+		$db['StartTime'] = strtotime($db['StartDate']);
+		$db['StopTime'] = strtotime($db['StopDate']);
+		$db['EmpActive'] = '0';
+		if ($db['Screen'] == 'Job' && $db['JD'] != '')
+		{
+			$exp = explode(':', $db['JD']);
+			
+			$db['Name'] = $exp[0];
+			$db['JobID'] = $exp[1];
+		}
+		elseif ($db['Screen'] == 'Job')
+		{
+			$error[] = 'Missing Job';
+			return $error;
+		}
+		if ($db['Screen'] == 'Dispatch' && $db['JD'] != '')
+		{
+			$exp = explode(':', $db['JD']);
+
+			$db['Dispatch'] = $exp[0];
+			$db['Counter'] = $exp[1];
+		}
+		elseif ($db['Screen'] == 'Dispatch')
+		{
+			$error[] = 'Mising Dispatch';
+			return $error;
+		}
+
+		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen', 'Counter', 'JobID');
+		foreach ($array as $key)
+		{
+			if (isset($db[$key]) && $db[$key] != '')
+			{
+				$k .= $key . ',';
+				$v .= "'" . str_replace("'", "''", $db[$key]) . "',";
+			}
+
+		}
+		$k = substr($k, 0, strlen($k) - 1);
+		$v = substr($v, 0, strlen($v) - 1);
+		$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	
+		 @mssql_query($sql2);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql2;
+	}
+	else
+	{
+		$error[] = 'Invalid parameters for timeclock_add';
+		$error[] = var_export($db);
+	}
+return $error;
+
+}
+
+
+//tc is TimeClockID array 
+//tk is TimeClockID key
+//tv is TimeClock Start/Stop array
+function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
+{
+	$r1 = time() - 86400*30;
+	$r2 = time() + 86400*30;
+
+	$t1 = strtotime($StartDate);
+	$t2 = strtotime($StopDate);
+
+	if ($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400))
+	{
+		return false;
+	}
+	if (!isset($EmpNo))
+	{
+		return false;
+	}
+	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime < '$t1' and StopTime > '$t1') or (StartTime < '$t2' and StopTime > '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
+	$res = mssql_query($sql);
+	$db = mssql_fetch_array($res, MSSQL_ASSOC);
+	if (isset($db['EmpNo']))
+	{
+		return false;
+	}
+
+return true;
+
+}
+
+function timeclock_dispatch_update($tc, $dev='')
+{
+	//Traveling DispTime TimeOn
+	//Working TimeOn TimeOff
+	$sql = "SELECT * FROM DispTech$dev as DispTech WHERE DispTech.Dispatch = '" .  $tc['Dispatch'] . " and Counter = '" . $tc['Counter'] . "' and ServiceMan = '" . $tc['EmpNo'] . "'";
+	$res = mssql_query($sql);
+	if ($dis = mssql_fetch_assoc($res))
+	{
+		$StartHour = date("H:i:s", $tc['StartTime']);
+		$StopHour = date("H:i:s", $tc['StopTime']);
+
+		if ($tc['event'] == 'Traveling')
+		{
+			
+			$sql = "UPDATE DispTech$dev SET DispTime = '$StartHour', TimeOn = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch'] .  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$res = mssql_query($sql);
+			$mes = mssql_get_last_message();
+	
+				$error[] = $mes;
+				$error[] = $sql;
+
+			return $error;
+		}
+		if ($tc['event'] == 'Working')
+		{
+			
+			$sql = "UPDATE DispTech$dev SET TimeOn = '$StartHour', TimeOff = '$StopHour' WHERE DispTech.Dispatch = '" . $dis['Dispatch'] . "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$res = mssql_query($sql);
+			$mes = mssql_get_last_message();
+			if ($mes != '')
+			{
+				$error[] = $mes;
+				$error[] = $sql;
+			}
+			return $error;
+		}
+		$error[] = 'No Valid Event at DispTech' . $dev . ' ' . $tc['event'] . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+		return $error;
+	}
+	else
+	{
+		$error[] = 'No Valid DispTech' . $dev . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
+	
+		return $error;
+	}
+//not valid or possible
+return false;
+}
+
+function timeclock_update($tc, $dev='')
+{
+
+
+	foreach ($tc as $tk => $tv)
+	{
+		$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$tk'";
+		$res = mssql_query($sql);
+		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
+
+		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
+		{
+
+			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
+			$res = mssql_query($sql);
+			$mes = mssql_get_last_message();
+
+				$error[] = $mes;
+				$error[] = $sql;
+			if ($tv['Screen'] == 'Dispatch')
+			{
+				$error2 = timeclock_dispatch_update($tc, $dev);
+				if (isset($error2))
+				{
+					$error = array_merge($error, $error2);
+				}
+			}
+		}
+		else
+		{
+			$error[] = 'Invalid Parameters timeclock_update TimeClockID ' . $tk .'EmpNo ' .  $tca['EmpNo'] . ' StartDate ' . $tv['StartDate'] . ' StopDate ' . $tv['StopDate'];
+		}
+	}
+if (!isset($error))
+	{
+	$error[] = 'error timclock update';
+	$error[] = $tc;
+	}
+return $error;
+
+}
 
 
 
@@ -180,7 +370,7 @@ elseif ($db['checkinStatus'] == 'Start')
 {
 	$db['StartTime'] = $time;
 	$db['EmpActive'] = '1';
-	$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image', 'Screen');
+	$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'latitude', 'longitude', 'event', 'StartTime', 'EmpActive', 'violation', 'image', 'Screen', 'Counter', 'JobID');
 	foreach ($array as $key)
 	{
 		if (isset($db[$key]) && $db[$key] != '')
