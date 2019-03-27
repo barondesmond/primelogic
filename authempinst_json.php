@@ -5,7 +5,7 @@ function dispatch_hours($db, $dev = '')
 {
 	if ($db['Dispatch']!='')
 	{
-		$sql = "SELECT Status, DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "SELECT Status, DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech WHERE Dispatch = '" . $db['Dispatch'] . "' and DispTech.Counter = '" . $db['Counter'] . "'";
 		$res = mssql_query($sql);
 		$db['Working'] = 0;
 		$db['Traveling'] = 0;

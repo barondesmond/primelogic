@@ -274,11 +274,11 @@ function TimeClockQuery($req, $dev='')
 $sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1, DispTech.Counter, Jobs.JobID  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
-LEFT JOIN Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0'
+LEFT JOIN Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0' and TimeClockApp.JobID = Jobs.JobID
 LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 LEFT JOIN Dispatch" . $dev . " as Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
-LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "'
+LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . " and TimeClockApp.Counter = DispTech.Counter '
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 
