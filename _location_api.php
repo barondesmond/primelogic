@@ -5,8 +5,10 @@ function mapquest_reverse_geocode($lat,$long)
 {
 $url = "http://open.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . ',' . $long . '&includeRoadMetadata=true&includeNearestIntersection=true' ;
 $respJson = file_get_contents($url);
-
+echo $url;
 $resp = json_decode($respJson, 1);
+print_r($resp);
+exit;
 return $resp;
 }
 
