@@ -253,7 +253,7 @@ return $address;
 
 function mapquest_map($map)
 {
-print_r($map);
+
 return 	$map['results']['0']['locations']['0']['mapUrl'];
 }
 

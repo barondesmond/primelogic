@@ -4,7 +4,7 @@
 function mapquest_reverse_geocode($lat,$long)
 {
 //$url = "http://open.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . ',' . $long . '&includeRoadMetadata=true&includeNearestIntersection=true' ;
-$url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . '%2C' . $long . '&outFormat=json&thumbMaps=false';
+$url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . '%2C' . $long . '&outFormat=json&thumbMaps=true';
 
 $respJson = file_get_contents($url);
 
