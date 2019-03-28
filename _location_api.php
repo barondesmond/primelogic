@@ -1,6 +1,14 @@
 <?php
 
 
+function mapquest_reverse_geocode($lat,$log)
+{
+$url = "http://open.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat ',' . $long ;
+$respJson = file_get_contents($url);
+
+$resp = json_decode($respJson, 1);
+return $resp;
+}
 
 
 function mapquest_api($loc)
@@ -221,8 +229,10 @@ function location_details($file)
 	if ($lc = location_parse_file($file))
 	{
 		$db = location_lookup($lc);
+		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']\);
+		
 		$resp = array_merge($lc, $db);
-		return $resp;
+		return array_merge($map, $resp);
 	}
 return false;
 }

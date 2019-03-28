@@ -1,6 +1,14 @@
 <?php
 
 
+function mapquest_reverse_geocode($lat,$log)
+{
+$url = "http://open.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat ',' . $long ;
+$respJson = file_get_contents($url);
+
+$resp = json_decode($respJson, 1);
+return $resp;
+}
 
 
 function mapquest_api($loc)
@@ -250,6 +258,7 @@ static $files;
 				$js['location'][$id] = $db['location'];
 				$js['locationapi'][$db['location']] = $db;
 			}
+		}
 	}
 return $js;
 }
