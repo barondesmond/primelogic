@@ -263,6 +263,7 @@ function location_details($file)
 		$ld['Date'] = date("Y-m-d H:i:s", $lc['time']);
 		$ld['EmpNo'] = $lc['EmpNo'];
 		$ld['Desc'] = $lc['Desc'];
+		$ld['location'] = $lc['location'];
 		$ld['gps_location'] = mapquest_address($map);
 		$ld['location_latitude'] = $db['latitude'];
 		$ld['location_longitude'] = $db['longitude'];
