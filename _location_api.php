@@ -251,6 +251,12 @@ function mapquest_address($map)
 return $address;
 }
 
+function mapquest_map($map)
+{
+
+return 	$map['results']['0']['locations']['0']['mapUrl'];
+}
+
 function location_details($file)
 {
 	if ($lc = location_parse_file($file))
@@ -264,11 +270,13 @@ function location_details($file)
 		$ld['EmpNo'] = $lc['EmpNo'];
 		$ld['Desc'] = $lc['Desc'];
 		$ld['location'] = $lc['location'];
-		$ld['gps_location'] = mapquest_address($map);
+		$ld['location_gps'] = mapquest_address($map);
+		$ld['location_map'] = mapquest_map($map);
 		$ld['location_latitude'] = $db['latitude'];
 		$ld['location_longitude'] = $db['longitude'];
 
-		$ld['gps_override'] = mapquest_address($map2);
+		$ld['override_gps'] = mapquest_address($map2);
+		$ld['override_map'] = mapquest_map($map2); 
 		$ld['override_latitude'] = $lc['latitude'];
 		$ld['override_longitude'] = $lc['longitude'];
 		$ld['file'] = $file;
