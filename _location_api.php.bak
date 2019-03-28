@@ -203,6 +203,30 @@ return $lp;
 
 }
 
+function  location_lookup($lc)
+{
+
+			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, longitude, latitude, Location.Add1, Location.City, Location.State, Location.Zip FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
+			$res = mssql_query($sql);
+			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
+			$db['latitude'] = location_int_gps($db['latitude']);
+			$db['longitude'] = location_int_gps($db['longitude']);
+			$db = location_api($db['LocName'], $db);
+
+	return $db;
+}
+
+function location_details($file)
+{
+	if ($lc = location_parse_file($file))
+	{
+		$db = location_lookup($lc);
+		$resp = array_merge($lc, $db);
+		return $resp;
+	}
+return false;
+}
+
 function location_query()
 {
 
@@ -218,19 +242,14 @@ static $files;
 	{
 		if ($lc = location_parse_file($file))
 		{
-			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, longitude, latitude, Location.Add1, Location.City, Location.State, Location.Zip FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
-			$res = mssql_query($sql);
-			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
-			$db['latitude'] = location_int_gps($db['latitude']);
-			$db['longitude'] = location_int_gps($db['longitude']);
-			$db = location_api($db['LocName'], $db);
+			$db = location_lookup($lc);
+
 			if (isset($lc['location']) && isset($db['location']) && $db['location'] == $lc['location'])
 			{
 				$js[$lc['location']][$id] = $lc;
 				$js['location'][$id] = $db['location'];
 				$js['locationapi'][$db['location']] = $db;
 			}
-		}
 	}
 return $js;
 }

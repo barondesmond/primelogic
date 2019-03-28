@@ -250,6 +250,7 @@ static $files;
 				$js['location'][$id] = $db['location'];
 				$js['locationapi'][$db['location']] = $db;
 			}
+		}
 	}
 return $js;
 }
