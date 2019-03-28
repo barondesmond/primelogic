@@ -345,7 +345,7 @@ if ( $location != '')
 		$loc = $db;
 		$loca = $loc['Add1'] . ',' .  $loc['City'] . ',' . $loc['State'] . ' ' . $loc['Zip'];
 	}
-	if (($loc['latitude'] == '0' || $loc['latitude'] == '') && $loca != '')
+	if (($loc['latitude'] == '0' || $loc['latitude'] == '' || !isset($loc['latitide'])) && $loca != '')
 	{
 		unset($loc['latitude']);
 		unset($loc['longitude']);

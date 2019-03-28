@@ -253,6 +253,8 @@ function location_details($file)
 	if ($lc = location_parse_file($file))
 	{
 		$db = location_lookup($lc);
+		print_r($db);
+		print_r($lc);
 		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
 		print_r($map);
 		$map2 = mapquest_reverse_geocode($lc['latitude'], $lc['longitude']);
