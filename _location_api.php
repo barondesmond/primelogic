@@ -214,7 +214,7 @@ return $lp;
 function  location_lookup($lc)
 {
 
-			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, longitude, latitude, Location.Add1, Location.City, Location.State, Location.Zip FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
+			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location,  Location.Add1, Location.City, Location.State, Location.Zip FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
 			$res = mssql_query($sql);
 			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
 			//$db['latitude'] = location_int_gps($db['latitude']);
@@ -330,7 +330,7 @@ if ( $location != '')
 	{
 		$db['LocName'] = str_replace("'", "''", $location);
 
-		$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
+		$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 		WHERE 
 		Location.LocName = '" . $db['LocName'] . "' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''";
 		//echo $sql;
