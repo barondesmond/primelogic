@@ -330,7 +330,7 @@ if ( $location != '')
 	{
 		$db['LocName'] = str_replace("'", "''", $location);
 
-		$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
+		$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 		WHERE 
 		Location.LocName = '" . $db['LocName'] . "' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''";
 		//echo $sql;
