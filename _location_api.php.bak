@@ -254,11 +254,11 @@ function location_details($file)
 		$db = location_lookup($lc);
 		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
 		$map2 = mapquest_reverse_geocode($lc['latitude'], $db['longitude']);
-		$lc['geocode_current'] = $map;
-		$lc['geocode_submit'] = $map2;
+		$lc['geocode_current'] = mapquest_address($map);
+		$lc['geocode_submit'] = mapquest_address($map2);
 
 		$resp = array_merge($lc, $db);
-		return array_merge($map, $resp);
+		return $resp;
 	}
 return false;
 }
