@@ -224,15 +224,41 @@ function  location_lookup($lc)
 	return $db;
 }
 
+function mapquest_address($map)
+{
+	//$map['results']['locations']
+	/*
+	       "street": "12714 Ashley Melisse Blvd",
+          "adminArea6": "",
+          "adminArea6Type": "Neighborhood",
+          "adminArea5": "Jacksonville",
+          "adminArea5Type": "City",
+          "adminArea4": "Duval",
+          "adminArea4Type": "County",
+          "adminArea3": "FL",
+          "adminArea3Type": "State",
+          "adminArea1": "US",
+          "adminArea1Type": "Country",
+          "postalCode": "32225",
+	*/
+	$loc = $map['results']['locations'];
+	$ar = array('street', 'adminArea5', 'adminArea3', 'postalCode');
+	$address = $loc['street'] . ',' . $loc['adminArea5'] . ',' . $loc['adminArea3'] . ' ' . $loc['postalCode'];
+return $address;
+}
+
 function location_details($file)
 {
 	if ($lc = location_parse_file($file))
 	{
 		$db = location_lookup($lc);
 		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
-		
+		$map2 = mapquest_reverse_geocode($lc['latitude'], $db['longitude']);
+		$lc['geocode_current'] = mapquest_address($map);
+		$lc['geocode_submit'] = mapquest_address($map2);
+
 		$resp = array_merge($lc, $db);
-		return array_merge($map, $resp);
+		return $resp;
 	}
 return false;
 }
