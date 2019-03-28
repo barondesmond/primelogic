@@ -260,11 +260,10 @@ function location_details($file)
 		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
 	
 		$map2 = mapquest_reverse_geocode($lc['latitude'], $lc['longitude']);
-		$ld['location'] = $lc['location'];
-		$ld['gps_location'] = mapquest_address($map);
-		$ld['gps_override'] = mapquest_address($map2);
-		$ld['file'] = $file;
-		return $ld;
+		$lc['gps_location'] = mapquest_address($map);
+		$lc['gps_override'] = mapquest_address($map2);
+
+		return $lc;
 	}
 return false;
 }
