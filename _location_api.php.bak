@@ -154,7 +154,7 @@ function location_file_update($db)
 		}
 	}
 	$file = substr($file, 0, strlen($file) - 1);
-	$dir = '/var/www/html/primelogic/upload';
+	$dir = '/var/www/html/primelogic/upload/';
 
 	if  (rename($dir . $db['file'], $dir . $file))
 	{
