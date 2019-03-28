@@ -254,7 +254,7 @@ function location_details($file)
 	{
 		$db = location_lookup($lc);
 		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
-		$map2 = mapquest_reverse_geocode($lc['latitude'], $db['longitude']);
+		$map2 = mapquest_reverse_geocode($lc['latitude'], $lc['longitude']);
 		$lc['geocode_current'] = mapquest_address($map);
 		$lc['geocode_submit'] = mapquest_address($map2);
 
