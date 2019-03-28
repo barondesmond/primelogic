@@ -229,7 +229,7 @@ function location_details($file)
 	if ($lc = location_parse_file($file))
 	{
 		$db = location_lookup($lc);
-		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']\);
+		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
 		
 		$resp = array_merge($lc, $db);
 		return array_merge($map, $resp);
