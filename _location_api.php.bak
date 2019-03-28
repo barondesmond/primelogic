@@ -263,9 +263,8 @@ function location_details($file)
 	
 		$ld['geocode_current'] = mapquest_address($map);
 		$ld['geocode_submit'] = mapquest_address($map2);
-
-		$resp = array_merge($lc, $db);
-		return $resp;
+		$ld['file'] = $file;
+		return $ld;
 	}
 return false;
 }
