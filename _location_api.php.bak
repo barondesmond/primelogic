@@ -9,8 +9,7 @@ $url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . 
 $respJson = file_get_contents($url);
 echo $url;
 $resp = json_decode($respJson, 1);
-print_r($resp);
-exit;
+
 return $resp;
 }
 
@@ -257,16 +256,14 @@ function location_details($file)
 	if ($lc = location_parse_file($file))
 	{
 		$db = location_lookup($lc);
-		print_r($db);
-		print_r($lc);
+
 		$map = mapquest_reverse_geocode($db['latitude'],$db['longitude']);
-		print_r($map);
+	
 		$map2 = mapquest_reverse_geocode($lc['latitude'], $lc['longitude']);
-		print_r($map2);
+	
 		$ld['geocode_current'] = mapquest_address($map);
 		$ld['geocode_submit'] = mapquest_address($map2);
-		print_r($ld);
-		exit;
+
 		$resp = array_merge($lc, $db);
 		return $resp;
 	}
