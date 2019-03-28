@@ -1,7 +1,7 @@
 <?php
 
 
-function mapquest_reverse_geocode($lat,$log)
+function mapquest_reverse_geocode($lat,$long)
 {
 $url = "http://open.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . ',' . $long ;
 $respJson = file_get_contents($url);

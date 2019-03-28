@@ -241,10 +241,8 @@ function mapquest_address($map)
           "adminArea1Type": "Country",
           "postalCode": "32225",
 	*/
-	$loc = $map['results']['locations'];
-	print_r($map);
-	print_r($loc);
-	exit;
+	$loc = $map['results']['0']['locations']['0'];
+
 	$ar = array('street', 'adminArea5', 'adminArea3', 'postalCode');
 	$address = $loc['street'] . ',' . $loc['adminArea5'] . ',' . $loc['adminArea3'] . ' ' . $loc['postalCode'];
 return $address;
