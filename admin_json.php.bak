@@ -41,6 +41,7 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 			$sql = "INSERT INTO AdminUser (EmpNo, username, password) ('" . $uaa['EmpNo'] . "', '" . $_REQUEST['username'] . "','" . $_REQUEST['password'] . "')";
 			$res = mssql_query($sql);
 		}
+		echo $sql;
 	}
 }
 $sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] ."'";
