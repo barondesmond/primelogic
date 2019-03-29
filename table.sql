@@ -1,4 +1,8 @@
-
+CREATE TABLE AdminUser (
+EmpNo VARCHAR(40) NOT NULL UNIQUE,
+username varchar(40) NOT NULL UNIQUE,
+password varchar(40) NOT NULL
+) 
 
 CREATE SEQUENCE JobGroupCounter 
     AS int  
