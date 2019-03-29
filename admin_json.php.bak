@@ -53,7 +53,7 @@ if ($user['password']== $_REQUEST['password'])
 {
 
 	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
-			INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo WHERE EmpNo = '" . $user['EmpNo'] . "'";
+			INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo WHERE Employee.EmpNo = '" . $user['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$app = mssql_fetch_assoc($res);
 	$app['authorized'] = 1;
