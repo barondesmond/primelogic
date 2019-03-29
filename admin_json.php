@@ -61,6 +61,5 @@ else
 	$app['authorized'] = 0;
 	header('Content-Type: application/json');
 	echo json_encode($app);
-	exit
+	exit;
 }
- 
