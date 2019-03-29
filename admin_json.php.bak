@@ -3,7 +3,7 @@ include("_db_config.php");
 //echo password_hash('rasmuslerdorf', PASSWORD_DEFAULT)."\n";
 
 
-if (isset($_REQUEST['username']) && isset($_REQUEST['hash']) && isset($_REQUEST['EmpName']) & isset($_REQUEST['Email']))
+if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['EmpName']) & isset($_REQUEST['Email']))
 {
 	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo

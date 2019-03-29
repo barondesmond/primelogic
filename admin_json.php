@@ -10,6 +10,8 @@ INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . "' and Email = '" . $_REQUEST['Email'] . "'";
 	$res = mssql_query($sql);
 	$uaa = mssql_fetch_assoc($res);
+	print_r($uaa);
+	exit;
 	if (isset($uaa['installationId']))
 	{
 		$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] . "'";
