@@ -1,4 +1,5 @@
 <?php
+include("_db_config.php");
 //echo password_hash('rasmuslerdorf', PASSWORD_DEFAULT)."\n";
 
 
