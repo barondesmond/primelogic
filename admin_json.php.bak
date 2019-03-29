@@ -48,8 +48,8 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 $sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] ."'";
 $res = mssql_query($sql);
 $user = mssql_fetch_assoc($res);
-	print_r($user);
-if ($user['password'] == $_REQUEST['password'])
+
+if (isset($user['password']) &&$user['password'] == $_REQUEST['password'])
 {
 
 	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
