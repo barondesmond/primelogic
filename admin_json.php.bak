@@ -37,8 +37,8 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 			$res = mssql_query($sql);
 		}
 	}
-
-$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] "'";
+}
+$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] ."'";
 $res = mssql_query($sql);
 $user = mssql_fetch_assoc($res);
 
