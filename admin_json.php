@@ -21,7 +21,7 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 
 		if (isset($admin['password']))
 		{
-			if (password_verify($admin['password'], $_REQUEST['password']))
+			if ($admin['password']==$_REQUEST['password'])
 			{
 				$uaa['authorized'] = 1;
 				header('Content-Type: application/json');
