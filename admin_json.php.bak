@@ -54,6 +54,11 @@ if (password_verify($user['password'], $_REQUEST['password']))
 	header('Content-Type: application/json');
 	echo json_encode($app);
 }
+else
+{
 
+	$app['authorized'] = 0;
+	header('Content-Type: application/json');
+	echo json_encode($app);
 
  
