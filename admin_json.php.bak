@@ -1,0 +1,40 @@
+<?php
+//echo password_hash('rasmuslerdorf', PASSWORD_DEFAULT)."\n";
+
+
+if (isset($_REQUEST['admin_hash'] && isset($_REQUEST['username']) && isset($_REQUEST['password']))
+{
+	$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] . "' and password = '" . $_REQUEST['password'] . "'";
+	$res = mssql_query($sql);
+	$admin = mssql_fetch_assoc($res);
+	if (isset($admin['username']) && $admin['username'] == $_REQUEST['username']))
+	{
+		$sql = "UPDATE AdminUser SET password = '" . password_hash($_REQUEST['password']) . "' WHERE username = '" . $_REQUEST['username'] . "'";
+		$res = mssql_query($sql);
+		$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] "'";
+		$res = mssql_query($sql);
+		$user = mssql_fetch_assoc($res);
+		$_REQUEST['hash'] = $user['password']);
+
+	}
+
+}
+
+$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] "'";
+$res = mssql_query($sql);
+$user = mssql_fetch_assoc($res);
+
+if (password_verify($user['password'], $_REQUEST['hash']))
+{
+
+	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
+			INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo WHERE EmpNo = '" . $user['EmpNo'] . "'";
+	$res = mssql_query($sql);
+	$app = mssql_fetch_assoc($res);
+	$app['authorized'] = 1;
+	header('Content-Type: application/json');
+	echo json_encode($app);
+}
+
+
+ 
