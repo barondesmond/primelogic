@@ -18,7 +18,7 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 		$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] . "'";
 		$res = mssql_query($sql);
 		$admin = mssql_fetch_assoc($res);
-
+		print_r($admin);
 		if (isset($admin['password']))
 		{
 			if ($admin['password']==$_REQUEST['password'])
