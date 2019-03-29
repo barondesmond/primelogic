@@ -65,6 +65,7 @@ else
 {
 
 	$app['authorized'] = 0;
+	$app['wtf'] = '1';
 	header('Content-Type: application/json');
 	echo json_encode($app);
 	exit;
