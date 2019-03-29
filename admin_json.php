@@ -31,6 +31,7 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 			else
 			{
 				$not['authorized'] = 0;
+				$not['paswword'] = 'not valid';
 				header('Content-Type: application/json');
 				echo json_encode($not);
 				exit;

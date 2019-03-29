@@ -13,12 +13,12 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 
 	if (isset($uaa['installationId']))
 	{
-	print_r($uaa);
+
 
 		$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] . "'";
 		$res = mssql_query($sql);
 		$admin = mssql_fetch_assoc($res);
-		print_r($admin);
+
 		if (isset($admin['password']))
 		{
 			if (password_verify($admin['password'], $_REQUEST['password']))
@@ -38,10 +38,10 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 		}
 		else
 		{
-			$sql = "INSERT INTO AdminUser (EmpNo, username, password) ('" . $uaa['EmpNo'] . "', '" . $_REQUEST['username'] . "','" . $_REQUEST['password'] . "')";
+			$sql = "INSERT INTO AdminUser (EmpNo, username, password) VALUES ('" . $uaa['EmpNo'] . "', '" . $_REQUEST['username'] . "','" . $_REQUEST['password'] . "')";
 			$res = mssql_query($sql);
 		}
-		echo $sql;
+
 	}
 }
 $sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] ."'";
