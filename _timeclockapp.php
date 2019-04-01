@@ -51,6 +51,31 @@ function convert_date_time($date, $time)
 return false;
 }
 
+function timeclock_insert($db, $table = 'TimeClockApp')
+{
+
+
+	$array = array('TimeClockID', 'EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen', 'Counter', 'JobID');
+		foreach ($array as $key)
+		{
+			if (isset($db[$key]) && $db[$key] != '')
+			{
+				$k .= $key . ',';
+				$v .= "'" . str_replace("'", "''", $db[$key]) . "',";
+			}
+
+		}
+		$k = substr($k, 0, strlen($k) - 1);
+		$v = substr($v, 0, strlen($v) - 1);
+		$sql2 = "INSERT INTO $table ($k) VALUES ($v)";
+	
+		 @mssql_query($sql2);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql2;
+
+
+return $error;
+}
 
 function timeclock_add($db, $dev)
 {
@@ -99,30 +124,23 @@ function timeclock_add($db, $dev)
 			$error[] = 'Mising Dispatch';
 			return $error;
 		}
-
-		$array = array('EmpNo', 'installationId', 'Name', 'Dispatch', 'event', 'StartTime', 'StopTime', 'EmpActive',  'Screen', 'Counter', 'JobID');
-		foreach ($array as $key)
-		{
-			if (isset($db[$key]) && $db[$key] != '')
-			{
-				$k .= $key . ',';
-				$v .= "'" . str_replace("'", "''", $db[$key]) . "',";
-			}
-
-		}
-		$k = substr($k, 0, strlen($k) - 1);
-		$v = substr($v, 0, strlen($v) - 1);
-		$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
-	
-		 @mssql_query($sql2);
-		$error[] = mssql_get_last_message();
-		$error[] = $sql2;
+		$error2 = timeclock_insert($db, 'TimeClockApp');
+		
 	}
 	else
 	{
-		$error[] = 'Invalid parameters for timeclock_add';
+		$error[] = 'Invalid parameters for timeclock_add ';
 		$error[] = var_export($db);
 	}
+	if (isset($error))
+	{
+		$error = array_merge($error, $error2);
+	}
+	else
+	{
+		$error = $error2;
+	}
+
 return $error;
 
 }
@@ -147,6 +165,15 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 	{
 		return false;
 	}
+	$sql = "SELECT * FROM TimeClockApp WHERE StartTime = '$t1' and StopTime = '$t2' and TimeClockID = '$TimeClockID'";
+	$res = mssql_query($sql);
+	$db = @mssql_fetch_array($res, MSSQL_ASSOC);
+	if (isset($db['EmpNo']))
+	{
+		return false;
+	}
+
+
 	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime < '$t1' and StopTime > '$t1') or (StartTime < '$t2' and StopTime > '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_array($res, MSSQL_ASSOC);
@@ -208,6 +235,10 @@ function timeclock_dispatch_update($tc, $dev='')
 return false;
 }
 
+
+
+
+
 function timeclock_update($tc, $dev='')
 {
 
@@ -220,7 +251,7 @@ function timeclock_update($tc, $dev='')
 
 		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
-
+			timeclock_insert($tca, 'TimeClockAppHist');
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
@@ -496,6 +527,8 @@ function dispatch_db($db, $dev='', $time = '')
 
 return $error;
 }
+
+
 
 function timeclock_db($db, $time = '')
 {
