@@ -247,7 +247,7 @@ function invoice_header($dbs)
         font-family: helvetica;
         font-size: 9pt;
 		table-layout: fixed;
-		max-width: 700px;
+		max-width: 750px;
 		max-height: 250px;
 		border-collapse: collapse;
 		border-spacing: 0;

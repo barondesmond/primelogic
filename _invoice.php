@@ -247,11 +247,11 @@ function invoice_header($dbs)
         font-family: helvetica;
         font-size: 9pt;
 		table-layout: fixed;
-		max-width: 750px;
+		max-width: 800px;
 		max-height: 250px;
 		border-collapse: collapse;
 		border-spacing: 0;
-		width: 750;
+		width: 800;
 		height: 250;
     }
  table.bottomtable {
