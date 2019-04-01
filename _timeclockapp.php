@@ -70,8 +70,6 @@ function timeclock_insert($db, $table = 'TimeClockApp')
 		$sql2 = "INSERT INTO $table ($k) VALUES ($v)";
 	
 		 @mssql_query($sql2);
-		$error[] = mssql_get_last_message();
-		$error[] = $sql2;
 
 
 return $error;

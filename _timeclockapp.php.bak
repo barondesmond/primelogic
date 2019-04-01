@@ -125,6 +125,7 @@ function timeclock_add($db, $dev)
 			return $error;
 		}
 		$error2 = timeclock_insert($db, 'TimeClockApp');
+		
 	}
 	else
 	{
@@ -234,10 +235,7 @@ function timeclock_dispatch_update($tc, $dev='')
 return false;
 }
 
-function timeclock_hist($tca)
-{
 
-	for 
 
 
 
@@ -253,7 +251,7 @@ function timeclock_update($tc, $dev='')
 
 		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
-
+			timeclock_insert($tca, 'TimeClockAppHist');
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
