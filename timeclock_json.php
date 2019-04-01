@@ -77,8 +77,8 @@ LEFT JOIN Dispatch" . $dev . " as Dispatch ON TimeClockApp.Dispatch = Dispatch.D
 LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status 
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
-WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'];
-ORDER BY TimeClockID ASC
+WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
+ORDER BY StartTime ASC, StopTime ASC
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
