@@ -157,10 +157,12 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 
 	if ($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400))
 	{
+		echo 'bad';
 		return false;
 	}
 	if (!isset($EmpNo))
 	{
+		echo 'wtf';
 		return false;
 	}
 	$sql = "SELECT * FROM TimeClockApp WHERE StartTime = '$t1' and StopTime = '$t2' and TimeClockID = '$TimeClockID'";
