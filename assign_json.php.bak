@@ -75,38 +75,7 @@ if (isset($_REQUEST['delete_job_group_employee']))
 		echo json_encode($js);
 		exit;
 	}
-	else
-	{
-		$keys = array('JobGroup', 'Job', 'Employee');
-		$keyv = array('JobGroup'=> 'JobGroupID', 'Job'=>'Job', 'Employee'=> 'EmpNo');
-		foreach ($keys as $key)
-		{
 
-			if (isset($_REQUEST[$key]))
-			{
-				foreach($_REQUEST[$key] as $keyid)
-				{
-					$sql = "DELETE FROM JobGroupEmployee WHERE " . $keyv[$key] . "='" . $keyid . "'";
-					$res = mssql_query($sql);
-					$mes = mssql_get_last_message();
-					if ($mes != '')
-					{
-						$js['error'][] = $mes;
-						$js['error'][] = $sql;
-					}
-				}
-			}
-		}
-		header('Content-Type: application/json');
-		if (!isset($js['error']))
-		{
-			$js = $_REQUEST;
-			$js['success'] = '1';
-			
-		}
-		echo json_encode($js);
-		exit;
-	}
 }
 
 if (isset($_REQUEST['add_job_group_employee']))

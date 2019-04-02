@@ -77,7 +77,19 @@ if (isset($_REQUEST['delete_job_group_employee']))
 	}
 
 }
-
+if (isset($_REQUEST['delete_job_group']))
+{
+	if (isset($_REQUEST['JobGroup']))
+	{
+		foreach ($_REQUEST['JobGroup'] as $JobGroup)
+		{
+		$sql = "DELETE FROM JobGroupEmployee WHERE JobGroupID = '" . $JobGroup . "'";
+		$res = mssql_query($sql);
+		$sql = "DELETE FROM JobGroup WHERE JobGroupID = '" . $JobGroup . "'";
+		$res = mssql_query($sql);
+		}
+	}
+}
 if (isset($_REQUEST['add_job_group_employee']))
 {
 	if (isset($_REQUEST['JobGroup']))
