@@ -87,7 +87,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 {
 	$db['StartDate'] = date("Y:m:d H:i:s ", $db['StartTime']);
 	$db['StopDate'] = date("Y:m:d H:i:s", $db['StopTime']);
-	$data['TimeClock'][] = $db;
+	$data['TimeClock'][$db['TimeClockID']] = $db;
 $sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $db['EmpNo'] . "' and PayItemID = 'TCHours' ";
 $res3 = @mssql_query($sql3);
 $post = @mssql_fetch_array($res3, MSSQL_ASSOC);
