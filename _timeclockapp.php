@@ -250,7 +250,8 @@ function timeclock_update($tc, $dev='')
 		$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$tk'";
 		$res = mssql_query($sql);
 		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
-
+		echo 'tca ' ;
+		print_r($tca);
 		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
 			timeclock_insert($tca, 'TimeClockAppHist');
