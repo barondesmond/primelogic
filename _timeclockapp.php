@@ -252,6 +252,7 @@ function timeclock_update($tc, $dev='')
 		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
 		echo 'tca ' ;
 		print_r($tca);
+		print_r($tv);
 		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
 			timeclock_insert($tca, 'TimeClockAppHist');
