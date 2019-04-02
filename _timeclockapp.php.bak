@@ -155,21 +155,20 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 	$t1 = strtotime($StartDate);
 	$t2 = strtotime($StopDate);
 
-	if ($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400))
+	if (($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400)) && $_REQUEST['Dev'] != 'Dev')
 	{
-		echo 'bad';
+
 		return false;
 	}
 	if (!isset($EmpNo))
 	{
-		echo 'wtf';
+
 		return false;
 	}
 	$sql = "SELECT * FROM TimeClockApp WHERE StartTime = '$t1' and StopTime = '$t2' and TimeClockID = '$TimeClockID'";
 	$res = mssql_query($sql);
 	$db = @mssql_fetch_array($res, MSSQL_ASSOC);
-	echo 'first';
-	print_r($db);
+
 	if (isset($db['EmpNo']))
 	{
 		return false;
@@ -179,8 +178,7 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime < '$t1' and StopTime > '$t1') or (StartTime < '$t2' and StopTime > '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_array($res, MSSQL_ASSOC);
-	echo 'second';
-	print_r($db);
+
 	if (isset($db['EmpNo']))
 	{
 		return false;
@@ -252,9 +250,7 @@ function timeclock_update($tc, $dev='')
 		$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$tk'";
 		$res = mssql_query($sql);
 		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
-		echo 'tca ' ;
-		print_r($tca);
-		print_r($tv);
+
 		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
 			timeclock_insert($tca, 'TimeClockAppHist');

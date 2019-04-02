@@ -149,13 +149,12 @@ return $error;
 //tv is TimeClock Start/Stop array
 function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 {
-	$r1 = time() - 86400*30;
-	$r2 = time() + 86400*30;
+
 
 	$t1 = strtotime($StartDate);
 	$t2 = strtotime($StopDate);
 
-	if (($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400)) && $_REQUEST['Dev'] != 'Dev')
+	if (($t2-$t1) > 86400)
 	{
 
 		return false;
