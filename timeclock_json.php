@@ -33,9 +33,9 @@ else
 
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
-	$error = timeclock_update($_REQUEST['TimeClockID'], $dev);
+	$data = timeclock_update($_REQUEST['TimeClockID'], $dev);
 	header('Content-Type: application/json');
-	$data = array_merge($error, $_REQUEST);
+
 	echo json_encode($data);
 	exit;
 

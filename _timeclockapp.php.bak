@@ -72,7 +72,7 @@ function timeclock_insert($db, $table = 'TimeClockApp')
 		 @mssql_query($sql2);
 
 
-return $error;
+return mssql_get_last_message();
 }
 
 function timeclock_add($db, $dev)
@@ -123,7 +123,7 @@ function timeclock_add($db, $dev)
 			return $error;
 		}
 		$error2 = timeclock_insert($db, 'TimeClockApp');
-		
+		$db['error'] = $error2;
 	}
 	else
 	{
@@ -149,13 +149,12 @@ return $error;
 //tv is TimeClock Start/Stop array
 function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 {
-	$r1 = time() - 86400*30;
-	$r2 = time() + 86400*30;
+
 
 	$t1 = strtotime($StartDate);
 	$t2 = strtotime($StopDate);
 
-	if (($t1 > $t2 || $t1 < $r1 || $t2 > $r2 || $t1 > $r2 || $t2 < $r1 || (($t2-$t1) > 86400)) && $_REQUEST['Dev'] != 'Dev')
+	if (($t2-$t1) > 86400)
 	{
 
 		return false;
@@ -272,6 +271,8 @@ function timeclock_update($tc, $dev='')
 		else
 		{
 			$error[] = 'Invalid Parameters timeclock_update TimeClockID ' . $tk .'EmpNo ' .  $tca['EmpNo'] . ' StartDate ' . $tv['StartDate'] . ' StopDate ' . $tv['StopDate'];
+			unset($tc[$tk]);
+
 		}
 	}
 if (!isset($error))
@@ -279,7 +280,9 @@ if (!isset($error))
 	$error[] = 'error timclock update';
 	$error[] = $tc;
 	}
-return $error;
+$tc['error'] = $error;
+
+return $tc;
 
 }
 
