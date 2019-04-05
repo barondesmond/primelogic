@@ -128,7 +128,8 @@ function timeclock_add($db, $dev)
 		$res = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res);
 		$resp['TimeClock'][$db2['TimeClockID']] = $db2;
-		return array_merge($resp, $error2);
+		$resp['error'] = $error2;
+		return $resp;
 	}
 	else
 	{
