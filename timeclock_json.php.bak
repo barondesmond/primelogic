@@ -52,9 +52,9 @@ elseif (isset($_REQUEST['timeclock_update']))
 }
 if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
-	$error = timeclock_add($_REQUEST, $dev);
+	$data = timeclock_add($_REQUEST, $dev);
 	header('Content-Type: application/json');
-	$data = array_merge($error, $_REQUEST);
+	
 	echo json_encode($data);
 	exit;
 
@@ -78,7 +78,7 @@ LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispa
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
-ORDER BY StartTime ASC, StopTime ASC ";
+ORDER BY StartTime ASC, TimeClockD ASC ";
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
@@ -109,7 +109,7 @@ LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispa
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
-ORDER BY StartTime ASC, StopTime ASC ";
+ORDER BY StartTime ASC, TimeClockID ASC ";
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
