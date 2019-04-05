@@ -52,9 +52,9 @@ elseif (isset($_REQUEST['timeclock_update']))
 }
 if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['Screen']) && isset($_REQUEST['event']))
 {
-	$error = timeclock_add($_REQUEST, $dev);
+	$data = timeclock_add($_REQUEST, $dev);
 	header('Content-Type: application/json');
-	$data = array_merge($error, $_REQUEST);
+	
 	echo json_encode($data);
 	exit;
 
