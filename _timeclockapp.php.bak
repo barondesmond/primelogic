@@ -127,7 +127,7 @@ function timeclock_add($db, $dev)
 		$sql = "SELECT * FROM TimeClockApp WHERE StartTime = '" . $db['StartTime'] . "' and StopTime = '" . $db['StopTime'] . "' and EmpNo = '" . $db['EmpNo'] . "'";
 		$res = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res);
-		$resp['TimeClock'][$db2['TimeClockID']] = $db2;
+		$resp[$db2['TimeClockID']] = $db2;
 		$resp['error'] = $error2;
 		return $resp;
 	}
