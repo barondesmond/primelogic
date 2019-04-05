@@ -129,7 +129,7 @@ $res3 = @mssql_query($sql3);
 $post = @mssql_fetch_array($res3, MSSQL_ASSOC);
 if (isset($post['PayItemID']))
 {
-	$js['Post'] = $post;
+	$js['Post'][$_REQUEST['TSEmpNo']] = $post;
 }
 
 	header('Content-Type: application/json');

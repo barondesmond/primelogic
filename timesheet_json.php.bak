@@ -92,13 +92,7 @@ while ($pr = mssql_fetch_array($res2, MSSQL_ASSOC))
 	$js['PRHours'][$pr['ItemID']] = $pr;
 	
 }
-$sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['TSEmpNo'] . "' and PayItemID = 'TCHours' ";
-$res3 = @mssql_query($sql3);
-$post = @mssql_fetch_array($res3, MSSQL_ASSOC);
-if (isset($post['PayItemID']))
-{
-	$js['Post'] = $post;
-}
+
 if (!$_REQUEST['StartTime'])
 {
 	$_REQUEST['StartTime'] = 0;
@@ -129,6 +123,14 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 		$js['TimeSheet'][] = $db;
 	}
 }	
+
+$sql3 = "SELECT * FROM PRHours WHERE  StartTime = '" . $_REQUEST['StartTime'] . "' and StopTime = '" . $_REQUEST['StopTime'] . "'  and EmpNo = '" . $_REQUEST['TSEmpNo'] . "' and PayItemID = 'TCHours' ";
+$res3 = @mssql_query($sql3);
+$post = @mssql_fetch_array($res3, MSSQL_ASSOC);
+if (isset($post['PayItemID']))
+{
+	$js['Post'] = $post;
+}
 
 	header('Content-Type: application/json');
 	echo json_encode($js);
