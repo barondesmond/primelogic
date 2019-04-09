@@ -294,6 +294,17 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	{
 		$db = dispatch_hours($db, $dev);
 	}
+	if ($db['LocName'] != '')
+	{
+		$loc = location_api($db['LocName'], $db);
+	}
+	if ($db['DispatchName'] != '')
+	{
+		$loc = location_api($db['LocName'], $db);
+	}
+		$db['latitude'] = $loc['latitude'];
+		$db['longitude'] = $loc['longitude'];
+
 return $db;
 }
 
