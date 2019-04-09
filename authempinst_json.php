@@ -298,13 +298,12 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	if ($db['Screen'] == 'Dispatch')
 	{
 		$loc = location_api($db['DispatchName'], $db);
-		print_r($loc);
-		exit;
+
 		$db['latitude'] = $loc['latitude'];
 		$db['longitude'] = $loc['longitude'];
-		if ($_REQUEST['latitude']!='null' && $_REQUEST['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
+		if ($req['latitude']!='null' && $req['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
 		{
-			$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
+			$db['distance'] = distance($req['latitude'], $req['longitude'], $db['latitude'], $db['longitude']);
 		}
 	}
 
