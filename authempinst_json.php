@@ -1,5 +1,6 @@
 <?php
 include("_db_config.php");
+include("_location_api.php");
 
 function dispatch_hours($db, $dev = '')
 {
