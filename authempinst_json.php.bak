@@ -306,6 +306,17 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 			$db['distance'] = distance($req['latitude'], $req['longitude'], $db['latitude'], $db['longitude']);
 		}
 	}
+	if ($db['Screen'] == 'Job')
+	{
+		$loc = location_api($db['LocName'], $db);
+
+		$db['latitude'] = $loc['latitude'];
+		$db['longitude'] = $loc['longitude'];
+		if ($req['latitude']!='null' && $req['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
+		{
+			$db['distance'] = distance($req['latitude'], $req['longitude'], $db['latitude'], $db['longitude']);
+		}
+	}
 
 
 	
