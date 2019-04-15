@@ -56,7 +56,7 @@ if (isset($user['password']) && $user['password'] == $_REQUEST['password'])
 			INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo WHERE Employee.EmpNo = '" . $user['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$app = mssql_fetch_assoc($res);
-	$app['authorized'] = 1;
+
 	header('Content-Type: application/json');
 	echo json_encode($app);
 	exit;
