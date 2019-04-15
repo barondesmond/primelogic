@@ -58,6 +58,10 @@ if (isset($user['password']) && $user['password'] == $_REQUEST['password'])
 	$app = mssql_fetch_assoc($res);
 
 	header('Content-Type: application/json');
+	$app['admin'] = $user['admin'];
+	$app['timesheet'] = $user['timesheet'];
+	$app['estimating'] = $user['estimating'];
+	$app['dispatch'] = $user['dispatch'];
 	echo json_encode($app);
 	exit;
 }
