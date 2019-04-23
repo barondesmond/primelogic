@@ -25,6 +25,10 @@ for ($page = 1; $page < $pages; $page++)
 			elseif ($col =='8' && isset($_REQUEST['continuation'][$page][$row][3]) && isset($_REQUEST['continuation'][$page][$row][7]))
 			{
 				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][7] / $_REQUEST['continuation'][$page][$row][3];
+				if ($db[$page][$row][$col] == '0')
+				{
+					$db[$page][$row][$col] = '';
+				}
 			}
 			elseif (isset($_REQUEST['continuation'][$page][$row][$col]))
 			{
