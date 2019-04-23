@@ -29,6 +29,7 @@ if (isset($_REQUEST['continuation']))
 {
 	$js['input'] = $_REQUEST['continuation'];
 }
+print_r($_REQUEST);
 header('Content-Type: application/json');
 $js['continuation'] = $db;
 echo json_encode($js);
