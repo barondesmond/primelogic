@@ -14,7 +14,14 @@ for ($page = 1; $page < $pages; $page++)
 	{
 		for ($col = 1; $col < $cols; $col++)
 		{
-			$db[$page][$row][$col] = 0;
+			if (isset($_REQUEST['continuation'][$page][$row][$col]))
+			{
+				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][$col];
+			}
+			else
+			{
+				$db[$page][$row][$col] = '';
+			}
 		}
 	}
 }
