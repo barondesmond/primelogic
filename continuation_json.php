@@ -26,26 +26,21 @@ for ($page = 1; $page < $pages; $page++)
 			if ($col == '7')
 			{
 				$db[$page][$row][$col] = $db['continuation'][$page][$row][4] + $db['continuation'][$page][$row][5] + $db_REQUEST['continuation'][$page][$row][6];
-				if ($db[$page][$row][$col] == '0')
-				{
-					$db[$page][$row][$col] = '';
-				}
+	
 			}
 			elseif ($col =='8')
 			{
 				$db[$page][$row][$col] = $db['continuation'][$page][$row][7] / $db['continuation'][$page][$row][3];
-				if ($db[$page][$row][$col] == '0')
-				{
-					$db[$page][$row][$col] = '';
-				}
+		
 			}
 			elseif ($col =='9' )
 			{
 				$db[$page][$row][$col] = $db['continuation'][$page][$row][3] - $db['continuation'][$page][$row][7];
-				if ($db[$page][$row][$col] == '0')
-				{
-					$db[$page][$row][$col] = '';
-				}
+
+			}
+			if ($db[$page][$row][$col] == '0')
+			{
+					//$db[$page][$row][$col] = '';
 			}
 	
 		}
