@@ -37,17 +37,17 @@ for ($page = 1; $page < $pages; $page++)
 
 			if ($col == '7')
 			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][4] + $db['continuation'][$page][$row][5] + $db['continuation'][$page][$row][6];
+				$db[$page][$row][$col] = $db[$page][$row][4] + $db[$page][$row][5] + $db[$page][$row][6];
 	
 			}
 			elseif ($col =='8')
 			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][7] / $db['continuation'][$page][$row][3];
+				$db[$page][$row][$col] = $db[$page][$row][7] / $db[$page][$row][3];
 		
 			}
 			elseif ($col =='9' )
 			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][3] - $db['continuation'][$page][$row][7];
+				$db[$page][$row][$col] = $db[$page][$row][3] - $db[$page][$row][7];
 
 			}
 			if ($db[$page][$row][$col] == '0')
