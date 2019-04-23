@@ -7,7 +7,7 @@
 //header details
 $pages = '2';
 $rows = '29';
-$cols = '12';
+$cols = '13';
 for ($page = 1; $page < $pages; $page++)
 {
 	for ($row = 1; $row < $rows; $row++)
