@@ -42,7 +42,7 @@ for ($page = 1; $page < $pages; $page++)
 			}
 			elseif ($col =='8')
 			{
-				$db[$page][$row][$col] = $db[$page][$row][7] / $db[$page][$row][3];
+				$db[$page][$row][$col] = round($db[$page][$row][7] / $db[$page][$row][3], 3);
 		
 			}
 			elseif ($col =='9' )
