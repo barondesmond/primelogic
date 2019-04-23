@@ -63,10 +63,7 @@ for ($page = 1; $page < $pages; $page++)
 			{
 				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
 			}
-			elseif ($col=='10')
-			{
-				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
-			}
+	
 	
 		}
 	}
