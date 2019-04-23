@@ -25,7 +25,10 @@ for ($page = 1; $page < $pages; $page++)
 		}
 	}
 }
-
+if (isset($_REQUEST['continuation']))
+{
+	$js['input'] = $_REQUEST['continuation'];
+}
 header('Content-Type: application/json');
 $js['continuation'] = $db;
 echo json_encode($js);
