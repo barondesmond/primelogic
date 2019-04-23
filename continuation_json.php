@@ -25,7 +25,7 @@ for ($page = 1; $page < $pages; $page++)
 
 			if ($col == '7')
 			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][4] + $db['continuation'][$page][$row][5] + $db_REQUEST['continuation'][$page][$row][6];
+				$db[$page][$row][$col] = $db['continuation'][$page][$row][4] + $db['continuation'][$page][$row][5] + $db['continuation'][$page][$row][6];
 	
 			}
 			elseif ($col =='8')

@@ -40,7 +40,7 @@ for ($page = 1; $page < $pages; $page++)
 			}
 			if ($db[$page][$row][$col] == '0')
 			{
-					$db[$page][$row][$col] = '';
+					//$db[$page][$row][$col] = '';
 			}
 	
 		}
