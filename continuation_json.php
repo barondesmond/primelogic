@@ -14,7 +14,7 @@ for ($page = 1; $page < $pages; $page++)
 	{
 		for ($col = 1; $col < $cols; $col++)
 		{
-			if ($col == '7' && isset($_REQUEST['continuation'][$page][$row][4]) && isset($_REQUEST['continuation'][$page][$row][5]) && isset($_REQUEST['continuation'][$page][$row][6]))
+			if ($col == '7')
 			{
 				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][4] + $_REQUEST['continuation'][$page][$row][5] + $_REQUEST['continuation'][$page][$row][6];
 			}
