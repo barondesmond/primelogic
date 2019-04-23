@@ -17,6 +17,10 @@ for ($page = 1; $page < $pages; $page++)
 			if ($col == '7' && (isset($_REQUEST['continuation'][$page][$row][4]) || isset($_REQUEST['continuation'][$page][$row][5]) || isset($_REQUEST['continuation'][$page][$row][6])))
 			{
 				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][4] + $_REQUEST['continuation'][$page][$row][5] + $_REQUEST['continuation'][$page][$row][6];
+				if ($db[$page][$row][$col] == '0')
+				{
+					$db[$page][$row][$col] = '';
+				}
 			}
 			elseif ($col =='8' && isset($_REQUEST['continuation'][$page][$row][3]) && isset($_REQUEST['continuation'][$page][$row][7]))
 			{
