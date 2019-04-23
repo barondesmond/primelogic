@@ -14,31 +14,7 @@ for ($page = 1; $page < $pages; $page++)
 	{
 		for ($col = 1; $col < $cols; $col++)
 		{
-			if ($col == '7' && (isset($_REQUEST['continuation'][$page][$row][4]) || isset($_REQUEST['continuation'][$page][$row][5]) || isset($_REQUEST['continuation'][$page][$row][6])))
-			{
-				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][4] + $_REQUEST['continuation'][$page][$row][5] + $_REQUEST['continuation'][$page][$row][6];
-				if ($db[$page][$row][$col] == '0')
-				{
-					$db[$page][$row][$col] = '';
-				}
-			}
-			elseif ($col =='8' && isset($_REQUEST['continuation'][$page][$row][3]) && isset($_REQUEST['continuation'][$page][$row][7]))
-			{
-				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][7] / $_REQUEST['continuation'][$page][$row][3];
-				if ($db[$page][$row][$col] == '0')
-				{
-					$db[$page][$row][$col] = '';
-				}
-			}
-			elseif ($col =='9' && isset($_REQUEST['continuation'][$page][$row][3]) && isset($_REQUEST['continuation'][$page][$row][7]))
-			{
-				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][3] - $_REQUEST['continuation'][$page][$row][7];
-				if ($db[$page][$row][$col] == '0')
-				{
-					$db[$page][$row][$col] = '';
-				}
-			}
-			elseif (isset($_REQUEST['continuation'][$page][$row][$col]))
+			if (isset($_REQUEST['continuation'][$page][$row][$col]))
 			{
 				$db[$page][$row][$col] = $_REQUEST['continuation'][$page][$row][$col];
 			}
@@ -46,6 +22,32 @@ for ($page = 1; $page < $pages; $page++)
 			{
 				$db[$page][$row][$col] = '';
 			}
+
+			if ($col == '7')
+			{
+				$db[$page][$row][$col] = $db['continuation'][$page][$row][4] + $db['continuation'][$page][$row][5] + $db_REQUEST['continuation'][$page][$row][6];
+				if ($db[$page][$row][$col] == '0')
+				{
+					$db[$page][$row][$col] = '';
+				}
+			}
+			elseif ($col =='8')
+			{
+				$db[$page][$row][$col] = $db['continuation'][$page][$row][7] / $db['continuation'][$page][$row][3];
+				if ($db[$page][$row][$col] == '0')
+				{
+					$db[$page][$row][$col] = '';
+				}
+			}
+			elseif ($col =='9' )
+			{
+				$db[$page][$row][$col] = $db['continuation'][$page][$row][3] - $db['continuation'][$page][$row][7];
+				if ($db[$page][$row][$col] == '0')
+				{
+					$db[$page][$row][$col] = '';
+				}
+			}
+	
 		}
 	}
 }
