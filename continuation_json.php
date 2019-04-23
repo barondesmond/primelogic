@@ -22,6 +22,18 @@ for ($page = 1; $page < $pages; $page++)
 			{
 				$db[$page][$row][$col] = '';
 			}
+	
+		}
+	}
+}
+
+for ($page = 1; $page < $pages; $page++)
+{
+	for ($row = 1; $row < $rows; $row++)
+	{
+		for ($col = 7; $col < $cols; $col++)
+		{
+	
 
 			if ($col == '7')
 			{

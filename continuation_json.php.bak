@@ -23,29 +23,15 @@ for ($page = 1; $page < $pages; $page++)
 				$db[$page][$row][$col] = '';
 			}
 
-			if ($col == '7')
-			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][4] + $db['continuation'][$page][$row][5] + $db_REQUEST['continuation'][$page][$row][6];
 	
-			}
-			elseif ($col =='8')
-			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][7] / $db['continuation'][$page][$row][3];
-		
-			}
-			elseif ($col =='9' )
-			{
-				$db[$page][$row][$col] = $db['continuation'][$page][$row][3] - $db['continuation'][$page][$row][7];
-
-			}
-			if ($db[$page][$row][$col] == '0')
-			{
-					//$db[$page][$row][$col] = '';
-			}
 	
 		}
 	}
 }
+
+
+
+
 if (isset($_REQUEST['continuation']))
 {
 	$js['input'] = $_REQUEST['continuation'];
