@@ -42,7 +42,7 @@ for ($page = 1; $page < $pages; $page++)
 			}
 			elseif ($col =='8')
 			{
-				$db[$page][$row][$col] = '%' . round($db[$page][$row][7] / $db[$page][$row][3], 2);
+				$db[$page][$row][$col] = round($db[$page][$row][7] / $db[$page][$row][3], 2);
 		
 			}
 			elseif ($col =='9' )
@@ -52,12 +52,20 @@ for ($page = 1; $page < $pages; $page++)
 			}
 			elseif ($col =='10' )
 			{
-				$db[$page][$row][$col] = '%' . round($db[$page][$row][7] * ($db[$page][$row][12]/100));
-
+				$db[$page][$row][$col] = round($db[$page][$row][7] * ($db[$page][$row][12]/100));
+				
 			}
 			if ($db[$page][$row][$col] == '0')
 			{
-					//$db[$page][$row][$col] = '';
+					$db[$page][$row][$col] = '';
+			}
+			elseif ($col=='8')
+			{
+				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
+			}
+			elseif ($col=='10')
+			{
+				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
 			}
 	
 		}
