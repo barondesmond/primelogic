@@ -7,6 +7,7 @@
 //header details
 $rows = '29';
 $cols = '13';
+error_log($_REQUEST['continuation']);
 
 if (!isset($_REQUEST['sheet']))
 {
@@ -24,7 +25,7 @@ else
 	foreach ($_REQUEST['sheet'] as $key=>$val)
 	{
 		$sheet[$key] = $val;
-		$key = $val;
+		${$key} = $val;
 	}
 }
 for ($page = 2; $page < $pages; $page++)

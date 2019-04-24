@@ -8,7 +8,7 @@
 $rows = '29';
 $cols = '13';
 
-if (isset($_REQUEST['sheet']))
+if (!isset($_REQUEST['sheet']))
 {
 	$pages = '3';
 
@@ -24,7 +24,7 @@ else
 	foreach ($_REQUEST['sheet'] as $key=>$val)
 	{
 		$sheet[$key] = $val;
-		$key = $val;
+		${$key} = $val;
 	}
 }
 for ($page = 2; $page < $pages; $page++)
