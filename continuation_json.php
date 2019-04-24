@@ -5,11 +5,13 @@
 //col 1-28
 //config #pages, #rows
 //header details
-if (!isset($_REQUEST['sheet']['pages']))
+$rows = '29';
+$cols = '13';
+
+if (isset($_REQUEST['sheet']))
 {
 	$pages = '3';
-	$rows = '29';
-	$cols = '13';
+
 	$sheet['pages'] = $pages;
 	$sheet['application'] = '';
 	$sheet['applicationdate'] = '';
@@ -20,6 +22,7 @@ else
 	foreach ($_REQUEST['sheet'] as $key=>$val))
 	{
 		$sheet[$key] = $val;
+		$key = $val;
 	}
 }
 for ($page = 2; $page < $pages; $page++)
