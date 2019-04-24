@@ -11,6 +11,9 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$rows = '29';
 	$cols = '13';
 	$sheet['pages'] = $pages;
+	$sheet['application'] = '';
+	$sheet['applicationdate'] = '';
+
 }	
 for ($page = 2; $page < $pages; $page++)
 {

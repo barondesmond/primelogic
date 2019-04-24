@@ -14,7 +14,14 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['application'] = '';
 	$sheet['applicationdate'] = '';
 
-}	
+}
+else
+{
+	foreach ($_REQUEST['sheet'] as $key=>$val))
+	{
+		$sheet[$key] = $val;
+	}
+}
 for ($page = 2; $page < $pages; $page++)
 {
 	for ($row = 1; $row < $rows; $row++)
