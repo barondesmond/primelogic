@@ -7,7 +7,6 @@
 //header details
 $rows = '29';
 $cols = '13';
-error_log($_REQUEST['continuation']);
 
 if (!isset($_REQUEST['sheet']))
 {
