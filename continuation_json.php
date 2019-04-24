@@ -13,6 +13,8 @@ if (isset($_REQUEST['sheet']))
 	$pages = '3';
 
 	$sheet['pages'] = $pages;
+	$sheet['rows'] = $rows;
+	$sheet['cols'] = $cols;
 	$sheet['application'] = '';
 	$sheet['applicationdate'] = '';
 
