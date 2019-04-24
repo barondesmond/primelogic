@@ -5,7 +5,7 @@
 //col 1-28
 //config #pages, #rows
 //header details
-$pages = '2';
+$pages = '3';
 $rows = '29';
 $cols = '13';
 for ($page = 1; $page < $pages; $page++)
@@ -27,7 +27,7 @@ for ($page = 1; $page < $pages; $page++)
 	}
 }
 
-for ($page = 1; $page < $pages; $page++)
+for ($page = 2; $page < $pages; $page++)
 {
 	for ($row = 1; $row < $rows; $row++)
 	{
