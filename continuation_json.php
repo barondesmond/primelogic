@@ -5,10 +5,14 @@
 //col 1-28
 //config #pages, #rows
 //header details
-$pages = '3';
-$rows = '29';
-$cols = '13';
-for ($page = 1; $page < $pages; $page++)
+if (!isset($_REQUEST['sheet']['pages']))
+{
+	$pages = '3';
+	$rows = '29';
+	$cols = '13';
+	$sheet['pages'] = $pages;
+}	
+for ($page = 2; $page < $pages; $page++)
 {
 	for ($row = 1; $row < $rows; $row++)
 	{
@@ -77,6 +81,7 @@ if (isset($_REQUEST['continuation']))
 
 header('Content-Type: application/json');
 $js['continuation'] = $db;
+$js['sheet'] = $sheet;
 echo json_encode($js);
 exit;
 
