@@ -21,7 +21,7 @@ if (isset($_REQUEST['sheet']))
 }
 else
 {
-	foreach ($_REQUEST['sheet'] as $key=>$val))
+	foreach ($_REQUEST['sheet'] as $key=>$val)
 	{
 		$sheet[$key] = $val;
 		$key = $val;
