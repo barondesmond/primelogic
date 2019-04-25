@@ -17,6 +17,9 @@ if (!isset($_REQUEST['sheet']))
 	$sheet['cols'] = $cols;
 	$sheet['application'] = '';
 	$sheet['applicationdate'] = '';
+	$sheet['project'] = '';
+	$sheet['toowner'] = '';
+	$sheet['periodto'] = '';
 
 }
 else
