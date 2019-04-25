@@ -10,13 +10,16 @@ $cols = '13';
 
 if (!isset($_REQUEST['sheet']))
 {
-	$pages = '3';
+	$pages = '2';
 
 	$sheet['pages'] = $pages;
 	$sheet['rows'] = $rows;
 	$sheet['cols'] = $cols;
 	$sheet['application'] = '';
 	$sheet['applicationdate'] = '';
+	$sheet['project'] = '';
+	$sheet['toowner'] = '';
+	$sheet['periodto'] = '';
 
 }
 else

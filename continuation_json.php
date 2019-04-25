@@ -10,7 +10,7 @@ $cols = '13';
 
 if (!isset($_REQUEST['sheet']))
 {
-	$pages = '3';
+	$pages = '2';
 
 	$sheet['pages'] = $pages;
 	$sheet['rows'] = $rows;
@@ -30,7 +30,7 @@ else
 		${$key} = $val;
 	}
 }
-for ($page = 2; $page < $pages; $page++)
+for ($page = 2; $page <= $pages; $page++)
 {
 	for ($row = 1; $row < $rows; $row++)
 	{
@@ -49,7 +49,7 @@ for ($page = 2; $page < $pages; $page++)
 	}
 }
 
-for ($page = 2; $page < $pages; $page++)
+for ($page = 2; $page <= $pages; $page++)
 {
 	for ($row = 1; $row < $rows; $row++)
 	{
