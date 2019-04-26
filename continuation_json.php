@@ -60,13 +60,11 @@ for ($page = 2; $page <= $pages; $page++)
 			if ($col == '7')
 			{
 				$db[$page][$row][$col] = $db[$page][$row][4] + $db[$page][$row][5] + $db[$page][$row][6];
-				$db[$page]['29'][$col] += $db[$page][$row][$col];
 	
 			}
 			elseif ($col =='8')
 			{
 				$db[$page][$row][$col] = round($db[$page][$row][7] / $db[$page][$row][3], 2);
-				$db[$page]['29'][$col] += $db[$page][$row][$col];
 
 			}
 			elseif ($col =='9' )
@@ -79,7 +77,6 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				$temp = str_replace('%', '', $db[$page][$row][12]/100);
 				$db[$page][$row][$col] = round($db[$page][$row][7] * $temp);
-				$db[$page]['29'][$col] += $db[$page][$row][$col];
 
 			}
 			if ($db[$page][$row][$col] == '0')
@@ -90,8 +87,10 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
 			}
-	
-			
+			if ($col != '1' && $col!= '2' && $col != '11' && $col < '13')
+			{
+				$db[$page][29][$col] += $db[$page][29][$col];											
+			}
 	
 		}
 	}
