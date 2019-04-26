@@ -89,7 +89,7 @@ for ($page = 2; $page <= $pages; $page++)
 			}
 			if ($col != '1' && $col!= '2' && $col != '11' && $col < '13' && $row != '29')
 			{
-				$db[$page][29][$col] += $db[$page][29][$col];											
+				$db[$page][29][$col] += $db[$page][$row][$col];											
 			}
 	
 		}
