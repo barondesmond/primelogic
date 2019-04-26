@@ -44,10 +44,7 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				$db[$page][$row][$col] = '';
 			}
-			if ($col > '2'  $col < '7' && $row != '29')
-			{
-				$db[$page][29][$col] += $db[$page][$row][$col];											
-			}	
+
 		}
 	}
 }
