@@ -44,7 +44,10 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				$db[$page][$row][$col] = '';
 			}
-	
+			if ($col > '2'  $col < '7' && $row != '29')
+			{
+				$db[$page][29][$col] += $db[$page][$row][$col];											
+			}	
 		}
 	}
 }
@@ -87,10 +90,7 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
 			}
-			if ($col != '1' && $col!= '2' && $col != '11' && $col < '13' && $row != '29')
-			{
-				$db[$page][29][$col] += $db[$page][$row][$col];											
-			}
+
 	
 		}
 	}
