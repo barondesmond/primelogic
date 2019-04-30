@@ -77,7 +77,6 @@ for ($page = 2; $page <= $pages; $page++)
 			elseif ($col =='9' )
 			{
 				$db[$page][$row][$col] = $db[$page][$row][3] - $db[$page][$row][7];
-				$db[$page]['29'][$col] += $db[$page][$row][$col];
 
 			}
 			elseif ($col =='10' )

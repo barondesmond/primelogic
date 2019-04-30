@@ -55,7 +55,7 @@ for ($page = 2; $page <= $pages; $page++)
 	{
 		for ($col = 3; $col < 7; $col++)
 		{
-			if ($rows != '29')
+			if ($row != '29')
 			{
 				$db[$page][29][$col] += $db[$page][$row][$col];
 			}
