@@ -87,10 +87,7 @@ for ($page = 2; $page <= $pages; $page++)
 				{
 					$temp = str_replace('%', '', $db[$page][$row][12]/100);
 				}
-				elseif ($sheet['percentcompleted'] != '')
-				{
-					$temp = str_replace('%', '', $sheet['percentcompleted']/100);
-				}
+	
 				$db[$page][$row][$col] = round($db[$page][$row][7] * $temp);
 	
 			}
