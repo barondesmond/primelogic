@@ -127,6 +127,7 @@ $sheet['paymentdue'] = $sheet['lessretainage'] - $sheet['priorcertificate'];
 $sheet['contractsum'] = $sheet['originalcontract'] + $sheet['netchange'];
 $sheet['totalsadditions'] = $sheet['totaladditions'] + $sheet['monthadditions'];
 $sheet['totalsdeductions'] = $sheet['totaldeductions'] + $sheet['monthdeductions'];
+$sheet['netchange'] = $sheet['totalsadditions'] - $sheet['totalsduductions'];
 $sheet['balancetofinish'] = $sheet['contractsum'] - $sheet['lessretainage'];
 if (isset($_REQUEST['continuation']))
 {
