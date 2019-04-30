@@ -122,6 +122,7 @@ for ($page = 2; $page <= $pages; $page++)
 		$sheet['totalretainage'] += round($sheet['completedwork']*$tempcom + $sheet['storedmaterial']*$tempstor);
 	}
 }
+$sheet['lessretainage'] = $sheet['completedwork'] - $sheet['totalretainage'];
 if (isset($_REQUEST['continuation']))
 {
 	$js['input'] = $_REQUEST['continuation'];

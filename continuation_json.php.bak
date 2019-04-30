@@ -116,8 +116,10 @@ for ($page = 2; $page <= $pages; $page++)
 	}
 	else
 	{
-		$temp = str_replace('%', '', $sheet['percentcompleted']/100);
-		$sheet['totalretainage'] += round($db[$page][29][7]*$temp);
+		$tempcom = str_replace('%', '', $sheet['percentcompleted']/100);
+		$tempstor = str_replace('%', '', $sheet['percentstored']/100);
+
+		$sheet['totalretainage'] += round($sheet['completedwork']*$tempcom + $sheet['storedmaterial']*$tempstor);
 	}
 }
 if (isset($_REQUEST['continuation']))
