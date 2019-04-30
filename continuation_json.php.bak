@@ -125,6 +125,9 @@ for ($page = 2; $page <= $pages; $page++)
 $sheet['lessretainage'] = $sheet['totalcompleted'] - $sheet['totalretainage'];
 $sheet['paymentdue'] = $sheet['lessretainage'] - $sheet['priorcertificate'];
 $sheet['contractsum'] = $sheet['originalcontract'] + $sheet['netchange'];
+$sheet['totalsadditions'] = $sheet['totaladditions'] + $sheet['monthadditions'];
+$sheet['totalsdeductions'] = $sheet['totaldeductions'] + $sheet['monthdeductions'];
+$sheet['balancetofinish'] = $sheet['contractsum'] - $sheet['lessretainage'];
 if (isset($_REQUEST['continuation']))
 {
 	$js['input'] = $_REQUEST['continuation'];
