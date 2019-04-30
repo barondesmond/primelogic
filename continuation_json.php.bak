@@ -119,7 +119,7 @@ if ($sheet['application'] != '')
 	}
 	$dir = '/var/www/html/primelogic/continuation/';
 
-	$file = fopen($dir . $sheet['application'] . '.' . $sheet['version'], 'w');
+	$file = fopen($dir . $sheet['application'] . '.' . $sheet['version']. ' .json', 'w');
 	fwrite($file, $json);
 	fclose($file);
 }
