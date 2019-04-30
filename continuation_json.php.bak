@@ -81,9 +81,16 @@ for ($page = 2; $page <= $pages; $page++)
 				$db[$page][$row][$col] = $db[$page][$row][3] - $db[$page][$row][7];
 
 			}
-			elseif ($col =='10' && $row != '29' ) // Column I
+			elseif ($col =='10'  ) // Column I
 			{
-				$temp = str_replace('%', '', $db[$page][$row][12]/100);
+				if ($db[$page][$row][12] != '')
+				{
+					$temp = str_replace('%', '', $db[$page][$row][12]/100);
+				}
+				elseif ($sheet['percentcompleted'] != '')
+				{
+					$temp = str_replace('%', '', $sheet['percentcompleted']/100);
+				}
 				$db[$page][$row][$col] = round($db[$page][$row][7] * $temp);
 	
 			}
