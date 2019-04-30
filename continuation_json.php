@@ -53,6 +53,10 @@ for ($page = 2; $page <= $pages; $page++)
 {
 	for ($row = 1; $row <= $rows; $row++)
 	{
+		for ($col = 3; $col < 7; $col++)
+		{
+			$db[$page][29][$col] += $db[$page][$row][$col];
+		}
 		for ($col = 7; $col < $cols; $col++)
 		{
 	
