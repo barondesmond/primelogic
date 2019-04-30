@@ -109,7 +109,19 @@ if (isset($_REQUEST['continuation']))
 header('Content-Type: application/json');
 $js['continuation'] = $db;
 $js['sheet'] = $sheet;
-echo json_encode($js);
+$json = json_encode($js);
+echo $json;
+if ($sheet['application'] != '')
+{
+	if (!isset($sheet['version']))
+	{
+		$sheet['version'] = '1';
+	}
+	$dir = '/var/www/html/primelogic/continuation/';
+
+	$file = fopen($dir . $sheet['application'] . '.' . $sheet['version'], 'w');
+	fwrite($file, $json);
+	fclose($file);
 exit;
 
 
