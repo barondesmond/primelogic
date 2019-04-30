@@ -85,10 +85,7 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				$temp = str_replace('%', '', $db[$page][$row][12]/100);
 				$db[$page][$row][$col] = round($db[$page][$row][7] * $temp);
-				if ($row != '29')
-				{
-					$db[$page][29][$col] += $db[$page][$row][$col];
-				}
+	
 			}
 			if ($db[$page][$row][$col] == '0')
 			{
@@ -99,7 +96,11 @@ for ($page = 2; $page <= $pages; $page++)
 				$db[$page][$row][$col] = '%' . $db[$page][$row][$col] ;
 			}
 
-	
+
+		}
+		if ($row != '29')
+		{
+			$db[$page][29][10] += $db[$page][$row][10];
 		}
 	}
 	$sheet['totalcompleted'] += $db[$page][29][7];
