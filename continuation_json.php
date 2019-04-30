@@ -108,7 +108,15 @@ for ($page = 2; $page <= $pages; $page++)
 		}
 	}
 	$sheet['totalcompleted'] += $db[$page][29][7];
-	$sheet['totalretainage'] += $db[$page][29][10];
+	if ($db[$page][29][10] != '')
+	{
+		$sheet['totalretainage'] += $db[$page][29][10];
+	}
+	else
+	{
+		$temp = str_replace('%', '', $sheet['percentcompleted']/100);
+		$sheet['totalretainage'] += round($db[$page][29][7]*$temp);
+	}
 }
 if (isset($_REQUEST['continuation']))
 {
