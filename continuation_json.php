@@ -32,7 +32,7 @@ else
 }
 for ($page = 2; $page <= $pages; $page++)
 {
-	for ($row = 1; $row < $rows; $row++)
+	for ($row = 1; $row <= $rows; $row++)
 	{
 		for ($col = 1; $col < $cols; $col++)
 		{
@@ -51,7 +51,7 @@ for ($page = 2; $page <= $pages; $page++)
 
 for ($page = 2; $page <= $pages; $page++)
 {
-	for ($row = 1; $row < $rows; $row++)
+	for ($row = 1; $row <= $rows; $row++)
 	{
 		for ($col = 7; $col < $cols; $col++)
 		{
