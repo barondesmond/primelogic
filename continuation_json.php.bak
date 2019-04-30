@@ -122,6 +122,7 @@ if ($sheet['application'] != '')
 	$file = fopen($dir . $sheet['application'] . '.' . $sheet['version'], 'w');
 	fwrite($file, $json);
 	fclose($file);
+}
 exit;
 
 
