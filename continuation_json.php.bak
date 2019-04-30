@@ -123,6 +123,7 @@ for ($page = 2; $page <= $pages; $page++)
 	}
 }
 $sheet['lessretainage'] = $sheet['totalcompleted'] - $sheet['totalretainage'];
+$sheet['paymentdue'] = $sheet['lessretainage'] - $sheet['priorcertificate'];
 if (isset($_REQUEST['continuation']))
 {
 	$js['input'] = $_REQUEST['continuation'];
