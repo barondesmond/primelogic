@@ -124,10 +124,10 @@ for ($page = 2; $page <= $pages; $page++)
 }
 $sheet['lessretainage'] = $sheet['totalcompleted'] - $sheet['totalretainage'];
 $sheet['paymentdue'] = $sheet['lessretainage'] - $sheet['priorcertificate'];
-$sheet['contractsum'] = $sheet['originalcontract'] + $sheet['netchange'];
 $sheet['totalsadditions'] = $sheet['totaladditions'] + $sheet['monthadditions'];
 $sheet['totalsdeductions'] = $sheet['totaldeductions'] + $sheet['monthdeductions'];
 $sheet['netchange'] = $sheet['totalsadditions'] - $sheet['totalsdeductions'];
+$sheet['contractsum'] = $sheet['originalcontract'] + $sheet['netchange'];
 $sheet['balancetofinish'] = $sheet['contractsum'] - $sheet['lessretainage'];
 if (isset($_REQUEST['continuation']))
 {
