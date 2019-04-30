@@ -61,6 +61,7 @@ for ($page = 2; $page <= $pages; $page++)
 				$db[$page][29][$col] += $db[$page][$row][$col];
 			}
 		}
+		$db[$page][29][10] += $db[$page][$row][10];
 
 		for ($col = 7; $col < $cols; $col++)
 		{

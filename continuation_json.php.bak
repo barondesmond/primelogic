@@ -100,7 +100,7 @@ for ($page = 2; $page <= $pages; $page++)
 		}
 	}
 	$sheet['totalcompleted'] += $db[$page][29][7];
-	$sheet['totalretainage'] += $db[$page[29][10];
+	$sheet['totalretainage'] += $db[$page][29][10];
 }
 if (isset($_REQUEST['continuation']))
 {
