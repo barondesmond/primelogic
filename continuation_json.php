@@ -108,14 +108,18 @@ for ($page = 2; $page <= $pages; $page++)
 		}
 	}
 	$sheet['totalcompleted'] += $db[$page][29][7];
+	$sheet['completedwork'] += $db[$page][29][4]+$db[$page][29][5];
+	$sheet['storedmaterial'] += $db[$page][29][6];
 	if ($db[$page][29][10] != '')
 	{
 		$sheet['totalretainage'] += $db[$page][29][10];
 	}
 	else
 	{
-		$temp = str_replace('%', '', $sheet['percentcompleted']/100);
-		$sheet['totalretainage'] += round($db[$page][29][7]*$temp);
+		$tempcom = str_replace('%', '', $sheet['percentcompleted']/100);
+		$tempstor = str_replace('%', '', $sheet['percentstored']/100);
+
+		$sheet['totalretainage'] += round($sheet['completedwork']*$tempcom + $sheet['storedmaterial']*$tempstor);
 	}
 }
 if (isset($_REQUEST['continuation']))
