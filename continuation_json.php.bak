@@ -12,7 +12,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 {
 	$dir = '/var/www/html/primelogic/continuation/';
 	$_REQUEST['sheet']['application'] = 1;
-	$fo = $dir . $_REQUEST['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
+	$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
 	
 	while (file_exists($fo))
 	{
