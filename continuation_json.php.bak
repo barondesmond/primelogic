@@ -27,12 +27,15 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 	{
 		$_REQUEST['sheet']['application'] = $prev;
 	}
+	print_r($fr);
+	print_r($_REQUEST);
+	exit;
 	
 }
 if (!isset($_REQUEST['sheet']['pages']))
 {
 	$pages = '2';
-
+	$sheet['JobID'] = $_REQUEST['sheet']['JobID'];
 	$sheet['pages'] = $pages;
 	$sheet['rows'] = $rows;
 	$sheet['cols'] = $cols;
