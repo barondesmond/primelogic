@@ -7,7 +7,7 @@
 //header details
 $rows = '29';
 $cols = '13';
-if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['application']))
+if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application']))
 {
 	$dir = '/var/www/html/primelogic/continuation/';
 	$_REQUEST['sheet']['application'] = 1;

@@ -32,7 +32,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 if (!isset($_REQUEST['sheet']['pages']))
 {
 	$pages = '2';
-
+	$sheet['JobID'] = $_REQUEST['sheet']['JobID'];
 	$sheet['pages'] = $pages;
 	$sheet['rows'] = $rows;
 	$sheet['cols'] = $cols;
