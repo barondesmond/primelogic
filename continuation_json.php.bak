@@ -16,7 +16,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 	echo $fo;
 	while (file_exists($fo))
 	{
-		$file = fopen($fo, 'w');
+		$file = fopen($fo, 'r');
 		$fr = fread($file,filesize($fo));
 
 		$_REQUEST = json_decode($fr, true);
@@ -29,7 +29,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 	{
 		$_REQUEST['sheet']['application'] = $prev;
 	}
-	print_r($fr);
+	echo $fr;
 	print_r($_REQUEST);
 	exit;
 	

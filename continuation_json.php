@@ -7,16 +7,16 @@
 //header details
 $rows = '29';
 $cols = '13';
-print_r($_REQUEST);
+//print_r($_REQUEST);
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application']))
 {
 	$dir = '/var/www/html/primelogic/continuation/';
 	$_REQUEST['sheet']['application'] = 1;
 	$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
-	echo $fo;
+	//echo $fo;
 	while (file_exists($fo))
 	{
-		$file = fopen($fo, 'w');
+		$file = fopen($fo, 'r');
 		$fr = fread($file,filesize($fo));
 
 		$_REQUEST = json_decode($fr, true);
@@ -29,9 +29,9 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 	{
 		$_REQUEST['sheet']['application'] = $prev;
 	}
-	echo $fr;
-	print_r($_REQUEST);
-	exit;
+	//echo $fr;
+	//print_r($_REQUEST);
+	//exit;
 	
 }
 if (!isset($_REQUEST['sheet']['pages']))
