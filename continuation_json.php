@@ -14,7 +14,8 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 	$_REQUEST['sheet']['application'] = 1;
 	$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
 	//echo $fo;
-	while (file_exists($fo))
+	$i=1;
+	while (file_exists($fo) && $i<10)
 	{
 		$file = fopen($fo, 'r');
 		$fr = fread($file,filesize($fo));
@@ -24,6 +25,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 		$_REQUEST['sheet']['appliation']++;
 		$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
 		fclose($file);
+		$i++;
 	}
 	if (isset($prev))
 	{
