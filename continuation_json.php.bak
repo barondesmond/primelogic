@@ -160,7 +160,7 @@ $js['continuation'] = $db;
 $js['sheet'] = $sheet;
 $json = json_encode($js);
 echo $json;
-if ($sheet['application'] != '' && $sheet['JobID'])
+if ($sheet['application'] != '' && $sheet['JobID'] != '')
 {
 
 	$dir = '/var/www/html/primelogic/continuation/';
