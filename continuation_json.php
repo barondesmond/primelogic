@@ -7,7 +7,28 @@
 //header details
 $rows = '29';
 $cols = '13';
+if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['application']))
+{
+	$dir = '/var/www/html/primelogic/continuation/';
+	$_REQUEST['sheet']['application'] = 1;
+	$fo = $dir . $_REQUEST['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
+	
+	while (file_exists($fo))
+	{
+		$file = fopen($fo, 'w');
+		$fr = fread($file,filesize($fo));
 
+		$_REQUEST = json_decode($fr, true);
+		$prev = $_REQUEST['sheet']['application'];
+		$_REQUEST['sheet']['appliation']++;
+		$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
+	}
+	if (isset($prev))
+	{
+		$_REQUEST['sheet']['application'] = $prev;
+	}
+	
+}
 if (!isset($_REQUEST['sheet']['pages']))
 {
 	$pages = '2';
@@ -15,7 +36,7 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['pages'] = $pages;
 	$sheet['rows'] = $rows;
 	$sheet['cols'] = $cols;
-	$sheet['application'] = '';
+	$sheet['application'] = '1';
 	$sheet['applicationdate'] = '';
 	$sheet['project'] = '';
 	$sheet['toowner'] = '';
@@ -139,15 +160,12 @@ $js['continuation'] = $db;
 $js['sheet'] = $sheet;
 $json = json_encode($js);
 echo $json;
-if ($sheet['application'] != '')
+if ($sheet['application'] != '' && $sheet['JobID'])
 {
-	if (!isset($sheet['version']))
-	{
-		$sheet['version'] = '1';
-	}
+
 	$dir = '/var/www/html/primelogic/continuation/';
 
-	$file = fopen($dir . $sheet['application'] . '.' . $sheet['version']. '.json', 'w');
+	$file = fopen($dir . $sheet['JobID'] . '.' . $sheet['application']. '.json', 'w');
 	fwrite($file, $json);
 	fclose($file);
 }
