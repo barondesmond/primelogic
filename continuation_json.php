@@ -23,12 +23,13 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 		$prev = $_REQUEST['sheet']['application'];
 		$_REQUEST['sheet']['appliation']++;
 		$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
+		fclose($file);
 	}
 	if (isset($prev))
 	{
 		$_REQUEST['sheet']['application'] = $prev;
 	}
-	print_r($fr);
+	echo $fr;
 	print_r($_REQUEST);
 	exit;
 	

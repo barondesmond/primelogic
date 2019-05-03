@@ -13,7 +13,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 	$dir = '/var/www/html/primelogic/continuation/';
 	$_REQUEST['sheet']['application'] = 1;
 	$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
-	
+	echo $fo;
 	while (file_exists($fo))
 	{
 		$file = fopen($fo, 'w');
@@ -23,6 +23,7 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQEST['sheet']['application'
 		$prev = $_REQUEST['sheet']['application'];
 		$_REQUEST['sheet']['appliation']++;
 		$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
+		fclose($file);
 	}
 	if (isset($prev))
 	{
