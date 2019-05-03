@@ -8,7 +8,7 @@
 $rows = '29';
 $cols = '13';
 
-if (!isset($_REQUEST['sheet']))
+if (!isset($_REQUEST['sheet']['pages']))
 {
 	$pages = '2';
 
