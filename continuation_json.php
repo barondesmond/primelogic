@@ -8,8 +8,8 @@ include("_db_config.php");
 //header details
 function project($JobID)
 {
-$sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as project FROM Jobs
-INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.LocNo = Location.LocNo
+$sql = "SELECT CONCAT(LocName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as project FROM Jobs
+INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
  WHERE JobID = '$JobID'";
 
  $res = mssql_query($sql);

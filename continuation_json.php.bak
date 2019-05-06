@@ -15,6 +15,7 @@ INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.LocNo = Location.L
  $res = mssql_query($sql);
 	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
  return $db['project'];
+}
 
 function toowner($JobID)
 {
