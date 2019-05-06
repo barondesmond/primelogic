@@ -48,7 +48,7 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['project'] = '';
 	$sheet['toowner'] = '';
 	$sheet['periodto'] = '';
-	$sheet['fromcontractor'] = "Prime Logic Inc.\r\n264 S Veterans Blvd\r\nTupelo MS 38804";
+	$sheet['fromcontractor'] = "Prime Logic Inc.<BR>\r\n264 S Veterans Blvd<BR>\r\nTupelo MS 38804";
 	$sheet['totalcompleted'] = '0';
 
 }
