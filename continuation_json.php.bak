@@ -10,8 +10,10 @@ function toowner($JobID)
 $sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as toowner FROM Jobs
 INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
  WHERE JobID = '$JobID'";
+ echo $sql;
  $res = mssql_query($sql);
 	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
+print_r($db);
  return $db['toowner'];
 }
 
