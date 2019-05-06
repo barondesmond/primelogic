@@ -1,4 +1,5 @@
 <?php
+include("_db_config.php");
 //example api for spreadhsheet
 //$spread[$row][$col];
 //row a-g
@@ -10,13 +11,11 @@ function toowner($JobID)
 $sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as toowner FROM Jobs
 INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
  WHERE JobID = '$JobID'";
- echo $sql;
+
  $res = mssql_query($sql);
 	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	 echo 'db';
-print_r($db);
-echo 'after db';
-exit;
+
  return $db['toowner'];
 }
 
