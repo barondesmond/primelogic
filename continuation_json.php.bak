@@ -5,6 +5,16 @@
 //col 1-28
 //config #pages, #rows
 //header details
+function toowner($JobID)
+{
+$sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City, ,' ' , State,. ' ', Zip) as toowner FROM Jobs
+INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
+ WHERE JobID = '$JobID'";
+ $res = mssql_query($sql)
+	 $db = mssql_fetch_assoc($res);
+ return $db['toowner'];
+}
+
 $rows = '29';
 $cols = '13';
 //print_r($_REQUEST);
@@ -46,7 +56,7 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['application'] = '1';
 	$sheet['applicationdate'] = '';
 	$sheet['project'] = '';
-	$sheet['toowner'] = '';
+	$sheet['toowner'] = toowner($sheet['JobID']);
 	$sheet['periodto'] = '';
 	$sheet['fromcontractor'] = "Prime Logic Inc.<BR>\r\n264 S Veterans Blvd<BR>\r\nTupelo MS 38804";
 	$sheet['totalcompleted'] = '0';
