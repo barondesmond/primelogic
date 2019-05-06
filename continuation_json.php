@@ -13,7 +13,9 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
  echo $sql;
  $res = mssql_query($sql);
 	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
+	 echo 'db';
 print_r($db);
+echo 'after db';
 exit;
  return $db['toowner'];
 }
