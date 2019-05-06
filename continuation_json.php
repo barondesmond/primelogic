@@ -11,7 +11,7 @@ $sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State,. ' ', Z
 INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
  WHERE JobID = '$JobID'";
  $res = mssql_query($sql);
-	 $db = mssql_fetch_assoc($res);
+	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
  return $db['toowner'];
 }
 

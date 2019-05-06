@@ -7,7 +7,7 @@
 //header details
 function toowner($JobID)
 {
-$sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City, ,' ' , State,. ' ', Zip) as toowner FROM Jobs
+$sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State,. ' ', Zip) as toowner FROM Jobs
 INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
  WHERE JobID = '$JobID'";
  $res = mssql_query($sql);
