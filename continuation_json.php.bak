@@ -6,6 +6,16 @@ include("_db_config.php");
 //col 1-28
 //config #pages, #rows
 //header details
+function project($JobID)
+{
+$sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as projectg FROM Jobs
+INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.LocNo = Location.LocNo
+ WHERE JobID = '$JobID'";
+
+ $res = mssql_query($sql);
+	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
+ return $db['project'];
+
 function toowner($JobID)
 {
 $sql = "SELECT CONCAT(LastName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as toowner FROM Jobs
@@ -14,7 +24,7 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
 
  $res = mssql_query($sql);
 	 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-	 echo 'db';
+
 
  return $db['toowner'];
 }
@@ -59,7 +69,7 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['cols'] = $cols;
 	$sheet['application'] = '1';
 	$sheet['applicationdate'] = '';
-	$sheet['project'] = '';
+	$sheet['project'] = project($sheet['JobID']);
 	$sheet['toowner'] = toowner($sheet['JobID']);
 	$sheet['periodto'] = '';
 	$sheet['fromcontractor'] = "Prime Logic Inc.<BR>\r\n264 S Veterans Blvd<BR>\r\nTupelo MS 38804";
