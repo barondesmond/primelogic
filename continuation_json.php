@@ -7,7 +7,7 @@ function continuation_parse_file($file)
 
 	$key = array('JobID', 'application', 'ext');
 	$exp = explode('.', $file);
-	if (count($exp) != count($key))
+	if (count($exp) != count($key) || $file == '.' || $file == '..')
 	{
 		//print_r($exp);
 		
