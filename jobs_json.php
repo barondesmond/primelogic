@@ -18,6 +18,10 @@ if ($_REQUEST['dev'] == 'true')
 {
 	$dev = 'Dev';
 }
+else
+{
+	$dev = '';
+}
 if (!isset($_REQUEST['ServiceMan']))
 {
 	$_REQUEST['ServiceMan'] = '';
