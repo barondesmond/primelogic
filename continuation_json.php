@@ -81,8 +81,7 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
 $rows = '29';
 $cols = '13';
 //print_r($_REQUEST);
-if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && $_REQUEST['sheet']['application'] > 1)
-{
+
 
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
 {

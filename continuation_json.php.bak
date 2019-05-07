@@ -45,6 +45,8 @@ static $files;
 return $js;
 }
 
+$cf = continuation_files();
+
 
 //example api for spreadhsheet
 //$spread[$row][$col];
@@ -254,6 +256,7 @@ if (isset($_REQUEST['continuation']))
 header('Content-Type: application/json');
 $js['continuation'] = $db;
 $js['sheet'] = $sheet;
+$js['cf'] = $cf;
 $json = json_encode($js);
 echo $json;
 if ($sheet['application'] != '' && $sheet['JobID'] != '')
