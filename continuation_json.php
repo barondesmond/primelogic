@@ -34,7 +34,6 @@ static $files;
 		$dir = '/var/www/html/primelogic/continuation/';
 		$files = scandir($dir);
 	}
-	$js['files'] = $files;
 	foreach ($files as $id=>$file)
 	{
 		if ($cp = continuation_parse_file($file))
