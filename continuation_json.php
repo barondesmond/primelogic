@@ -164,6 +164,10 @@ for ($page = 2; $page <= $pages; $page++)
 	$sheet['totalcompleted'] += $db[$page][29][7];
 	$sheet['completedwork'] += $db[$page][29][4]+$db[$page][29][5];
 	$sheet['storedmaterial'] += $db[$page][29][6];
+	if ($sheet['application'] == '1')
+	{
+		$sheet['originalcontract'] += $db[$page][29][3];
+	}
 	if ($db[$page][29][10] != '')
 	{
 		$sheet['totalretainage'] += $db[$page][29][10];
