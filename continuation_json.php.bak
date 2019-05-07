@@ -103,11 +103,13 @@ for ($page = 2; $page <= $pages; $page++)
 		}
 	}
 }
-
+$rownum=0;
 for ($page = 2; $page <= $pages; $page++)
 {
 	for ($row = 1; $row <= $rows; $row++)
 	{
+		$rownum++;
+		$db[$page][$row][1] = $rownum;
 		for ($col = 3; $col < 7; $col++)
 		{
 			if ($row != '29')
@@ -164,6 +166,10 @@ for ($page = 2; $page <= $pages; $page++)
 	$sheet['totalcompleted'] += $db[$page][29][7];
 	$sheet['completedwork'] += $db[$page][29][4]+$db[$page][29][5];
 	$sheet['storedmaterial'] += $db[$page][29][6];
+	if ($sheet['application'] == '1')
+	{
+		$sheet['originalcontract'] += $db[$page][29][3];
+	}
 	if ($db[$page][29][10] != '')
 	{
 		$sheet['totalretainage'] += $db[$page][29][10];

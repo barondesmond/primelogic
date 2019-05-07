@@ -103,13 +103,22 @@ for ($page = 2; $page <= $pages; $page++)
 		}
 	}
 }
-
+$rownum=0;
 for ($page = 2; $page <= $pages; $page++)
 {
 	for ($row = 1; $row <= $rows; $row++)
 	{
+
 		for ($col = 3; $col < 7; $col++)
 		{
+			if ($col==3)
+			{
+				if ($db[$page][$row][$col] > 0)
+				{
+							$rownum++;
+							$db[$page][$row][1] = $rownum;
+				}
+			}
 			if ($row != '29')
 			{
 				$db[$page][29][$col] += $db[$page][$row][$col];
