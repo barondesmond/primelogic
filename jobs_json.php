@@ -18,8 +18,10 @@ if ($_REQUEST['dev'] == 'true')
 {
 	$dev = 'Dev';
 }
-
-
+if (!isset($_REQUEST['ServiceMan']))
+{
+	$_REQUEST['ServiceMan'] = '';
+}
 $js = jobs_query($dev, $_REQUEST['ServiceMan']);
 
 header('Content-Type: application/json');
