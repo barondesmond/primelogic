@@ -204,7 +204,7 @@ for ($page = 2; $page <= $pages; $page++)
 								{
 									$sheet['monthadditions'] += $db[$page][$row][3];
 								}
-								elseif ($db[$page[$row][3] < 0)
+								elseif ($db[$page][$row][3] < 0)
 								{
 									$sheet['monthdeductions'] += $db[$page][$row][3] * -1;
 								}
