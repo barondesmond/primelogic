@@ -1,5 +1,53 @@
 <?php
 include("_db_config.php");
+
+function continuation_parse_file($file)
+{
+
+
+	$key = array('JobID', 'application', 'ext');
+	$exp = explode('.', $file);
+	if (count($exp) != count($key))
+	{
+		//print_r($exp);
+		
+		return false;
+	}
+	//print_r($exp);
+	for ($i=0;$i< count($exp); $i++)
+	{
+		$db[$key[$i]] = $exp[$i];
+	}
+
+$db['file'] = $file;
+return $db;
+
+}
+
+function continuation_files()
+{
+
+static $files;
+	
+	if (!isset($files))
+	{
+		$dir = '/var/www/html/primelogic/continuation/';
+		$files = scandir($dir);
+	}
+	$js['files'] = $files;
+	foreach ($files as $id=>$file)
+	{
+		if ($cp = continuation_parse_file($file))
+		{
+			$js[$cp['JobID']][$cp['application']] = $cp['file'];
+		}
+	}
+return $js;
+}
+
+$cf = continuation_files();
+
+
 //example api for spreadhsheet
 //$spread[$row][$col];
 //row a-g
@@ -33,9 +81,11 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
 $rows = '29';
 $cols = '13';
 //print_r($_REQUEST);
+if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && $_REQUEST['sheet']['application'] > 1)
+{
+
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
 {
-	$dir = '/var/www/html/primelogic/continuation/';
 	$_REQUEST['sheet']['application'] = 1;
 	$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
 	//echo $fo;
@@ -117,6 +167,11 @@ for ($page = 2; $page <= $pages; $page++)
 				{
 							$rownum++;
 							$db[$page][$row][1] = $rownum;
+							if ($sheet['application'] == '1')
+							{
+								$sheet['originalcontract'] += $db[$page][$row][3];
+							}
+	
 				}
 			}
 			if ($row != '29')
@@ -173,10 +228,7 @@ for ($page = 2; $page <= $pages; $page++)
 	$sheet['totalcompleted'] += $db[$page][29][7];
 	$sheet['completedwork'] += $db[$page][29][4]+$db[$page][29][5];
 	$sheet['storedmaterial'] += $db[$page][29][6];
-	if ($sheet['application'] == '1')
-	{
-		$sheet['originalcontract'] += $db[$page][29][3];
-	}
+
 	if ($db[$page][29][10] != '')
 	{
 		$sheet['totalretainage'] += $db[$page][29][10];
@@ -204,6 +256,7 @@ if (isset($_REQUEST['continuation']))
 header('Content-Type: application/json');
 $js['continuation'] = $db;
 $js['sheet'] = $sheet;
+$js['cf'] = $cf;
 $json = json_encode($js);
 echo $json;
 if ($sheet['application'] != '' && $sheet['JobID'] != '')
