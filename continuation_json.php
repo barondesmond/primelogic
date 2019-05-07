@@ -44,15 +44,11 @@ static $files;
 return $js;
 }
 
+
+
 $cf = continuation_files();
 
 
-//example api for spreadhsheet
-//$spread[$row][$col];
-//row a-g
-//col 1-28
-//config #pages, #rows
-//header details
 function project($JobID)
 {
 $sql = "SELECT CONCAT(LocName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as project FROM Jobs
@@ -79,8 +75,39 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
 
 $rows = '29';
 $cols = '13';
-//print_r($_REQUEST);
+$dir = '/var/www/html/primelogic/continuation/';
 
+//print_r($_REQUEST);
+if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && !isset($cf[$_REQUEST['sheet']['JobID'][$_REQUEST['sheet']['application']]))
+{
+	$prev = $_REQUEST['sheet']['application']-1;
+	if (isset($cf[$_REQUEST['sheet']['JobID'][$prev])
+	{
+		$fo = $cf[$_REQUEST['sheet']['JobID'][$prev];
+		$file = fopen($fo, 'r');
+		$fr = fread($file,filesize($fo));
+
+		$_REQUEST = json_decode($fr, true);
+		$_REQUEST['sheet']['application'] = $prev+1;
+		$_REQUEST['totaladditions'] += $_REQUEST['monthadditions'];
+		$_REQUEST['totaldeductions'] += $_REQUEST['monthdeductions'];
+		$_REQUEST['monthadditions'] = 0;
+		$_REQUEST['monthdeductions'] = 0;
+		for ($page = 2; $page <= $_REQUEST['sheet']['pages']; $page++)
+		{
+			for ($row=1; $row <= $_REQUEST['sheet']['lastrow']; $row++)
+			{
+				$_REQUEST[$page][$row][4] += $_REQUEST[$page][$row][5];
+				$_REQUEST[$page][$row][5] = 0;
+			}
+		}
+	}
+	else
+	{
+		unset($_REQUEST['sheet']['application']);
+	}
+	unset($prev);
+}
 
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
 {
@@ -123,6 +150,8 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['periodto'] = '';
 	$sheet['fromcontractor'] = "Prime Logic Inc.<BR>\r\n264 S Veterans Blvd<BR>\r\nTupelo MS 38804";
 	$sheet['totalcompleted'] = '0';
+	$sheet['monthadditions'] = 0;
+	$sheet['monthdeductions'] = 0;
 
 }
 else
@@ -169,7 +198,16 @@ for ($page = 2; $page <= $pages; $page++)
 							{
 								$sheet['originalcontract'] += $db[$page][$row][3];
 							}
-	
+							elseif ($sheet['application'] > 1 && $sheet['lastrow'] < $rownum)
+							{
+								if ($db[$page][$row][3]>0)
+								{
+									$sheet['monthadditions'] += $db[$page][$row][3];
+								}
+								elseif ($db[$page[$row][3] < 0)
+								{
+									$sheet['monthdeductions'] += $db[$page][$row][3] * -1;
+								}
 				}
 			}
 			if ($row != '29')
@@ -246,6 +284,7 @@ $sheet['totalsdeductions'] = $sheet['totaldeductions'] + $sheet['monthdeductions
 $sheet['netchange'] = $sheet['totalsadditions'] - $sheet['totalsdeductions'];
 $sheet['contractsum'] = $sheet['originalcontract'] + $sheet['netchange'];
 $sheet['balancetofinish'] = $sheet['contractsum'] - $sheet['lessretainage'];
+$sheet['lastrow'] = $rownum;
 if (isset($_REQUEST['continuation']))
 {
 	$js['input'] = $_REQUEST['continuation'];
@@ -260,7 +299,6 @@ echo $json;
 if ($sheet['application'] != '' && $sheet['JobID'] != '')
 {
 
-	$dir = '/var/www/html/primelogic/continuation/';
 
 	$file = fopen($dir . $sheet['JobID'] . '.' . $sheet['application']. '.json', 'w');
 	fwrite($file, $json);
