@@ -192,22 +192,23 @@ for ($page = 2; $page <= $pages; $page++)
 			{
 				if ($db[$page][$row][$col] > 0)
 				{
-							$rownum++;
-							$db[$page][$row][1] = $rownum;
-							if ($sheet['application'] == '1')
+						$rownum++;
+						$db[$page][$row][1] = $rownum;
+						if ($sheet['application'] == '1')
+						{
+							$sheet['originalcontract'] += $db[$page][$row][3];
+						}
+						elseif ($sheet['application'] > 1 && $sheet['lastrow'] < $rownum)
+						{
+							if ($db[$page][$row][3]>0)
 							{
-								$sheet['originalcontract'] += $db[$page][$row][3];
+								$sheet['monthadditions'] += $db[$page][$row][3];
 							}
-							elseif ($sheet['application'] > 1 && $sheet['lastrow'] < $rownum)
+							elseif ($db[$page][$row][3] < 0)
 							{
-								if ($db[$page][$row][3]>0)
-								{
-									$sheet['monthadditions'] += $db[$page][$row][3];
-								}
-								elseif ($db[$page][$row][3] < 0)
-								{
-									$sheet['monthdeductions'] += $db[$page][$row][3] * -1;
-								}
+								$sheet['monthdeductions'] += $db[$page][$row][3] * -1;
+							}
+						}
 				}
 			}
 			if ($row != '29')
