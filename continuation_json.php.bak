@@ -44,15 +44,11 @@ static $files;
 return $js;
 }
 
+
+
 $cf = continuation_files();
 
 
-//example api for spreadhsheet
-//$spread[$row][$col];
-//row a-g
-//col 1-28
-//config #pages, #rows
-//header details
 function project($JobID)
 {
 $sql = "SELECT CONCAT(LocName, '<BR>', Add1, '<BR>', City ,' ' , State, ' ', Zip) as project FROM Jobs
@@ -79,6 +75,8 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
 
 $rows = '29';
 $cols = '13';
+$dir = '/var/www/html/primelogic/continuation/';
+
 //print_r($_REQUEST);
 if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && !isset($cf[$_REQUEST['sheet']['JobID'][$_REQUEST['sheet']['application']]))
 {
@@ -95,7 +93,14 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 		$_REQUEST['totaldeductions'] += $_REQUEST['monthdeductions'];
 		$_REQUEST['monthadditions'] = 0;
 		$_REQUEST['monthdeductions'] = 0;
-		
+		for ($page = 2; $page <= $_REQUEST['sheet']['pages']; $page++)
+		{
+			for ($row=1; $row <= $_REQUEST['sheet']['lastrow']; $row++)
+			{
+				$_REQUEST[$page][$row][4] += $_REQUEST[$page][$row][5];
+				$_REQUEST[$page][$row][5] = 0;
+			}
+		}
 	}
 	else
 	{
@@ -294,7 +299,6 @@ echo $json;
 if ($sheet['application'] != '' && $sheet['JobID'] != '')
 {
 
-	$dir = '/var/www/html/primelogic/continuation/';
 
 	$file = fopen($dir . $sheet['JobID'] . '.' . $sheet['application']. '.json', 'w');
 	fwrite($file, $json);

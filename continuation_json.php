@@ -78,7 +78,7 @@ $cols = '13';
 $dir = '/var/www/html/primelogic/continuation/';
 
 //print_r($_REQUEST);
-if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && !isset($cf[$_REQUEST['sheet']['JobID'][$_REQUEST['sheet']['application']]))
+if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && !isset($cf[$_REQUEST['sheet']['JobID']][$_REQUEST['sheet']['application']]))
 {
 	$prev = $_REQUEST['sheet']['application']-1;
 	if (isset($cf[$_REQUEST['sheet']['JobID'][$prev])
