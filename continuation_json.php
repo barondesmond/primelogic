@@ -152,6 +152,7 @@ if (!isset($_REQUEST['sheet']['pages']))
 	$sheet['totalcompleted'] = '0';
 	$sheet['monthadditions'] = 0;
 	$sheet['monthdeductions'] = 0;
+	$sheet['originalcontract'] = 0;
 
 }
 else

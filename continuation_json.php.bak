@@ -46,7 +46,6 @@ return $js;
 
 
 
-$cf = continuation_files();
 
 
 function project($JobID)
@@ -76,6 +75,7 @@ INNER JOIN Customer ON Jobs.CustNo = Customer.CustNo
 $rows = '29';
 $cols = '13';
 $dir = '/var/www/html/primelogic/continuation/';
+$cf = continuation_files();
 
 //print_r($_REQUEST);
 if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && !isset($cf[$_REQUEST['sheet']['JobID']][$_REQUEST['sheet']['application']]))
@@ -190,7 +190,7 @@ for ($page = 2; $page <= $pages; $page++)
 		{
 			if ($col==3)
 			{
-				if ($db[$page][$row][$col] > 0)
+				if ($db[$page][$row][$col] > 0 && $row != '29')
 				{
 						$rownum++;
 						$db[$page][$row][1] = $rownum;
