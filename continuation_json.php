@@ -81,6 +81,7 @@ $cf = continuation_files();
 if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && !isset($cf[$_REQUEST['sheet']['JobID']][$_REQUEST['sheet']['application']]))
 {
 	print_r($_REQUEST);
+	print_r($cf);
 	$prev = $_REQUEST['sheet']['application']-1;
 	if (isset($cf[$_REQUEST['sheet']['JobID']][$prev]))
 	{
