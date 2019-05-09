@@ -111,7 +111,15 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 
 	unset($prev);
 }
+if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && isset($cf[$_REQUEST['sheet']['JobID']][$_REQUEST['sheet']['application']]))
+{
+		$fo = $dir . $cf[$_REQUEST['sheet']['JobID']][$prev];
+		$file = fopen($fo, 'r');
+		$fr = fread($file,filesize($fo));
 
+		$db = json_decode($fr, true);
+		$_REQUEST['sheet'] = $db['sheet'];
+}
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
 {
 	$_REQUEST['sheet']['application'] = 1;
