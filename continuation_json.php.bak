@@ -113,7 +113,7 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 }
 if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application']) && isset($cf[$_REQUEST['sheet']['JobID']][$_REQUEST['sheet']['application']]))
 {
-		$fo = $dir . $cf[$_REQUEST['sheet']['JobID']][$prev];
+		$fo = $dir . $cf[$_REQUEST['sheet']['JobID']][$_REQUEST['sheet']['application']];
 		$file = fopen($fo, 'r');
 		$fr = fread($file,filesize($fo));
 

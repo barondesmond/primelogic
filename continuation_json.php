@@ -219,8 +219,9 @@ for ($page = 2; $page <= $pages; $page++)
 						if ($sheet['application'] == '1')
 						{
 							$sheet['originalcontract'] += $db[$page][$row][3];
+							$sheet['originalcontractrow'] = $rownum;
 						}
-						elseif ($sheet['application'] > 1 && $sheet['lastrow'] < $rownum)
+						elseif ($sheet['application'] > 1 && $sheet['lastrow'] < $rownum && $rownum > $sheet['originalcontractrow'])
 						{
 							if ($db[$page][$row][3]>0)
 							{
