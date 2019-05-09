@@ -118,6 +118,16 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 		$fr = fread($file,filesize($fo));
 
 		$db = json_decode($fr, true);
+		if ($db['application'] == '1')
+		{
+			$db['originalcontract'] = '0';
+		}
+		elseif ($db['application'] > '1')
+		{
+			$db['monthadditions'] = '0';
+			$db['monthdeductions'] = '0';	
+		}
+
 		$_REQUEST['sheet'] = $db['sheet'];
 }
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
@@ -208,8 +218,6 @@ for ($page = 2; $page <= $pages; $page++)
 						$db[$page][$row][1] = $rownum;
 						if ($sheet['application'] == '1')
 						{
-							$sheet['originalcontractrow'] = $rownum;
-
 							$sheet['originalcontract'] += $db[$page][$row][3];
 						}
 						elseif ($sheet['application'] > 1 && $sheet['lastrow'] < $rownum)
