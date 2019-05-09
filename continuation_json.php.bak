@@ -111,6 +111,7 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 		unset($_REQUEST['sheet']['application']);
 	}
 	unset($prev);
+	exit;
 }
 
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
