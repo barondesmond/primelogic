@@ -132,29 +132,19 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 }
 if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
 {
-	$_REQUEST['sheet']['application'] = 1;
-	$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
 	//echo $fo;
-	$i=1;
-	while (file_exists($fo) && $i<10)
+
+	$app = count($_REQUEST['sheet']['JobID'])
+	$fo = $dir . $_REQUEST['sheet'][$app];
+	if (file_exists($fo))
 	{
 		$file = fopen($fo, 'r');
 		$fr = fread($file,filesize($fo));
-
-		$_REQUEST = json_decode($fr, true);
-		$prev = $_REQUEST['sheet']['application'];
-		$_REQUEST['sheet']['appliation']++;
-		$fo = $dir . $_REQUEST['sheet']['JobID'] . '.' . $_REQUEST['sheet']['application']. '.json';
 		fclose($file);
-		$i++;
+		$_REQUEST = json_decode($fr, true);
+
 	}
-	if (isset($prev))
-	{
-		$_REQUEST['sheet']['application'] = $prev;
-	}
-	//echo $fr;
-	//print_r($_REQUEST);
-	//exit;
+
 	
 }
 if (!isset($_REQUEST['sheet']['pages']))
