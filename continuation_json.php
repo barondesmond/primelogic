@@ -130,7 +130,7 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 
 		$_REQUEST['sheet'] = $db['sheet'];
 }
-if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']))
+if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application']) && isset($cf[$_REQUEST['sheet']['JobID']]))
 {
 	//echo $fo;
 
