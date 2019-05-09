@@ -110,6 +110,8 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 		exit;
 		unset($_REQUEST['sheet']['application']);
 	}
+		print_r($_REQUEST);
+
 	unset($prev);
 	exit;
 }
