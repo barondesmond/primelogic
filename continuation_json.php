@@ -118,14 +118,14 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 		$fr = fread($file,filesize($fo));
 
 		$db = json_decode($fr, true);
-		if ($db['application'] == '1')
+		if ($db['sheet']['application'] == '1')
 		{
-			$db['originalcontract'] = '0';
+			$db['sheet']['originalcontract'] = '0';
 		}
 		elseif ($db['application'] > '1')
 		{
-			$db['monthadditions'] = '0';
-			$db['monthdeductions'] = '0';	
+			$db['sheet']['monthadditions'] = '0';
+			$db['sheet']['monthdeductions'] = '0';	
 		}
 
 		$_REQUEST['sheet'] = $db['sheet'];
