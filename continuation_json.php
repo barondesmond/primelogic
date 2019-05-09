@@ -134,8 +134,8 @@ if (isset($_REQUEST['sheet']['JobID']) && !isset($_REQUEST['sheet']['application
 {
 	//echo $fo;
 
-	$app = count($_REQUEST['sheet']['JobID'])
-	$fo = $dir . $_REQUEST['sheet'][$app];
+	$app = count($cf[$_REQUEST['sheet']['JobID']]);
+	$fo = $dir . $cf[$_REQUEST['sheet']['JobID']][$app];
 	if (file_exists($fo))
 	{
 		$file = fopen($fo, 'r');
