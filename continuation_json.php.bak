@@ -98,8 +98,8 @@ if (isset($_REQUEST['sheet']['JobID']) && isset($_REQUEST['sheet']['application'
 		{
 			for ($row=1; $row <= $_REQUEST['sheet']['lastrow']; $row++)
 			{
-				$_REQUEST[$page][$row][4] += $_REQUEST[$page][$row][5];
-				$_REQUEST[$page][$row][5] = 0;
+				$_REQUEST['continuation'][$page][$row][4] += $_REQUEST['continuation'][$page][$row][5];
+				$_REQUEST['continuation'][$page][$row][5] = 0;
 			}
 		}
 	}

@@ -202,7 +202,7 @@ for ($page = 2; $page <= $pages; $page++)
 		{
 			if ($col==3)
 			{
-				if ($db[$page][$row][$col] > 0 && $row != '29')
+				if ($db[$page][$row][$col] != 0 && $db[$page][$row][$col] != '' && $row != '29')
 				{
 						$rownum++;
 						$db[$page][$row][1] = $rownum;
