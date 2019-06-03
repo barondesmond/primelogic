@@ -1,0 +1,20 @@
+AsyncStorage image data
+timestamp (at time uploaded)
+EmpNo (stored)
+Screen (Document, Override, DispatchComplete, Job, Dispatch, Alternative) (passed by reference) and return to
+Ref# (Job, Dispatch, EmpNo, Document) (stored)
+Doc# (1,2,3)?
+LocName (location)  passed by reference)
+note (receipt amount, text for picture) (1/2 fields) (filled at time taken)
+address (Job/Dispatch) (passed by reference?  or stored?)
+latitude (2 fields) (retrieved on loading)
+longitude (2 fields) (retrieved on loading)
+this.props.navigation.navigate('JobLocation', {onGoBack: () => this.checkStatus(true), LocName: this.state.DispatchLocation});
+
+
+    name: `${EmpNo}.${violation}.${LocName}.${latitude}.${longitude}.${fileType}`,
+
+
+
+
+

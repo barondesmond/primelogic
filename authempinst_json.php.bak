@@ -297,7 +297,7 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	}
 	if ($db['Screen'] == 'Dispatch')
 	{
-		$loc = location_api($db['DispatchName'], $db);
+		$loc = location_api($db['DispatchName']);
 
 		$db['latitude'] = $loc['latitude'];
 		$db['longitude'] = $loc['longitude'];
@@ -308,7 +308,7 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	}
 	if ($db['Screen'] == 'Job')
 	{
-		$loc = location_api($db['LocName'], $db);
+		$loc = location_api($db['LocName']);
 
 		$db['latitude'] = $loc['latitude'];
 		$db['longitude'] = $loc['longitude'];
