@@ -627,7 +627,7 @@ while ($db = mssql_fetch_assoc($res))
 	{
 		$js['jobs'] = $js['jobsnotauthorized'];
 	}	
-	if ($jge['numEmp'] > 0)
+	if (isset($jge) && $jge['numEmp'] > 0)
 	{
 		$js = array_merge($jge, $js);
 	}
