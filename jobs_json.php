@@ -26,7 +26,11 @@ if (!isset($_REQUEST['ServiceMan']))
 {
 	$_REQUEST['ServiceMan'] = '';
 }
-$js = jobs_query($dev, $_REQUEST['ServiceMan']);
+if (!isset($_REQUEST['order']))
+{
+	$_REQUEST['order'] = 'LocName';
+}
+$js = jobs_query($dev, $_REQUEST['ServiceMan'], $_REQUEST['order']);
 
 header('Content-Type: application/json');
 
