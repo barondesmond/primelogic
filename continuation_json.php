@@ -319,7 +319,7 @@ if (!isset($_REQUEST['order']))
 {
 	$_REQUEST['order'] = 'Name';
 }
-$jobs = jobs_query($dev, $_REQUEST['ServiceMan'], $_REQUEST['order']);
+$jobs = jobs_query($dev, $_REQUEST['ServiceMan'], $_REQUEST['order'], $open = 'any', $valid = 'no');
 $js['jobs'] = $jobs['jobs'];
 $json = json_encode($js);
 echo $json;

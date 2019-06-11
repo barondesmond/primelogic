@@ -317,7 +317,7 @@ if (!isset($_REQUEST['ServiceMan']))
 }
 if (!isset($_REQUEST['order']))
 {
-	$_REQUEST['order'] = 'LocName';
+	$_REQUEST['order'] = 'Name';
 }
 $jobs = jobs_query($dev, $_REQUEST['ServiceMan'], $_REQUEST['order']);
 $js['jobs'] = $jobs['jobs'];
