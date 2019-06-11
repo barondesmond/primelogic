@@ -577,7 +577,7 @@ return $html;
 
 
 
-function jobs_query($dev='', $ServiceMan='')
+function jobs_query($dev='', $ServiceMan='', $order = 'LocName')
 {
 
 	if ($ServiceMan != '')
@@ -591,7 +591,7 @@ $js['description'] = 'Job Name, Job Location';
 $sql = "SELECT  Jobs.Name as Name, Jobs.JobID, Location.CustNo, Location.LocNo, Location.LocName as LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, Location.Add1, Location.City, Location.State, Location.Zip,Jobs.JobNotes as JobNotes, Location.latitude, Location.longitude FROM Jobs$dev as Jobs
 	INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 	WHERE Jobs.JobStatus = '100' and Jobs.Inactive = '0' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''
-	ORDER BY LocName ";
+	ORDER BY " . $order;
 $res = mssql_query($sql);
 $i=1;
 while ($db = mssql_fetch_assoc($res))
