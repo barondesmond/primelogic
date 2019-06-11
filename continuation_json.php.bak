@@ -311,6 +311,16 @@ header('Content-Type: application/json');
 $js['continuation'] = $db;
 $js['sheet'] = $sheet;
 $js['cf'] = $cf;
+if (!isset($_REQUEST['ServiceMan']))
+{
+	$_REQUEST['ServiceMan'] = '';
+}
+if (!isset($_REQUEST['order']))
+{
+	$_REQUEST['order'] = 'LocName';
+}
+$jobs = jobs_query($dev, $_REQUEST['ServiceMan'], $_REQUEST['order']);
+$js['jobs'] = $jobs['jobs'];
 $json = json_encode($js);
 echo $json;
 if ($sheet['application'] != '' && $sheet['JobID'] != '')
