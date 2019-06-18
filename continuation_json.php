@@ -1,5 +1,8 @@
 <?php
 include("_db_config.php");
+include("_job.php");
+include("_location_api.php");
+include("_employees.php");
 
 function continuation_parse_file($file)
 {
@@ -308,6 +311,16 @@ header('Content-Type: application/json');
 $js['continuation'] = $db;
 $js['sheet'] = $sheet;
 $js['cf'] = $cf;
+if (!isset($_REQUEST['ServiceMan']))
+{
+	$_REQUEST['ServiceMan'] = '';
+}
+if (!isset($_REQUEST['order']))
+{
+	$_REQUEST['order'] = 'Name';
+}
+$jobs = jobs_query($dev, $_REQUEST['ServiceMan'], $_REQUEST['order'], $open = 'any', $valid = 'no');
+$js['jobs'] = $jobs['jobs'];
 $json = json_encode($js);
 echo $json;
 if ($sheet['application'] != '' && $sheet['JobID'] != '')
