@@ -333,9 +333,10 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 		}
 	}
 
-
-	
-
+if (!$db)
+	{
+		$db['error'] = $error;
+	}
 return $db;
 }
 
@@ -388,9 +389,9 @@ if ($error2 = add_note($_REQUEST, $d))
 
 $db = TimeClockQuery($_REQUEST, $d);
 
-if (!$db)
+if (!$db || $db['error'])
 {
-	$db['authorized'] = '1';
+	$db['authorized'] = '0';
 }
 
 	$db['id'] = $i;
