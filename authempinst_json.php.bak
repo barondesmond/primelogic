@@ -272,7 +272,7 @@ return $error;
 
 function TimeClockQuery($req, $dev='')
 {
-$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1, DispTech.Counter, Jobs.JobID, Location.Add1, Location.Add2, Location.City, Location.State, Location.Zip, Location.Phone1  FROM Employee
+$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1, DispTech.Counter, Jobs.JobID, Location.Add1 as JobAdd!, Location.Add2 as JobAdd2, Location.City as JobCity, Location.State as JobState, Location.Zip as JobZip, Location.Phone1 as JobPhone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
 LEFT JOIN Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0' and TimeClockApp.JobID = Jobs.JobID
@@ -308,6 +308,11 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	}
 	if ($db['Screen'] == 'Job')
 	{
+		$db['Add1'] = $db['JobAdd1'];
+		$db['Add2'] = $db['JobAdd2'];
+		$db['City'] = $db['JobCity'];
+		$db['State'] = $db['JobState'];
+		$db['Zip'] = $db['JobZip'];
 		$loc = location_api($db['LocName']);
 
 		$db['latitude'] = $loc['latitude'];
