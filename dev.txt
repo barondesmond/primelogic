@@ -5,7 +5,7 @@ SELECT * INTO DispTechDev FROM DispTech;
 SELECT * INTO DispatchDev FROM Dispatch;
 SELECT * INTO JobsDev FROM Jobs;
 SELECT * INTO PRTimeEntryDev FROM PRTimeEntry;
-DELETE FROM TimeClockApp ; 
+DELETE FROM TimeClockApp WHERE EmpNo = '0195' ; 
 DROP TABLE DispTechDev; 
 DELETE FROM PRHours;
 
