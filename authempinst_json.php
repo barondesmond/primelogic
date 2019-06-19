@@ -390,7 +390,7 @@ $db = TimeClockQuery($_REQUEST, $d);
 
 if (!$db)
 {
-	$db['authorized'] = '0';
+	$db['authorized'] = '1';
 }
 
 	$db['id'] = $i;
