@@ -2,6 +2,16 @@
 include("_db_config.php");
 include("_location_api.php");
 
+include("_user_app_auth.php");
+
+$auth = UserAppAuth($_REQUEST);
+if ($auth['authorized'] != '1')
+{
+	header('Content-Type: application/json');
+	echo json_encode($auth);
+	exit;
+}
+
 function dispatch_hours($db, $dev = '')
 {
 	if ($db['Dispatch']!='')
@@ -380,7 +390,7 @@ $db = TimeClockQuery($_REQUEST, $d);
 
 if (!$db)
 {
-	$db['authorized'] = '0';
+	
 }
 
 	$db['id'] = $i;
