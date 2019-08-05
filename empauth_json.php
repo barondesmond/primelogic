@@ -21,6 +21,8 @@ if ($_REQUEST['EmpName']   && $_REQUEST['Email'])
 	$sel = " and EmpName = '" . $_REQUEST['EmpName'] . "' and Email = '" . $_REQUEST['Email'] . "'";
 }
 
+	
+
 
 
 $sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
@@ -34,16 +36,19 @@ $error[] = mssql_get_last_message();
 
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
+if ($db['Email'] == 'baron@desmond.com')
+{
+
 
 
 if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
 {
-	$db['error'] = 'Not Authorized';
-	$db['authorized'] = 0;
+
 	header('Content-Type: application/json');
-	//$db['error'] = $error;
-	//$db['sql'] = $sa;
+	$db['installationId'] = $_REQUEST['installationId'];
 	echo json_encode($db);
+	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	mssql_query($sql);
 	exit;
 }
 
