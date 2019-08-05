@@ -38,17 +38,17 @@ $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 if ($db['Email'] == 'baron@desmond.com')
 {
-
-
-
-if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
-{
-
-	header('Content-Type: application/json');
 	$db['installationId'] = $_REQUEST['installationId'];
 	echo json_encode($db);
 	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	mssql_query($sql);
+
+}
+if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
+{
+
+	header('Content-Type: application/json');
+	$db['authorized'] = '0';
 	exit;
 }
 
