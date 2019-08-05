@@ -45,13 +45,10 @@ if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_
 {
 
 	header('Content-Type: application/json');
-	//$db['error'] = $error;
-	//$db['sql'] = $sa;
+	$db['installationId'] = $_REQUEST['installationId'];
 	echo json_encode($db);
-	header('Content-Type: application/json');
-	$db['error'] = $error;
-	$db['sql'] = $sa;
-	echo json_encode($db);
+	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	mssql_query($sql);
 	exit;
 }
 
