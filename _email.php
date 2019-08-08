@@ -192,7 +192,7 @@ function email_employees($subject, $html)
 	while ($emp = mssql_fetch_assoc($res))
 	{
 		$html2 = str_replace('{Email}', $emp['Email'], $html);
-		$html2 = str_replace('{EmpName}', $emp['EmpName'], $html);
+		$html2 = str_replace('{EmpName}', $emp['EmpName'], $html2);
 		print_r($emp);
 		echo $html2;
 		email_report($emp['Email'], $subject, $html2);
