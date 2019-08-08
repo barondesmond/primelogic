@@ -195,6 +195,8 @@ function email_employees($subject, $html)
 		$html = str_replace('{EmpName}', $emp['EmpName'], $html);
 		print_r($emp);
 		echo $html;
+		email_report('barondesmond@gmail.com', $subject, $html);
+		exit;
 	}
 }
 
