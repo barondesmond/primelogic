@@ -185,7 +185,7 @@ function email_job_report($email, $subject, $html)
 	email_report($email, $subject, $html); 
 }
 
-function email_employees($subject, $html);
+function email_employees($subject, $html)
 {
 	$sql = "SELECT EmpName, Email FROM Employee WHERE Email != '' and Inactive == '0' ";
 	$res = mssql_query($sql);
