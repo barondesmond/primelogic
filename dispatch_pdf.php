@@ -132,7 +132,7 @@ return $file;
 function pdf_query($dispatch='')
 {
 
-	if ($invoice == '')
+	if ($dispatch == '')
 	{
 		$arrays = '';
 	}
