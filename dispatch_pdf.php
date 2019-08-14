@@ -56,7 +56,7 @@ $pdf->SetFooterMargin(0);
 $pdf->setPrintFooter(false);
 
 // set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->SetAutoPageBreak(false, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -84,9 +84,9 @@ $pdf->AddPage();
 // -- set new background ---
 
 // get the current page break margin
-$bMargin = $pdf->getBreakMargin();
+//$bMargin = $pdf->getBreakMargin();
 // get current auto-page-break mode
-$auto_page_break = $pdf->getAutoPageBreak();
+//$auto_page_break = $pdf->getAutoPageBreak();
 // disable auto-page-break
 $pdf->SetAutoPageBreak(false, 0);
 // set bacground image

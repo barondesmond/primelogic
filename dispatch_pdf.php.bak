@@ -56,7 +56,7 @@ $pdf->SetFooterMargin(0);
 $pdf->setPrintFooter(false);
 
 // set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->SetAutoPageBreak(false, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -132,7 +132,7 @@ return $file;
 function pdf_query($dispatch='')
 {
 
-	if ($invoice == '')
+	if ($dispatch == '')
 	{
 		$arrays = '';
 	}
