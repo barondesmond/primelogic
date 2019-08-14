@@ -49,6 +49,7 @@ function dispatch_init($dbs, $db)
 		}
 	}
 return $dbs;
+}
 
 function dispatch_header($dbs = '')
 {
