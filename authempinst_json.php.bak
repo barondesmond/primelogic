@@ -126,6 +126,11 @@ function dispatch_db($db, $dev='')
 		$db['error'][] = $sdb;
 		return $db;
 	}
+	if ($sdb['checkinStatus'] == 'Stop' && $sdb['DispDate'] == '')
+	{
+		$db['error'][] = 'Missing DispDate on checkinStatus Stop';
+		return $db;
+	}
 	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending') and Counter = '" . $sdb['Counter'] . "' ";
 
 	if ($db['checkinStatus'] == 'Start')
