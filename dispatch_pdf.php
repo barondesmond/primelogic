@@ -111,11 +111,11 @@ $pdf->setPageMark();
 
 	$pdf -> writeHTMLCell('600', '100', '0', '0', $html, $border);
 	$html = dispatch_scope($dbs);
-	$pdf -> writeHTMLCell('600', '100', '101', '0', $html, $border);
+	$pdf -> writeHTMLCell('600', '100', '0', '100', $html, $border);
 
 	$html = dispatch_footer($dbs);
 
-	$pdf -> writeHTMLCell('0', '0', '600', '0', $html, $border);
+	$pdf -> writeHTMLCell('600', '100', '0', '600', $html, $border);
 
 
 
