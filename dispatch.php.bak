@@ -19,7 +19,11 @@ if ($_GET['Dispatch'])
 	$file = pdf_input($_GET['Dispatch']);
 
 //$file = htmlpdf($html, 'test.pdf');
-echo $file;
+
+header("Content-type:application/pdf");
+header("Content-Disposition:attachment;filename='downloaded.pdf'");
+readfile("$file");
+?>
 
 }
 //email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);

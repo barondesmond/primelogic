@@ -23,7 +23,7 @@ if ($_GET['Dispatch'])
 header("Content-type:application/pdf");
 header("Content-Disposition:attachment;filename='downloaded.pdf'");
 readfile("$file");
-?>
+
 
 }
 //email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
