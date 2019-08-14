@@ -18,6 +18,7 @@ if ($_GET['Dispatch'])
 //$file = htmlpdf($html, 'test.pdf');
 echo $file;
 
+}
 //email_report("barondesmond@gmail.com", "test pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
 
 ?>

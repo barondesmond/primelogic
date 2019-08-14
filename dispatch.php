@@ -9,7 +9,10 @@ include("dispatchpdf.php");
 
 
 
-
+if ($argv[1])
+{
+	$_GET['Dispatch'] = $argv[1];
+}
 
 if ($_GET['Dispatch'])
 {
