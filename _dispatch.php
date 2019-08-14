@@ -56,14 +56,23 @@ function dispatch_header($dbs = '')
 
 	$html =  '<table border=1><tr><td><table><tr><td><b>' . $dbs['DispDate'] . '</b></td><td><b>Prime Logic, Inc</b></td><td></td></tr>';
 	$html .= '<tr><td></td><td><b>Dispatch Ticket</b></td><td></td></tr></table>';
-	$html .= '<table border=0><tr><td>Dispatch</td><td>Cust #</td><td>Loc #</td><td>Priority</td></tr>';
+	return $html;
+}
+function dispatch_priority($dbs)
+{
+
+	$html = '<table border=0><tr><td>Dispatch</td><td>Cust #</td><td>Loc #</td><td>Priority</td></tr>';
 	$html .= '<tr><td>' . $dbs['Dispatch'] . '</td><td>' . $dbs['CustNo'] . '</td><td>' . $dbs['LocNo'] . '</td><td>' . $dbs['Priority'] . '</td></tr></table>';
-	$html .= '<table><tr><td><b>Customer/Location Address</b></td></tr>';
+return $html;
+}
+
+function dispatch_customer($dbs)
+{
+	$html = '<table><tr><td><b>Customer/Location Address</b></td></tr>';
 	$html .= '<tr><td>' . $dbs['LocName'] . '</td><td><b>' . $dbs['Contact'] . '</b></td><td>' . $dbs['Phone'] . '</td></tr>';
 	$html .= '<tr><td>' . $dbs['Add1'] . '</td><td>' . $dbs['Contact2'] . '</td><td>' . $dbs['Phone2'] . '</td></tr>';
 	$html .= '<tr><td>' . $dbs['City'] . ' ' . $dbs['State'] . ' ' . $dbs['Zip'] . '</td>/tr></table>';
 
-	$html .= '</td></tr></table>';
 	return $html;
 }
 

@@ -63,7 +63,7 @@ function dispatch_header($dbs = '')
 	$html .= '<tr><td>' . $dbs['Add1'] . '</td><td>' . $dbs['Contact2'] . '</td><td>' . $dbs['Phone2'] . '</td></tr>';
 	$html .= '<tr><td>' . $dbs['City'] . ' ' . $dbs['State'] . ' ' . $dbs['Zip'] . '</td>/tr></table>';
 
-	$html .= '</table>';
+	$html .= '</td></tr></table>';
 	return $html;
 }
 
