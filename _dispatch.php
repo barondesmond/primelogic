@@ -91,7 +91,7 @@ return $html;
 
 function dispatch_footer($dbs = '')
 {
-	$html = '</body></html>';
+	$html = '';
 	return $html;
 }
 
