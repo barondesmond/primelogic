@@ -4,7 +4,7 @@ require ('_email.php');
 require ('_db_config.php');
 require ('_report.php');
 include("_dispatch.php");
-include("dispatchpdf.php");
+include("dispatch_pdf.php");
 
 
 
