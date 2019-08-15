@@ -173,10 +173,10 @@ function pdf_input($dispatch='')
 	$file = '/var/www/dispatchpdf/' . $dispatch . '.pdf';
 	//echo $file;
 	//exit;
-	if (!file_exists($file))
-	{
+	//if (!file_exists($file))
+	//{
 		$file = pdf_output($arrays, $file);
-	}	
+	//}	
 return $file;
 
 }
