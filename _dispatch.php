@@ -87,7 +87,7 @@ function dispatch_customer($dbs)
 function dispatch_scope($dbs = '')
 {
 	$html = '<hr size="6" width="100%" align="left" color="black">';
-	$html .= '<table><tr><td>Scope of Work</td></tr>';
+	$html .= '<table><tr><td><b>Scope of Work</b></td></tr>';
 	$html .= '<tr><td>' . str_replace("\r\n", "\r\n<BR>",$dbs['Notes']) . '</td></tr></table>';
 
 return $html;

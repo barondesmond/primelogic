@@ -69,7 +69,7 @@ function dispatch_header($dbs = '')
 function dispatch_priority($dbs)
 {
 
-	$html = '<table border=0><tr><td>Dispatch</td><td>Cust #</td><td>Loc #</td><td>Priority</td></tr>';
+	$html = '<table><tr><td>Dispatch</td><td>Cust #</td><td>Loc #</td><td>Priority</td></tr>';
 	$html .= '<tr><td>' . $dbs['Dispatch'] . '</td><td>' . $dbs['CustNo'] . '</td><td>' . $dbs['LocNo'] . '</td><td>' . $dbs['Priority'] . '</td></tr></table>';
 return $html;
 }
@@ -87,7 +87,7 @@ function dispatch_customer($dbs)
 function dispatch_scope($dbs = '')
 {
 	$html = '<hr size="6" width="100%" align="left" color="black">';
-	$html .= '<table border=0><tr><td>Scope of Work</td></tr>';
+	$html .= '<table><tr><td>Scope of Work</td></tr>';
 	$html .= '<tr><td>' . str_replace("\r\n", "\r\n<BR>",$dbs['Notes']) . '</td></tr></table>';
 
 return $html;
@@ -98,7 +98,7 @@ function dispatch_status($dbs = '')
 	$html = '<hr size="6" width="80%" align="left" color="black">';
 
 	$html .= '<table><tr><td>';
-	$html .= '<table border=1><tr><td>Status</td></tr></table>';
+	$html .= '<table><tr><td>Status</td></tr></table>';
 	$html .= '</td><td>';
 	$html .= '<img src="' . $dbs['signature'] . '">';
 	$html .= '</td></tr></table>';
