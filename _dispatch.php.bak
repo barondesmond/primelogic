@@ -35,7 +35,8 @@ return $db;
 function dispatch_key()
 {
 
-	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature' );
+	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature', 
+		'PromDate' );
 return $key;
 }
 
