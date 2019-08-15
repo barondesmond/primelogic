@@ -69,7 +69,7 @@ function dispatch_header($dbs = '')
 function dispatch_priority($dbs)
 {
 
-	$html = '<table><tr><td>Dispatch</td><td>Cust #</td><td>Loc #</td><td>Priority</td></tr>';
+	$html = '<table><tr><td><b>Dispatch</b></td><td><b>Cust #</b></td><td><b>Loc #</b></td><td><b>Priority</b></td></tr>';
 	$html .= '<tr><td>' . $dbs['Dispatch'] . '</td><td>' . $dbs['CustNo'] . '</td><td>' . $dbs['LocNo'] . '</td><td>' . $dbs['Priority'] . '</td></tr></table>';
 return $html;
 }
