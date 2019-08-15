@@ -302,8 +302,8 @@ return $files;
 function location_query()
 {
 
-
-	$js['files'] = location_files();
+	$files = location_files();
+	$js['files'] = $files; 
 	foreach ($files as $id=>$file)
 	{
 		if ($lc = location_parse_file($file))

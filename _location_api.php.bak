@@ -287,9 +287,8 @@ function location_details($file)
 return false;
 }
 
-function location_query()
+function location_files()
 {
-
 static $files;
 	
 	if (!isset($files))
@@ -297,7 +296,14 @@ static $files;
 		$dir = '/var/www/html/primelogic/upload/';
 		$files = scandir($dir);
 	}
-	$js['files'] = $files;
+return $files;
+}
+
+function location_query()
+{
+
+
+	$js['files'] = location_files();
 	foreach ($files as $id=>$file)
 	{
 		if ($lc = location_parse_file($file))
