@@ -62,7 +62,7 @@ return $dbs;
 function dispatch_header($dbs = '')
 {
 
-	$html =  '<table><tr><td><b>' . $dbs['DispDate'] . '</b></td><td><b>Prime Logic, Inc</b></td><td></td></tr>';
+	$html =  '<table><tr><td><b>' . $dbs['PromDate'] . '</b></td><td><b>Prime Logic, Inc</b></td><td></td></tr>';
 	$html .= '<tr><td></td><td><b>Dispatch Ticket</b></td><td></td></tr></table>';
 	return $html;
 }
