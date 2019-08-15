@@ -119,11 +119,11 @@ function dispatch_signature_query($dispatch)
 
 
 	$files = location_files();
-	print_r($files);
 	foreach ($files as $id=>$file)
 	{
 		if ($lc = location_parse_file($file))
 		{
+			print_r($lc);
 			if ($lc['reference'] == $dispatch && $lc['Screen'] == 'DispatchSignaure')
 			{
 				return $file;
