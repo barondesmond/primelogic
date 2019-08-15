@@ -142,7 +142,7 @@ function pdf_query($dispatch='')
 	{
 		$arrays = '';
 	}
-	$sql = "SELECT Dispatch.Dispatch, DispLoc.LocName as LocName, Dispatch.Notes as Notes, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Dispatch as Dispatch 
+	$sql = "SELECT Dispatch.Dispatch, DispLoc.LocName as LocName, Dispatch.Notes as Notes, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1, Dispatch.CustNo, Dispatch.Priority  FROM Dispatch as Dispatch 
 INNER JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 WHERE Dispatch.Dispatch = '" . $dispatch . "' and Dispatch.Complete != '' ";
 
