@@ -109,7 +109,7 @@ $pdf->setPageMark();
 
 	$html = dispatch_header($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '5', '10', $html, $border);
+	$pdf -> writeHTMLCell('200', '20', '5', '10', $html, 1);
 	$html = dispatch_priority($dbs);
 
 	$pdf -> writeHTMLCell('200', '20', '5', '20', $html, $border);
