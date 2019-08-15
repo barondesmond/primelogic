@@ -104,7 +104,12 @@ $pdf->setPageMark();
 //$pdf->writeHTML($html, true, false, true, false, '');
 
 	$dbs = dispatch_init($dbs, $arrays[0]);
-$img_file = '/var/www/html/primelogic/upload/' . str_replace(' ', '%20', $dbs['signature']);
+$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
+if (!file_exists($img_file))
+	{
+	echo $img_file;
+	exit;
+	}
 
 $pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 
