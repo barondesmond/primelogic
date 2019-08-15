@@ -77,7 +77,7 @@ return $html;
 function dispatch_customer($dbs)
 {
 	$html = '<table><tr><td><b>Customer/Location Address</b></td><td></td></tr>';
-	$html .= '<tr><td>' . $dbs['LocName'] . '<BR>' . $dbs['Add1'] . '<BR>' .  $dbs['City'] . ' ' . $dbs['State'] . ' ' . $dbs['Zip'] . '</td><td><b>' . $dbs['Contact'] . '</b></td><td>' . $dbs['Phone'] . '<BR>' .  $dbs['Contact2'] . $dbs['Phone2'] . '</td></tr>';
+	$html .= '<tr><td>' . $dbs['LocName'] . '<BR>' . $dbs['Add1'] . '<BR>' .  $dbs['City'] . ' ' . $dbs['State'] . ' ' . $dbs['Zip'] . '</td><td><b>' . $dbs['Contact'] . '</b> ' . $dbs['Phone'] . '<BR><b>' .  $dbs['Contact2'] . '</b>' . $dbs['Phone2'] . '</td></tr>';
 	$html .= '</table>';
 
 	return $html;
@@ -111,6 +111,28 @@ function dispatch_footer($dbs = '')
 	return $html;
 }
 
+
+function dispatch_signature_query()
+{
+
+
+	$js['files'] = location_files();
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+			$db = location_lookup($lc);
+
+			if (isset($lc['location']) && isset($db['location']) && $db['location'] == $lc['location'])
+			{
+				$js[$lc['location']][$id] = $lc;
+				$js['location'][$id] = $db['location'];
+				$js['locationapi'][$db['location']] = $db;
+			}
+		}
+	}
+return $js;
+}
 
 function dispatch_query($ServiceMan = '', $dev='')
 {

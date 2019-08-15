@@ -112,6 +112,24 @@ function dispatch_footer($dbs = '')
 }
 
 
+
+
+function dispatch_signature_query($dispatch)
+{
+
+
+	$js['files'] = location_files();
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+			if ($lc['reference'] == $dispatch && $lc['Screen'] == 'DispatchSignaure')
+			{
+				return $file;
+			}
+	}
+}
+
 function dispatch_query($ServiceMan = '', $dev='')
 {
 

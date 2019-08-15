@@ -5,7 +5,7 @@ require ('_db_config.php');
 require ('_report.php');
 include("_dispatch.php");
 include("dispatch_pdf.php");
-
+include("_location_api.php");
 
 
 

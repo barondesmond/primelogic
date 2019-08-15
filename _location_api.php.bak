@@ -4,7 +4,7 @@
 function mapquest_reverse_geocode($lat,$long)
 {
 //$url = "http://open.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . ',' . $long . '&includeRoadMetadata=true&includeNearestIntersection=true' ;
-$url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . '%2C' . $long . '&outFormat=json&thumbMaps=true';
+$url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" . MAPQUEST_KEY . "&location=" . $lat . '%2C' . $long . '&outFormat=json&thumbMaps=true&includeNearestIntersection=true&includeRoadMetadata=true';
 
 $respJson = file_get_contents($url);
 
@@ -123,7 +123,7 @@ return $int;
 
 function location_parse_file($file)
 {
-	$key = array('time', 'EmpNo', 'Desc', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
+	$key = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'Desc', 'note', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
 	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
@@ -151,7 +151,8 @@ return $db;
 function location_file_update($db)
 {
 	$file = '';
-	$update = array('time', 'EmpNo', 'Desc', 'location', 'latitude', 'longitude', 'AcceptDeny', 'ext');
+	$update = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'Desc', 'note', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'AcceptDeny', 'ext');
+
 	foreach ($update as $num=>$key)
 	{
 		if (isset($db[$key]))

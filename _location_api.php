@@ -123,7 +123,7 @@ return $int;
 
 function location_parse_file($file)
 {
-	$key = array('time', 'EmpNo', 'Desc', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
+	$key = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'Desc', 'note', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
 	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
@@ -151,7 +151,8 @@ return $db;
 function location_file_update($db)
 {
 	$file = '';
-	$update = array('time', 'EmpNo', 'Desc', 'location', 'latitude', 'longitude', 'AcceptDeny', 'ext');
+	$update = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'Desc', 'note', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'AcceptDeny', 'ext');
+
 	foreach ($update as $num=>$key)
 	{
 		if (isset($db[$key]))
@@ -286,9 +287,8 @@ function location_details($file)
 return false;
 }
 
-function location_query()
+function location_files()
 {
-
 static $files;
 	
 	if (!isset($files))
@@ -296,7 +296,14 @@ static $files;
 		$dir = '/var/www/html/primelogic/upload/';
 		$files = scandir($dir);
 	}
-	$js['files'] = $files;
+return $files;
+}
+
+function location_query()
+{
+
+
+	$js['files'] = location_files();
 	foreach ($files as $id=>$file)
 	{
 		if ($lc = location_parse_file($file))
