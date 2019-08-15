@@ -127,6 +127,7 @@ function dispatch_signature_query($dispatch)
 			{
 				return $file;
 			}
+		}
 	}
 }
 

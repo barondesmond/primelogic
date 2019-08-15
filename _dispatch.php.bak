@@ -112,7 +112,9 @@ function dispatch_footer($dbs = '')
 }
 
 
-function dispatch_signature_query()
+
+
+function dispatch_signature_query($dispatch)
 {
 
 
@@ -121,17 +123,11 @@ function dispatch_signature_query()
 	{
 		if ($lc = location_parse_file($file))
 		{
-			$db = location_lookup($lc);
-
-			if (isset($lc['location']) && isset($db['location']) && $db['location'] == $lc['location'])
+			if ($lc['reference'] == $dispatch && $lc['Screen'] == 'DispatchSignaure')
 			{
-				$js[$lc['location']][$id] = $lc;
-				$js['location'][$id] = $db['location'];
-				$js['locationapi'][$db['location']] = $db;
+				return $file;
 			}
-		}
 	}
-return $js;
 }
 
 function dispatch_query($ServiceMan = '', $dev='')
