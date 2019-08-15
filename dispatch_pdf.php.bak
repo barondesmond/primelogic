@@ -109,19 +109,19 @@ $pdf->setPageMark();
 
 	$html = dispatch_header($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '20', '0', $html, $border);
+	$pdf -> writeHTMLCell('200', '20', '5', '10', $html, $border);
 	$html = dispatch_priority($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '20', '20', $html, $border);
+	$pdf -> writeHTMLCell('200', '20', '5', '20', $html, $border);
 	$html = dispatch_customer($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '20', '40', $html, $border);
+	$pdf -> writeHTMLCell('200', '20', '5', '40', $html, $border);
 	$html = dispatch_scope($dbs);
-	$pdf -> writeHTMLCell('200', '40', '20', '80', $html, $border);
+	$pdf -> writeHTMLCell('200', '40', '5', '80', $html, $border);
 
 	$html = dispatch_footer($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '20', '120', $html, $border);
+	$pdf -> writeHTMLCell('200', '20', '5', '120', $html, $border);
 
 
 
