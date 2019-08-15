@@ -99,7 +99,7 @@ function dispatch_status($dbs = '')
 	$html .= '<table><tr><td>';
 	$html .= '<table><tr><td>Status</td></tr></table>';
 	$html .= '</td><td>';
-	$html .= '<img src="' . $dbs['signature'] . '">';
+	$html .= '';
 	$html .= '</td></tr></table>';
 
 return $html;

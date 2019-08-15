@@ -91,10 +91,8 @@ $pdf->AddPage();
 $pdf->SetAutoPageBreak(false, 0);
 // set bacground image
 //$img_file = K_PATH_IMAGES.'image_demo.jpg';
-//$img_file = '/var/www/html/primelogic/PL_INVOICE-service-1.png';
 //$ll = pdf_background($arrays['0']['LastName']);
 
-//$pdf->Image($ll['filename'], 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 // restore auto-page-break status
 //$pdf->SetAutoPageBreak($auto_page_break, $bMargin);
 // set the starting point for the page content
@@ -106,6 +104,9 @@ $pdf->setPageMark();
 //$pdf->writeHTML($html, true, false, true, false, '');
 
 	$dbs = dispatch_init($dbs, $arrays[0]);
+$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
+
+$pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 
 	$html = dispatch_header($dbs);
 

@@ -164,7 +164,9 @@ WHERE Dispatch.Dispatch = '" . $dispatch . "' and Dispatch.Complete != '' ";
 		}
 		while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 		{
+			$db['signature'] = dispatch_signature_query($dispatch);
 			$arrays[] = $db;
+
 		}
 	}
 return $arrays;
