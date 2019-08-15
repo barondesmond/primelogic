@@ -121,11 +121,11 @@ $pdf->setPageMark();
 	$pdf -> writeHTMLCell('200', '40', '5', '80', $html, $border);
 
 	$html = dispatch_status($dbs);
-	$pdf -> writeHTMLCell('200', '40', '5', '340', $html, $border);
+	$pdf -> writeHTMLCell('200', '40', '5', '240', $html, $border);
 
 	$html = dispatch_footer($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '5', '400', $html, $border);
+	$pdf -> writeHTMLCell('200', '20', '5', '300', $html, $border);
 
 
 
