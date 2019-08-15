@@ -119,6 +119,7 @@ function dispatch_signature_query($dispatch)
 
 
 	$files = location_files();
+	print_r($files);
 	foreach ($files as $id=>$file)
 	{
 		if ($lc = location_parse_file($file))
