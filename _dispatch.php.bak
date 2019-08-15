@@ -75,7 +75,7 @@ return $html;
 
 function dispatch_customer($dbs)
 {
-	$html = '<table><tr><td><b>Customer/Location Address</b></td></tr>';
+	$html = '<table><tr><td><b>Customer/Location Address</b></td><td></td></tr>';
 	$html .= '<tr><td>' . $dbs['LocName'] . '</td><td><b>' . $dbs['Contact'] . '</b></td><td>' . $dbs['Phone'] . '</td></tr>';
 	$html .= '<tr><td>' . $dbs['Add1'] . '</td><td>' . $dbs['Contact2'] . '</td><td>' . $dbs['Phone2'] . '</td></tr>';
 	$html .= '<tr><td>' . $dbs['City'] . ' ' . $dbs['State'] . ' ' . $dbs['Zip'] . '</td>/tr></table>';
