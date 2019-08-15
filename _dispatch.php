@@ -36,7 +36,7 @@ function dispatch_init($dbs, $db)
 {
 
 
-	$key = array('Dispatch', 'DispDate', 'LocName', 'LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature' );
+	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature' );
 
 	if ($db != '' && is_array($db))
 	{
