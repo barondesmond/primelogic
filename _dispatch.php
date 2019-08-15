@@ -32,11 +32,18 @@ function dispatch_hours($db, $dev = '')
 return $db;
 }
 
+function dispatch_key()
+{
+
+	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature' );
+return $key;
+}
+
+
 function dispatch_init($dbs, $db)
 {
 
-
-	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature' );
+	$key = dispatch_key();
 
 	if ($db != '' && is_array($db))
 	{
