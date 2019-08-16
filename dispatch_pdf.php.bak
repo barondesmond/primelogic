@@ -105,16 +105,14 @@ $pdf->setPageMark();
 
 	$dbs = dispatch_init($dbs, $arrays[0]);
 $img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
-$size = getimagesize($img_file);
-print_r($size);
-
+$img = imagerotate($img_file, 90);
 if (!file_exists($img_file))
 	{
 	echo $img_file;
 	exit;
 	}
 
-$pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+$pdf->Image('@' . $img, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 
 	$html = dispatch_header($dbs);
 
