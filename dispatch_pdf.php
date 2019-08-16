@@ -109,7 +109,9 @@ if (file_exists($img_file))
 	{
 	$src = imagecreatefromjpeg($img_file);
 	$img = imagerotate($src, 90, 0);
-	$pdf->Image('@' . $img, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+	$rot = '/var/www/html/primelogic/upload/rotate.jpg';
+	imagejpg($img, $rot);
+	$pdf->Image($rot, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 
 	}
 
