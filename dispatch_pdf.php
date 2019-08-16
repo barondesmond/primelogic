@@ -112,7 +112,7 @@ if (file_exists($img_file))
 
 	}
 
-
+	$border = '0';
 	$html = dispatch_header($dbs);
 
 	$pdf -> writeHTMLCell('200', '10', '5', '10', $html, 1);
