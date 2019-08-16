@@ -111,7 +111,7 @@ if (file_exists($img_file))
 	$img = imagerotate($src, 90, 0);
 	$rot = '/var/www/html/primelogic/upload/rotate.jpg';
 	imagejpeg($img, $rot);
-	$pdf->Image($rot, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+	$pdf->Image($rot, 0, 200, 50,50 , '', '', '', false, 300, '', false, false, 0);
 
 	}
 
