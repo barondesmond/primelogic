@@ -97,7 +97,7 @@ function dispatch_status($dbs = '')
 	$html = '<hr size="6" width="80%" align="left" color="black">';
 
 	$html .= '<table><tr><td>';
-	$html .= '<table><tr><td>Status</td></tr></table>';
+	$html .= '<table><tr><td>Status : Completed</td></tr></table>';
 	$html .= '</td><td>';
 	$html .= '';
 	$html .= '</td></tr></table>';
