@@ -135,7 +135,7 @@ if (file_exists($img_file))
 
 	$html = dispatch_footer($dbs);
 
-	$pdf -> writeHTMLCell('200', '20', '5', '300', $html, $border);
+	$pdf -> writeHTMLCell('100', '20', '105', '240', $html, $border);
 
 
 
