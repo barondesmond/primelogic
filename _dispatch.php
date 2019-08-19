@@ -105,10 +105,10 @@ function dispatch_status($dbs = '')
 return $html;
 }
 
-function dispatch_footer($dbs = '', $header ='')
+function dispatch_footer($dbs = '')
 {
 
-	$html = '<hr size="6" width="100%" align="left" color="black"><BR>' . $header;
+	$html = '<hr size="6" width="100%" align="left" color="black">';
 
 	return $html;
 }
