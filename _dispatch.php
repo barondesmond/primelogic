@@ -111,7 +111,7 @@ function dispatch_footer($dbs = '')
 	<BR><BR>
 			<hr size="6" width="100%" align="left" color="black"><BR>Customer Name
 			<BR><BR>
-			<hr size="6" width="100%" align="left" color="black"><BR>customer Signature</td></tr>
+			<hr size="6" width="100%" align="left" color="black"><BR>Customer Signature</td></tr>
 
 	</table>';
 
