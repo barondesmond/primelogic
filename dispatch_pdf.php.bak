@@ -134,7 +134,11 @@ if (file_exists($img_file))
 	$pdf -> writeHTMLCell('200', '40', '5', '240', $html, $border);
 
 	$html = dispatch_footer($dbs, 'Date');
-
+	if ($dbs['customername'] == '')
+	{
+		$dbs['customername'] = 'Arthur Dillon';
+	}
+	$pdf -> writeHTMLCell('100', '20', '105', '240', $dbs['customername'], $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '240', $html, $border);
 	$html = dispatch_footer($dbs, 'Customer Name');
 
