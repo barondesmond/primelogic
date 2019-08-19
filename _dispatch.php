@@ -107,6 +107,7 @@ return $html;
 
 function dispatch_footer($dbs = '', $header ='')
 {
+
 	$html = '<hr size="6" width="100%" align="left" color="black"><BR>' . $header;
 
 	return $html;
