@@ -107,7 +107,8 @@ return $html;
 
 function dispatch_footer($dbs = '')
 {
-	$html = '';
+	$html = '<table><tr><td><hr size="6" width="100%" align="left" color="black"><BR>Date</td></tr>';
+
 	return $html;
 }
 
