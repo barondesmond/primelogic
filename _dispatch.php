@@ -107,9 +107,11 @@ return $html;
 
 function dispatch_footer($dbs = '')
 {
-	$html = '<table><tr><td><hr size="6" width="100%" align="left" color="black"><BR>Date</td></tr>
-			<tr><td><hr size="6" width="100%" align="left" color="black"><BR>customer Name</td></tr>
-			<tr><td><hr size="6" width="100%" align="left" color="black"><BR>customer Signature</td></tr>
+	$html = '<table><tr><td><hr size="6" width="100%" align="left" color="black"><BR>Date
+	<BR><BR>
+			<hr size="6" width="100%" align="left" color="black"><BR>Customer Name
+			<BR><BR>
+			<hr size="6" width="100%" align="left" color="black"><BR>customer Signature</td></tr>
 
 	</table>';
 
