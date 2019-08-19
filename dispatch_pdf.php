@@ -142,7 +142,7 @@ if (file_exists($img_file))
 	$pdf -> writeHTMLCell('100', '20', '105', '260', $html, $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '280', $html, $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '255', $dbs['customername'], $border);
-	$pdf -> writeHTMLCell('100', '20', '105', '245', $dbs['Complete'], $border);
+	$pdf -> writeHTMLCell('100', '20', '105', '235', $dbs['Complete'], $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '240', 'Date', $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '260', 'Customer Name', $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '280', 'Customer Signature', $border);
