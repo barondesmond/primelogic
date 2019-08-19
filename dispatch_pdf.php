@@ -138,7 +138,7 @@ if (file_exists($img_file))
 	{
 		$dbs['customername'] = $dbs['Contact'];
 	}
-	$pdf -> writeHTMLCell('100', '20', '105', '260', $dbs['customername'], $border);
+	$pdf -> writeHTMLCell('100', '20', '105', '250', $dbs['customername'], $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '240', $html, $border);
 	$html = dispatch_footer($dbs, 'Customer Name');
 
