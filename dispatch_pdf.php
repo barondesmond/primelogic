@@ -133,7 +133,7 @@ if (file_exists($img_file))
 	$html = dispatch_status($dbs);
 	$pdf -> writeHTMLCell('200', '40', '5', '240', $html, $border);
 
-	$html = dispatch_footer($dbs);
+	$html = dispatch_footer($dbs, 'Date');
 
 	$pdf -> writeHTMLCell('100', '20', '105', '260', $html, $border);
 

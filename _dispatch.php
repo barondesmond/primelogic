@@ -105,15 +105,9 @@ function dispatch_status($dbs = '')
 return $html;
 }
 
-function dispatch_footer($dbs = '')
+function dispatch_footer($dbs = '', $header ='')
 {
-	$html = '<table><tr><td><hr size="6" width="100%" align="left" color="black"><BR>Date
-			<BR><BR>
-			<hr size="6" width="100%" align="left" color="black"><BR>Customer Name
-			<BR><BR>
-			<hr size="6" width="100%" align="left" color="black"><BR>Customer Signature</td></tr>
-
-	</table>';
+	$html = '<hr size="6" width="100%" align="left" color="black"><BR>' . $header;
 
 	return $html;
 }
