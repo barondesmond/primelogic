@@ -111,7 +111,7 @@ if (file_exists($img_file))
 	$img = imagerotate($src, 90, 0);
 	$rot = '/var/www/html/primelogic/upload/rotate.jpg';
 	imagejpeg($img, $rot);
-	$pdf->Image($rot, 100, 260, 100,50 , '', '', '', false, 300, '', false, false, 0);
+	$pdf->Image($rot, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
 
 	}
 
@@ -133,19 +133,17 @@ if (file_exists($img_file))
 	$html = dispatch_status($dbs);
 	$pdf -> writeHTMLCell('200', '40', '5', '240', $html, $border);
 
-	$html = dispatch_footer($dbs, 'Date');
 	if ($dbs['customername'] == '')
 	{
 		$dbs['customername'] = $dbs['Contact'];
 	}
-	$pdf -> writeHTMLCell('100', '20', '105', '250', $dbs['customername'], $border);
-	$pdf -> writeHTMLCell('100', '20', '105', '240', $html, $border);
-	$html = dispatch_footer($dbs, 'Customer Name');
-
+	$html = dispatch_footer($dbs);
 	$pdf -> writeHTMLCell('100', '20', '105', '260', $html, $border);
-	$html = dispatch_footer($dbs, 'Customer Signature');
-
+	$pdf -> writeHTMLCell('100', '20', '105', '240', $html, $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '280', $html, $border);
+	$pdf -> writeHTMLCell('100', '20', '105', '250', $dbs['customername'], $border);
+
+
 
 
 
