@@ -56,6 +56,8 @@ function dispatch_init($dbs, $db)
 			}
 		}
 	}
+	$db2 = dispatch_hours($dbs);
+	$dbs = array_merge($dbs, $db2);
 return $dbs;
 }
 
