@@ -142,6 +142,8 @@ if (file_exists($img_file))
 	$pdf -> writeHTMLCell('100', '20', '105', '260', $html, $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '280', $html, $border);
 	$pdf -> writeHTMLCell('100', '20', '105', '255', $dbs['customername'], $border);
+	$pdf -> writeHTMLCell('100', '20', '105', '245', 'Date', $border);
+	
 
 
 
