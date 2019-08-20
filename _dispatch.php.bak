@@ -29,9 +29,8 @@ function dispatch_hours($db, $dev = '')
 	
 		}
 	}
-	$ar = array('Working', 'Traveling');
-	$comp = '0.50';
-	foreach ($ar as $wt)
+	$ar = array('Working' => '0.001', 'Traveling' => '0.50');
+	foreach ($ar as $wt -> $comp)
 	{
 
 		if ($db[$wt] - floor($db[$wt]) > $comp)
