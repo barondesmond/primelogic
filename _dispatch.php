@@ -91,7 +91,7 @@ function dispatch_scope($dbs = '')
 	$exp = explode("\r\n", $dbs['Notes']);
 	foreach ($exp as $line)
 	{
-		if (strpos($line, $dbs['EmpNo']) === true)
+		if (strpos($line, $dbs['ServiceMan']) === true)
 		{
 			//skip
 		}
