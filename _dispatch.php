@@ -156,7 +156,7 @@ function dispatch_work($dbs = '')
 			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif ($i => $lim)
+		elseif ($i >= $lim)
 		{
 			$work .= 'ADDITIONAL NOTES ATTACHED ELECTRONICALLY';
 		}

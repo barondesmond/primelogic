@@ -124,7 +124,7 @@ function dispatch_scope($dbs = '')
 			$scope .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif ($i => $lim)
+		elseif ($i >= $lim)
 		{
 			$scope .= 'ADDITIONAL SCOPE ATTACHED ELECTRONICALLY';
 		}
