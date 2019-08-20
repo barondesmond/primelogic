@@ -153,12 +153,12 @@ function dispatch_work($dbs = '')
 		}
 		elseif (strpos($line, '**') !== false)
 		{
-			$scope .= $line . "\r\n<BR>";
+			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
 		elseif ($i => $lim)
 		{
-			$scope .= 'ADDITIONAL NOTES ATTACHED ELECTRONICALLY';
+			$work .= 'ADDITIONAL NOTES ATTACHED ELECTRONICALLY';
 		}
 		else
 		{
