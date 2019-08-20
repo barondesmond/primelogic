@@ -124,6 +124,10 @@ function dispatch_scope($dbs = '')
 			$scope .= $line . "\r\n<BR>";
 			$i++;
 		}
+		elseif ($i => $lim)
+		{
+			$scope .= 'ADDITIONAL SCOPE ATTACHED ELECTRONICALLY';
+		}
 	}
 		
 	$html = '<hr size="6" width="100%" align="left" color="black">';
@@ -151,6 +155,10 @@ function dispatch_work($dbs = '')
 		{
 			$scope .= $line . "\r\n<BR>";
 			$i++;
+		}
+		elseif ($i => $lim)
+		{
+			$scope .= 'ADDITIONAL NOTES ATTACHED ELECTRONICALLY';
 		}
 		else
 		{
