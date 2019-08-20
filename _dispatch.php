@@ -107,25 +107,60 @@ function dispatch_scope($dbs = '')
 {
 	$scope = '';
 	$exp = explode("\r\n", $dbs['Notes']);
+	$lim = '10';
+	$i = 0;
 	foreach ($exp as $line)
 	{
 		if (strpos($line, $dbs['ServiceMan']) !== false)
 		{
-			//skip
+			//skip work
 		}
 		elseif (strpos($line, '**') !== false)
 		{
-			//skip
+			//skip work
 		}
-		else
+		elseif ($i < $lim)
 		{
 			$scope .= $line . "\r\n<BR>";
+			$i++;
 		}
 	}
 		
 	$html = '<hr size="6" width="100%" align="left" color="black">';
 	$html .= '<table><tr><td><b>Scope of Work</b></td></tr>';
 	$html .= '<tr><td>' . $scope . '</td></tr></table>';
+
+return $html;
+}
+
+function dispatch_work($dbs = '')
+{
+
+		$scope = '';
+	$exp = explode("\r\n", $dbs['Notes']);
+	$lim = '10';
+	$i = 0;
+	foreach ($exp as $line)
+	{
+		if (strpos($line, $dbs['ServiceMan']) !== false && $i < $lim)
+		{
+			$work .= $line . "\r\n<BR>";
+			$i++;
+		}
+		elseif (strpos($line, '**') !== false)
+		{
+			$scope .= $line . "\r\n<BR>";
+			$i++;
+		}
+		else
+		{
+			//scope
+		}
+	}
+		
+	$html = '<hr size="6" width="100%" align="left" color="black">';
+	$html .= '<table><tr><td><b>Discription of Work Completed</b></td></tr>';
+	$html .= '<tr><td>' . $work . '</td></tr></table>';
 
 return $html;
 }

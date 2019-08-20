@@ -130,6 +130,9 @@ if (file_exists($img_file))
 	$html = dispatch_scope($dbs);
 	$pdf -> writeHTMLCell('200', '60', '5', '60', $html, $border);
 
+	$html = dispatch_work($dbs);
+	$pdf -> writeHTMLCell('200', '60', '5', '100', $html, $border);
+
 	$html = dispatch_status($dbs);
 	$pdf -> writeHTMLCell('200', '40', '5', '240', $html, $border);
 

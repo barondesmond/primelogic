@@ -29,6 +29,24 @@ function dispatch_hours($db, $dev = '')
 	
 		}
 	}
+	$ar = array('Working', 'Traveling');
+	$comp = '0.50';
+	foreach ($ar as $wt)
+	{
+
+		if ($db[$wt] - floor($db[$wt]) > $comp)
+		{
+			$db[$wt] = ceil($db[$wt]);
+		}
+		elseif ($db[$wt] - floor($db[$wt]) == 0)
+		{
+			//do nothing
+		}
+		elseif ($db[$wt] - floor($db[$wt]) <= $comp)
+		{
+			$db[$wt] = floor($db[$wt]) + $comp;
+		}
+	}
 return $db;
 }
 
@@ -93,11 +111,11 @@ function dispatch_scope($dbs = '')
 	{
 		if (strpos($line, $dbs['ServiceMan']) !== false)
 		{
-			//skip
+			//skip work
 		}
 		elseif (strpos($line, '**') !== false)
 		{
-			//skip
+			//skip work
 		}
 		else
 		{
@@ -108,6 +126,35 @@ function dispatch_scope($dbs = '')
 	$html = '<hr size="6" width="100%" align="left" color="black">';
 	$html .= '<table><tr><td><b>Scope of Work</b></td></tr>';
 	$html .= '<tr><td>' . $scope . '</td></tr></table>';
+
+return $html;
+}
+
+function dispatch_work($dbs = '')
+{
+
+		$scope = '';
+	$exp = explode("\r\n", $dbs['Notes']);
+	foreach ($exp as $line)
+	{
+		if (strpos($line, $dbs['ServiceMan']) !== false)
+		{
+			$work .= $line . "\r\n<BR>";
+		}
+		elseif (strpos($line, '**') !== false)
+		{
+			$scope .= $line . "\r\n<BR>";
+
+		}
+		else
+		{
+			//scope
+		}
+	}
+		
+	$html = '<hr size="6" width="100%" align="left" color="black">';
+	$html .= '<table><tr><td><b>Discription of Work Completed</b></td></tr>';
+	$html .= '<tr><td>' . $work . '</td></tr></table>';
 
 return $html;
 }
