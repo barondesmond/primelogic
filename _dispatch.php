@@ -36,7 +36,7 @@ function dispatch_key()
 {
 
 	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature', 
-		'PromDate', 'Complete' );
+		'PromDate', 'Complete', 'EmpNo' );
 return $key;
 }
 
@@ -87,6 +87,24 @@ function dispatch_customer($dbs)
 
 function dispatch_scope($dbs = '')
 {
+	$scope = '';
+	$exp = explode("\r\n", $dbs['Notes']);
+	foreach ($exp as $line)
+	{
+		if (strpos($line, $dbs['EmpNo']) === true)
+		{
+			//skip
+		}
+		elseif (strpos($line, '**') === true)
+		{
+			//skip
+		}
+		else
+		{
+			$scope .= $line . "\r\n<BR>";
+		}
+	}
+		
 	$html = '<hr size="6" width="100%" align="left" color="black">';
 	$html .= '<table><tr><td><b>Scope of Work</b></td></tr>';
 	$html .= '<tr><td>' . str_replace("\r\n", "\r\n<BR>",$dbs['Notes']) . '</td></tr></table>';

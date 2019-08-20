@@ -36,7 +36,7 @@ function dispatch_key()
 {
 
 	$key = array('Dispatch', 'DispDate', 'LocName', 'CustNo','LocNo', 'Priority', 'Contact', 'Phone', 'Contact2', 'Phone2', 'Add1', 'City', 'State', 'Zip', 'Notes', 'signature', 
-		'PromDate', 'Complete' );
+		'PromDate', 'Complete', 'EmpNo' );
 return $key;
 }
 
@@ -87,6 +87,9 @@ function dispatch_customer($dbs)
 
 function dispatch_scope($dbs = '')
 {
+	$scope = '';
+	$exp = explode("\r\n", $dbs['Notes']);
+
 	$html = '<hr size="6" width="100%" align="left" color="black">';
 	$html .= '<table><tr><td><b>Scope of Work</b></td></tr>';
 	$html .= '<tr><td>' . str_replace("\r\n", "\r\n<BR>",$dbs['Notes']) . '</td></tr></table>';
@@ -99,7 +102,7 @@ function dispatch_status($dbs = '')
 	$html = '<hr size="6" width="80%" align="left" color="black">';
 
 	$html .= '<table><tr><td>';
-	$html .= '<table><tr><td>Status : Completed</td></tr><tr><td>Traveling: ' . $db['Traveling'] . '</td></tr><tr><td>Working: ' . $db['Working'] . '</td></tr></table>';
+	$html .= '<table><tr><td>Status : Completed</td></tr><tr><td>Traveling: ' . $dbs['Traveling'] . '</td></tr><tr><td>Working: ' . $dbs['Working'] . '</td></tr></table>';
 	$html .= '</td><td>';
 	$html .= '';
 	$html .= '</td></tr></table>';
