@@ -29,7 +29,7 @@ function dispatch_hours($db, $dev = '')
 	
 		}
 	}
-	$ar = array('Working' => '0.001', 'Traveling' => '0.50');
+	$ar = array('Working' => '0.000', 'Traveling' => '0.50');
 	foreach ($ar as $wt => $comp)
 	{
 
