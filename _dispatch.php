@@ -29,6 +29,24 @@ function dispatch_hours($db, $dev = '')
 	
 		}
 	}
+	$ar = array('Working', 'Traveling');
+	$comp = '0.50';
+	foreach ($ar as $wt)
+	{
+
+		if ($db[$wt] - floor($db[$wt]) > $comp)
+		{
+			$db[$wt] = ceil($db[$wt]);
+		}
+		elseif ($db[$wt] - floor($db[$wt]) == 0)
+		{
+			//do nothing
+		}
+		elseif ($db[$wt] - floor($db[$wt]) <= $comp)
+		{
+			$db[$wt] = floor($db[$wt]) + $comp;
+		}
+	}
 return $db;
 }
 
