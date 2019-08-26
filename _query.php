@@ -75,7 +75,7 @@ function csv_format($tdb)
 		//print_r($db);
 		if (!$head)
 		{
-			foreach ($db as $key => $val))
+			foreach ($db as $key => $val)
 			{
 				$head .= "$key,";
 			}
