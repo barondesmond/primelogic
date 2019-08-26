@@ -74,7 +74,7 @@ function csv_format($tdb)
 	{
 		foreach ($db as $key=>$val)
 		{
-			$str .= "$id,";
+			$str .= "$val,";
 		}
 		$str = substr($str, strlen($str) - 1);
 		$str .= "\r\n";
