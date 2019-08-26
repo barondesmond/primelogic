@@ -42,7 +42,13 @@ if ($_GET['query'])
 	elseif (isset($_REQUEST['Export']))
 	{
 		$exp = query_export($query);
+		$csv = csv_export($exp);
 		print_r($exp);
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=file.csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
 	}
 
 
