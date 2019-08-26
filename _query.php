@@ -73,11 +73,21 @@ function csv_format($tdb)
 	foreach ($tdb as $id=> $db)
 	{
 		//print_r($db);
-		foreach ($db as $val)
+		if (!$head)
 		{
+			foreach ($db as $key => $val))
+			{
+				$head .= "$key,";
+			}
+			$str = substr($head, 0, strlen($head)-1);
+			$str .= "\n";
+		}
+		foreach ($db as $key => $val)
+		{
+
 			$str .= "$val,";
 		}
-		$str = substr($str, 0, strlen($str-1));
+		$str = substr($str, 0, strlen($str) - 1);
 		$str .= "\n";
 	}
 return $str;
