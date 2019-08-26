@@ -9,6 +9,19 @@ if ($_GET['query'])
 {
 	$query = $_GET['query'];	
 }	
+
+	if (isset($_REQUEST['Export']))
+	{
+		$exp = query_export($query);
+		$csv = csv_format($exp);
+
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=file.csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $csv;
+		exit;
+	}
 	echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">';
 	echo '<textarea name="query" rows="12" cols="100" value="' . $query . '">';
 	echo $query;	
@@ -39,18 +52,7 @@ if ($_GET['query'])
 
 	echo $table;
 	}
-	elseif (isset($_REQUEST['Export']))
-	{
-		$exp = query_export($query);
-		$csv = csv_format($exp);
 
-		header("Content-type: text/csv");
-		header("Content-Disposition: attachment; filename=file.csv");
-		header("Pragma: no-cache");
-		header("Expires: 0");
-		echo $csv;
-		exit;
-	}
 
 
 ?>
