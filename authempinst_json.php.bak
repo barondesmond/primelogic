@@ -55,6 +55,17 @@ function add_note($db, $dev='')
 return $error;
 
 }
+
+function dispatch_counter($Dispatch = '', $dev = '')
+{
+	$sql = "SELECT * FROM DispTech$dev WHERE Dispatch = '$Dispatch' ORDER BY Counter DESC";
+	$res = mssql_query($sql);
+	if ($db = mssql_fetch_assoc($res))
+	{
+	
+		return $db['Counter'];
+	}
+}
 		
 function dispatch_db($db, $dev='')
 {
@@ -176,6 +187,7 @@ function dispatch_db($db, $dev='')
 			if ($array[$i] == 'Counter')
 			{
 				$sdb[$array[$i]] = (int) $sdb[$array[$i]];
+				$sdb[$array[$i]] = dispatch_counter($sdb['Dispatch']);
 				$sdb[$array[$i]]++;
 				$sdb[$array[$i]] = str_pad($sdb[$array[$i]], 3, "0", STR_PAD_LEFT);
 			}
