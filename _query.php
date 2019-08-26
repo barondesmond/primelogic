@@ -67,7 +67,7 @@ function _query_table($tdb, $cur=0)
 return $table;
 }
 
-function cvs_format($tdb)
+function csv_format($tdb)
 {
 	$str = '';
 	foreach ($tdb as $id=> $db)
