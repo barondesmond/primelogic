@@ -13,7 +13,7 @@ if ($_GET['query'])
 	echo '<textarea name="query" rows="12" cols="100" value="' . $query . '">';
 	echo $query;	
 
-	echo '</textarea><input type=submit></form>';
+	echo '</textarea><input type=submit name="Query" value="Query"><input type=submit name="Export" value="Export"></form>';
 	if (!isset($_REQUEST['cur']))
 	{
 		$_REQUEST['cur'] = 0;
@@ -23,6 +23,8 @@ if ($_GET['query'])
 		$cur = $_REQUEST['cur'];
 	}
 	unset($_REQUEST['cur']);
+	if (isset($_REQUEST['Query']))
+	{
 	$table = query($query, $cur);
 	echo '<p>';
 			if ($cur >9)
@@ -36,7 +38,12 @@ if ($_GET['query'])
 	
 
 	echo $table;
-
+	}
+	elseif (isset($_REQUEST['Export']))
+	{
+		$exp = query_export($query);
+		print_r($exp);
+	}
 
 
 ?>
