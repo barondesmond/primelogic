@@ -77,7 +77,6 @@ function csv_format($tdb)
 		{
 			$str .= "$val,";
 		}
-		$str = substr($str, strlen($str) - 1);
 		$str .= "\n";
 	}
 return $str;
