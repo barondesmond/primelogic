@@ -67,11 +67,27 @@ function _query_table($tdb, $cur=0)
 return $table;
 }
 
+function cvs_format($tdb)
+{
+	$str = '';
+	foreach ($tdb as $id=> $db)
+	{
+		foreach ($db as $key=>$val)
+		{
+			$str .= "$id,";
+		}
+		$str = substr($str, strlen($str) - 1);
+		$str .= "\r\n";
+	}
+return $str;
+	
+}
+
 function query_export($query)
 {
 
 		$res = mssql_query($query);
-	echo mssql_get_last_message();
+	//echo mssql_get_last_message();
 	if ((!$res || mssql_num_rows($res) == 0))
 	{
 		echo "$mes";
