@@ -67,6 +67,22 @@ function _query_table($tdb, $cur=0)
 return $table;
 }
 
+function query($query)
+{
+
+		$res = mssql_query($query);
+	echo mssql_get_last_message();
+	if ((!$res || mssql_num_rows($res) == 0))
+	{
+		echo "$mes";
+	}
+
+	while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
+	{
+		$tdb[] = $db;
+	}
+return $tdb;
+}
 
 function query($query, $cur=0)
 {

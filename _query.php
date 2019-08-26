@@ -67,7 +67,7 @@ function _query_table($tdb, $cur=0)
 return $table;
 }
 
-function query($query)
+function query_export($query)
 {
 
 		$res = mssql_query($query);
