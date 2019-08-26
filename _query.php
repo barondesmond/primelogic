@@ -72,7 +72,7 @@ function csv_format($tdb)
 	$str = '';
 	foreach ($tdb as $id=> $db)
 	{
-		print_r($db);
+		//print_r($db);
 		foreach ($db as $key=>$val)
 		{
 			echo "$key, $val";
