@@ -187,7 +187,7 @@ function dispatch_db($db, $dev='')
 			if ($array[$i] == 'Counter')
 			{
 				$sdb[$array[$i]] = (int) $sdb[$array[$i]];
-				$sdb[$array[$i]] = dispatch_counter($sdb['Dispatch']);
+				$sdb[$array[$i]] = dispatch_counter($sdb['Dispatch'], $dev);
 				$sdb[$array[$i]]++;
 				$sdb[$array[$i]] = str_pad($sdb[$array[$i]], 3, "0", STR_PAD_LEFT);
 			}

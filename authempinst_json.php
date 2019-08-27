@@ -18,7 +18,7 @@ function add_note($db, $dev='')
 	$tcq = TimeClockQuery($db, $dev);
 	$note = 'add' . $db['Screen'] . 'Note';
 
-	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'])
 	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
 		$sql = "UPDATE Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'";
