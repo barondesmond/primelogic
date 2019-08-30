@@ -36,7 +36,7 @@ $error[] = mssql_get_last_message();
 
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-if ($db['Email'] == 'baron@desmond.com')
+if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'])
 {
 	header('Content-Type: application/json');
 	$db['authorized'] = '1';

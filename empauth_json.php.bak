@@ -41,7 +41,7 @@ if ($db['Email'] == 'baron@desmond.com')
 	header('Content-Type: application/json');
 	$db['authorized'] = '1';
 	$db['installationId'] = $_REQUEST['installationId'];
-	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '1' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	mssql_query($sql);
 	echo json_encode($db);
 	exit;
