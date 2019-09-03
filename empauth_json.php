@@ -33,7 +33,7 @@ $sa[] = $sql;
 
 $res = mssql_query($sql);
 $error[] = mssql_get_last_message();
-
+print_r($error);
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 

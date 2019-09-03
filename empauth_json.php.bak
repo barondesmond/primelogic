@@ -88,5 +88,5 @@ header('Content-Type: application/json');
 $db['error'] = $error;
 $db['sql'] = $sa;
 echo json_encode($db);
-
+exit;
 ?>
