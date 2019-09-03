@@ -35,12 +35,9 @@ $res = mssql_query($sql);
 $error[] = mssql_get_last_message();
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-echo "where";
 if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'] && $db['Email'] != '')
 {
-	print_r($db);
-	echo "what";
-	exit;
+
 	header('Content-Type: application/json');
 	$db['authorized'] = '1';
 	$db['installationId'] = $_REQUEST['installationId'];
@@ -53,13 +50,14 @@ echo "who";
 
 if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
 {
+echo "whot";
 
 	header('Content-Type: application/json');
 	$db['authorized'] = '0';
 
 	exit;
 }
-
+echo "what";
 if ($db['UAA'] == '')
 {
 	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
