@@ -35,7 +35,7 @@ $res = mssql_query($sql);
 $error[] = mssql_get_last_message();
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-
+echo "where";
 if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'] && $db['Email'] != '')
 {
 	print_r($db);
@@ -49,6 +49,7 @@ if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName']
 	echo json_encode($db);
 	exit;
 }
+echo "who";
 
 if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
 {
