@@ -38,6 +38,7 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
 if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'])
 {
+	print_r($db);
 	header('Content-Type: application/json');
 	$db['authorized'] = '1';
 	$db['installationId'] = $_REQUEST['installationId'];
@@ -46,7 +47,7 @@ if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName']
 	echo json_encode($db);
 	exit;
 }
-print_r($db);
+
 if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
 {
 
