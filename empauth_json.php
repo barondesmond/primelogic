@@ -46,16 +46,13 @@ if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName']
 	echo json_encode($db);
 	exit;
 }
-echo "who";
 
 if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_REQUEST['Email'] == '' || $_REQUEST['EmpName'] == '')
 {
-echo "whot";
-
+	$db = $_REQUEST;
 	header('Content-Type: application/json');
 	$db['authorized'] = '0';
-
-	exit;
+	exit;	
 }
 echo "what";
 if ($db['UAA'] == '')
