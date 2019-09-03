@@ -39,6 +39,8 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'] && $db['Email'] != '')
 {
 	print_r($db);
+	echo "what";
+	exit;
 	header('Content-Type: application/json');
 	$db['authorized'] = '1';
 	$db['installationId'] = $_REQUEST['installationId'];

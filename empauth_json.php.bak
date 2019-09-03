@@ -36,7 +36,7 @@ $error[] = mssql_get_last_message();
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
 
-if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'])
+if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'] && $db['Email'] != '')
 {
 	print_r($db);
 	header('Content-Type: application/json');
