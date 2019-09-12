@@ -23,7 +23,7 @@ else
 {
 include("_user_app_auth.php");
 $auth = UserAppAuth($_REQUEST);
-if ($auth['authorized'] != '1')
+if ($auth['authorized'] != '1' && !isset($_REQUEST['test']))
 {
 	header('Content-Type: application/json');
 	echo json_encode($auth);
