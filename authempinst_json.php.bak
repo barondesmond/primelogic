@@ -20,7 +20,7 @@ function add_note($db, $dev='')
 
 	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'])
 	{
-		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $db['EmpName'] . '-' .  $db[$note] . "\r\n";
+		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'";
 	}
 	elseif ($db['Screen'] == 'Dispatch')
@@ -29,7 +29,7 @@ function add_note($db, $dev='')
 	}
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
 	{
-		$addNote = $tcq['JobNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db['EmpName'] . '-' .  $db[$note] . "\r\n";
+		$addNote = $tcq['JobNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Jobs$dev SET JobNotes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";
 	}
 	elseif ($db['Screen'] == 'Job')
@@ -38,7 +38,7 @@ function add_note($db, $dev='')
 	}
 	if ($db['Screen'] == 'Employee' && $db[$note] != '')
 	{
-		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $db[$note] . "\r\n";
+		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 	}
 	if ($sql != '')
