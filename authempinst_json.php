@@ -91,13 +91,27 @@ function dispatch_db($db, $dev='')
 	}
 	$q = substr($q, 0, strlen($q) - 1);
 
-	$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending')";
-	$res_sel = mssql_query($sel);
-	if (!mssql_num_rows($res_sel))
+	if ($db['checkinStatus'] == 'Start')
 	{
-		$db['error'] = "Invalid DispTech$dev state";
-		return $db;
+		$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending'";
+		$res_sel = mssql_query($sel);
+		if (!mssql_num_rows($res_sel))
+		{
+			$db['error'] = "Invalid DispTech$dev state";
+			return $db;
+		}
 	}
+	if ($db['checkinStatus'] == 'Stop')
+	{
+		$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = '" . $db['event'] . "'";
+		$res_sel = mssql_query($sel);
+		if (!mssql_num_rows($res_sel))
+		{
+			$db['error'] = "Invalid DispTech$dev state";
+			return $db;
+		}
+	}
+
 	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
 	if (!$sdb)
 	{
@@ -167,6 +181,7 @@ function dispatch_db($db, $dev='')
 		{
 			$dd .= " , TimeOn = '" . date("H:i:s", time()) . "' ";
 		}
+		
 	}
 	if ($up != '' && $dd != '' && $where != '')
 	{
