@@ -152,7 +152,8 @@ return $db;
 function location_file_update($db)
 {
 	$file = '';
-	$update = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'Desc', 'note', 'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'AcceptDeny', 'ext');
+	$update = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'location', 'Desc', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'AcceptDeny', 'ext');
+
 
 	foreach ($update as $num=>$key)
 	{
