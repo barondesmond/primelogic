@@ -131,8 +131,8 @@ function location_parse_file($file)
 		
 		return false;
 	}
-	print_r($exp);
-	exit;
+	//print_r($exp);
+
 	for ($i=0;$i< count($exp); $i++)
 	{
 		$db[$key[$i]] = $exp[$i];
