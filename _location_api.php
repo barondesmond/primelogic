@@ -127,7 +127,7 @@ function location_parse_file($file)
 	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
-		//print_r($exp);
+		print_r($exp);
 		
 		return false;
 	}
