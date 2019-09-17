@@ -123,15 +123,16 @@ return $int;
 
 function location_parse_file($file)
 {
-	$key = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'Desc',  'location', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
+	$key = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'location', 'Desc', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'ext');
 	$exp = explode('.', $file);
 	if (count($exp) != count($key))
 	{
-		print_r($exp);
+		//print_r($exp);
 		
 		return false;
 	}
-	//print_r($exp);
+	print_r($exp);
+	exit;
 	for ($i=0;$i< count($exp); $i++)
 	{
 		$db[$key[$i]] = $exp[$i];
