@@ -335,7 +335,7 @@ function viewer_query()
 		{
 			foreach ($ord as $k)
 			{
-				$js['document'][$lc[$k]][$id] = $lc;
+				$js['document'][$id] = $lc;
 				$js[$k][$id] = $lc[$k];
 			}
 		}
