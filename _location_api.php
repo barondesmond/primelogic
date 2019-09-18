@@ -335,8 +335,11 @@ function viewer_query()
 		{
 			foreach ($ord as $k)
 			{
-				$js['document'][$id] = $lc;
-				$js[$k][$id] = $lc[$k];
+				if (!isset($js['document'][$id]))
+				{
+					$js['document'][$id] = $lc;
+				}
+				$js[$k][$id] = $lc;
 			}
 		}
 	}
