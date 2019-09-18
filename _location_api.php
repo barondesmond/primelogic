@@ -323,6 +323,26 @@ function location_query()
 return $js;
 }
 
+function viewer_query()
+{
+
+	$files = location_files();
+	$js['files'] = $files; 
+	$ord = array('reference', 'Screen', 'location', 'EmpNo', 'Desc');
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+			foreach ($ord as $k)
+			{
+				$js[$lc[$k]][$id] = $lc;
+				$js[$k][$id] = $lc[$k];
+			}
+		}
+	}
+return $js;
+}
+
 
 
 function location_override($location, $db, &$js)

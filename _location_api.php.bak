@@ -152,7 +152,7 @@ return $db;
 function location_file_update($db)
 {
 	$file = '';
-	$update = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'location', 'Desc', 'latitude1', 'latitude2', 'longitude1', 'longitude2', 'AcceptDeny', 'ext');
+	$update = array('time', 'date', 'EmpNo', 'Screen', 'reference', 'location', 'Desc', 'latitude', 'longitude', 'AcceptDeny', 'ext');
 
 
 	foreach ($update as $num=>$key)
@@ -318,6 +318,28 @@ function location_query()
 				$js['location'][$id] = $db['location'];
 				$js['locationapi'][$db['location']] = $db;
 			}
+		}
+	}
+return $js;
+}
+
+function viewer_query()
+{
+
+	$files = location_files();
+	$js['files'] = $files; 
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+	
+				$js[$lc['reference']][$id] = $lc;
+				$js['reference'][$id] = $lc['reference'];
+				$js['Screen'][$id] = $lc['Screen'];
+				$js['location'][$id] = $lc['location'];
+				$js['EmpNo'][$id] = $lc['EmpNo'];
+				$js['Desc'][$id] = $lc['Desc'];
+
 		}
 	}
 return $js;

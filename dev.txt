@@ -13,8 +13,9 @@ DROP TABLE DispatchDev;
 DROP TABLE DispTechDev; 
 SELECT * INTO DispTechDev FROM DispTech; 
 SELECT * INTO DispatchDev FROM Dispatch;
-UPDATE DispTechDev SET ServiceMan = '0195' WHERE ServiceMan = '0001';
+
 DELETE FROM DispTechDev WHERE Status IN ( 'Traveling', 'Working') and ServiceMan = '0195';
+DELETE FROM TimeClockApp WHERE EmpNo = '0195' and EmpActive = '1';
 
 
 
