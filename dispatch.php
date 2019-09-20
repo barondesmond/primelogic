@@ -25,6 +25,6 @@ readfile("$file");
 
 
 }
-email_report("barondesmond@gmail.com", "dispatch ticket pdf", $html, $ll['filename'], $ll['cid'], $ll['name'], $file);
+email_report("barondesmond@gmail.com", "Dispatch Ticket $_GET['Dispatch']", "Dispatch Ticket Attached $_GET['Dispatch']", $ll['filename'], $ll['cid'], $ll['name'], $file);
 
 ?>
