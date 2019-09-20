@@ -166,7 +166,7 @@ function dispatch_work($dbs = '')
 	}
 		
 	$html = '<hr size="6" width="100%" align="left" color="black">';
-	$html .= '<table><tr><td><b>Discription of Work Completed</b></td></tr>';
+	$html .= '<table><tr><td><b>Description of Work Completed</b></td></tr>';
 	$html .= '<tr><td>' . $work . '</td></tr></table>';
 
 return $html;
