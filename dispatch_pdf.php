@@ -107,11 +107,11 @@ $pdf->setPageMark();
 $img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
 if (file_exists($img_file))
 	{
-	$src = imagecreatefromjpeg($img_file);
-	$img = imagerotate($src, 90, 0);
-	$rot = '/var/www/html/primelogic/upload/rotate.jpg';
-	imagejpeg($img, $rot);
-	$pdf->Image($rot, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
+	//$src = imagecreatefromjpeg($img_file);
+	//$img = imagerotate($src, 90, 0);
+	//$rot = '/var/www/html/primelogic/upload/rotate.jpg';
+	//imagejpeg($img, $rot);
+	$pdf->Image($img_file, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
 
 	}
 
