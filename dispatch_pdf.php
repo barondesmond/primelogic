@@ -165,7 +165,16 @@ if (file_exists($img_file))
 $pdf->Output($file, 'F');
 return $file;
 }
-
+function dispatch_customer($dispatch)
+{
+	$sql = "SELECT customer FROM TimeClockApp WHERE Dispatch = '$dispatch' and customer != ''";
+	$res = @mssql_query($sql);
+	$dc = mssql_fetch_array($res, MSSQL_ASSOC);
+	if (isset($dc['customer']))
+	{
+		return $dc['customer'];
+	}
+}
 function pdf_query($dispatch='')
 {
 	if ($dispatch == '')
@@ -191,6 +200,7 @@ WHERE Dispatch.Dispatch = '" . $dispatch . "' and Dispatch.Complete != '' ";
 		while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 		{
 			$db['signature'] = dispatch_signature_query($dispatch);
+			$db['customer'] = dispatch_customer($dispatch);
 			$arrays[] = $db;
 
 		}
