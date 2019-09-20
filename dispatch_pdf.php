@@ -110,7 +110,7 @@ if (file_exists($img_file))
 	$src = imagecreatefromjpeg($img_file);
 	//$img = imagerotate($src, 90, 0);
 	$time = time();
-	$rot = '/var/www/html/primelogic/upload/' . $time . '.jpg';
+	$rot = '/var/www/html/primelogic/upload/rot-' . $time . '.jpg';
 	imagejpeg($img, $rot);
 	$pdf->Image($rot, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
 
