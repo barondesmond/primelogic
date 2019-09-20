@@ -105,16 +105,22 @@ $pdf->setPageMark();
 
 	$dbs = dispatch_init($dbs, $arrays[0]);
 $img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
+while (!file_exists($img_file) && $i < 30)
+	{
+		sleep(1);
+		$i++;
+	}
 if (file_exists($img_file))
 	{
-	$src = imagecreatefromjpeg($img_file);
+	//$src = imagecreatefromjpeg($img_file);
 	//$img = imagerotate($src, 90, 0);
 	$time = time();
 	$rot = '/var/www/html/primelogic/upload/rot-' . $time . '.jpg';
-	imagejpeg($img, $rot);
-	$pdf->Image($rot, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
+	//imagejpeg($img, $rot);
+	$pdf->Image($img_file, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
 
 	}
+
 
 	$border = '0';
 	$html = dispatch_header($dbs);
