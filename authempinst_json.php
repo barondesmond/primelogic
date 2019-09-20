@@ -236,6 +236,9 @@ function dispatch_db($db, $dev='')
 		$res = mssql_query($sql);
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
+		$file = pdf_input($db['Dispatch']);
+		email_report("barondesmond@gmail.com", "Dispatch Ticket " . $db['Dispatch'] , "Dispatch Ticket Attached " . $db['Dispatch'], $ll['filename'], $ll['cid'], $ll['name'], $file);
+
 	}
 
 return $error;
