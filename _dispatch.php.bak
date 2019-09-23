@@ -125,7 +125,7 @@ function dispatch_scope($dbs = '')
 		}
 		elseif ($i == $lim)
 		{
-			$scope .= 'ADDITIONAL SCOPE ATTACHED ELECTRONICALLY';
+			$scope .= 'ADDITIONAL SCOPE AVAILABLE';
 		}
 		else
 		{
