@@ -110,14 +110,15 @@ function dispatch_scope($dbs = '')
 	$i = 0;
 	foreach ($exp as $line)
 	{
-		if (strpos($line, $dbs['ServiceMan']) !== false)
+		if (strpos($line, '**') !== false)
+		{
+			//skip
+		}
+		elseif (strpos($line, $dbs['ServiceMan']) !== false)
 		{
 			//skip work
 		}
-		elseif (strpos($line, '**') !== false)
-		{
-			//skip work
-		}
+	
 		elseif ($i < $lim)
 		{
 			$scope .= $line . "\r\n<BR>";
@@ -150,15 +151,16 @@ function dispatch_work($dbs = '')
 	$i = 0;
 	foreach ($exp as $line)
 	{
-		if ((strpos($line, $dbs['ServiceMan']) !== false || ($i > 0 )) && $i < $lim)
+		if (strpos($line, '**') !== false)
+		{
+			//skip
+		}
+		elseif ((strpos($line, $dbs['ServiceMan']) !== false || ($i > 0 )) && $i < $lim)
 		{
 			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif (strpos($line, '**') !== false)
-		{
-			//skip
-		}
+	
 		elseif ($i == $lim)
 		{
 			$work .= 'ADDITIONAL NOTES AVAILABLE';

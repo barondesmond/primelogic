@@ -150,15 +150,14 @@ function dispatch_work($dbs = '')
 	$i = 0;
 	foreach ($exp as $line)
 	{
-		if (strpos($line, $dbs['ServiceMan']) !== false && $i < $lim)
+		if ((strpos($line, $dbs['ServiceMan']) !== false || ($i > 0 )) && $i < $lim)
 		{
 			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif (strpos($line, '**') !== false && $i < $lim)
+		elseif (strpos($line, '**') !== false)
 		{
-			$work .= $line . "\r\n<BR>";
-			$i++;
+			//skip
 		}
 		elseif ($i == $lim)
 		{
