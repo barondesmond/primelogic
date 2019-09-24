@@ -126,6 +126,7 @@ function dispatch_scope($dbs = '')
 		elseif ($i == $lim)
 		{
 			$scope .= "<BR>\r\nADDITIONAL SCOPE AVAILABLE";
+			$i++;
 		}
 		else
 		{
