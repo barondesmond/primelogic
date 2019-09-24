@@ -106,7 +106,7 @@ function dispatch_scope($dbs = '')
 {
 	$scope = '';
 	$exp = explode("\r\n", $dbs['Notes']);
-	$lim = '15';
+	$lim = '12';
 	$i = 0;
 	foreach ($exp as $line)
 	{
@@ -155,18 +155,19 @@ function dispatch_work($dbs = '')
 			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif (strpos($line, '**') !== false)
+		elseif (strpos($line, '**') !== false && $i < $lim)
 		{
 			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif ($i >= $lim)
+		elseif ($i == $lim)
 		{
-			$work .= 'ADDITIONAL NOTES ATTACHED ELECTRONICALLY';
+			$work .= 'ADDITIONAL NOTES AVAILABLE';
+			$i++;
 		}
 		else
 		{
-			//scope
+			//no more
 		}
 	}
 		
