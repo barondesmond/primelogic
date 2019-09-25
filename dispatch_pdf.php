@@ -109,6 +109,9 @@ while (!file_exists($img_file) && $i < 30)
 	{
 		sleep(30);
 		$i++;
+		$dbs['signature'] = dispatch_signature_query($dbs['Dispatch']);
+		$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
+
 	}
 if (file_exists($img_file))
 	{
