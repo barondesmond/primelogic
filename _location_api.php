@@ -291,7 +291,7 @@ return false;
 
 function location_files()
 {
-static $files;
+
 	
 	if (!isset($files))
 	{
