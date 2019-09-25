@@ -107,7 +107,7 @@ $pdf->setPageMark();
 $img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
 while (!file_exists($img_file) && $i < 30)
 	{
-		sleep(1);
+		sleep(30);
 		$i++;
 	}
 if (file_exists($img_file))
