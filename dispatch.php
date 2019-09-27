@@ -21,6 +21,7 @@ if ($argv[1])
 		$dbs['signature'] = dispatch_signature_query($_GET['Dispatch']);
 		$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
 		echo 'waiting..' . $img_file;
+
 	}
 }
 
