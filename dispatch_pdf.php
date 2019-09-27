@@ -105,14 +105,7 @@ $pdf->setPageMark();
 
 	$dbs = dispatch_init($dbs, $arrays[0]);
 $img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
-while (!file_exists($img_file) && $i < 30)
-	{
-		sleep(30);
-		$i++;
-		$dbs['signature'] = dispatch_signature_query($dbs['Dispatch']);
-		$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
 
-	}
 if (file_exists($img_file))
 	{
 	//$src = imagecreatefromjpeg($img_file);
@@ -123,6 +116,7 @@ if (file_exists($img_file))
 	$pdf->Image($img_file, 100, 240, 100,50 , '', '', '', false, 300, '', false, false, 0);
 
 	}
+
 
 
 	$border = '0';
