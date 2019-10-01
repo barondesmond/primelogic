@@ -308,7 +308,7 @@ LEFT JOIN Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.Job
 LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
 LEFT JOIN Dispatch" . $dev . " as Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
-LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . " and TimeClockApp.Counter = DispTech.Counter '
+LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "' and TimeClockApp.Counter = DispTech.Counter '
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 
