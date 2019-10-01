@@ -76,7 +76,18 @@ function dispatch_db($db, $dev='')
 
 	if ($db['checkinStatus'] != 'Start' && $db['checkinStatus'] != 'Stop')
 	{
-		return false;
+		$error['error'] = 'invalid checkinStatus';
+		return $error;
+	}
+	if ($db['Dispatch'] == 'null' || !$db['Dispatch'] || $db['Dispach'] == '')
+	{
+		$error['error'] = 'invalid Dispatch';
+		return $error;		
+	}
+	if ($db['Counter'] == 'null' || !$db['Counter'] || $db['Counter'] == '')
+	{
+		$error['error'] = 'invalid Dispatch';
+		return $error;	
 	}
 	$up = '';
 	$dd = '';
