@@ -236,7 +236,7 @@ function dispatch_db($db, $dev='')
 		$res = mssql_query($sql);
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
-		exec('/var/www/html/primelogic/dispatch.php?Dispatch=' . $db[Dispatch], $a, $b);
+		exec('/usr/bin/php /var/www/html/primelogic/dispatch.php '. $db[Dispatch], $a, $b);
 
 
 	}
