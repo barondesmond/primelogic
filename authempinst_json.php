@@ -79,7 +79,7 @@ function dispatch_db($db, $dev='')
 		$error['error'] = 'invalid checkinStatus';
 		return $error;
 	}
-	if ($db['Dispatch'] == 'null' || !$db['Dispatch'] || $db['Dispach'] == '')
+	if ($db['Dispatch'] == 'null' || !$db['Dispatch'] || $db['Dispatch'] == '')
 	{
 		$error['error'] = 'invalid Dispatch';
 		return $error;		
