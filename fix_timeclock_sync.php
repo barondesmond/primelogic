@@ -22,7 +22,7 @@ INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockAp
 		 mssql_query($sql);
 	 }
  }
- exit;
+
 
 $sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
 INNER JOIN DispTech$dev as DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
