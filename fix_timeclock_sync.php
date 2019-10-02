@@ -19,6 +19,7 @@ INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockAp
 		 $db['StopTime'] = strtotime($db['DateOff']);
 		 $sql = "UPDATE TimeClockApp SET StopTime = '"  . $db['StopTime'] . "' WHERE TimeClockID = '" . $db['TimeClockID']  . "'";
 		 echo $sql;
+		 mssql_querY($sql);
 	 }
  }
  exit;
