@@ -10,14 +10,14 @@ if ($argv['1'])
 
 $sql = "SELECT * FROM TimeClockApp
 INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockApp.Counter = DispTech.Counter
- WHERE EmpActive = '1' and TimeClockApp.event != DispTech.Status and StopTime is NULL";
+ WHERE EmpActive = '1' and TimeClockApp.event != DispTech.Status and StopTime is NULL and DispTech.Status = 'Complete'";
  $res = mssql_query($sql);
  while ($db = mssql_fetch_assoc($res))
  {
 	 if ($db['event'] == 'Working')
 	 {
 		 $db['StopTime'] = strtotime($db['DateOff']);
-		 $sql = "UPDATE TimeClockApp SET StopTime = '"  . $db['StopTime'] . "' WHERE TimeClockID = '" . $db['TimeClockID']  . "'";
+		 $sql = "UPDATE TimeClockApp SET StopTime = '"  . $db['StopTime'] . "' WHERE TimeClockID = '" . $db['TimeClockID']  . "' and EmpActive = '0'";
 		 echo $sql;
 		 mssql_querY($sql);
 	 }
