@@ -151,13 +151,13 @@ function dispatch_work($dbs = '')
 
 		$scope = '';
 		$workday = date('Y-m-d', strtotime($dbs['Complete']));
-	$work = $dbs['Notes'];
-	$str1 = strpos($work, $workday);
+	$works = $dbs['Notes'];
+	$str1 = strpos($works, $workday);
 	$char = '1800';
 
-	$dbs['Notes'] = substr($work, $str1, $char + $str1);
+	$dbs['Notes'] = substr($works, $str1, $char + $str1);
 	echo $dbs['Notes'];
-	exit;
+
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
 
