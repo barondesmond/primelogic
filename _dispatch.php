@@ -156,7 +156,7 @@ function dispatch_work($dbs = '')
 	$char = '1800';
 
 	$dbs['Notes'] = substr($works, $str1, $char + $str1);
-	echo $dbs['Notes'];
+	//echo $dbs['Notes'];
 
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
