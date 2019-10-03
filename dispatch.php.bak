@@ -12,17 +12,7 @@ include("_location_api.php");
 if ($argv[1])
 {
 	$_GET['Dispatch'] = $argv[1];
-		$dbs['signature'] = dispatch_signature_query($_GET['Dispatch']);
-		$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
-	while (!file_exists($img_file) && $i < 30)
-	{
-		sleep(30);
-		$i++;
-		$dbs['signature'] = dispatch_signature_query($_GET['Dispatch']);
-		$img_file = '/var/www/html/primelogic/upload/' . $dbs['signature'];
-		echo 'waiting..' . $img_file;
-
-	}
+	sleep(360);
 }
 
 if ($_GET['Dispatch'])

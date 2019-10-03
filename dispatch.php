@@ -8,11 +8,18 @@ include("dispatch_pdf.php");
 include("_location_api.php");
 
 
-
+if ($argv[2])
+{
+	$sleep = $argv[2];
+}
+else
+{
+	$sleep = 360;
+}
 if ($argv[1])
 {
 	$_GET['Dispatch'] = $argv[1];
-	sleep(360);
+	sleep($sleep);
 }
 
 if ($_GET['Dispatch'])
