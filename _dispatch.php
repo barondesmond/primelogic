@@ -153,11 +153,12 @@ function dispatch_work($dbs = '')
 		$workday = date('Y-m-d', strtotime($dbs['Complete']));
 	$work = $dbs['Notes'];
 	$str1 = strpos($work, $workday);
+	$char = '1800';
+
 	$dbs['Notes'] = substr($work, $str1, $char + $str1);
 
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
-	$char = '1800';
 
 	$i = 0;
 	foreach ($exp as $line)
