@@ -102,10 +102,20 @@ function dispatch_customer($dbs)
 	return $html;
 }
 
+
+
+
 function dispatch_scope($dbs = '')
 {
 	$scope = '';
-	$scopes = substr($dbs['Notes'], 0, strpos($dbs['Notes'], $dbs['ServiceMan']) - 21);
+	$workday = date('Y-m-d', strtotime($dbs['Complete']));
+	$smpos = strpos($dbs['Notes'], $dbs['ServiceMan']);
+	$smstart = $smpos - 21;
+	$workpos = strpos($dbs['Notes'], $workday, $smstart);
+	$scopes = substr($dbs['Notes'], 0, $workpos);
+
+	//$scopes = substr($dbs['Notes'], 0, strpos($dbs['Notes'], $dbs['ServiceMan']) - 21);
+
 	if (strlen($scopes) > 20)
 	{
 		$dbs['Notes'] = $scopes;

@@ -126,15 +126,15 @@ function dispatch_scope($dbs = '')
 	$i = 0;
 	foreach ($exp as $line)
 	{
+	
 		if (strpos($line, '**') !== false)
 		{
 			//skip
 		}
-		elseif (strpos($line, $dbs['ServiceMan']) !== false)
-		{
+		//elseif (strpos($line, $dbs['ServiceMan']) !== false)
+		//{
 			//skip work
-		}
-	
+		//}
 		elseif ($i < $lim && strlen($scope) < $char)
 		{
 			$scope .= $line . "\r\n<BR>";
