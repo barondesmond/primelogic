@@ -105,7 +105,7 @@ function dispatch_customer($dbs)
 function dispatch_scope($dbs = '')
 {
 	$scope = '';
-	$scopes = substr($dbs['Notes'], 0, strpos($dbs['Notes'], $dbs['ServiceMan']-20);
+	$scopes = substr($dbs['Notes'], 0, strpos($dbs['Notes'], $dbs['ServiceMan']-20));
 	if (strlen($scopes) > 20)
 	{
 		$dbs['Notes'] = $scopes;
