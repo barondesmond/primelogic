@@ -7,7 +7,7 @@ if ($argv['1'])
 {
 	$dev = 'Dev';
 }
-
+/*
 $sql = "SELECT * FROM TimeClockApp
 INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockApp.Counter = DispTech.Counter
  WHERE EmpActive = '1' and TimeClockApp.event != DispTech.Status and StopTime is NULL and DispTech.Status = 'Complete'";
@@ -23,7 +23,7 @@ INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockAp
 	 }
  }
 
-
+*/
 $sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
 INNER JOIN DispTech$dev as DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
 LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
