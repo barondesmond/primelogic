@@ -150,6 +150,11 @@ function dispatch_work($dbs = '')
 {
 
 		$scope = '';
+		$workday = date('Y-m-d', strtotime($dbs['Complete']);
+	$work = $dbs['Notes'];
+	$str1 = strpos($work, $workday);
+	$dbs['Notes'] = substr($work, $str1, $char + $str1);
+
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
 	$char = '1800';
