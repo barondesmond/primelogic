@@ -107,7 +107,7 @@ function dispatch_scope($dbs = '')
 	$scope = '';
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '12';
-	$char = '480';
+	$char = '600';
 	$i = 0;
 	foreach ($exp as $line)
 	{
@@ -152,7 +152,7 @@ function dispatch_work($dbs = '')
 		$scope = '';
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
-	$char = '480';
+	$char = '600';
 
 	$i = 0;
 	foreach ($exp as $line)
