@@ -107,6 +107,7 @@ function dispatch_scope($dbs = '')
 	$scope = '';
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '12';
+	$char = '120';
 	$i = 0;
 	foreach ($exp as $line)
 	{
@@ -119,14 +120,17 @@ function dispatch_scope($dbs = '')
 			//skip work
 		}
 	
-		elseif ($i < $lim)
+		elseif ($i < $lim && strlen($scope) < $char)
 		{
 			$scope .= $line . "\r\n<BR>";
 			$i++;
 		}
-		elseif ($i == $lim)
+		elseif ($i == $lim || strlen($scope) > $char)
 		{
 			$scope .= "<BR>\r\nADDITIONAL SCOPE AVAILABLE";
+
+			$char = strlen($scope);
+			$i = $lim;
 			$i++;
 		}
 		else
@@ -148,6 +152,8 @@ function dispatch_work($dbs = '')
 		$scope = '';
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
+	$char = '120';
+
 	$i = 0;
 	foreach ($exp as $line)
 	{
@@ -155,15 +161,17 @@ function dispatch_work($dbs = '')
 		{
 			//skip
 		}
-		elseif ((strpos($line, $dbs['ServiceMan']) !== false || ($i > 0 )) && $i < $lim)
+		elseif ((strpos($line, $dbs['ServiceMan']) !== false || ($i > 0 )) && $i < $lim && strlen($work) < $char)
 		{
 			$work .= $line . "\r\n<BR>";
 			$i++;
 		}
 	
-		elseif ($i == $lim)
+		elseif ($i == $lim || strlen($work) > $char)
 		{
 			$work .= 'ADDITIONAL NOTES AVAILABLE';
+			$i = $lim;
+			$char = strlen($work);
 			$i++;
 		}
 		else
