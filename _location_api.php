@@ -1,4 +1,28 @@
 <?php
+function mapquest_static($dbs)
+{
+	$locs = '';
+	while (list ($num, $db) = each ($dbs))
+	{
+		$locs .= $db['latitude'] ',' . $db['longitude'] . '||'.
+	}
+	$locs = substr($locs, 0, strlen($locs) - 2);
+
+	$map = 'https://www.mapquestapi.com/staticmap/v5/map?locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
+	return $map;
+return $map;
+}
+
+function location_dispatch()
+{
+	$sql = "SELECT * FROM TimeClockApp WHERE EmpActive = '1'";
+	$res = mssql_query($sql);
+	while ($db = mssql_fetch_assoc($res))
+	{
+		$dbs[] = $db;
+	}
+	return mapquest_static($dbs);
+}
 
 
 function mapquest_reverse_geocode($lat,$long)
