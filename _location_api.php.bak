@@ -2,10 +2,12 @@
 function mapquest_static($dbs)
 {
 	$locs = '';
+	$Traveling = '00AD43';
+	$Working = 'FF0000';
 	while (list ($num, $db) = each ($dbs))
 	{
 		$e = (int) $db['EmpNo'];
-		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-7B0099-' . $e  . '||';
+		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-' . ${$db['event']} .'-' . $e  . '||';
 		$loc = location_api($db['LocName']);
 		if ($loc)
 		{
