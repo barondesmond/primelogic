@@ -4,11 +4,11 @@ function mapquest_static($dbs)
 	$locs = '';
 	while (list ($num, $db) = each ($dbs))
 	{
-		$locs .= $db['latitude'] .',' . $db['longitude'] . '||';
+		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-7B0099-' . $db['EmpNo'] . '||';
 	}
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
-	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
+	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&banner=' . $banner . '&locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
 	return $map;
 return $map;
 }
