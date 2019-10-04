@@ -7,7 +7,7 @@ function mapquest_static($dbs)
 	while (list ($num, $db) = each ($dbs))
 	{
 		$e = (int) $db['EmpNo'];
-		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-' . ${$db['event']} .'-' . $e  . '||';
+		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-md-' . ${$db['event']} .'-' . $e  . '||';
 		$loc = location_api($db['LocName']);
 		if ($loc)
 		{
