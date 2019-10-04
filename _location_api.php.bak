@@ -6,6 +6,11 @@ function mapquest_static($dbs)
 	{
 		$e = (int) $db['EmpNo'];
 		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-7B0099-' . $e  . '||';
+		$loc = location_api($db['LocName']);
+		if ($loc)
+		{
+			$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-lg-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch'] -3, strlen($db['Dispatch'])) . '||';
+		}
 	}
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
@@ -16,7 +21,7 @@ return $map;
 
 function location_dispatch()
 {
-	$sql = "SELECT * FROM TimeClockApp WHERE EmpActive = '1'";
+	$sql = "SELECT * FROM TimeClockApp INNER JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
