@@ -8,15 +8,17 @@ function mapquest_static($dbs)
 	{
 		$e = (int) $db['EmpNo'];
 		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-md-' . ${$db['event']} .'-' . $e  . '||';
+
 		$loc = location_api($db['LocName']);
 		if ($loc)
 		{
 			$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
 		}
+		$banner .= $e . '-'. $loc['LocName'];
 	}
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
-	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
+	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&banner=' . $baner . 'locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
 	return $map;
 return $map;
 }
