@@ -4,7 +4,8 @@ function mapquest_static($dbs)
 	$locs = '';
 	while (list ($num, $db) = each ($dbs))
 	{
-		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-7B0099-' . $db['EmpNo'] . '||';
+		$e = (int) $db['EmpNo'];
+		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-sm-7B0099-' . $e  . '||';
 	}
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
