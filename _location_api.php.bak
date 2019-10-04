@@ -10,7 +10,7 @@ function mapquest_static($dbs)
 
 	$map = 'https://www.mapquestapi.com/staticmap/v5/map?locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
 	return $map;
-return $image;
+return $map;
 }
 
 function location_dispatch()
