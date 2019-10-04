@@ -14,7 +14,7 @@ function mapquest_static($dbs)
 		{
 			$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
 		}
-		$banner .= $e . '-'. $loc['LocName'];
+		$banner .= urlencode($e . '-'. $loc['LocName']);
 	}
 	$locs = substr($locs, 0, strlen($locs) - 2);
 

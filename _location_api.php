@@ -16,6 +16,7 @@ function mapquest_static($dbs)
 		}
 		$banner .= urlencode($e . '-'. $loc['LocName']);
 	}
+	$banner .= '|sm';
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
 	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&banner=' . $banner . '&locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
