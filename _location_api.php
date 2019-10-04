@@ -14,12 +14,12 @@ function mapquest_static($dbs)
 		{
 			$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
 		}
-		$banner .= urlencode($e . '-'. $loc['LocName']);
+
 	}
-	$banner .= '|sm';
+
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
-	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&banner=' . $banner . '&locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
+	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
 	return $map;
 return $map;
 }
