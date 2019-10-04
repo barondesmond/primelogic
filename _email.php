@@ -11,10 +11,14 @@ define('DIRD', '/var/www/email/');
 	$da[61][] = 'gwen@plisolutions.com';
 	$da[61][] = 'nicole@plisolutions.com';
 	$da[61][] = 'shannon@plisolutions.com';
+	$da[61][] = 'dispatch@plisolutions.com';
+
 
 	$da[91][] = 'gwen@plisolutions.com';
 	$da[91][] = 'shannon@plisolutions.com';
 	$da[91][] = 'arthur@plisolutions.com';
+	$da[91][] = 'dispatch@plisolutions.com';
+
 	//Salesman
 	$sm['0003'][] = 'david@plisolutions.com';
 	$sm['0057'][] = 'beau@plisolutions.com';
