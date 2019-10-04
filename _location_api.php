@@ -18,7 +18,7 @@ function mapquest_static($dbs)
 	}
 	$locs = substr($locs, 0, strlen($locs) - 2);
 
-	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&banner=' . $baner . 'locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
+	$map = 'https://www.mapquestapi.com/staticmap/v5/map?type=hyb&banner=' . $banner . 'locations=' . $locs . '&size=@2x&key=' . MAPQUEST_KEY;
 	return $map;
 return $map;
 }
