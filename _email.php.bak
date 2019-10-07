@@ -13,8 +13,6 @@ define('DIRD', '/var/www/email/');
 	$da[61][] = 'nicole@plisolutions.com';
 	$da[61][] = 'shannon@plisolutions.com';
 	$da[61][] = 'dispatch@plisolutions.com';
-
-
 	$da[91][] = 'gwen@plisolutions.com';
 	$da[91][] = 'shannon@plisolutions.com';
 	$da[91][] = 'arthur@plisolutions.com';
@@ -31,7 +29,8 @@ define('DIRD', '/var/www/email/');
 	$dp[60][] = 'shannon@plisolutions.com';
 	$dp[70][] = 'arthur@plisolutions.com';
 
-	$emails = array('barondesmond@gmail.com', 'shannon@plisolutions.com', 'clint@plisolutions.com', 'gwen@plisolutions.com', 'david@plisolutions.com', 'beau@plisolutions.com');
+	$emails = array('barondesmond@gmail.com', 'shannon@plisolutions.com', 'clint@plisolutions.com', 'gwen@plisolutions.com', 'david@plisolutions.com', 'beau@plisolutions.com', 
+	'arthur@plisolutions.com', 'service@plisolutions.com','dispatch@plisolutions.com');
 
 
 function get_calling_function() {

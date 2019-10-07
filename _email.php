@@ -17,7 +17,8 @@ define('DIRD', '/var/www/email/');
 	$da[91][] = 'shannon@plisolutions.com';
 	$da[91][] = 'arthur@plisolutions.com';
 	$da[91][] = 'dispatch@plisolutions.com';
-
+	
+	//30-60 salesmen/dept group
 	//Salesman
 	$sm['0003'][] = 'david@plisolutions.com';
 	$sm['0057'][] = 'beau@plisolutions.com';
