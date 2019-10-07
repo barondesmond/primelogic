@@ -8,15 +8,12 @@ define('DIRD', '/var/www/email/');
 	//days (0 current, 60 = 60-75, 90 = 90+)
 	$da[0][] = 'service@plisolutions.com';
 	$da[0][] = 'dispatch@plisolutions.com';
-	$da[31][] = 'dispatch@plisolutions.com';
 	$da[61][] = 'gwen@plisolutions.com';
 	$da[61][] = 'nicole@plisolutions.com';
 	$da[61][] = 'shannon@plisolutions.com';
-	$da[61][] = 'dispatch@plisolutions.com';
 	$da[91][] = 'gwen@plisolutions.com';
 	$da[91][] = 'shannon@plisolutions.com';
 	$da[91][] = 'arthur@plisolutions.com';
-	$da[91][] = 'dispatch@plisolutions.com';
 	
 	//30-60 salesmen/dept group
 	//Salesman
