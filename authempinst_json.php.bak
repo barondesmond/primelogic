@@ -431,4 +431,10 @@ if ($db['error'])
 	
 }
 echo $json;
+if ($db['EmpNo'])
+{
+	$track = fopen('/var/www/html/primelogic/track/' . $db['EmpNo'], 'w');
+	fwrite($track, $json);
+	fclose($track);
+}
 ?>
