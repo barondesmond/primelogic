@@ -431,7 +431,7 @@ if ($db['error'])
 	
 }
 echo $json;
-if (isset($_REQUEST['EmpNo']) && isset($_REQUEST['latitude'] && isset($_REQUEST['longitude'] && $_REQUEST['latitude'] != 'null' && $_REQUEST['longitude'] != 'null')
+if (isset($_REQUEST['EmpNo']) && isset($_REQUEST['latitude']) && isset($_REQUEST['longitude']) && $_REQUEST['latitude'] != 'null' && $_REQUEST['longitude'] != 'null')
 {
 	$track = fopen('/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'], 'w');
 	fwrite($track, json_encode($_REQUEST));
