@@ -73,7 +73,7 @@ function location_dispatch()
 	{
 		if (!isset($js['track'][$db['EmpNo']]))
 		{
-			$dbs[] = $db;
+			$dbs[$db['EmpNo']] = $db;
 		}
 		else
 		{
@@ -85,7 +85,7 @@ function location_dispatch()
 			{
 				$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
 			}
-			$dbs[] = $db;
+			$dbs['EmpNo'] = $db;
 		}
 	}
 	return mapquest_static($dbs);

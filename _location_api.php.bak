@@ -67,7 +67,7 @@ function location_dispatch()
 {
 	$js = location_track_files();
 
-	$sql = "SELECT * FROM TimeClockApp INNER  Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
+	$sql = "SELECT * FROM TimeClockApp INNER JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
