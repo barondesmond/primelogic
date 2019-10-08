@@ -77,10 +77,7 @@ return $js;
 function location_dispatch()
 {
 	$js = location_track_files();
-	if (isset($js['track']))
-	{
-		$dbs = $js['track'];
-	}	
+
 	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, Location.LocName FROM TimeClockApp INNER JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
@@ -97,8 +94,13 @@ function location_dispatch()
 		$dbs['EmpNo'] = $db;
 		
 	}
-	print_r($dbs);
-	exit;
+	foreach ($js['track'] as $EmpNo => $db)
+	{
+		if (!isset($dbs[$EmpNo]))
+		{
+			$dbs[$EmpNo] = $db;
+		}
+	}
 	return mapquest_static($dbs);
 }
 
