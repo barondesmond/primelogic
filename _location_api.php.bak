@@ -4,7 +4,7 @@ function mapquest_static($dbs)
 	$locs = '';
 	$Traveling = '00AD43';
 	$Working = 'FF0000';
-	$Inactive = 'FFFFFF';
+	$Inactive = 'AAFFFF';
 
 	while (list ($num, $db) = each ($dbs))
 	{
