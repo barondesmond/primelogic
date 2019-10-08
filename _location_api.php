@@ -34,7 +34,7 @@ function location_track_parse_file($file)
 		$ua = @mssql_fetch_assoc($res);
 		if (isset($ua))
 		{
-			$fp = fopen($file, 'r');
+			$fp = fopen('/var/www/html/primelogic/track/' . $file, 'r');
 			$con = fread($fp, filesize($file));
 			$db = json_decode($con, true);
 			$db['event'] = 'Inactive';
