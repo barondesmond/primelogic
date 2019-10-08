@@ -208,7 +208,7 @@ function dispatch_db($db, $dev='')
 			$error['error'] = 'no rows affected';
 			$error[] = mssql_get_last_message();
 			$error[] = $sql;
-			return $error;		
+			//return $error;		
 		}
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;

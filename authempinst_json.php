@@ -205,14 +205,16 @@ function dispatch_db($db, $dev='')
 		$rows = mssql_rows_affected();
 		if ($rows == 0)
 		{
-			$error['error'] = 'no rows affected';
+			//$error['error'] = 'no rows affected';
 			$error[] = mssql_get_last_message();
 			$error[] = $sql;
 			//return $error;		
 		}
-		$error[] = mssql_get_last_message();
-		$error[] = $sql;
-
+		else
+		{
+			$error[] = mssql_get_last_message();
+			$error[] = $sql;
+		}
 		
 	}
 	else
