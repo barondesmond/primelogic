@@ -39,7 +39,8 @@ function location_track_parse_file($file)
 			$db = json_decode($con, true);
 			$db['event'] = 'Inactive';
 			$dbs = array_merge($db, $ua);
-
+			print_r($db);
+			exit;
 			return $dbs;
 		}
 return false;
