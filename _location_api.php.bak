@@ -32,9 +32,10 @@ function location_track_parse_file($file)
 		$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '$file'";
 		$res = @mssql_query($sql);
 		$ua = @mssql_fetch_assoc($res);
-		if (isset($ua))
+		if (isset($ua) && isset($ua['EmpNo']))
 		{
 			$afile = '/var/www/html/primelogic/track/' . $file;
+			echo $afile;
 			$fp = fopen($afile, 'r');
 			$con = fread($fp, filesize($afile));
 			$db = json_decode($con, true);
