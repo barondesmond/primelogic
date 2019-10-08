@@ -14,7 +14,7 @@ function mapquest_static($dbs)
 		$loc = location_api($db['LocName']);
 		if ($loc)
 		{
-			$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
+			//$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
 		}
 
 	}
