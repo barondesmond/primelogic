@@ -85,22 +85,17 @@ function location_dispatch()
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		if (!isset($js['track'][$db['EmpNo']]) && !isset($js['track'][(int) $db['EmpNo']]))
+
+		if (isset($js['track'][$db['EmpNo']]['latitude']))
 		{
-			$dbs[$db['EmpNo']] = $db;
+			$db['latitude'] = $js['track'][$db['EmpNo']]['latitude'];
 		}
-		else
+		if (isset($js['track'][$db['EmpNo']]['latitude']))
 		{
-			if (isset($js['track'][$db['EmpNo']]['latitude']))
-			{
-				$db['latitude'] = $js['track'][$db['EmpNo']]['latitude'];
-			}
-			if (isset($js['track'][$db['EmpNo']]['latitude']))
-			{
-				$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
-			}
-			$dbs['EmpNo'] = $db;
+			$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
 		}
+		$dbs['EmpNo'] = $db;
+		
 	}
 	return mapquest_static($dbs);
 }

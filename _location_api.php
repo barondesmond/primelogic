@@ -97,6 +97,8 @@ function location_dispatch()
 		$dbs['EmpNo'] = $db;
 		
 	}
+	print_r($dbs);
+	exit;
 	return mapquest_static($dbs);
 }
 
