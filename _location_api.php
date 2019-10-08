@@ -71,14 +71,14 @@ function location_dispatch()
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		if (!isset($js['track'][$db['EmpNo']))
+		if (!isset($js['track'][$db['EmpNo']]))
 		{
 			$dbs[] = $db;
 		}
 		else
 		{
-			$db['latitude'] = $js['track'][$db['EmpNo']['latitude'];
-			$db['longitude'] = $js['track'][$db['EmpNo']['longitude'];
+			$db['latitude'] = $js['track'][$db['EmpNo']]['latitude'];
+			$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
 		}
 	}
 	return mapquest_static($dbs);

@@ -4,6 +4,8 @@ function mapquest_static($dbs)
 	$locs = '';
 	$Traveling = '00AD43';
 	$Working = 'FF0000';
+	$Inactive = 'FFFFFF';
+
 	while (list ($num, $db) = each ($dbs))
 	{
 		$e = (int) $db['EmpNo'];
@@ -23,6 +25,23 @@ function mapquest_static($dbs)
 	return $map;
 return $map;
 }
+function location_track_parse_file($file)
+{
+
+		$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '$file'";
+		$res = @mssql_query($sql);
+		$ua = @mssql_fetch_assoc($res);
+		if (isset($ua))
+		{
+			$fp = fopen($file, 'r');
+			$con = fread($fp, filesize($file));
+			$db = json_decode($con, true);
+			$dbs = aray_merge($db, $ua);
+			return $dbs;
+		}
+return false;
+}
+
 
 function location_track_files()
 {
@@ -33,16 +52,34 @@ function location_track_files()
 		$dir = '/var/www/html/primelogic/track/';
 		$files = scandir($dir);
 	}
-return $files;
+	foreach ($files as $id=>$file)
+	{
+		if ($db = location_track_parse_file($file))
+		{
+			$js['track'][$file] = $db;
+		}
+	}
+
+return $js;
 }
 
 function location_dispatch()
 {
-	$sql = "SELECT * FROM TimeClockApp LEFT JOIN  Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
+	$js = location_track_files();
+
+	$sql = "SELECT * FROM TimeClockApp INNER  Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		$dbs[] = $db;
+		if (!isset($js['track'][$db['EmpNo']))
+		{
+			$dbs[] = $db;
+		}
+		else
+		{
+			$db['latitude'] = $js['track'][$db['EmpNo']['latitude'];
+			$db['longitude'] = $js['track'][$db['EmpNo']['longitude'];
+		}
 	}
 	return mapquest_static($dbs);
 }
