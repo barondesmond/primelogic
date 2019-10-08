@@ -36,7 +36,7 @@ function location_track_parse_file($file)
 			$fp = fopen($file, 'r');
 			$con = fread($fp, filesize($file));
 			$db = json_decode($con, true);
-			$dbs = aray_merge($db, $ua);
+			$dbs = array_merge($db, $ua);
 			return $dbs;
 		}
 return false;
