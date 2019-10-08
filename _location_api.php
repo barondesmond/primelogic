@@ -85,7 +85,7 @@ function location_dispatch()
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
-		if (!isset($js['track'][$db['EmpNo']]))
+		if (!isset($js['track'][$db['EmpNo']]) && !isset($js['track'][(int) $db['EmpNo']]))
 		{
 			$dbs[$db['EmpNo']] = $db;
 		}
