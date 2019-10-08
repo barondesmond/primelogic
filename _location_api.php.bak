@@ -85,6 +85,7 @@ function location_dispatch()
 			{
 				$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
 			}
+			$dbs[] = $db;
 		}
 	}
 	return mapquest_static($dbs);
