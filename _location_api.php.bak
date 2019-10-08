@@ -36,7 +36,9 @@ function location_track_parse_file($file)
 			$fp = fopen($file, 'r');
 			$con = fread($fp, filesize($file));
 			$db = json_decode($con, true);
+			$db['event'] = 'Inactive';
 			$dbs = array_merge($db, $ua);
+
 			return $dbs;
 		}
 return false;
@@ -59,7 +61,7 @@ function location_track_files()
 			$js['track'][$file] = $db;
 		}
 	}
-
+	
 return $js;
 }
 

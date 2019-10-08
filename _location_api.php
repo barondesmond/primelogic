@@ -10,13 +10,14 @@ function mapquest_static($dbs)
 	{
 		$e = (int) $db['EmpNo'];
 		$locs .= $db['latitude'] .',' . $db['longitude'] . '|marker-md-' . ${$db['event']} .'-' . $e  . '||';
-
-		$loc = location_api($db['LocName']);
-		if ($loc)
+		if (isset($db['LocName']))
 		{
-			//$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
+			$loc = location_api($db['LocName']);
+			if ($loc)
+			{
+				//$locs .= $loc['latitude'] . ',' . $loc['longitude'] . '|marker-sm-FFFFFF-' . substr($db['Dispatch'], strlen($db['Dispatch']) -3, strlen($db['Dispatch'])) . '||';
+			}
 		}
-
 	}
 
 	$locs = substr($locs, 0, strlen($locs) - 2);
