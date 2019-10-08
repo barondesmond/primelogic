@@ -35,6 +35,7 @@ function location_track_parse_file($file)
 		if (isset($ua))
 		{
 			$afile = '/var/www/html/primelogic/track/' . $file;
+			echo $afile;
 			$fp = fopen($afile, 'r');
 			$con = fread($fp, filesize($afile));
 			$db = json_decode($con, true);
