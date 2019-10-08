@@ -91,7 +91,7 @@ function location_dispatch()
 		{
 			$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
 		}
-		$dbs['EmpNo'] = $db;
+		$dbs[$db['EmpNo']] = $db;
 		
 	}
 	foreach ($js['track'] as $EmpNo => $db)
