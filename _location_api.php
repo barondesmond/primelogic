@@ -30,7 +30,7 @@ function location_track_parse_file($file)
 {
 	$afile = '/var/www/html/primelogic/track/' . $file;
 
-	if (filemtime($afile) > time() - 3600)
+	if (filemtime($afile) > time() - 3600*8)
 	{
 		$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '$file'";
 		$res = @mssql_query($sql);
