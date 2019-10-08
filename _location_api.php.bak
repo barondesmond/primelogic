@@ -28,13 +28,15 @@ return $map;
 }
 function location_track_parse_file($file)
 {
+	$afile = '/var/www/html/primelogic/track/' . $file;
 
+	if (filemtime($afile) > time() - 3600)
+	{
 		$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '$file'";
 		$res = @mssql_query($sql);
 		$ua = @mssql_fetch_assoc($res);
 		if (isset($ua) && isset($ua['EmpNo']) && $ua['EmpNo'] == $file)
 		{
-			$afile = '/var/www/html/primelogic/track/' . $file;
 			//echo $afile;
 			$fp = fopen($afile, 'r');
 			$con = fread($fp, filesize($afile));
@@ -47,6 +49,7 @@ function location_track_parse_file($file)
 			return $dbs;
 
 		}
+	}
 return false;
 }
 
