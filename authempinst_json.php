@@ -210,6 +210,7 @@ function dispatch_db($db, $dev='')
 			//$error['error'] = 'no rows affected';
 			$error[] = mssql_get_last_message();
 			$error[] = $sql;
+			error_log(json_encode($error));
 			//return $error;		
 		}
 		else
