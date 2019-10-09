@@ -276,7 +276,7 @@ $time = time();
 
 if ($db['checkinStatus'] == 'Stop')
 {
-	if ($db['Complete'] == 'Y')
+	if (isset($db['Complete']) && $db['Complete'] == 'Y')
 	{
 		$complete = ", customer = '" . $db['customer'] . "', customerimage = '" . $db['customerimage'] . "'";
 	}
