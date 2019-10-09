@@ -164,17 +164,23 @@ return $html;
 function dispatch_work($dbs = '')
 {
 
-		$scope = '';
-		$workday = date('Y-m-d', strtotime($dbs['Complete']));
-	$works = $dbs['Notes'];
-	$str1 = strpos($works, $workday);
-	$char = '1800';
+	$workday = date('Y-m-d', strtotime($dbs['Complete']));
+	$smpos = strpos($dbs['Notes'], $dbs['ServiceMan']);
+	$smstart = $smpos - 21;
+	$workpos = strpos($dbs['Notes'], $workday, $smstart);
+	$works = substr($dbs['Notes'], $workpos, strlen($dbs['Notes']);
 
-	$dbs['Notes'] = substr($works, $str1, $char + $str1);
+
+	//$workday = date('Y-m-d', strtotime($dbs['Complete']));
+	//$works = $dbs['Notes'];
+	//$str1 = strpos($works, $workday);
+
+	$dbs['Notes'] = $works;
 	//echo $dbs['Notes'];
 
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
+	$char = '1800';
 
 	$i = 0;
 	foreach ($exp as $line)
