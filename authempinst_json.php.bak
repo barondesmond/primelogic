@@ -45,7 +45,7 @@ function add_note($db, $dev='')
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 	}
-	if ($sql != '')
+	if (isset($sql) && $sql != '')
 	{
 		@mssql_query($sql);
 		$error[] = mssql_get_last_message();
@@ -419,7 +419,7 @@ if ($error2 = add_note($_REQUEST, $d))
 }
 
 $db = TimeClockQuery($_REQUEST, $d);
-
+$i=0;
 if (!isset($db))
 {
 	$db['authorized'] = '0';

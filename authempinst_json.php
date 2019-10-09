@@ -21,7 +21,7 @@ function add_note($db, $dev='')
 {
 	$tcq = TimeClockQuery($db, $dev);
 	$note = 'add' . $db['Screen'] . 'Note';
-
+	$error = '';
 	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'])
 	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
@@ -45,7 +45,7 @@ function add_note($db, $dev='')
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 	}
-	if ($sql != '')
+	if (isset($sql) && $sql != '')
 	{
 		@mssql_query($sql);
 		$error[] = mssql_get_last_message();
