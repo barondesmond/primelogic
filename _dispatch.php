@@ -174,6 +174,7 @@ function dispatch_work($dbs = '')
 	//$workday = date('Y-m-d', strtotime($dbs['Complete']));
 	//$works = $dbs['Notes'];
 	//$str1 = strpos($works, $workday);
+	error_log($works);
 	if (strlen($works) > 10)
 	{
 		$dbs['Notes'] = $works;

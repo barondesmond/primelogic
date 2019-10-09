@@ -174,8 +174,10 @@ function dispatch_work($dbs = '')
 	//$workday = date('Y-m-d', strtotime($dbs['Complete']));
 	//$works = $dbs['Notes'];
 	//$str1 = strpos($works, $workday);
-
-	$dbs['Notes'] = $works;
+	if (strlen($works) > 10)
+	{
+		$dbs['Notes'] = $works;
+	}
 	//echo $dbs['Notes'];
 
 	$exp = explode("\r\n", $dbs['Notes']);
