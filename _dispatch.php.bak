@@ -180,7 +180,7 @@ function dispatch_work($dbs = '')
 		$dbs['Notes'] = $works;
 	}
 	//echo $dbs['Notes'];
-
+	$work = '';
 	$exp = explode("\r\n", $dbs['Notes']);
 	$lim = '15';
 	$char = '1800';
