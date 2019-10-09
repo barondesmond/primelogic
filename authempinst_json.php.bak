@@ -406,7 +406,7 @@ else
 
 
 $note = "add" . $_REQUEST['Screen'] . "Note";
-if ($error2 = add_note($_REQUEST, $d))
+if (isset($_REQUEST['Screen']) && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)
 	{
