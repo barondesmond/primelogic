@@ -420,7 +420,7 @@ if ($error2 = add_note($_REQUEST, $d))
 
 $db = TimeClockQuery($_REQUEST, $d);
 
-if (!$db || $db['error'])
+if (!isset($db))
 {
 	$db['authorized'] = '0';
 }

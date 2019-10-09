@@ -437,7 +437,7 @@ if (isset($error))
 header('Content-Type: application/json');
 
 $json =  json_encode($db);
-if ($db['error'])
+if (isset($db['error']))
 {
 	error_log($json);
 	
