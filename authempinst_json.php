@@ -205,6 +205,8 @@ function dispatch_db($db, $dev='')
 		$rows = mssql_rows_affected(MSSQL_CONNECTION);
 		if ($rows == 0)
 		{
+			error_log('no rows affected');
+			error_log($sql);
 			//$error['error'] = 'no rows affected';
 			$error[] = mssql_get_last_message();
 			$error[] = $sql;
