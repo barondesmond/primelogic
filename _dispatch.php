@@ -180,7 +180,7 @@ function dispatch_work($dbs = '')
 	}
 	else
 	{
-		$workpos = $workday;
+		$workpos = strpos($dbs['Notes'], $workday);
 	}
 	$works = substr($dbs['Notes'], $workpos, strlen($dbs['Notes']));
 	error_log($works);
