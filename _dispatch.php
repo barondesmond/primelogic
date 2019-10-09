@@ -111,7 +111,14 @@ function dispatch_scope($dbs = '')
 	$workday = date('Y-m-d', strtotime($dbs['Complete']));
 	$smpos = strpos($dbs['Notes'], $dbs['ServiceMan']);
 	$smstart = $smpos - 21;
-	$workpos = strpos($dbs['Notes'], $workday, $smstart);
+	if ($smstart > $workday)
+	{
+		$workpos = strpos($dbs['Notes'], $workday, $smstart);
+	}
+	else
+	{
+		$workpos = $workday;
+	}
 	$scopes = substr($dbs['Notes'], 0, $workpos);
 
 	//$scopes = substr($dbs['Notes'], 0, strpos($dbs['Notes'], $dbs['ServiceMan']) - 21);
@@ -165,14 +172,17 @@ function dispatch_work($dbs = '')
 {
 
 	$workday = date('Y-m-d', strtotime($dbs['Complete']));
-	$smpos = strpos($dbs['Notes'], $dbs['ServiceMan'], $workday);
+	$smpos = strpos($dbs['Notes'], $dbs['ServiceMan']);
 	$smstart = $smpos - 21;
-	$works = substr($dbs['Notes'], $smstart, strlen($dbs['Notes']));
-
-
-	//$workday = date('Y-m-d', strtotime($dbs['Complete']));
-	//$works = $dbs['Notes'];
-	//$str1 = strpos($works, $workday);
+	if ($smstart > $workday)
+	{
+		$workpos = strpos($dbs['Notes'], $workday, $smstart);
+	}
+	else
+	{
+		$workpos = $workday;
+	}
+	$works = substr($dbs['Notes'], $workpos, strlen($dbs['Notes']));
 	error_log($works);
 	if (strlen($works) > 10)
 	{
