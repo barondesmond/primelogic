@@ -224,6 +224,7 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['checkinStatus'] == 'Stop' && $db['Complete'] != 'Y')
 	{
+		$v = '';
 		for ($i=0; $i< count($array); $i++)
 		{
 			if ($array[$i] == 'Counter')
