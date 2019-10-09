@@ -191,7 +191,7 @@ function dispatch_work($dbs = '')
 	//echo $dbs['Notes'];
 	$work = '';
 	$exp = explode("\r\n", $dbs['Notes']);
-	error_log($exp);
+	error_log(json_encode($exp));
 	$lim = '15';
 	$char = '1800';
 
