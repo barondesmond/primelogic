@@ -279,6 +279,10 @@ if ($db['checkinStatus'] == 'Stop')
 	{
 		$complete = ", customer = '" . $db['customer'] . "', customerimage = '" . $db['customerimage'] . "'";
 	}
+	else
+	{
+		$complete = '';
+	}
 	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
