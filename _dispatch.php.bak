@@ -168,7 +168,7 @@ function dispatch_work($dbs = '')
 	$smpos = strpos($dbs['Notes'], $dbs['ServiceMan']);
 	$smstart = $smpos - 21;
 	$workpos = strpos($dbs['Notes'], $workday, $smstart);
-	$works = substr($dbs['Notes'], $workpos, strlen($dbs['Notes']);
+	$works = substr($dbs['Notes'], $workpos, strlen($dbs['Notes']));
 
 
 	//$workday = date('Y-m-d', strtotime($dbs['Complete']));
