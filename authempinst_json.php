@@ -202,7 +202,7 @@ function dispatch_db($db, $dev='')
 	{
 		$sql = $up . $dd . $where;
 		$res = @mssql_query($sql);
-		$rows = mssql_rows_affected();
+		$rows = mssql_rows_affected(MSSQL_CONNECTION);
 		if ($rows == 0)
 		{
 			//$error['error'] = 'no rows affected';

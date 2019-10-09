@@ -390,7 +390,7 @@ else
 if ($_REQUEST['Screen'] == 'Dispatch')
 {
 	$error = dispatch_db($_REQUEST, $d);
-	if (!$error['error'])
+	if (!isset($error['error']))
 	{
 		if ($error2 = timeclock_db($_REQUEST))
 		{
