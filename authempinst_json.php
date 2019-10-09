@@ -445,7 +445,15 @@ if ($db['error'])
 echo $json;
 if (isset($_REQUEST['EmpNo']))
 {
-	$file = '/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'] . $_REQUEST['checkinStatus'] . $_REQUEST['event'] . $_REQUEST['Dispatch'];
+	if (isset($_REQUEST['checkinStatus']) && isset($_REQUEST['event']) && isset($_REQUEST['Dispatch']))
+	{
+		$ext = $_REQUEST['checkinStatus'] . $_REQUEST['event'] . $_REQUEST['Dispatch'];
+	}
+	else
+	{
+		$str = '';
+	}
+	$file = '/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'] . $str;
 	$track = fopen($file, 'w');
 	fwrite($track, json_encode($_REQUEST));
 	fclose($track);
