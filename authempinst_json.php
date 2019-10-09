@@ -445,7 +445,8 @@ if ($db['error'])
 echo $json;
 if (isset($_REQUEST['EmpNo']))
 {
-	$track = fopen('/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'], 'w');
+	$file = '/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'] . $_REQUEST['event'] . $_REQUEST['Dispatch'];
+	$track = fopen($file, 'w');
 	fwrite($track, json_encode($_REQUEST));
 	fclose($track);
 }
