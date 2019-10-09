@@ -202,7 +202,7 @@ function dispatch_work($dbs = '')
 		{
 			//skip
 		}
-		elseif ((strpos($line, $dbs['ServiceMan']) !== false || ($i > 0 )) && $i < $lim && strlen($work) < $char)
+		elseif ($i < $lim && strlen($work) < $char)
 		{
 			$work .= $line . "\r\n<BR>";
 			$i++;
