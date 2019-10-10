@@ -443,7 +443,7 @@ if (isset($error))
 if (isset($db['authorized']) && $db['authorized'] == '1')
 {
 	$js2 = dispatch_query($_REQUEST['EmpNo'], $_REQUEST['dev']);
-	$js['dispatchs'] = $js2['dispatchs'];
+	$db['dispatchs'] = $js2['dispatchs'];
 }
 
 header('Content-Type: application/json');
