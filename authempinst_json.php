@@ -203,21 +203,10 @@ function dispatch_db($db, $dev='')
 		$sql = $up . $dd . $where;
 		$res = @mssql_query($sql);
 		$rows = mssql_rows_affected(MSSQL_CONNECTION);
-		if ($rows == 0)
-		{
-			error_log('no rows affected');
-			error_log($sql);
-			//$error['error'] = 'no rows affected';
-			$error[] = mssql_get_last_message();
-			$error[] = $sql;
-			error_log(json_encode($error));
-			//return $error;		
-		}
-		else
-		{
-			$error[] = mssql_get_last_message();
-			$error[] = $sql;
-		}
+		$error[] = 'rows affected ' . $rows;
+		$error[] = mssql_get_last_message();
+		$error[] = $sql;
+	
 		
 	}
 	else
@@ -261,6 +250,8 @@ function dispatch_db($db, $dev='')
 		//dont insert new disptech
 		$sql = "UPDATE Dispatch$dev SET Complete = getdate() WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res = mssql_query($sql);
+		$rows = mssql_rows_affected(MSSQL_CONNECTION);
+		$error[] = 'rows affected ' . $rows;
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
 		system("/usr/bin/php /var/www/html/primelogic/dispatch.php '$db[Dispatch]' >/dev/null &");
