@@ -32,4 +32,8 @@ move_uploaded_file($tmp_name, $loc);
 header('Content-Type: application/json');
 $db['location'] = 'https://' . HOST . '/primelogic/upload/' . $name ;
 $db['FILES'] = $_FILES;
+if (file_exists($loc))
+{
+	$db['status'] = 'success';
+}
 echo json_encode($db);
