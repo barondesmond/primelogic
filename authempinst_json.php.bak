@@ -8,6 +8,9 @@ include ('_email.php');
 include("_user_app_auth.php");
 include("dispatch_pdf.php");
 
+include("_job.php");
+include("_employees.php");
+
 $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
@@ -393,7 +396,7 @@ if ($_REQUEST['Screen'] == 'Dispatch')
 	}
 	
 }
-else
+elseif (isset($_REQUEST['Screen'])
 {
 	if ($error = timeclock_db($_REQUEST))
 	{
@@ -435,7 +438,18 @@ if (isset($db['authorized']) && $db['authorized'] == '1')
 {
 	$js2 = dispatch_query($_REQUEST['EmpNo'], $_REQUEST['dev']);
 	$db['dispatchs'] = $js2['dispatchs'];
+	if (!isset($_REQUEST['ServiceMan']))
+	{
+		$_REQUEST['ServiceMan'] = '';
+	}
+	if (!isset($_REQUEST['order']))
+	{
+		$_REQUEST['order'] = 'LocName';
+	}
+	$js3 = jobs_query($d, $_REQUEST['ServiceMan'], $_REQUEST['order']);
+	$db['jobs'] = $js3['jobs'];
 }
+
 
 header('Content-Type: application/json');
 
