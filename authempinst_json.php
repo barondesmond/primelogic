@@ -90,7 +90,7 @@ function disptech_create($sdb, $dev = '')
 	}
 	if (!$sdb['Counter'])
 	{
-		$sdb['Counter'] = dispatch_counter($sdb['Dispatch');
+		$sdb['Counter'] = dispatch_counter($sdb['Dispatch'], $dev);
 	}
 	if (!$sdb['Dispatcher'])
 	{
