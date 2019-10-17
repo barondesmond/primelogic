@@ -79,7 +79,7 @@ function dispatch_dispatcher($Dispatch = '', $dev = '')
 	$sql = "SELECT * FROM Dispatch$dev WHERE Dispatch = 'Dispatch'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_assoc($res);
-	return $db['Dispatcher']);
+	return $db['Dispatcher'];
 }
 
 function disptech_create($sdb, $dev = '')
