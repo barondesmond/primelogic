@@ -73,7 +73,62 @@ function dispatch_counter($Dispatch = '', $dev = '')
 		return $db['Counter'];
 	}
 }
-		
+
+function dispatch_dispatcher($Dispatch = '', $dev = '')
+{
+	$sql = "SELECT * FROM Dispatch$dev WHERE Dispatch = 'Dispatch'";
+	$res = mssql_query($sql);
+	$db = mssql_fetch_assoc($res);
+	return $db['Dispatcher');
+}
+
+function disptech_create($sdb, $dev = '')
+{
+	if (!$sdb['Dispatch'] || !$sdb['ServiceMan'])
+	{
+		return false;
+	}
+	if (!$sdb['Counter'])
+	{
+		$sdb['Counter'] = dispatch_counter($sdb['Dispatch');
+	}
+	if (!$sdb['Dispatcher'])
+	{
+		$sdb['Dispatcher'] = dispatch_dispatcher($sdb['Dispatch'], $dev);
+	}
+		$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
+
+		$v = '';
+		for ($i=0; $i< count($array); $i++)
+		{
+			if ($array[$i] == 'Counter')
+			{
+				$sdb[$array[$i]] = (int) $sdb[$array[$i]];
+				$sdb[$array[$i]] = dispatch_counter($sdb['Dispatch'], $dev);
+				$sdb[$array[$i]]++;
+				$sdb[$array[$i]] = str_pad($sdb[$array[$i]], 3, "0", STR_PAD_LEFT);
+			}
+			if ($array[$i] == 'Status')
+			{
+				$sdb['Status'] = 'Pending';
+			}
+			$v .= "'" . $sdb[$array[$i]] . "',";
+		}
+		$v = substr($v, 0, strlen($v) - 1);		
+
+		for ($i=0;$i<count($blank); $i++)
+		{
+			$q .= " ," . $blank[$i] . " ";
+			$v .= " ,'' ";
+		}
+
+		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
+		$res2 = mssql_query($ins);
+		$error[] = mssql_get_last_message();
+		$error[] = $ins;
+return $error;
+}
+
 function dispatch_db($db, $dev='')
 {
 
