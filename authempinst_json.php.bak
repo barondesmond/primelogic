@@ -74,8 +74,28 @@ function dispatch_counter($Dispatch = '', $dev = '')
 	}
 }
 
-function disptech_create($sdb, $dev)
+function dispatch_dispatcher($Dispatch = '', $dev = '')
 {
+	$sql = "SELECT * FROM Dispatch$dev WHERE Dispatch = 'Dispatch'";
+	$res = mssql_query($sql);
+	$db = mssql_fetch_assoc($res);
+	return $db['Dispatcher');
+}
+
+function disptech_create($sdb, $dev = '')
+{
+	if (!$sdb['Dispatch'] || !$sdb['ServiceMan'])
+	{
+		return false;
+	}
+	if (!$sdb['Counter'])
+	{
+		$sdb['Counter'] = dispatch_counter($sdb['Dispatch');
+	}
+	if (!$sdb['Dispatcher'])
+	{
+		$sdb['Dispatcher'] = dispatch_dispatcher($sdb['Dispatch'], $dev);
+	}
 		$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
 
 		$v = '';
