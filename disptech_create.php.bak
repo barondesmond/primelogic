@@ -13,12 +13,8 @@ include("_employees.php");
 
 if ($argv)
 {
-	$_REQUEST['Dispatch'] = $argv[1];
-	$_REQUEST['ServiceMan'] = $argv[2];
-	if ($argv[3])
-	{
-		$_REQUEST['Dev'] = $argv[3];
-	}
-	$er = disptech_create($_REQUEST, $_REQUEST['Dev']);
+	$db['Dispatch'] = $argv[1];
+	$db['ServiceMan'] = $argv[2];
+	$er = disptech_create($db);
 	print_r($er);
 }
