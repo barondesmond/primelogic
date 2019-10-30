@@ -111,7 +111,7 @@ function location_timeclock()
 {
 	$js = location_track_files();
 
-	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.Jobs, TimeClockApp.StartTime FROM TimeClockApp  WHERE EmpActive = '1'";
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.JobID, TimeClockApp.StartTime FROM TimeClockApp  WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
