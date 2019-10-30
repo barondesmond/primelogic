@@ -107,6 +107,36 @@ function location_dispatch()
 	return mapquest_static($dbs);
 }
 
+function location_timeclock()
+{
+	$js = location_track_files();
+
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, Location.LocName FROM TimeClockApp  WHERE EmpActive = '1'";
+	$res = mssql_query($sql);
+	while ($db = mssql_fetch_assoc($res))
+	{
+
+		if (isset($js['track'][$db['EmpNo']]['latitude']))
+		{
+			$db['latitude'] = $js['track'][$db['EmpNo']]['latitude'];
+		}
+		if (isset($js['track'][$db['EmpNo']]['latitude']))
+		{
+			$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
+		}
+		$dbs[$db['EmpNo']] = $db;
+		
+	}
+	foreach ($js['track'] as $EmpNo => $db)
+	{
+		if (!isset($dbs[$EmpNo]))
+		{
+			$dbs[$EmpNo] = $db;
+		}
+	}
+	return $dbs;
+}
+
 
 function mapquest_reverse_geocode($lat,$long)
 {
