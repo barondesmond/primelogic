@@ -116,7 +116,7 @@ function location_timeclock()
 	while ($db = mssql_fetch_assoc($res))
 	{
 
-		$db['Start'] = date("Y-m-d H:i:s"), $db['Start']);
+		$db['Start'] = date("Y-m-d H:i:s", $db['Start']);
 		$dbs[$db['EmpNo']] = $db;
 		
 	}
