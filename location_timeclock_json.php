@@ -7,5 +7,5 @@ include("_location_api.php");
 
 $js = location_timeclock();
 header('Content-Type: application/json');
-json_encode($js);
+echo json_encode($js);
 ?>	
