@@ -116,24 +116,11 @@ function location_timeclock()
 	while ($db = mssql_fetch_assoc($res))
 	{
 
-		if (isset($js['track'][$db['EmpNo']]['latitude']))
-		{
-			$db['latitude'] = $js['track'][$db['EmpNo']]['latitude'];
-		}
-		if (isset($js['track'][$db['EmpNo']]['latitude']))
-		{
-			$db['longitude'] = $js['track'][$db['EmpNo']]['longitude'];
-		}
+
 		$dbs[$db['EmpNo']] = $db;
 		
 	}
-	foreach ($js['track'] as $EmpNo => $db)
-	{
-		if (!isset($dbs[$EmpNo]))
-		{
-			$dbs[$EmpNo] = $db;
-		}
-	}
+
 	return $dbs;
 }
 
