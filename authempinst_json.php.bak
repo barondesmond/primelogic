@@ -15,6 +15,7 @@ $auth = UserAppAuth($_REQUEST);
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
+	$auth['unauthorized'] = 'UseAppAuth';
 	echo json_encode($auth);
 	exit;
 }
@@ -214,7 +215,7 @@ else
 }
 
 
-if ($_REQUEST['event'] == 'Start' || $_REQUEST['event'] == 'Stop')
+if ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop')
 {
 	$error = authempinst($d);
 }

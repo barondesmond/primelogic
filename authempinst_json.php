@@ -215,11 +215,11 @@ else
 }
 
 
-if ($_REQUEST['event'] == 'Start' || $_REQUEST['event'] == 'Stop')
+if ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop')
 {
 	$error = authempinst($d);
 }
-if ($_REQUEST['event'] == 'Switch')
+if ($_REQUEST['checkinStatus'] == 'Switch')
 {
 	$_REQUEST['event'] = 'Stop';
 	$error = authempinst($d);
