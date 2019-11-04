@@ -250,6 +250,7 @@ $i=0;
 if (!isset($db))
 {
 	$db['authorized'] = '0';
+	$db['error'] = $error;
 }
 
 	$db['id'] = $i;
