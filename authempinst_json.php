@@ -175,14 +175,9 @@ return $db;
 
 //Main Api Render
 
-if ($_REQUEST['dev'] == 'true')
+
+function authempinst($d)
 {
-	$d = 'Dev';
-}
-else
-{
-	$d = '';
-}
 
 if ($_REQUEST['Screen'] == 'Dispatch')
 {
@@ -206,9 +201,38 @@ elseif (isset($_REQUEST['Screen']))
 }
 
 
+return $error;
+}
+
+if ($_REQUEST['dev'] == 'true')
+{
+	$d = 'Dev';
+}
+else
+{
+	$d = '';
+}
+
+
+if ($_REQUEST['event'] == 'Start' || $_REQUEST['event'] == 'Stop')
+{
+	$error = authempinst($d);
+}
+if ($_REQUEST['event'] == 'Switch')
+{
+	$_REQUEST['event'] = 'Stop';
+	$error = authempinst($d);
+	if (!$error['error'])
+	{
+		$_REQUEST['event'] = 'Start';
+		$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
+		$error2 = authempinst($d);
+	}
+}
+
 
 $note = "add" . $_REQUEST['Screen'] . "Note";
-if (isset($_REQUEST['Screen']) && $error2 = add_note($_REQUEST, $d))
+if (isset($_REQUEST['Screen']) && $_REQUEST['event'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)
 	{
@@ -219,6 +243,7 @@ if (isset($_REQUEST['Screen']) && $error2 = add_note($_REQUEST, $d))
 		$error = $error2;
 	}
 }
+
 
 $db = TimeClockQuery($_REQUEST, $d);
 $i=0;
@@ -234,6 +259,7 @@ if (isset($error))
 	$db['error'][] = $error;
 
 }
+
 if (isset($db['authorized']) && $db['authorized'] == '1')
 {
 	$js2 = dispatch_query($_REQUEST['EmpNo'], $_REQUEST['dev']);
@@ -249,7 +275,6 @@ if (isset($db['authorized']) && $db['authorized'] == '1')
 	$js3 = jobs_query($d, $_REQUEST['ServiceMan'], $_REQUEST['order']);
 	$db['jobs'] = $js3['jobs'];
 }
-
 
 header('Content-Type: application/json');
 
