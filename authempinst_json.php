@@ -221,11 +221,11 @@ if ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop
 }
 if ($_REQUEST['checkinStatus'] == 'Switch')
 {
-	$_REQUEST['event'] = 'Stop';
+	$_REQUEST['checkinStatus'] = 'Stop';
 	$error = authempinst($d);
 	if (!$error['error'])
 	{
-		$_REQUEST['event'] = 'Start';
+		$_REQUEST['checkinStatus'] = 'Start';
 		$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
 		$error2 = authempinst($d);
 	}
@@ -233,7 +233,7 @@ if ($_REQUEST['checkinStatus'] == 'Switch')
 
 
 $note = "add" . $_REQUEST['Screen'] . "Note";
-if (isset($_REQUEST['Screen']) && $_REQUEST['event'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
+if (isset($_REQUEST['Screen']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)
 	{
