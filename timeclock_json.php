@@ -44,9 +44,10 @@ elseif (isset($_REQUEST['timeclock_update']))
 
 
 }
-if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['timeclock']['StartDate']) && isset($_REQUEST['timeclock']['StopDate']) && $_REQUEST['timeclock']['EmpNo'] && isset($_REQUEST['timeclock']['Screen']) && isset($_REQUEST['timeclock']['event']))
+if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'] && isset($_REQUEST['event']) && isset($_REQUEST['Screen']))
 {
-	$data = timeclock_add($_REQUEST['timeclock'], $dev);
+	$_REQUEST['EmpNo'] = $_REQUEST['timeclock_add'];
+	$data = timeclock_add($_REQUEST, $dev);
 	header('Content-Type: application/json');
 	
 	echo json_encode($data);
