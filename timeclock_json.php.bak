@@ -11,13 +11,7 @@ if (!isset($_REQUEST['StopTime']))
 {
 	$_REQUEST['StopTime'] = time();
 }
-$auth = UserAppAuth($_REQUEST);
-if ($auth['authorized'] != '1')
-{
-	header('Content-Type: application/json');
-	echo json_encode($auth);
-	exit;
-}
+
 
 
 
@@ -67,6 +61,16 @@ elseif (isset($_REQUEST['timeclock_add']))
 	echo json_encode($data);
 	exit;
 }
+
+$auth = UserAppAuth($_REQUEST);
+if ($auth['authorized'] != '1')
+{
+	header('Content-Type: application/json');
+	echo json_encode($auth);
+	exit;
+}
+
+
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
