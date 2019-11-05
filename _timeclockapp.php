@@ -82,7 +82,7 @@ function timeclock_add($db, $dev)
 	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))
 	{
-		$error[] = 'Missing UserAppAuth ' . $db['EmpNo'];
+		$error['error'][] = 'Missing UserAppAuth ' . $db['EmpNo'];
 		return $error;
 	}
 	if (validate_timeclock_update('0', $db['EmpNo'], $db['StartDate'], $db['StopDate']))
@@ -133,8 +133,8 @@ function timeclock_add($db, $dev)
 	}
 	else
 	{
-		$error[] = 'Invalid parameters for timeclock_add ';
-		$error[] = var_export($db);
+		$error['error'][] = 'Invalid parameters for timeclock_add ';
+		$error['error'][] = var_export($db);
 	}
 	if (isset($error))
 	{
