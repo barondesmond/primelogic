@@ -42,7 +42,7 @@ if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 }
 elseif (isset($_REQUEST['timeclock_update']))
 {
-	$error[] = 'error timeclock update request';
+	$error['error'][] = 'error timeclock update request';
 	header('Content-Type: application/json');
 	$data = array_merge($error, $_REQUEST);
 	echo json_encode($data);
@@ -61,7 +61,7 @@ if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset(
 }
 elseif (isset($_REQUEST['timeclock_add']))
 {
-	$error[] = 'error timeclock add request';
+	$error['error'][] = 'error timeclock add request';
 	header('Content-Type: application/json');
 	$data = array_merge($error, $_REQUEST);
 	echo json_encode($data);
