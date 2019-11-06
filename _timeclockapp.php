@@ -276,6 +276,7 @@ function timeclock_update($tc, $dev='')
 			else
 			{
 				$error[] = "No ESC " . $tca['Screen'];
+				$error[] = $tca;
 			}
 		}
 		else

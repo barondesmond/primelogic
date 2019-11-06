@@ -273,6 +273,10 @@ function timeclock_update($tc, $dev='')
 					$error = array_merge($error, $error2);
 				}
 			}
+			else
+			{
+				$error[] = "No ESC " . $tca['Screen'];
+			}
 		}
 		else
 		{
