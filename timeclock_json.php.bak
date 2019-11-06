@@ -44,7 +44,7 @@ elseif (isset($_REQUEST['timeclock_update']))
 
 
 }
-if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate'] && isset($_REQUEST['event']) && isset($_REQUEST['Screen']))
+if (isset($_REQUEST['timeclock_add']) && isset($_REQUEST['StartDate']) && isset($_REQUEST['StopDate']) && isset($_REQUEST['event']) && isset($_REQUEST['Screen']))
 {
 	$_REQUEST['EmpNo'] = $_REQUEST['timeclock_add'];
 	$data = timeclock_add($_REQUEST, $dev);
