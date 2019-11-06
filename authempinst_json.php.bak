@@ -219,7 +219,7 @@ if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' 
 {
 	$error = authempinst($d);
 }
-if ($_REQUEST['checkinStatus'] == 'Switch')
+if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 {
 	$_REQUEST['checkinStatus'] = 'Stop';
 	$error = authempinst($d);
