@@ -7,7 +7,7 @@ include("_timeclockapp.php");
      //usort($results, "time_sort");
      // Define the time sort function
      function time_sort($a,$b) {
-          return $a['StartTime']<$b['StartTime'];
+          return $a['StartTime']>$b['StartTime'];
      }
 
 
@@ -131,7 +131,7 @@ if (isset($post['PayItemID']))
 
 }
 
-  //uasort($data['TimeClock'], "time_sort");
+  uasort($data['TimeClock'], "time_sort");
 
 
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
