@@ -272,6 +272,10 @@ function timeclock_update($tc, $dev='')
 				{
 					$error = array_merge($error, $error2);
 				}
+				else
+				{
+					$error[] = 'no data timeclock_dispatch_update';
+				}
 			}
 			else
 			{
