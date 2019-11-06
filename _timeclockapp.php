@@ -193,7 +193,7 @@ return true;
 
 }
 
-function timeclock_dispatch_update($tc, $dev='')
+function timeclock_dispatch_update($tc, $tv, $dev='')
 {
 	//Traveling DispTime TimeOn
 	//Working TimeOn TimeOff
@@ -201,8 +201,8 @@ function timeclock_dispatch_update($tc, $dev='')
 	$res = mssql_query($sql);
 	if ($dis = mssql_fetch_assoc($res))
 	{
-		$StartHour = date("H:i:s", strtotime($tc['StartDate']);
-		$StopHour = date("H:i:s", strtotime($tc['StopDate']);
+		$StartHour = date("H:i:s", strtotime($tv['StartDate']));
+		$StopHour = date("H:i:s", strtotime($tv['StopDate']));
 
 		if ($tc['event'] == 'Traveling')
 		{
@@ -266,7 +266,7 @@ function timeclock_update($tc, $dev='')
 				$error[] = $sql;
 			if ($tca['Screen'] == 'Dispatch')
 			{
-				$error2 = timeclock_dispatch_update($tv, $dev);
+				$error2 = timeclock_dispatch_update($tca, $tv, $dev);
 				if (isset($error2))
 				{
 					$error = array_merge($error, $error2);
