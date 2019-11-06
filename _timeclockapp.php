@@ -242,7 +242,7 @@ function timeclock_dispatch_update($tc, $dev='')
 $error[] = 'error timeclock dispatch update false';
 $error[] = $dis;
 $error[] = $tca;
-return false;
+return $error;
 }
 
 
