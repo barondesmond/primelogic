@@ -7,7 +7,7 @@ include("_timeclockapp.php");
      //usort($results, "time_sort");
      // Define the time sort function
      function time_sort($a,$b) {
-          return $a['StartTime']>$b['StartTime'];
+          return $a['StartTime']<$b['StartTime'];
      }
 
 
