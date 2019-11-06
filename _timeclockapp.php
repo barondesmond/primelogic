@@ -239,6 +239,9 @@ function timeclock_dispatch_update($tc, $dev='')
 		return $error;
 	}
 //not valid or possible
+$error[] = 'error timeclock dispatch update false';
+$error[] = $dis;
+$error[] = $tca;
 return false;
 }
 
