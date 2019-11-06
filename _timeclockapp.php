@@ -180,7 +180,7 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 	}
 
 
-	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime < '$t1' and StopTime > '$t1') or (StartTime < '$t2' and StopTime > '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
+	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime <= '$t1' and StopTime => '$t1') or (StartTime <= '$t2' and StopTime => '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_array($res, MSSQL_ASSOC);
 
