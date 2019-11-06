@@ -201,8 +201,8 @@ function timeclock_dispatch_update($tc, $dev='')
 	$res = mssql_query($sql);
 	if ($dis = mssql_fetch_assoc($res))
 	{
-		$StartHour = date("H:i:s", $tc['StartTime']);
-		$StopHour = date("H:i:s", $tc['StopTime']);
+		$StartHour = date("H:i:s", strtotime($tc['StartDate']);
+		$StopHour = date("H:i:s", strtotime($tc['StopDate']);
 
 		if ($tc['event'] == 'Traveling')
 		{
@@ -266,7 +266,7 @@ function timeclock_update($tc, $dev='')
 				$error[] = $sql;
 			if ($tca['Screen'] == 'Dispatch')
 			{
-				$error2 = timeclock_dispatch_update($tca, $dev);
+				$error2 = timeclock_dispatch_update($tv, $dev);
 				if (isset($error2))
 				{
 					$error = array_merge($error, $error2);
