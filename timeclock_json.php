@@ -3,6 +3,15 @@ include("_db_config.php");
 include("_user_app_auth.php");
 include("_timeclockapp.php");
 
+    // Sort the multidimensional array
+     //usort($results, "time_sort");
+     // Define the time sort function
+     function time_sort($a,$b) {
+          return $a['StartTime']>$b['StartTime'];
+     }
+
+
+
 function timeclock_json_track($db, $str)
 {
 	$file = '/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'] . $str;
@@ -121,6 +130,9 @@ if (isset($post['PayItemID']))
 }
 
 }
+
+  usort($data['TimeClock'], "time_sort");
+
 
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
