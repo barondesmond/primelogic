@@ -71,7 +71,13 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
+$sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
+INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
+LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
+WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
+ORDER BY TimeClockApp.StartTime ASC, TimeClockApp.TimeClockID ASC";
 
+/*
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
@@ -84,6 +90,9 @@ LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.L
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
 ORDER BY TimeClockApp.StartTime ASC, TimeClockApp.TimeClockID ASC ";
+*/
+
+
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
