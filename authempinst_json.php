@@ -215,11 +215,11 @@ else
 }
 
 
-if ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop')
+if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop'))
 {
 	$error = authempinst($d);
 }
-if ($_REQUEST['checkinStatus'] == 'Switch')
+if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 {
 	$_REQUEST['checkinStatus'] = 'Stop';
 	$error = authempinst($d);
@@ -232,7 +232,6 @@ if ($_REQUEST['checkinStatus'] == 'Switch')
 }
 
 
-$note = "add" . $_REQUEST['Screen'] . "Note";
 if (isset($_REQUEST['Screen']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)
