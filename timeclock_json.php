@@ -3,6 +3,14 @@ include("_db_config.php");
 include("_user_app_auth.php");
 include("_timeclockapp.php");
 
+function timeclock_json_track($db, $str)
+{
+	$file = '/var/www/html/primelogic/track/' . $_REQUEST['EmpNo'] . $str;
+	$track = fopen($file, 'w');
+	$db['request'] = $_REQUEST;
+	fwrite($track, json_encode($db));
+	fclose($track);
+}
 if (!isset($_REQUEST['StartTime']))
 {
 	$_REQUEST['StartTime'] = '0';
@@ -28,6 +36,8 @@ else
 if (isset($_REQUEST['TimeClockID']) && isset($_REQUEST['timeclock_update']))
 {
 	$data = timeclock_update($_REQUEST['TimeClockID'], $dev);
+	timeclock_json_track($data, 'timeclock_update');
+
 	header('Content-Type: application/json');
 
 	echo json_encode($data);
