@@ -256,7 +256,7 @@ function timeclock_update($tc, $dev='')
 		$res = mssql_query($sql);
 		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
 
-		if (isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
+		if (isset($tca) && isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
 			timeclock_insert($tca, 'TimeClockAppHist');
 			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
@@ -272,6 +272,10 @@ function timeclock_update($tc, $dev='')
 				{
 					$error = array_merge($error, $error2);
 				}
+			}
+			else
+			{
+				$error[] = "No ESC " . $tca['Screen'];
 			}
 		}
 		else
