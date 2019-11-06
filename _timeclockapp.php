@@ -214,7 +214,6 @@ function timeclock_dispatch_update($tc, $dev='')
 				$error[] = $mes;
 				$error[] = $sql;
 
-			return $error;
 		}
 		if ($tc['event'] == 'Working')
 		{
@@ -227,19 +226,16 @@ function timeclock_dispatch_update($tc, $dev='')
 				$error[] = $mes;
 				$error[] = $sql;
 			}
-			return $error;
 		}
 		$error[] = 'No Valid Event at DispTech' . $dev . ' ' . $tc['event'] . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
-		return $error;
 	}
 	else
 	{
 		$error[] = 'No Valid DispTech' . $dev . ' ' . $tc['Dispatch'] . ' ' . $tc['Counter'] . ' ' . $tc['EmpNo'] . ' ' . $tc['TimeClockID'];
 		$error[] = $sql;
-		return $error;
 	}
 //not valid or possible
-$error[] = 'error timeclock dispatch update false';
+$error[] = 'end timeclock dispatch update';
 $error[] = $dis;
 $error[] = $tca;
 return $error;
