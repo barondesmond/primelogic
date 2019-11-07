@@ -93,7 +93,7 @@ if ($auth['authorized'] != '1')
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized,  TimeClockApp.Screen  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
 LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
-WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
+WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " ORDER BY TimeClockID ASC 
 ";
 
 /*
@@ -145,7 +145,7 @@ LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispa
 LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
 LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " 
-ORDER BY TimeClockApp.StartTime ASC, TimeClockApp.TimeClockID ASC ";
+ORDER BY TimeClockApp.TimeClockID ASC ";
 $res = mssql_query($sql);
 $data['error'][] = mssql_get_last_message();
 $data['error'][] = $sql;
