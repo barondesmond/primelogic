@@ -256,11 +256,11 @@ if (!isset($db))
 
 	$db['id'] = $i;
 	$i++;
-if (isset($error))
+if (isset($error['error']))
 {
-	$db['error'][] = $error;
-
+	$db['error'] = $error['error'];
 }
+
 
 if (isset($db['authorized']) && $db['authorized'] == '1')
 {
