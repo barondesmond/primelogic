@@ -121,7 +121,13 @@ function dispatch_db($db, $dev='')
 			return $db;
 		}
 	}
-
+	$sqll = "SELECT * FROM DispLock WHERE Dispatch = '" . $db['Dispatch'] . "'";
+	$resl = mssql_query($sqll);
+	if ($lock = mssql_fetch_array($resl, MSSQL_ASSOC))
+	{
+		$db['error'] = 'Dispatch is open by ' .$lock['User'];
+		return $db;
+	}
 	$sdb = mssql_fetch_array($res_sel, MSSQL_ASSOC);
 	if (!$sdb)
 	{
