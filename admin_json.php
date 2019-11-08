@@ -15,7 +15,7 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 	{
 
 
-		$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] . "'";
+		$sql = "SELECT * FROM Time.dbo.AdminUser WHERE username = '" . $_REQUEST['username'] . "'";
 		$res = mssql_query($sql);
 		$admin = mssql_fetch_assoc($res);
 
@@ -39,13 +39,13 @@ WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . 
 		}
 		else
 		{
-			$sql = "INSERT INTO AdminUser (EmpNo, username, password) VALUES ('" . $uaa['EmpNo'] . "', '" . $_REQUEST['username'] . "','" . $_REQUEST['password'] . "')";
+			$sql = "INSERT INTO Time.dbo.AdminUser (EmpNo, username, password) VALUES ('" . $uaa['EmpNo'] . "', '" . $_REQUEST['username'] . "','" . $_REQUEST['password'] . "')";
 			$res = mssql_query($sql);
 		}
 
 	}
 }
-$sql = "SELECT * FROM AdminUser WHERE username = '" . $_REQUEST['username'] ."'";
+$sql = "SELECT * FROM Time.dbo.AdminUser WHERE username = '" . $_REQUEST['username'] ."'";
 $res = mssql_query($sql);
 $user = mssql_fetch_assoc($res);
 

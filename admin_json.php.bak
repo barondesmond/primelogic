@@ -5,8 +5,8 @@ include("_db_config.php");
 
 if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['EmpName']) & isset($_REQUEST['Email']))
 {
-	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
-INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
+	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Service.dbo.Employee
+INNER JOIN Time.dbo.UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 WHERE Email != '' and Inactive = '0'  and EmpName = '" . $_REQUEST['EmpName'] . "' and Email = '" . $_REQUEST['Email'] . "'";
 	$res = mssql_query($sql);
 	$uaa = mssql_fetch_assoc($res);
@@ -52,8 +52,8 @@ $user = mssql_fetch_assoc($res);
 if (isset($user['password']) && $user['password'] == $_REQUEST['password'])
 {
 
-	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
-			INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo WHERE Employee.EmpNo = '" . $user['EmpNo'] . "'";
+	$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Service.dbo.Employee
+			INNER JOIN Time.dbo.UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo WHERE Employee.EmpNo = '" . $user['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$app = mssql_fetch_assoc($res);
 
