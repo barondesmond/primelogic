@@ -25,8 +25,8 @@ if ($_REQUEST['EmpName']   && $_REQUEST['Email'])
 
 
 
-$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Employee
-LEFT JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
+$sql = "SELECT Employee.EmpNo as EmpNo, EmpName, Email, phone, UserAppAuth.installationId, UserAppAuth.authorized, UserAppAuth.EmpNo as UAA FROM Service.dbo.Employee
+LEFT JOIN Time.dbo.UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
 WHERE Email != '' and Inactive = '0' $sel";
 $sa[] = $sql;
 
@@ -41,7 +41,7 @@ if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName']
 	header('Content-Type: application/json');
 	$db['authorized'] = '1';
 	$db['installationId'] = $_REQUEST['installationId'];
-	$sql = "UPDATE UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '1' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "UPDATE Time.dbo.UserAppAuth SET installationId = '" . $_REQUEST['installationId'] . "', authorized = '1' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	mssql_query($sql);
 	echo json_encode($db);
 	exit;
@@ -57,11 +57,11 @@ if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_
 }
 if ($db['UAA'] == '')
 {
-	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "SELECT * FROM Time.dbo.UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	if (!mssql_num_rows($res))
 	{
-		$sql = "INSERT INTO UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '0')";
+		$sql = "INSERT INTO Time.dbo.UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '0')";
 		@mssql_query($sql);
 		$errors[] = mssql_get_last_message();
 		$sa[] = $sql;
@@ -71,7 +71,7 @@ if ($db['UAA'] == '')
 if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] == 1 || ($db['EmpNo'] != '' && $db['authorized'] == 0 && $db['installationId'] != $_REQUEST['installationId']))
 {
 	$db['authorized'] = 0;
-	$sql = "UPDATE UserAppAuth SET authorized = '0', installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "UPDATE Time.dbo.UserAppAuth SET authorized = '0', installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	@mssql_query($sql);
 	$error[] = mssql_get_last_message();
 		$sa[] = $sql;
