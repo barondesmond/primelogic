@@ -52,9 +52,9 @@ if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_
 	$db = $_REQUEST;
 	header('Content-Type: application/json');
 	$db['authorized'] = '0';
+	echo json_encode($db);
 	exit;	
 }
-echo "what";
 if ($db['UAA'] == '')
 {
 	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
