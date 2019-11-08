@@ -10,6 +10,7 @@ function UserAppAuth($db)
 if (!isset($db['authorized']))
 {
 	$db['authorized'] = '0';
+	$db['sql'] = $sql;
 }
 
 return $db;
