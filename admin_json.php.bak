@@ -62,6 +62,8 @@ if (isset($user['password']) && $user['password'] == $_REQUEST['password'])
 	$app['timesheet'] = $user['timesheet'];
 	$app['estimating'] = $user['estimating'];
 	$app['dispatch'] = $user['dispatch'];
+	$app['accounting'] = $user['accounting'];
+
 	echo json_encode($app);
 	exit;
 }
