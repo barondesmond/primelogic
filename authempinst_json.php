@@ -267,10 +267,7 @@ if (isset($error['error']))
 {
 	$db['error'] = $error['error'];
 }
-if (isset($db['error']))
-{
-	error_log(json_encode($db));
-}
+
 
 if (isset($db['authorized']) && $db['authorized'] == '1')
 {
@@ -293,7 +290,7 @@ header('Content-Type: application/json');
 $json =  json_encode($db);
 if (isset($db['error']))
 {
-	//error_log($json);
+	error_log($json);
 	
 }
 echo $json;
