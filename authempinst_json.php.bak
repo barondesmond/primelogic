@@ -183,6 +183,10 @@ function authempinst($d)
 if ($_REQUEST['Screen'] == 'Dispatch')
 {
 	$error = dispatch_db($_REQUEST, $d);
+	if (isset($error['error']))
+	{
+		error_log($error);
+	}
 	if (!isset($error['error']))
 	{
 		if ($error2 = timeclock_db($_REQUEST))

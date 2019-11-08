@@ -185,7 +185,7 @@ if ($_REQUEST['Screen'] == 'Dispatch')
 	$error = dispatch_db($_REQUEST, $d);
 	if (isset($error['error']))
 	{
-		error_log($error);
+		error_log(json_encode($error));
 	}
 	if (!isset($error['error']))
 	{
