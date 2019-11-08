@@ -28,6 +28,14 @@ function add_note($db, $dev='')
 	$error = '';
 	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'])
 	{
+		$sqll = "SELECT * FROM DispLock WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$resl = mssql_query($sqll);
+		if ($lock = mssql_fetch_array($resl, MSSQL_ASSOC))
+		{
+			$error['error'] = 'Dispatch ' . $db['Dispatch'] . ' is open by ' .$lock['User'];
+			return $error;
+		}
+
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
 	}
