@@ -111,8 +111,8 @@ function dispatch_db($db, $dev='')
 	$resl = mssql_query($sqll);
 	if ($lock = mssql_fetch_array($resl, MSSQL_ASSOC))
 	{
-		$db['error'] = 'Dispatch is open by ' .$lock['User'];
-		return $db;
+		$error['error'] = 'Dispatch is open by ' .$lock['User'];
+		return $error;
 	}
 
 	if ($db['checkinStatus'] == 'Start')
