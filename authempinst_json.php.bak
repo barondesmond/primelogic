@@ -228,7 +228,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 {
 	$_REQUEST['checkinStatus'] = 'Stop';
 	$error = authempinst($d);
-
+	
 	if (!$error['error'])
 	{
 		$_REQUEST['checkinStatus'] = 'Start';
@@ -239,7 +239,10 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 	}
 }
 
-
+if (isset($error['error']))
+{
+	error_log(json_encode($error));
+}
 if (!isset($error['error']) && isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)

@@ -239,10 +239,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 	}
 }
 
-if (isset($error['error']))
-{
-	error_log(json_encode($error));
-}
+
 if (!isset($error['error']) && isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)
@@ -254,7 +251,10 @@ if (!isset($error['error']) && isset($_REQUEST['Screen']) && isset($_REQUEST['ch
 		$error = $error2;
 	}
 }
-
+if (isset($error['error']))
+{
+	error_log(json_encode($error));
+}
 
 $db = TimeClockQuery($_REQUEST, $d);
 $i=0;
