@@ -222,40 +222,25 @@ else
 if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop'))
 {
 	$error = authempinst($d);
-	if (isset($error['error']))
-	{
-		header('Content-Type: application/json');
-		echo json_encode($error);
-		exit;
-	}
+
 }
 if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 {
 	$_REQUEST['checkinStatus'] = 'Stop';
 	$error = authempinst($d);
-	if (isset($error['error']))
-	{
-		header('Content-Type: application/json');
-		echo json_encode($error);
-		exit;
-	}
+
 	if (!$error['error'])
 	{
 		$_REQUEST['checkinStatus'] = 'Start';
 		$_REQUEST['event'] = 'Working';
 		$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
-		$error2 = authempinst($d);
-		if (isset($error2['error']))
-		{
-			header('Content-Type: application/json');
-			echo json_encode($error2);
-			exit;
-		}
+		$error = authempinst($d);
+
 	}
 }
 
 
-if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
+if (!isset($error['error']) && isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
 {
 	if ($error)
 	{
