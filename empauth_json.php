@@ -80,6 +80,7 @@ if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] ==
 if ($db['authorized'] == 0)
 {
 	$db2 = auth_email_send($_REQUEST['Email'], $_REQUEST['installationId']);
+	
 	$db = array_merge($db, $db2);
 }
 header('Content-Type: application/json');
