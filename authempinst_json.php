@@ -267,9 +267,9 @@ if (isset($error['error']))
 {
 	$db['error'] = $error['error'];
 }
-if (isset($error['error']))
+if (isset($db['error']))
 {
-	error_log(json_encode($error));
+	error_log(json_encode($db));
 }
 
 if (isset($db['authorized']) && $db['authorized'] == '1')
