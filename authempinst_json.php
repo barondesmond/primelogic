@@ -226,6 +226,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
 	if (!$error['error'])
 	{
 		$_REQUEST['checkinStatus'] = 'Start';
+		$_REQUEST['event'] = 'Working';
 		$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
 		$error2 = authempinst($d);
 	}
