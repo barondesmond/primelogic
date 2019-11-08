@@ -35,6 +35,12 @@ function disptech_create($sdb, $dev = '')
 	}
 		$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
 		$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
+		$q = '';
+		for ($i=0; $i < count($array); $i++)
+		{
+			$q .= $array[$i] . ',';
+		}
+		$q = substr($q, 0, strlen($q) - 1);
 
 		$v = '';
 		for ($i=0; $i< count($array); $i++)

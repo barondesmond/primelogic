@@ -34,6 +34,7 @@ function disptech_create($sdb, $dev = '')
 		$sdb['Dispatcher'] = dispatch_dispatcher($sdb['Dispatch'], $dev);
 	}
 		$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
+		$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
 
 		$v = '';
 		for ($i=0; $i< count($array); $i++)
