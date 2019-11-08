@@ -1,7 +1,11 @@
 CREATE TABLE AdminUser (
 EmpNo VARCHAR(40) NOT NULL UNIQUE,
 username varchar(40) NOT NULL UNIQUE,
-password varchar(40) NOT NULL
+password varchar(40) NOT NULL,
+admin INT NULL,
+timesheet INT NULL,
+estimating INT NULL,
+accounting INT NULL
 ) 
 Use Time;
 CREATE SEQUENCE JobGroupCounter 
