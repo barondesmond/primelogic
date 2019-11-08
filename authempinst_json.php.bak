@@ -47,7 +47,7 @@ function add_note($db, $dev='')
 	if ($db['Screen'] == 'Employee' && $db[$note] != '')
 	{
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
-		$sql = "UPDATE TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+		$sql = "UPDATE Time.dbo.TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 	}
 	if (isset($sql) && $sql != '')
 	{
@@ -82,7 +82,7 @@ if ($db['checkinStatus'] == 'Stop')
 	{
 		$complete = '';
 	}
-	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
+	$sql1 = "UPDATE Time.dbo.TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
 	$error[] = $sql1;
@@ -103,7 +103,7 @@ elseif ($db['checkinStatus'] == 'Start')
 	}
 		$k = substr($k, 0, strlen($k) - 1);
 		$v = substr($v, 0, strlen($v) - 1);
-	$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	$sql2 = "INSERT INTO Time.dbo.TimeClockApp ($k) VALUES ($v)";
 	
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
