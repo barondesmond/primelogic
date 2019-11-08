@@ -92,7 +92,7 @@ if ($auth['authorized'] != '1')
 
 $sql = "SELECT TImeClockApp.*, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized,  TimeClockApp.Screen  FROM Employee
 INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo 
-LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
+INNER JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo 
 WHERE Posted is NULL and StartTime > " . $_REQUEST['StartTime'] . " and StopTime < " . $_REQUEST['StopTime'] . " ORDER BY TimeClockID ASC 
 ";
 

@@ -29,7 +29,7 @@ function add_note($db, $dev='')
 	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'])
 	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
-		$sql = "UPDATE Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
+		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
 	}
 	elseif ($db['Screen'] == 'Dispatch')
 	{
@@ -38,7 +38,7 @@ function add_note($db, $dev='')
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
 	{
 		$addNote = $tcq['JobNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
-		$sql = "UPDATE Jobs$dev SET JobNotes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";
+		$sql = "UPDATE Service.dbo.Jobs$dev SET JobNotes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";
 	}
 	elseif ($db['Screen'] == 'Job')
 	{
@@ -47,7 +47,7 @@ function add_note($db, $dev='')
 	if ($db['Screen'] == 'Employee' && $db[$note] != '')
 	{
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
-		$sql = "UPDATE TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+		$sql = "UPDATE Time.dbo.TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 	}
 	if (isset($sql) && $sql != '')
 	{
@@ -82,7 +82,7 @@ if ($db['checkinStatus'] == 'Stop')
 	{
 		$complete = '';
 	}
-	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
+	$sql1 = "UPDATE Time.dbo.TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
 	$error[] = $sql1;
@@ -103,7 +103,7 @@ elseif ($db['checkinStatus'] == 'Start')
 	}
 		$k = substr($k, 0, strlen($k) - 1);
 		$v = substr($v, 0, strlen($v) - 1);
-	$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	$sql2 = "INSERT INTO Time.dbo.TimeClockApp ($k) VALUES ($v)";
 	
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();
@@ -116,16 +116,16 @@ return $error;
 
 function TimeClockQuery($req, $dev='')
 {
-$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1, DispTech.Counter, Jobs.JobID, Location.Add1 as JobAdd1, Location.Add2 as JobAdd2, Location.City as JobCity, Location.State as JobState, Location.Zip as JobZip, Location.Phone1 as JobPhone1  FROM Employee
-INNER JOIN UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
-LEFT JOIN TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
-LEFT JOIN Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0' and TimeClockApp.JobID = Jobs.JobID
-LEFT JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
-LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
-LEFT JOIN Dispatch" . $dev . " as Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
-LEFT JOIN DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "' and TimeClockApp.Counter = DispTech.Counter 
-LEFT JOIN Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
-LEFT JOIN LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
+$sql = "SELECT TImeClockApp.TimeClockID, Employee.EmpNo as EmpNo, Employee.EmpName, Employee.Email, UserAppAuth.installationId, UserAppAuth.authorized, TimeClockApp.EmpActive, TimeClockApp.Screen, TimeClockApp.event, TimeClockApp.Name, TimeClockApp.Dispatch, Location.LocName, Jobs.JobNotes, LocationApi.latitude, LocationApi.longitude, TimeClockApp.Screen, Dispatch.Dispatch, DispLoc.LocName as DispatchName, Dispatch.Notes as DispatchNotes, DispLocApi.longitude as dispatchlongitude, DispLocApi.latitude as dispatchlatitude, DispLoc.Add1, DispLoc.Add2, DispLoc.City, DispLoc.State, DispLoc.Zip, DispLoc.Phone1, DispTech.Counter, Jobs.JobID, Location.Add1 as JobAdd1, Location.Add2 as JobAdd2, Location.City as JobCity, Location.State as JobState, Location.Zip as JobZip, Location.Phone1 as JobPhone1  FROM Service.dbo.Employee
+INNER JOIN Time.dbo.UserAppAuth ON Employee.EmpNo = UserAppAuth.EmpNo
+LEFT JOIN Time.dbo.TimeClockApp ON Employee.EmpNo = TimeClockApp.EmpNo and UserAppAuth.installationId = TImeClockApp.installationId and EmpActive = '1'
+LEFT JOIN Service.dbo.Jobs" . $dev . " as Jobs ON Jobs.Name = TimeClockApp.Name and Jobs.JobStatus = '100' and Jobs.Inactive = '0' and TimeClockApp.JobID = Jobs.JobID
+LEFT JOIN Service.dbo.Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
+LEFT JOIN Time.dbo.LocationApi ON Location.LocName = LocationApi.LocName
+LEFT JOIN Service.dbo.Dispatch" . $dev . " as Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch 
+LEFT JOIN Service.dbo.DispTech" . $dev . " as DispTech ON Dispatch.Dispatch = DispTech.Dispatch and TimeClockApp.event = DispTech.Status and DispTech.Complete != 'Y' and DispTech.ServiceMan = '" . $req['EmpNo'] . "' and TimeClockApp.Counter = DispTech.Counter 
+LEFT JOIN Service.dbo.Location as DispLoc ON Dispatch.CustNo = DispLoc.CustNo and Dispatch.LocNo = DispLoc.LocNo 
+LEFT JOIN Time.dbo.LocationApi as DispLocApi ON DispLoc.LocName = DispLocApi.LocName
 
 WHERE Employee.EmpNo = '" . $req['EmpNo'] . "' and UserAppAuth.installationID = '" . $req['installationId'] . "' ";
 

@@ -67,7 +67,7 @@ function timeclock_insert($db, $table = 'TimeClockApp')
 		}
 		$k = substr($k, 0, strlen($k) - 1);
 		$v = substr($v, 0, strlen($v) - 1);
-		$sql2 = "INSERT INTO $table ($k) VALUES ($v)";
+		$sql2 = "INSERT INTO Time.dbo.$table ($k) VALUES ($v)";
 	
 		 @mssql_query($sql2);
 
@@ -77,7 +77,7 @@ return mssql_get_last_message();
 
 function timeclock_add($db, $dev)
 {
-	$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql = "SELECT * FROM Time.dbo.UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	$uaa = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (!isset($uaa))
@@ -124,7 +124,7 @@ function timeclock_add($db, $dev)
 		}
 		$error2 = timeclock_insert($db, 'TimeClockApp');
 		$db['error'] = $error2;
-		$sql = "SELECT * FROM TimeClockApp WHERE StartTime = '" . $db['StartTime'] . "' and StopTime = '" . $db['StopTime'] . "' and EmpNo = '" . $db['EmpNo'] . "'";
+		$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE StartTime = '" . $db['StartTime'] . "' and StopTime = '" . $db['StopTime'] . "' and EmpNo = '" . $db['EmpNo'] . "'";
 		$res = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res);
 		$resp[$db2['TimeClockID']] = $db2;
@@ -170,7 +170,7 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 
 		return false;
 	}
-	$sql = "SELECT * FROM TimeClockApp WHERE StartTime = '$t1' and StopTime = '$t2' and TimeClockID = '$TimeClockID'";
+	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE StartTime = '$t1' and StopTime = '$t2' and TimeClockID = '$TimeClockID'";
 	$res = mssql_query($sql);
 	$db = @mssql_fetch_array($res, MSSQL_ASSOC);
 
@@ -180,7 +180,7 @@ function validate_timeclock_update($TimeClockID, $EmpNo, $StartDate, $StopDate)
 	}
 
 
-	$sql = "SELECT * FROM TimeClockApp WHERE ((StartTime <= '$t1' and StopTime => '$t1') or (StartTime <= '$t2' and StopTime => '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
+	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE ((StartTime <= '$t1' and StopTime => '$t1') or (StartTime <= '$t2' and StopTime => '$t2'))  and EmpNo = '$EmpNo' and TimeClockID != '$TimeClockID'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_array($res, MSSQL_ASSOC);
 
@@ -197,7 +197,7 @@ function timeclock_dispatch_update($tc, $tv, $dev='')
 {
 	//Traveling DispTime TimeOn
 	//Working TimeOn TimeOff
-	$sql = "SELECT * FROM DispTech$dev as DispTech WHERE DispTech.Dispatch = '" .  $tc['Dispatch'] . "' and Counter = '" . $tc['Counter'] . "' and ServiceMan = '" . $tc['EmpNo'] . "'";
+	$sql = "SELECT * FROM Service.dbo.DispTech$dev as DispTech WHERE DispTech.Dispatch = '" .  $tc['Dispatch'] . "' and Counter = '" . $tc['Counter'] . "' and ServiceMan = '" . $tc['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	if ($dis = mssql_fetch_assoc($res))
 	{
@@ -207,7 +207,7 @@ function timeclock_dispatch_update($tc, $tv, $dev='')
 		if ($tc['event'] == 'Traveling')
 		{
 			
-			$sql = "UPDATE DispTech$dev  SET DispTime = '$StartHour', TimeOn = '$StopHour', TimeOff = '$StopHour' WHERE Dispatch = '" . $dis['Dispatch'] .  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$sql = "UPDATE Service.dbo.DispTech$dev  SET DispTime = '$StartHour', TimeOn = '$StopHour', TimeOff = '$StopHour' WHERE Dispatch = '" . $dis['Dispatch'] .  "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
 	
@@ -218,7 +218,7 @@ function timeclock_dispatch_update($tc, $tv, $dev='')
 		if ($tc['event'] == 'Working')
 		{
 			
-			$sql = "UPDATE DispTech$dev  SET DispTime = '$StartHour', TimeOn = '$StartHour', TimeOff = '$StopHour' WHERE Dispatch = '" . $dis['Dispatch'] . "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
+			$sql = "UPDATE Service.dbo.DispTech$dev  SET DispTime = '$StartHour', TimeOn = '$StartHour', TimeOff = '$StopHour' WHERE Dispatch = '" . $dis['Dispatch'] . "' and Counter = '" . $dis['Counter'] . "' and ServiceMan = '" . $dis['ServiceMan'] . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
 			if ($mes != '')
@@ -251,14 +251,14 @@ function timeclock_update($tc, $dev='')
 
 	foreach ($tc as $tk => $tv)
 	{
-		$sql = "SELECT * FROM TimeClockApp WHERE TimeClockID = '$tk'";
+		$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE TimeClockID = '$tk'";
 		$res = mssql_query($sql);
 		$tca = mssql_fetch_array($res, MSSQL_ASSOC);
 
 		if (isset($tca) && isset($tk) && isset($tv['StartDate']) && isset($tv['StopDate']) && validate_timeclock_update($tk, $tca['EmpNo'], $tv['StartDate'], $tv['StopDate']))
 		{
 			timeclock_insert($tca, 'TimeClockAppHist');
-			$sql = "UPDATE TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
+			$sql = "UPDATE Time.dbo.TimeClockApp SET StartTime = '" . strtotime($tv['StartDate']) . "', StopTime = '" . strtotime($tv['StopDate']) . "' WHERE TimeClockID = '" . $tk . "'";
 			$res = mssql_query($sql);
 			$mes = mssql_get_last_message();
 
@@ -315,7 +315,7 @@ function dispatch_add($db ,$dev='')
 	}
 	$q = substr($q, 0, strlen($q) - 1);
 
-	$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $db['Counter'] . "' ";
+	$sel = "SELECT $q FROM Service.dbo.DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $db['Counter'] . "' ";
 	$res_sel = mssql_query($sel);
 	if (!mssql_num_rows($res_sel))
 	{
@@ -334,7 +334,7 @@ function dispatch_add($db ,$dev='')
 
 	$where = " WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan='" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $sdb['Counter'] . "' ";
 
-		$up = "UPDATE DispTech$dev SET Status = 'Complete' ";
+		$up = "UPDATE Service.dbo.DispTech$dev SET Status = 'Complete' ";
 		//Dec 5 2018 12:00:00:000AM
 		$dispdate =  date("M d Y ", $db['StartTime']) . '12:00:00:000AM';
 		$TimeOn = date("H:i:s", $db['StartTime']);
@@ -383,7 +383,7 @@ function dispatch_add($db ,$dev='')
 			$v .= " ,'' ";
 		}
 
-		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
+		$ins = "INSERT INTO Service.dbo.DispTech$dev ($q) VALUES($v)";
 		$res2 = mssql_query($ins);
 		$error[] = mssql_get_last_message();
 		$error[] = $ins;
@@ -422,7 +422,7 @@ function dispatch_db($db, $dev='', $time = '')
 	}
 	$q = substr($q, 0, strlen($q) - 1);
 
-	$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending')";
+	$sel = "SELECT $q FROM Service.dbo.DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status IN ('Traveling', 'Working', 'Pending')";
 	$res_sel = mssql_query($sel);
 	if (!mssql_num_rows($res_sel))
 	{
@@ -441,7 +441,7 @@ function dispatch_db($db, $dev='', $time = '')
 
 	if ($db['checkinStatus'] == 'Start')
 	{
-		$up = "UPDATE DispTech$dev SET Status = '" . $db['event'] . "' ";
+		$up = "UPDATE Service.dbo.DispTech$dev SET Status = '" . $db['event'] . "' ";
 		if ($db['event'] == 'Traveling' && $sdb['Status'] == 'Pending')
 		{
 			$dd = ", DispDate = getdate(), DispTime = '"  . date("H:i:s", $time) . "' ";
@@ -450,7 +450,7 @@ function dispatch_db($db, $dev='', $time = '')
 		{
 			$dd = ", TimeOn = '" . date("H:i:s", time()) . "' ";
 			$tcq = TimeClockQuery($db, $dev);
-			$tsql = "UPDATE TimeClockApp SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
+			$tsql = "UPDATE Time.dbo.TimeClockApp SET event = '" . $db['event'] . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
 			@mssql_query($tsql);
 			$error[] = mssql_get_last_message();
 			$error[] = $tsql;
@@ -530,7 +530,7 @@ function dispatch_db($db, $dev='', $time = '')
 			$v .= " ,'' ";
 		}
 
-		$ins = "INSERT INTO DispTech$dev ($q) VALUES($v)";
+		$ins = "INSERT INTO Service.dbo.DispTech$dev ($q) VALUES($v)";
 		$res2 = mssql_query($ins);
 		$error[] = mssql_get_last_message();
 		$error[] = $ins;
@@ -538,7 +538,7 @@ function dispatch_db($db, $dev='', $time = '')
 	elseif ($db['checkinStatus'] == 'Stop' && $db['Complete'] == 'Y')
 	{
 		//dont insert new disptech
-		$sql = "UPDATE Dispatch$dev SET Complete = getdate() WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "UPDATE Service.dbo.Dispatch$dev SET Complete = getdate() WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res = mssql_query($sql);
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
@@ -563,7 +563,7 @@ if ($db['checkinStatus'] == 'Stop')
 	{
 		$complete = ", customer = '" . $db['customer'] . "', customerimage = '" . $db['customerimage'] . "'";
 	}
-	$sql1 = "UPDATE TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
+	$sql1 = "UPDATE Time.dbo.TimeClockApp SET StopTime = '$time', EmpActive = '0' $complete WHERE EmpNo = '" . $db['EmpNo'] .  "' and installationId = '" . $db['installationId'] . "' and EmpActive = '1'";
 	@mssql_query($sql1);
 	$error[] = mssql_get_last_message();
 	$error[] = $sql1;
@@ -584,7 +584,7 @@ elseif ($db['checkinStatus'] == 'Start')
 	}
 		$k = substr($k, 0, strlen($k) - 1);
 		$v = substr($v, 0, strlen($v) - 1);
-	$sql2 = "INSERT INTO TimeClockApp ($k) VALUES ($v)";
+	$sql2 = "INSERT INTO Time.dbo.TimeClockApp ($k) VALUES ($v)";
 	
     @mssql_query($sql2);
 	$error[] = mssql_get_last_message();

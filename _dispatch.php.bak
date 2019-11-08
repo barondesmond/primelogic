@@ -103,7 +103,7 @@ function dispatch_db($db, $dev='')
 
 	if ($db['checkinStatus'] == 'Start')
 	{
-		$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending'";
+		$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = 'Pending' and Counter = '" . $db['Counter'] . "'";
 		$res_sel = mssql_query($sel);
 		if (!mssql_num_rows($res_sel))
 		{
@@ -113,7 +113,7 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['checkinStatus'] == 'Stop')
 	{
-		$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = '" . $db['event'] . "'";
+		$sel = "SELECT $q FROM DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' and ServiceMan = '" . $db['EmpNo'] . "' and Status = '" . $db['event'] . "' and Counter = '" . $db['Counter'] . "'";
 		$res_sel = mssql_query($sel);
 		if (!mssql_num_rows($res_sel))
 		{

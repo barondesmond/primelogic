@@ -32,7 +32,7 @@ function location_track_parse_file($file)
 
 	if (filemtime($afile) > time() - 3600*8)
 	{
-		$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '$file'";
+		$sql = "SELECT * FROM Time.dbo.UserAppAuth WHERE EmpNo = '$file'";
 		$res = @mssql_query($sql);
 		$ua = @mssql_fetch_assoc($res);
 		if (isset($ua) && isset($ua['EmpNo']) && $ua['EmpNo'] == $file)
@@ -81,7 +81,7 @@ function location_dispatch()
 {
 	$js = location_track_files();
 
-	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, Location.LocName FROM TimeClockApp INNER JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, Location.LocName FROM Time.dbo.TimeClockApp as TimeClockApp INNER JOIN Service.dbo.Dispatch as Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
@@ -111,7 +111,7 @@ function location_timeclock()
 {
 
 
-	$sql = "SELECT TimeClockApp.EmpNo, Employee.EmpName, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.JobID, TimeClockApp.StartTime as Start FROM TimeClockApp INNER JOIN Employee ON TimeClockApp.EmpNo = Employee.EmpNo  WHERE EmpActive = '1'";
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.installationID, TimeClockApp.Screen, Employee.EmpName, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.JobID, TimeClockApp.StartTime as Start FROM Time.dbo.TimeClockApp INNER JOIN Service.dbo.Employee ON TimeClockApp.EmpNo = Employee.EmpNo  WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{

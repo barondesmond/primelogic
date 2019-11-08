@@ -8,8 +8,8 @@ if ($argv['1'])
 	$dev = 'Dev';
 }
 
-$sql = "SELECT * FROM TimeClockApp
-INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockApp.Counter = DispTech.Counter
+$sql = "SELECT * FROM Time.dbo.TimeClockApp
+INNER JOIN Service.dbo.DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockApp.Counter = DispTech.Counter
  WHERE EmpActive = '1' and TimeClockApp.event != DispTech.Status and StopTime is NULL and DispTech.Status = 'Complete'";
  $res = mssql_query($sql);
  while ($db = mssql_fetch_assoc($res))
@@ -17,16 +17,16 @@ INNER JOIN DispTech ON TimeClockApp.Dispatch = DispTech.Dispatch and TimeClockAp
 	 if ($db['event'] == 'Working')
 	 {
 		 $db['StopTime'] = strtotime($db['DateOff']);
-		 $sql = "UPDATE TimeClockApp SET StopTime = '"  . $db['StopTime'] . "', EmpActive = '0' WHERE TimeClockID = '" . $db['TimeClockID']  . "' and EmpActive = '1' and StopTime is NULL ";
+		 $sql = "UPDATE Time.dbo.TimeClockApp SET StopTime = '"  . $db['StopTime'] . "', EmpActive = '0' WHERE TimeClockID = '" . $db['TimeClockID']  . "' and EmpActive = '1' and StopTime is NULL ";
 		 echo $sql;
 		 mssql_query($sql);
 	 }
  }
 
 
-$sql = "SELECT UserAppAuth.*, DispTech.*  FROM UserAppAuth
-INNER JOIN DispTech$dev as DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
-LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
+$sql = "SELECT UserAppAuth.*, DispTech.*  FROM Time.dbo.UserAppAuth
+INNER JOIN Service.dbo.DispTech$dev as DispTech ON UserAppAuth.EmpNo = DispTech.ServiceMan and DispDate > DATEADD(day, -15, getdate())
+LEFT JOIN Time.dbo.TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and Disptech.Dispatch = TimeClockApp.Dispatch and DispTech.Counter = TimeClockApp.Counter
 WHERE TimeClockApp.TimeClockID is NULL and DispTech.Status = 'Complete' 
 ORDER BY DispDate ASC, DispTech.Counter ASC";
 $res = mssql_query($sql);
@@ -57,9 +57,9 @@ while ($db = mssql_fetch_assoc($res))
 
 //Fix Sync Errors Dispatch
 
-$sql = "SELECT UserAppAuth.*, DispTech.* FROM UserAppAuth
-INNER JOIN DispTech$dev as DispTech ON EmpNo = ServiceMan 
-LEFT JOIN TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and EmpActive = '1'
+$sql = "SELECT UserAppAuth.*, DispTech.* FROM Time.dbo.UserAppAuth
+INNER JOIN Service.dbo.DispTech$dev as DispTech ON EmpNo = ServiceMan 
+LEFT JOIN Time.dbo.TimeClockApp ON UserAppAuth.EmpNo = TimeClockApp.EmpNo and EmpActive = '1'
 WHERE DispTech.Status IN ('Traveling', 'Working') and TimeClockApp.EmpNo is NULL";
 
 $res = mssql_query($sql);
@@ -93,7 +93,7 @@ echo "the day is $newdate";
 $yestertime = strtotime($newdate)-60;
 $yesterdate = date("M d Y ", $yestertime) . '12:00:00:000AM';
 echo "\r\nYesterdate is " . $yesterdate;
-$sql = "SELECT TimeClockApp.* FROM TimeCLockApp
+$sql = "SELECT TimeClockApp.* FROM Time.dbo.TimeCLockApp
 WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
 echo $sql;
 $res = mssql_query($sql);

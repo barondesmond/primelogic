@@ -32,7 +32,7 @@ function location_track_parse_file($file)
 
 	if (filemtime($afile) > time() - 3600*8)
 	{
-		$sql = "SELECT * FROM UserAppAuth WHERE EmpNo = '$file'";
+		$sql = "SELECT * FROM Time.dbo.UserAppAuth WHERE EmpNo = '$file'";
 		$res = @mssql_query($sql);
 		$ua = @mssql_fetch_assoc($res);
 		if (isset($ua) && isset($ua['EmpNo']) && $ua['EmpNo'] == $file)
@@ -81,7 +81,7 @@ function location_dispatch()
 {
 	$js = location_track_files();
 
-	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, Location.LocName FROM TimeClockApp INNER JOIN Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, Location.LocName FROM Time.dbo.TimeClockApp as TimeClockApp INNER JOIN Service.dbo.Dispatch as Dispatch ON TimeClockApp.Dispatch = Dispatch.Dispatch INNER JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
@@ -111,7 +111,7 @@ function location_timeclock()
 {
 
 
-	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.installationID, TimeClockApp.Screen, Employee.EmpName, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.JobID, TimeClockApp.StartTime as Start FROM TimeClockApp INNER JOIN Employee ON TimeClockApp.EmpNo = Employee.EmpNo  WHERE EmpActive = '1'";
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.installationID, TimeClockApp.Screen, Employee.EmpName, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.JobID, TimeClockApp.StartTime as Start FROM Time.dbo.TimeClockApp INNER JOIN Service.dbo.Employee ON TimeClockApp.EmpNo = Employee.EmpNo  WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
@@ -189,7 +189,7 @@ return false;
 function location_api_insert($resp, $loc)
 {
 
-	$sql = "INSERT INTO LocationApi (LocName, Add1, City, State, Zip, latitude, longitude, location) VALUES(";
+	$sql = "INSERT INTO Time.dbo.LocationApi (LocName, Add1, City, State, Zip, latitude, longitude, location) VALUES(";
 	$sql .= "'" . str_replace("'", "''", $resp['LocName']) . "',";
 	$sql .= "'" . str_replace("'", "''", $resp['Add1']) . "',";
 	$sql .= "'" . str_replace("'", "''", $resp['City']) . "',";
@@ -344,7 +344,7 @@ return $lp;
 function  location_lookup($lc)
 {
 
-			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location,  Location.Add1, Location.City, Location.State, Location.Zip FROM Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
+			$sql = "SELECT CustNo, LocNo, LocName, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location,  Location.Add1, Location.City, Location.State, Location.Zip FROM Service.dbo.Location WHERE CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) = '" . $lc['location'] . "'";
 			$res = mssql_query($sql);
 			$db = @mssql_fetch_array($res, MSSQL_ASSOC);
 			//$db['latitude'] = location_int_gps($db['latitude']);
@@ -505,7 +505,7 @@ if ( $location != '')
 	{
 		$db['LocName'] = str_replace("'", "''", $location);
 
-		$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Location LEFT JOIN LocationApi ON Location.LocName = LocationApi.LocName
+		$sql = "SELECT Location. LocName, Location.Add1, Location.City, Location.State, Location.Zip, LocationApi.latitude, LocationApi.longitude FROM Service.dbo.Location LEFT JOIN Time.dbo.LocationApi ON Location.LocName = LocationApi.LocName
 		WHERE 
 		Location.LocName = '" . $db['LocName'] . "' and Location.Add1 != '' and Location.City != '' and Location.State != '' and Location.Zip != ''";
 		//echo $sql;
