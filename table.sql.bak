@@ -78,8 +78,11 @@ Screen VARCHAR(255) NULL,
 EmployeeNotes VARCHAR(255) NULL,
 document VARCHAR(255) NULL,
 CustSign VARCHAR(255) NULL,
+customer VARCHAR(255) NULL,
 Posted VARCHAR(255) NULL
 );
+
+
 
 CREATE TABLE UserAppAuth (
 EmpNo VARCHAR(4) PRIMARY KEY NOT NULL,
@@ -96,3 +99,5 @@ Zip varchar(10),
 latitude numeric (28,13),
 longitude numeric (28,13)
 );
+
+CREATE TABLE EmailUnsubscribe (Email VARCHAR(255) PRIMARY KEY NOT NULL);
