@@ -199,7 +199,7 @@ if ($_REQUEST['Screen'] == 'Dispatch')
 	{
 		if ($error2 = timeclock_db($_REQUEST))
 		{
-			error_log($error2);
+			error_log(json_encode($error2));
 			$error = array_merge($error, $error2);
 		}
 	}
