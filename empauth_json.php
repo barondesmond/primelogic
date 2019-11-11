@@ -61,11 +61,11 @@ if ($db['UAA'] == '' && $db['EmpNo'] != '')
 	$res = mssql_query($sql);
 	if (!mssql_num_rows($res))
 	{
-		$sql = "INSERT INTO Time.dbo.UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '1')";
+		$sql = "INSERT INTO Time.dbo.UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '0')";
 		@mssql_query($sql);
 		$errors[] = mssql_get_last_message();
 		$sa[] = $sql;
-		$db['authorized'] = '1';
+		$db['authorized'] = '0';
 	}
 }
 
@@ -79,9 +79,9 @@ if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] ==
 		$sa[] = $sql;
 
 }
-if ($db['authorized'] == 0)
+if ($db['authorized'] == 0 && $db['Email'] != '')
 {
-	$db2 = auth_email_send($_REQUEST['Email'], $_REQUEST['installationId']);
+	$db2 = auth_email_send($db['Email'], $_REQUEST['installationId']);
 	
 	$db = array_merge($db, $db2);
 }

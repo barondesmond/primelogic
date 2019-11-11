@@ -55,16 +55,17 @@ if (!isset($db) || $db['EmpNo'] == '' || $_REQUEST['installationId'] == '' || $_
 	echo json_encode($db);
 	exit;	
 }
-if ($db['UAA'] == '')
+if ($db['UAA'] == '' && $db['EmpNo'] != '')
 {
 	$sql = "SELECT * FROM Time.dbo.UserAppAuth WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res = mssql_query($sql);
 	if (!mssql_num_rows($res))
 	{
-		$sql = "INSERT INTO Time.dbo.UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '0')";
+		$sql = "INSERT INTO Time.dbo.UserAppAuth (EmpNo, installationId, authorized) VALUES('" . $db['EmpNo'] . "','" . $_REQUEST['installationId'] . "', '1')";
 		@mssql_query($sql);
 		$errors[] = mssql_get_last_message();
 		$sa[] = $sql;
+		$db['authorized'] = '1';
 	}
 }
 
