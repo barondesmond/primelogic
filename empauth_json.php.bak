@@ -35,7 +35,7 @@ $res = mssql_query($sql);
 $error[] = mssql_get_last_message();
 $i=1;
 $db = mssql_fetch_array($res, MSSQL_ASSOC);
-if ($db['Email'] == $_REQUEST['Email'] && $db['EmpName'] == $_REQUEST['EmpName'] && $db['Email'] != '' && isset($db['installationId']) )
+if (strtolower($db['Email']) == strtolower($_REQUEST['Email']) && strtolower($db['EmpName']) == strtolower($_REQUEST['EmpName']) && $db['Email'] != '' && isset($db['installationId']) )
 {
 
 	header('Content-Type: application/json');
@@ -73,6 +73,7 @@ if ($db['installationId'] != $_REQUEST['installationId'] && $db['authorized'] ==
 	$db['authorized'] = 0;
 	$sql = "UPDATE Time.dbo.UserAppAuth SET authorized = '0', installationId = '" . $_REQUEST['installationId'] . "' WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	@mssql_query($sql);
+	$db['auth_sent'] = $db['Email'];
 	$error[] = mssql_get_last_message();
 		$sa[] = $sql;
 

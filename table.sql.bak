@@ -5,7 +5,8 @@ password varchar(40) NOT NULL,
 admin INT NULL,
 timesheet INT NULL,
 estimating INT NULL,
-accounting INT NULL
+accounting INT NULL,
+dispatch INT NULL,
 ) 
 Use Time;
 CREATE SEQUENCE JobGroupCounter 

@@ -96,3 +96,5 @@ Zip varchar(10),
 latitude numeric (28,13),
 longitude numeric (28,13)
 );
+
+CREATE TABLE EmailUnsubscribe (Email VARCHAR(255) PRIMARY KEY NOT NULL);
