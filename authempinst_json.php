@@ -199,6 +199,7 @@ if ($_REQUEST['Screen'] == 'Dispatch')
 	{
 		if ($error2 = timeclock_db($_REQUEST))
 		{
+			error_log($error2);
 			$error = array_merge($error, $error2);
 		}
 	}
@@ -229,7 +230,7 @@ else
 
 if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop'))
 {
-	$error = authempinst($d);
+
 
 }
 if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
