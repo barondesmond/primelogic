@@ -185,19 +185,19 @@ return $db;
 //Main Api Render
 
 
-function authempinst($d)
+function authempinst($db, $d='')
 {
 
-if ($_REQUEST['Screen'] == 'Dispatch')
+if ($db['Screen'] == 'Dispatch')
 {
-	$error = dispatch_db($_REQUEST, $d);
+	$error = dispatch_db($db, $d);
 	if (isset($error['error']))
 	{
 		error_log(json_encode($error));
 	}
 	if (!isset($error['error']))
 	{
-		if ($error2 = timeclock_db($_REQUEST))
+		if ($error2 = timeclock_db($db))
 		{
 			error_log(json_encode($error2));
 			$error = array_merge($error, $error2);
@@ -235,18 +235,33 @@ if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' 
 
 
 }
-if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
+if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' && isset($_REQUEST['EmpNo']))
 {
-	$_REQUEST['checkinStatus'] = 'Stop';
-	$error = authempinst($d);
+	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '$_REQUEST['EmpNo']' and EmpActive = '1'";
+	$res = mssql_query($sql);
+	$db = mssql_fetch_assoc($res);
+	if (isset($db))
+	{
+		$db['checkinStatus'] = 'Stop';
+		$error = authempinst($db,$d);
+	}
 	
 	if (!$error['error'])
 	{
 		$_REQUEST['checkinStatus'] = 'Start';
-		$_REQUEST['event'] = 'Working';
-		$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
-		$error = authempinst($d);
-
+		if ($db['event'] == 'Traveling')
+		{
+			$_REQUEST['event'] = 'Working';
+		}
+		elseif ($db['event'] == 'Working')
+		{
+			$_REQUEST['event'] = 'Traveling';
+		}
+		if ($_REQUEST['Screen'] == 'Dispatch')
+		{
+			$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
+		}
+		$error = authempinst($_REQUEST, $d);
 	}
 }
 
