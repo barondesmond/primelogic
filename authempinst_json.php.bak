@@ -276,6 +276,8 @@ if (!isset($error['error']) && isset($_REQUEST['Screen']) && isset($_REQUEST['ch
 	{
 		$error = $error2;
 	}
+	error_log(json_encode($error));
+
 }
 
 
