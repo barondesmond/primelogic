@@ -235,22 +235,33 @@ if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' 
 
 
 }
-if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch')
+if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' && isset($_REQUEST['EmpNo']))
 {
 	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '$_REQUEST['EmpNo']' and EmpActive = '1'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_assoc($res);
-	$db['checkinStatus'] = 'Stop';
-
-	$error = authempinst($db,$d);
+	if (isset($db))
+	{
+		$db['checkinStatus'] = 'Stop';
+		$error = authempinst($db,$d);
+	}
 	
 	if (!$error['error'])
 	{
 		$_REQUEST['checkinStatus'] = 'Start';
-		$_REQUEST['event'] = 'Working';
-		$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
+		if ($db['event'] == 'Traveling')
+		{
+			$_REQUEST['event'] = 'Working';
+		}
+		elseif ($db['event'] == 'Working')
+		{
+			$_REQUEST['event'] = 'Traveling';
+		}
+		if ($_REQUEST['Screen'] == 'Dispatch')
+		{
+			$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
+		}
 		$error = authempinst($_REQUEST, $d);
-
 	}
 }
 
