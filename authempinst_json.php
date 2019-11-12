@@ -266,8 +266,10 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 }
 
 
-if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'addNote' && $error2 = add_note($_REQUEST, $d))
+if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'addNote')
 {
+	$error2 = add_note($_REQUEST, $d);
+
 	if (isset($error))
 	{
 		$error = array_merge($error, $error2);
@@ -279,18 +281,7 @@ if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST
 	error_log(json_encode($error));
 
 }
-elseif ($_REQUEST['checkinStatus'] == 'addNote')
-{
-	if (isset($error))
-	{
-		$error = array_merge($error, $error2);
-	}
-	else
-	{
-		$error = $error2;
-	}
-	error_log(json_encode($error));
-}
+
 
 $db = TimeClockQuery($_REQUEST, $d);
 $i=0;
