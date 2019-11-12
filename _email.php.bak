@@ -91,7 +91,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 	{
 		return true;
 	}
-	if (SPOOLWRITE=='write')
+	if (SPOOLWRITE && SPOOLWRITE=='write')
 	{
 		$er_array = array('email', 'subject', 'body', 'filename', 'cid', 'name', 'pdf', 'func');
 		for($i=0;$i<count($er_array);$i++)
