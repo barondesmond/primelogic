@@ -171,7 +171,7 @@ return $file;
 }
 function dispatch_customer_name($dispatch)
 {
-	$sql = "SELECT customer FROM TimeClockApp WHERE Dispatch = '$dispatch' and customer != ''";
+	$sql = "SELECT customer FROM Time.dbo.TimeClockApp WHERE Dispatch = '$dispatch' and customer != ''";
 	$res = @mssql_query($sql);
 	$dc = mssql_fetch_array($res, MSSQL_ASSOC);
 	if (isset($dc['customer']))
