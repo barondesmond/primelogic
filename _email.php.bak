@@ -170,6 +170,7 @@ try {
 	return false;
 }
 
+return false;
 }
 
 function email_validate($email)
