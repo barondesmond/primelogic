@@ -70,7 +70,7 @@ return EMAIL_USERNAME_FROM;
 
 function email_unsubscribe($email)
 {
-	$sql = "SELECT * FROM EmailUnsubscribe WHERE Email = '$email'";
+	$sql = "SELECT * FROM Time.dbo.EmailUnsubscribe WHERE Email = '$email'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_assoc($res);
 	if ($db['Email'] == $email)
