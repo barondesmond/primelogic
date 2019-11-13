@@ -205,7 +205,7 @@ if ($db['Screen'] == 'Dispatch')
 	}
 	
 }
-elseif (isset($_REQUEST['Screen']))
+elseif (isset($db['Screen']))
 {
 	if ($error = timeclock_db($db))
 	{
