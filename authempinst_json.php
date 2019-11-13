@@ -231,8 +231,8 @@ else
 if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' || $_REQUEST['checkinStatus'] == 'Stop'))
 {
 
-	$error = authempinst($_REQUEST, $d);
-
+		$error = authempinst($_REQUEST,$d);
+		error_log(json_encode($error));
 
 }
 if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' && isset($_REQUEST['EmpNo']))

@@ -237,7 +237,7 @@ if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' 
 }
 if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' && isset($_REQUEST['EmpNo']))
 {
-	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and EmpActive = '1'";
+	$sql = "SELECT *, TimeClockApp.installationID as installationId FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and EmpActive = '1'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_assoc($res);
 	if (isset($db))
