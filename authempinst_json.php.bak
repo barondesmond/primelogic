@@ -244,6 +244,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 	{
 		$db['checkinStatus'] = 'Stop';
 		$error = authempinst($db,$d);
+		error_log(json_encode($error));
 	}
 	
 	if (!$error['error'])
@@ -262,6 +263,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 			$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
 		}
 		$error = authempinst($_REQUEST, $d);
+		error_log(json_encode($error));
 	}
 }
 
