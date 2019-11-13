@@ -108,7 +108,7 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['Counter'] == 'null' || !$db['Counter'] || $db['Counter'] == '')
 	{
-		$error['error'] = 'invalid Dispatch';
+		$error['error'] = 'invalid Dispatch counter';
 		return $error;	
 	}
 	$up = '';
