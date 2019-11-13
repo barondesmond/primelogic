@@ -70,6 +70,10 @@ function disptech_create($sdb, $dev = '')
 		$res2 = mssql_query($ins);
 		$error[] = mssql_get_last_message();
 		$error[] = $ins;
+		$sql = "UPDATE Dispatch$dev SET Complete = NULL WHERE Dispatch = '" . $sdb['Dispatch'] . "'";
+		$res3 = mssql_query($sql);
+		$error[] = mssql_get_last_message();
+		$error[] = $sql;
 return $error;
 }
 

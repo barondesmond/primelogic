@@ -33,6 +33,22 @@ function disptech_create($sdb, $dev = '')
 	{
 		$sdb['Dispatcher'] = dispatch_dispatcher($sdb['Dispatch'], $dev);
 	}
+	$sql = "SELECT * FROM Dispatch$dev WHERE Dispatch = '" . $sdb['Dispatch'] . "'";
+	$res = mssql_query($sql);
+	$dis = mssql_fetch_assoc($res);
+	if (!isset($dis))
+	{
+		$error['error'] = 'No Dispatch ' . $sdb['Dispatch'];
+		return $error;
+	}
+	$sql2 = "SELECT * FROM DispTech$dev WHERE Dispatch = '" . $sdb['Dispatch'] . "' and ServiceMan = '" . $sdb['ServiceMan'] . "' and Status = 'Pending'";
+	$res2 = mssql_query($sql);
+	$dp = mssql_fetch_assoc($res2);
+	if (isset($dp))
+	{
+		$error['error'] = 'Disptech Pending exists ' . $sdb['Dispatch'] ;
+		return $error;
+	}
 		$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
 		$blank = array('DispTime', 'TimeOn', 'TimeOff', 'Complete');
 		$q = '';
