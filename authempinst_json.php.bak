@@ -42,7 +42,7 @@ function note_query($db, $dev)
 	}		
 	if (isset($db['Dispatch']))
 	{  
-		$sql = "SELECT * FROM Service.dbo.Dispatch WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "SELECT * FROM Service.dbo.Dispatch$dev WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;
@@ -132,6 +132,7 @@ function add_note($db, $dev='')
 	}
 	elseif ($db['Screen'] == 'Dispatch')
 	{
+		$error['error'] = 'error dispatch notes' . json_encode($db);
 		return $error;
 	}
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Name'] != '')
@@ -141,6 +142,8 @@ function add_note($db, $dev='')
 	}
 	elseif ($db['Screen'] == 'Job')
 	{
+		$error['error'] = 'error job notes' . json_encode($db);
+
 		return $error;
 	}
 	if ($db['Screen'] == 'Employee' && $db[$note] != '' && $tcq['TimeClockID'] != '')

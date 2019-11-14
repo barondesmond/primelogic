@@ -125,13 +125,14 @@ function add_note($db, $dev='')
 	
 	$note = 'add' . $db['Screen'] . 'Note';
 	$error = '';
-	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Dispatch'] != '' && !$error = dispatch_locked($db))
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Dispatch'] != '' && !$error = dispatch_locked($db) && $tcq['DispatchNotes'] != '')
 	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
 	}
 	elseif ($db['Screen'] == 'Dispatch')
 	{
+		$error['error'] = 'error dispatch notes' . json_encode($db);
 		return $error;
 	}
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Name'] != '')
@@ -141,6 +142,8 @@ function add_note($db, $dev='')
 	}
 	elseif ($db['Screen'] == 'Job')
 	{
+		$error['error'] = 'error job notes' . json_encode($db);
+
 		return $error;
 	}
 	if ($db['Screen'] == 'Employee' && $db[$note] != '' && $tcq['TimeClockID'] != '')
