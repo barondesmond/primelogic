@@ -39,7 +39,7 @@ function note_query($db, $dev)
 	$res = mssql_query($sql);
 	$tcq = mssql_fetch_assoc($res);
 
-	if (!isset($tcq))
+	if (!isset($tcq) || !$tcq['EmpName'])
 	{
 		$tcq['error'] = 'Missing TimeClockApp ' . json_encode($db);
 		error_log($tcq);
@@ -71,7 +71,7 @@ function note_query($db, $dev)
 	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res2 = mssql_query($sql2);
 	$emp = mssql_fetch_assoc($res2);
-		$error[] = $sq2;
+		$error[] = $sql2;
 		$error[] = mssql_get_last_message();
 		error_log(json_encode($error));
 
