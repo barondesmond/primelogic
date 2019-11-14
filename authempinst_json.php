@@ -125,8 +125,13 @@ function add_note($db, $dev='')
 	
 	$note = 'add' . $db['Screen'] . 'Note';
 	$error = '';
-	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Dispatch'] != '' && !$error = dispatch_locked($db) && $tcq['DispatchNotes'] != '')
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Dispatch'] != ''  && $tcq['DispatchNotes'] != '')
 	{
+		if ($error = dispatch_locked($db))
+		{
+			return $error;
+		}
+
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
 	}
