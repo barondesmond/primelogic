@@ -49,7 +49,7 @@ function note_query($db, $dev)
 		$res = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 	}
-	elseif (isset($db['Name'])
+	elseif (isset($db['Name']))
 	{
 		$sql = "SELECT * FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
 		$res = mssql_query($sql);
