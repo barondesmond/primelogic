@@ -42,6 +42,7 @@ function note_query($db, $dev)
 	if (!isset($tcq))
 	{
 		$tcq['error'] = 'Missing TimeClockApp ' . json_encode($db);
+		error_log($tcq);
 		return $tcq;
 	}
 	if (isset($db['Dispatch']))
@@ -49,12 +50,18 @@ function note_query($db, $dev)
 		$sql = "SELECT * FROM Service.dbo.Dispatch WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
+		$error[] = $sql;
+		$error[] = mssql_get_last_message();
+		error_log($error);
 	}
 	elseif (isset($db['Name']))
 	{
 		$sql = "SELECT * FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
+		$error[] = $sql;
+		$error[] = mssql_get_last_message();
+		error_log($error);
 	}
 	if (isset($db2))
 	{
@@ -64,7 +71,9 @@ function note_query($db, $dev)
 	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res2 = mssql_query($sql2);
 	$emp = mssql_fetch_assoc($res2);
-
+		$error[] = $sq2;
+		$error[] = mssql_get_last_message();
+		error_log($error);
 
 $tcq = array_merge($emp, $tcq);
 return $tcq;

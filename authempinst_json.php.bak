@@ -47,13 +47,13 @@ function note_query($db, $dev)
 	if (isset($db['Dispatch']))
 	{  
 		$sql = "SELECT * FROM Service.dbo.Dispatch WHERE Dispatch = '" . $db['Dispatch'] . "'";
-		$res = mssql_query($sql);
+		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 	}
 	elseif (isset($db['Name']))
 	{
 		$sql = "SELECT * FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
-		$res = mssql_query($sql);
+		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 	}
 	if (isset($db2))
