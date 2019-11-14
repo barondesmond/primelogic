@@ -137,7 +137,7 @@ function add_note($db, $dev='')
 	}
 	elseif ($db['Screen'] == 'Dispatch')
 	{
-		$error['error'] = 'error dispatch notes' . json_encode($db);
+		$error['error'] = 'error dispatch notes' . json_encode($tcq);
 		return $error;
 	}
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Name'] != '')

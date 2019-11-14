@@ -70,7 +70,7 @@ function note_query($db, $dev)
 		$tcq = array_merge($db2, $tcq);
 	}
 
-	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$sql2 = "SELECT EmpName FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
 	$res2 = mssql_query($sql2);
 	$emp = mssql_fetch_assoc($res2);
 		$error[] = $sql2;
