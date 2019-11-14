@@ -32,6 +32,44 @@ function dispatch_locked($db)
 return false;
 }
 
+function note_query($db, $dev)
+{
+
+	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $db['EmpNo'] . "' and EmpActive = '1'";
+	$res = mssql_query($sql);
+	$tcq = mssql_fetch_assoc($res);
+
+	if (!isset($tcq))
+	{
+		return false;
+	}
+	if (isset($db['Dispatch']))
+	{  
+		$sql = "SELECT * FROM Service.dbo.Dispatch WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$res = mssql_query($sql);
+		$db2 = mssql_fetch_assoc($res3);
+	}
+	elseif (isset($db['Name'])
+	{
+		$sql = "SELECT * FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
+		$res = mssql_query($sql);
+		$db2 = mssql_fetch_assoc($res3);
+	}
+	if (isset($db2))
+	{
+		$tcq = array_merge($db2, $tcq);
+	}
+
+	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$res2 = mssql_query($sql2);
+	$emp = mssql_fetch_assoc($res2);
+
+
+$tcq = array_merge($emp, $tcq);
+return $tcq;
+
+
+
 function check_note($db, $note, $dev = '')
 {
 	$tcq = TimeClockQuery($db, $dev);
@@ -65,9 +103,8 @@ return false;
 
 function add_note($db, $dev='')
 {
-	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
-	$res2 = mssql_query($sql);
-	$tcq = mssql_fetch_assoc($res2);
+
+	$tcq = note_query($db, $dev);
 
 	$note = 'add' . $db['Screen'] . 'Note';
 	$error = '';
@@ -89,7 +126,7 @@ function add_note($db, $dev='')
 	{
 		return $error;
 	}
-	if ($db['Screen'] == 'Employee' && $db[$note] != '')
+	if ($db['Screen'] == 'Employee' && $db[$note] != '' && $tcq['TimeClockID'] != '')
 	{
 		$addNote = $tcq['EmployeeNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . '-' . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Time.dbo.TimeClockApp SET EmployeeNotes = '" . str_replace("'", "''", $addNote) . "' WHERE TimeClockID = '" . $tcq['TimeClockID'] . "'";
