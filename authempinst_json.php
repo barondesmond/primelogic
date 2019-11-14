@@ -319,7 +319,7 @@ if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST
 if (isset($_REQUEST['Screen']) && $_REQUEST['checkinStatus'] != 'addNote')
 {
 	$note = 'add' . $_REQUEST['Screen'] . 'Note';
-	if (isset($_REQUEST[$note]) && $_REQUEST[$note]))
+	if (isset($_REQUEST[$note]) && $_REQUEST[$note] != '')
 	{
 		$resp = check_note($_REQUEST, $note, $d);
 		error_log($resp);
