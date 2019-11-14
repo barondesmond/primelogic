@@ -67,7 +67,7 @@ function note_query($db, $dev)
 
 $tcq = array_merge($emp, $tcq);
 return $tcq;
-
+}
 
 
 function check_note($db, $note, $dev = '')

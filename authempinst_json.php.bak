@@ -140,7 +140,7 @@ function add_note($db, $dev='')
 	}
 	else
 	{
-		$error['error'] = 'no sql';
+		$error['error'] = 'no sql ' . json_encode($db);
 	}
 	if ($note && isset($db[$note]) && $db[$note] != '')
 	{
