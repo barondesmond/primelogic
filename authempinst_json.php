@@ -52,7 +52,7 @@ function note_query($db, $dev)
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;
 		$error[] = mssql_get_last_message();
-		error_log($error);
+		error_log(json_encode($error));
 	}
 	elseif (isset($db['Name']))
 	{
@@ -61,7 +61,7 @@ function note_query($db, $dev)
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;
 		$error[] = mssql_get_last_message();
-		error_log($error);
+		error_log(json_encode($error));
 	}
 	if (isset($db2))
 	{
@@ -73,7 +73,7 @@ function note_query($db, $dev)
 	$emp = mssql_fetch_assoc($res2);
 		$error[] = $sq2;
 		$error[] = mssql_get_last_message();
-		error_log($error);
+		error_log(json_encode($error));
 
 $tcq = array_merge($emp, $tcq);
 return $tcq;
