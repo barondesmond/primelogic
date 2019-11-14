@@ -42,7 +42,7 @@ function note_query($db, $dev)
 	}		
 	if (isset($db['Dispatch']))
 	{  
-		$sql = "SELECT * FROM Service.dbo.Dispatch$dev WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "SELECT DispatchNotes FROM Service.dbo.Dispatch$dev WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;
@@ -51,7 +51,7 @@ function note_query($db, $dev)
 	}
 	elseif (isset($db['Name']))
 	{
-		$sql = "SELECT * FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
+		$sql = "SELECT JobNotes FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;
@@ -61,7 +61,7 @@ function note_query($db, $dev)
 	elseif ($db['Screen'] == 'Employee')
 	{
 
-		$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $db['EmpNo'] . "' and EmpActive = '1'";
+		$sql = "SELECT TimeClockID FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $db['EmpNo'] . "' and EmpActive = '1'";
 		$res = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res);
 		$error[] = $sql;

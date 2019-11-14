@@ -64,6 +64,9 @@ function note_query($db, $dev)
 		$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $db['EmpNo'] . "' and EmpActive = '1'";
 		$res = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res);
+		$error[] = $sql;
+		$error[] = mssql_get_last_message();
+		error_log(json_encode($error));
 	}		
 	if (isset($db2))
 	{
