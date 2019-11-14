@@ -42,7 +42,7 @@ function note_query($db, $dev)
 	}		
 	if (isset($db['Dispatch']))
 	{  
-		$sql = "SELECT * FROM Service.dbo.Dispatch WHERE Dispatch = '" . $db['Dispatch'] . "'";
+		$sql = "SELECT * FROM Service.dbo.Dispatch$dev WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;

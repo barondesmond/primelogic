@@ -35,9 +35,6 @@ return false;
 function note_query($db, $dev)
 {
 
-	$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $db['EmpNo'] . "' and EmpActive = '1'";
-	$res = mssql_query($sql);
-	$tcq = mssql_fetch_assoc($res);
 
 	if (!is_array($tcq))
 	{
@@ -61,6 +58,13 @@ function note_query($db, $dev)
 		$error[] = mssql_get_last_message();
 		error_log(json_encode($error));
 	}
+	elseif ($db['Screen'] == 'Employee')
+	{
+
+		$sql = "SELECT * FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $db['EmpNo'] . "' and EmpActive = '1'";
+		$res = mssql_query($sql);
+		$db2 = mssql_fetch_assoc($res);
+	}		
 	if (isset($db2))
 	{
 		$tcq = array_merge($db2, $tcq);
