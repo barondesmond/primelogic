@@ -42,7 +42,7 @@ function note_query($db, $dev)
 	if (!isset($tcq) || !$tcq['EmpName'])
 	{
 		$tcq['error'] = 'Missing TimeClockApp ' . json_encode($db);
-		error_log($tcq);
+		error_log(json_encode($tcq));
 		return $tcq;
 	}
 	if (isset($db['Dispatch']))

@@ -39,7 +39,7 @@ function note_query($db, $dev)
 	$res = mssql_query($sql);
 	$tcq = mssql_fetch_assoc($res);
 
-	if (!isset($tcq))
+	if (!isset($tcq) || !$tcq['EmpName'])
 	{
 		$tcq['error'] = 'Missing TimeClockApp ' . json_encode($db);
 		error_log($tcq);
