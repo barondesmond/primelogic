@@ -145,7 +145,7 @@ function add_note($db, $dev='')
 //str_replace("'", "''", $addNote)
 //
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
-		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . mb_convert_encoding (str_replace("'", "''", $addNote) , 'Windows-1252', 'UTF-8') . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
+		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . mb_convert_encoding(str_replace("'", "''", $addNote) , 'Windows-1252', 'UTF-8') . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
 	}
 	elseif ($db['Screen'] == 'Dispatch')
 	{
