@@ -20,14 +20,8 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
-
-function add_note($db, $dev='')
+function dispatch_loged($db)
 {
-	$tcq = TimeClockQuery($db, $dev);
-	$note = 'add' . $db['Screen'] . 'Note';
-	$error = '';
-	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'])
-	{
 		$sqll = "SELECT * FROM DispLock WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$resl = mssql_query($sqll);
 		if ($lock = mssql_fetch_array($resl, MSSQL_ASSOC))
@@ -35,13 +29,53 @@ function add_note($db, $dev='')
 			$error['error'] = 'Dispatch ' . $db['Dispatch'] . ' is open by ' .$lock['User'];
 			return $error;
 		}
+return false;
+}
 
+function check_note($db, $note, $dev = '')
+{
+	$tcq = TimeClockQuery($db, $dev);
+	
+	if (!isset($db[$note]) || $db[$note] == '')
+	{
+		return false;
+	}
+	if ($db['Screen'] == 'Dispatch'  && !$error = dispatch_locked($db))
+	{
+		$sql = "SELECT * FROM Service.dbo.Dispatch$dev WHERE Notes LIKE '%" . $db[$note] . "%' and Dispatch = '" . $db['Dispatch'] . "'";
+		
+	}
+	elseif ($db['Screen'] == 'Job')
+	{
+		$sql = "SELECT * FROM Service.dbo.Jobs$dev WHERE JobNotes LIKE '%" . $db[$note] . "%' and Name = '" . $db['Name'] . "'";
+	}
+	if ($sql)
+	{
+		$res = mssql_query($sql);
+		$nt = mssql_fetch_assoc($res);
+		if (!isset($nt))
+		{
+			$db['checkinStatus'] = 'addNote';
+			return add_note($db, $dev);
+		}
+	}
+return false;
+
+}
+
+function add_note($db, $dev='')
+{
+	$tcq = TimeClockQuery($db, $dev);
+	$note = 'add' . $db['Screen'] . 'Note';
+	$error = '';
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'] && !$error = dispatch_locked($db))
+	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
 	}
 	elseif ($db['Screen'] == 'Dispatch')
 	{
-		return false;
+		return $error;
 	}
 	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
 	{
@@ -50,7 +84,7 @@ function add_note($db, $dev='')
 	}
 	elseif ($db['Screen'] == 'Job')
 	{
-		return false;
+		return $error;
 	}
 	if ($db['Screen'] == 'Employee' && $db[$note] != '')
 	{
@@ -281,6 +315,14 @@ if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST
 	}
 	error_log(json_encode($error));
 
+}
+if (isset($_REQUEST['Screen']) && $_REQUEST['checkinStatus'] != 'addNote')
+{
+	$note = 'add' . $_REQUEST['Screen'] . 'Note';
+	if (isset($_REQUEST[$note]) && $_REQUEST[$note]))
+	{
+		$resp = check_note($_REQUEST, $note, $d);
+	}
 }
 
 
