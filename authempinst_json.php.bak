@@ -39,12 +39,10 @@ function note_query($db, $dev)
 	$res = mssql_query($sql);
 	$tcq = mssql_fetch_assoc($res);
 
-	if (!isset($tcq) || !$tcq['EmpName'])
+	if (!is_array($tcq))
 	{
-		$tcq['error'] = 'Missing TimeClockApp ' . json_encode($db) . $sql;
-		error_log(json_encode($tcq));
-		return $tcq;
-	}
+		$tcq = array();
+	}		
 	if (isset($db['Dispatch']))
 	{  
 		$sql = "SELECT * FROM Service.dbo.Dispatch WHERE Dispatch = '" . $db['Dispatch'] . "'";
