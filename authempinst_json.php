@@ -66,7 +66,7 @@ return false;
 function add_note($db, $dev='')
 {
 	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
-	$res2 = mssql_query($sql);
+	$res2 = mssql_query($sql2);
 	$tcq = mssql_fetch_assoc($res2);
 
 	$note = 'add' . $db['Screen'] . 'Note';
