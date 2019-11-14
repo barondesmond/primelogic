@@ -140,7 +140,7 @@ function add_note($db, $dev='')
 	}
 	else
 	{
-		$error[] = 'no sql';
+		$error['error'] = 'no sql';
 	}
 	if ($note && isset($db[$note]) && $db[$note] != '')
 	{
