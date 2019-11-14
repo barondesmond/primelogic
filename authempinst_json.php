@@ -20,7 +20,7 @@ if ($auth['authorized'] != '1')
 	exit;
 }
 
-function dispatch_loged($db)
+function dispatch_locked($db)
 {
 		$sqll = "SELECT * FROM DispLock WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$resl = mssql_query($sqll);
