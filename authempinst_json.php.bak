@@ -41,7 +41,8 @@ function note_query($db, $dev)
 
 	if (!isset($tcq))
 	{
-		return false;
+		$tcq['error'] = 'Missing TimeClockApp ' . json_encode($db);
+		return $tcq;
 	}
 	if (isset($db['Dispatch']))
 	{  
@@ -107,6 +108,7 @@ function add_note($db, $dev='')
 	$tcq = note_query($db, $dev);
 	if (!isset($tcq) || $tcq['error'] != '')
 	{
+	
 		return $tcq;
 	}
 	
