@@ -80,7 +80,7 @@ function add_note($db, $dev='')
 	{
 		return $error;
 	}
-	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote')
+	if ($db['Screen'] == 'Job' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Name'] != '')
 	{
 		$addNote = $tcq['JobNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-" . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Service.dbo.Jobs$dev SET JobNotes = '" . str_replace("'", "''", $addNote) . "' WHERE Name = '" . $db['Name'] . "'";

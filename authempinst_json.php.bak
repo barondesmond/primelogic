@@ -65,10 +65,13 @@ return false;
 
 function add_note($db, $dev='')
 {
-	$tcq = TimeClockQuery($db, $dev);
+	$sql2 = "SELECT * FROM Service.dbo.Employee WHERE EmpNo = '" . $db['EmpNo'] . "'";
+	$res2 = mssql_query($sql);
+	$tcq = mssql_fetch_assoc($res2);
+
 	$note = 'add' . $db['Screen'] . 'Note';
 	$error = '';
-	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $tcq['Dispatch'] == $db['Dispatch'] && !$error = dispatch_locked($db))
+	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Dispatch'] != '' && !$error = dispatch_locked($db))
 	{
 		$addNote = $tcq['DispatchNotes'] . "\r\n" . date("Y-m-d: H:i:s") . '-' . $db['EmpNo'] . "-"  . $tcq['EmpName'] . '-' .  $db[$note] . "\r\n";
 		$sql = "UPDATE Service.dbo.Dispatch$dev SET Notes = '" . str_replace("'", "''", $addNote) . "' WHERE Dispatch = '" . $db['Dispatch'] . "'  ";
@@ -97,6 +100,10 @@ function add_note($db, $dev='')
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
 		return $error;
+	}
+	else
+	{
+		$error[] = 'no sql';
 	}
 	if ($note && isset($db[$note]) && $db[$note] != '')
 	{
