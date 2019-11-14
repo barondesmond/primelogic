@@ -72,7 +72,7 @@ return $tcq;
 
 function check_note($db, $note, $dev = '')
 {
-	$tcq = TimeClockQuery($db, $dev);
+	$tcq = note_query($db, $dev);
 	
 	if (!isset($db[$note]) || $db[$note] == '')
 	{
@@ -105,7 +105,11 @@ function add_note($db, $dev='')
 {
 
 	$tcq = note_query($db, $dev);
-
+	if (!isset($tcq) || $tcq['error'] != '')
+	{
+		return $tcq;
+	}
+	
 	$note = 'add' . $db['Screen'] . 'Note';
 	$error = '';
 	if ($db['Screen'] == 'Dispatch' && $db[$note] != '' && $db['checkinStatus'] == 'addNote' && $db['Dispatch'] != '' && !$error = dispatch_locked($db))
