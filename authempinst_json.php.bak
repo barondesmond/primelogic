@@ -262,6 +262,11 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	if ($db['Dispatch'] != '')
 	{
 		$db = dispatch_hours($db, $dev);
+		$sig = dispatch_signature($db['Dispatch']);
+		if (isset($sig))
+		{
+			$db['signature'] = $sig;
+		}
 	}
 	if ($db['Screen'] == 'Dispatch')
 	{
