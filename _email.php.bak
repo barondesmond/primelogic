@@ -162,6 +162,8 @@ try {
     $mail->Body    = $body;
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
+	error_log(json_encode($mail));
+
     $mail->send();
     //echo 'Message has been sent';
 	return true;

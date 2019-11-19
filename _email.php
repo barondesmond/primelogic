@@ -127,7 +127,7 @@ try {
     $mail->setFrom(EMAIL_USERNAME, $from);
     $mail->addAddress($email);     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo('administrator@plisolutions.com');
+    $mail->addReplyTo('dispatch@plisolutions.com');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
 	if ($filename!= '' && $cid!='' && $name!='')
