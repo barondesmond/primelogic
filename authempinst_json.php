@@ -263,10 +263,9 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	{
 		$db = dispatch_hours($db, $dev);
 		$sig = dispatch_signature_query($db['Dispatch']);
-		if (isset($sig))
-		{
+
 			$db['signature'] = $sig;
-		}
+
 	}
 	if ($db['Screen'] == 'Dispatch')
 	{
