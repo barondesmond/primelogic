@@ -263,8 +263,9 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 	{
 		$db = dispatch_hours($db, $dev);
 		$sig = dispatch_signature_query($db['Dispatch']);
-
+		$pic = dispatch_picture_query($db['Dispatch']);
 			$db['signature'] = $sig;
+			$db['picture'] = $pic;
 
 	}
 	if ($db['Screen'] == 'Dispatch')
@@ -369,7 +370,11 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 	if (!$error['error'])
 	{
 		$_REQUEST['checkinStatus'] = 'Start';
-		if ($db['event'] == 'Traveling')
+		if ($_REQUEST['event'] == 'Lunch')
+		{
+
+		}
+		elseif ($db['event'] == 'Traveling')
 		{
 			$_REQUEST['event'] = 'Working';
 		}

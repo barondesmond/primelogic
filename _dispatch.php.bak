@@ -141,7 +141,7 @@ function dispatch_db($db, $dev='')
 		$res_sel = mssql_query($sel);
 		if (!mssql_num_rows($res_sel))
 		{
-			$db['error'] = "Invalid DispTech$dev state " . $db['checkinStatus'] . $db['Dispatch'] . $db['EmpNo'] . $db['Counter'];
+			$db['error'] = "Invalid DispTech$dev state " . json_encode($db);
 			return $db;
 		}
 	}
