@@ -87,15 +87,9 @@ function location_notes_files()
 		$dir = '/var/www/html/primelogic/track/';
 		$files = scandir($dir);
 	}
-	foreach ($files as $id=>$file)
-	{
-		if ($db = location_notes_parse_file($file))
-		{
-			$js['notes'][$file] = $db;
-		}
-	}
+
 	
-return $js;
+return $files;
 }
 
 function location_track_files()

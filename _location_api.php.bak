@@ -48,7 +48,7 @@ function location_track_parse_file($file)
 			$dbs = array_merge($db, $ua);
 			//print_r($db);
 			//exit;
-			fclose($afile);
+			fclose($fp);
 			return $dbs;
 
 		}
@@ -70,7 +70,7 @@ function location_notes_parse_file($file)
 			$fp = fopen($afile, 'r');
 			$con = fread($fp, filesize($afile));
 			$db = json_decode($con, true);
-			fclose($afile);
+			fclose($fp);
 			return $db;
 
 	}
