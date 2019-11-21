@@ -69,7 +69,6 @@ function location_notes_parse_file($file)
 			fclose($afile);
 			return $db;
 
-		}
 	}
 return false;
 }
