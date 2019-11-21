@@ -264,8 +264,10 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 		$db = dispatch_hours($db, $dev);
 		$sig = dispatch_signature_query($db['Dispatch']);
 		$pic = dispatch_picture_query($db['Dispatch']);
+		$note = dispatch_note_counter_query($db['Dispatch'], $db['Counter']);
 			$db['signature'] = $sig;
 			$db['picture'] = $pic;
+			$db['note'] = $note;
 
 	}
 	if ($db['Screen'] == 'Dispatch')
