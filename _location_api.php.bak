@@ -56,6 +56,44 @@ function location_track_parse_file($file)
 return false;
 }
 
+function location_notes_parse_file($file)
+{
+	$afile = '/var/www/html/primelogic/track/' . $file;
+	$exp = explode('-', $file);
+	if (count($exp) > 1)
+	{
+
+			$fp = fopen($afile, 'r');
+			$con = fread($fp, filesize($afile));
+			$db = json_decode($con, true);
+			fclose($afile);
+			return $db;
+
+		}
+	}
+return false;
+}
+
+
+function location_notes_files()
+{
+
+	
+	if (!isset($files))
+	{
+		$dir = '/var/www/html/primelogic/track/';
+		$files = scandir($dir);
+	}
+	foreach ($files as $id=>$file)
+	{
+		if ($db = location_notes_parse_file($file))
+		{
+			$js['notes'][$file] = $db;
+		}
+	}
+	
+return $js;
+}
 
 function location_track_files()
 {
