@@ -58,6 +58,10 @@ return false;
 
 function location_notes_parse_file($file)
 {
+	if (is_array($file))
+	{
+		return false;
+	}
 	$afile = '/var/www/html/primelogic/track/' . $file;
 	$exp = explode('-', $file);
 	if (count($exp) > 1)
