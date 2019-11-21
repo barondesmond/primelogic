@@ -51,7 +51,7 @@ function note_query($db, $dev)
 	}
 	elseif (isset($db['Name']) && $db['Screen'] == 'Job')
 	{
-		$sql = "SELECT JobNotes FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
+		$sql = "SELECT JobNotes FROM Service.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
 		$res3 = mssql_query($sql);
 		$db2 = mssql_fetch_assoc($res3);
 		$error[] = $sql;
