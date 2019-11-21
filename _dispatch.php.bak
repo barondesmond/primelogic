@@ -547,7 +547,7 @@ function dispatch_note_counter_query($dispatch, $counter)
 	{
 		if ($db = location_notes_parse_file($file))
 		{
-			if (isset($db['Dispatch']) && $db['Dispatch'] == $dispatch && isset($db['Counter']) && $db['Counter'] == $counter  && strpos($file, 'addNote') !== false && isset($db['addDispatchNote']) && $db['addDispatchNote'] != '')
+			if (isset($db['Dispatch']) && $db['Dispatch'] == $dispatch && isset($db['Counter']) && $db['Counter'] == $counter  && strpos($file, 'addNote') > 0 && isset($db['addDispatchNote']) && $db['addDispatchNote'] != '')
 			{
 				return $file;
 			}
