@@ -463,7 +463,7 @@ if (isset($_REQUEST['EmpNo']))
 {
 	if (isset($_REQUEST['checkinStatus']) && isset($_REQUEST['event']) && isset($_REQUEST['Dispatch']))
 	{
-		$str = $_REQUEST['checkinStatus'] . $_REQUEST['event'] . $_REQUEST['Dispatch'];
+		$str = $_REQUEST['checkinStatus'] . $_REQUEST['event'] . $_REQUEST['Dispatch'] . '-'  . $_REQUEST['Counter'];
 	}
 	else
 	{
