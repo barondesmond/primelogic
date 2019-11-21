@@ -547,7 +547,7 @@ function dispatch_note_counter_query($dispatch, $counter)
 	{
 		if ($db = location_notes_parse_file($file))
 		{
-			if ($db['Dispatch'] == $dispatch && $db['Counter'] == $counter && $db['checkinStatus'] == 'addNote')
+			if (isset($db['Dispatch']) && $db['Dispatch'] == $dispatch && isset($db['Counter']) && $db['Counter'] == $counter && isset($db['checkinStatus']) && $db['checkinStatus'] == 'addNote')
 			{
 				return $file;
 			}
