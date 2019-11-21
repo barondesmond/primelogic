@@ -40,7 +40,7 @@ function note_query($db, $dev)
 	{
 		$tcq = array();
 	}		
-	if (isset($db['Dispatch']))
+	if (isset($db['Dispatch'] && $db['Screen'] == 'Dispatch'))
 	{  
 		$sql = "SELECT Notes as DispatchNotes FROM Service.dbo.Dispatch$dev WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res3 = mssql_query($sql);
@@ -49,7 +49,7 @@ function note_query($db, $dev)
 		$error[] = mssql_get_last_message();
 		error_log(json_encode($error));
 	}
-	elseif (isset($db['Name']))
+	elseif (isset($db['Name']) && $db['Screen'] == 'Job')
 	{
 		$sql = "SELECT JobNotes FROM Serivice.dbo.Jobs$dev WHERE Name = '" . $db['Name'] . "'";
 		$res3 = mssql_query($sql);
@@ -173,7 +173,7 @@ function add_note($db, $dev='')
 		@mssql_query($sql);
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
-		//<u></u>error_log(json_encode($error));
+		error_log(json_encode($error));
 		return $error;
 	}
 	else

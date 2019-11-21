@@ -15,7 +15,7 @@ SELECT * INTO DispTechDev FROM DispTech;
 SELECT * INTO DispatchDev FROM Dispatch;
 
 DELETE FROM DispTechDev WHERE Status IN ( 'Traveling', 'Working') and ServiceMan = '0195';
-DELETE FROM TimeClockApp WHERE EmpNo = '0195' and EmpActive = '1';
+DELETE FROM Time.dbo.TimeClockApp WHERE EmpNo = '0195' and EmpActive = '1';
 
 
 
