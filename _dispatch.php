@@ -540,7 +540,20 @@ function dispatch_footer($dbs = '')
 }
 
 
-
+function dispatch_note_counter_query($dispatch, $counter)
+{
+	$files = location_notes_files();
+	foreach ($files as $id=>$file)
+	{
+		if ($db = location_notes_parse_file($file))
+		{
+			if ($db['Dispatch'] == $dispatch && $db['Counter'] == $counter))
+			{
+				return $file;
+			}
+		}
+	}
+}
 
 function dispatch_signature_query($dispatch)
 {

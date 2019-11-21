@@ -560,6 +560,25 @@ function dispatch_signature_query($dispatch)
 	}
 }
 
+function dispatch_picture_query($dispatch)
+{
+
+
+	$files = location_files();
+	foreach ($files as $id=>$file)
+	{
+		if ($lc = location_parse_file($file))
+		{
+
+			if ($lc['reference'] == $dispatch)
+			{
+				return $file;
+			}
+		}
+	}
+}
+
+
 function dispatch_query($ServiceMan = '', $dev='')
 {
 
