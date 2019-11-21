@@ -40,7 +40,7 @@ function note_query($db, $dev)
 	{
 		$tcq = array();
 	}		
-	if (isset($db['Dispatch'] && $db['Screen'] == 'Dispatch'))
+	if (isset($db['Dispatch']) && $db['Screen'] == 'Dispatch')
 	{  
 		$sql = "SELECT Notes as DispatchNotes FROM Service.dbo.Dispatch$dev WHERE Dispatch = '" . $db['Dispatch'] . "'";
 		$res3 = mssql_query($sql);

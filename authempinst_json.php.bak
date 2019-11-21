@@ -173,7 +173,7 @@ function add_note($db, $dev='')
 		@mssql_query($sql);
 		$error[] = mssql_get_last_message();
 		$error[] = $sql;
-		//<u></u>error_log(json_encode($error));
+		error_log(json_encode($error));
 		return $error;
 	}
 	else
