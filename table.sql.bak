@@ -82,6 +82,36 @@ customer VARCHAR(255) NULL,
 Posted VARCHAR(255) NULL
 );
 
+CREATE SEQUENCE TimeClockAppHistCounter 
+    AS int  
+    START WITH 1  
+    INCREMENT BY 1 ;  
+
+
+CREATE TABLE TimeClockAppHist ( 
+TimeClockHistID int PRIMARY KEY CLUSTERED DEFAULT (NEXT VALUE FOR TimeClockAppHistCounter),  
+TimeClockID INT NOT NULL
+EmpNo VARCHAR(4) NOT NULL DEFAULT '', 
+installationID VARCHAR(255) NOT NULL DEFAULT '',
+Name varchar(10) NOT NULL DEFAULT '',
+latitude DECIMAL(19,9) NOT NULL DEFAULT '0',
+longitude DECIMAL(19,9) NOT NULL DEFAULT '0',
+violation varchar(255) NOT NULL DEFAULT '',
+event VARCHAR(10) not NULL DEFAULT '',
+EmpActive INT NOT NULL DEFAULT '1',
+StartTime INT NULL,
+StopTime INT NULL,
+image VARCHAR(255) NULL,
+Dispatch VARCHAR(15) NULL,
+Counter VARCHAR(4) NULL,
+JobID VARCHAR(255) NULL,
+Screen VARCHAR(255) NULL,
+EmployeeNotes VARCHAR(255) NULL,
+document VARCHAR(255) NULL,
+CustSign VARCHAR(255) NULL,
+customer VARCHAR(255) NULL,
+Posted VARCHAR(255) NULL
+);
 
 
 CREATE TABLE UserAppAuth (
