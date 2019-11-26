@@ -376,7 +376,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 		{
 
 		}
-		elseif ($db['event'] == 'Traveling')
+		elseif ($db['event'] == 'Traveling' && $db['Screen'] == $_REQUEST['Screen'])
 		{
 			$_REQUEST['event'] = 'Working';
 		}
