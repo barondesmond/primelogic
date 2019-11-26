@@ -340,6 +340,13 @@ elseif (isset($db['Screen']))
 
 return $error;
 }
+foreach ($_REQUEST as $key=>$val)
+{
+	if ($val == 'undefined')
+	{
+		$_REQUEST[$key] = '';
+	}
+}
 
 if ($_REQUEST['dev'] == 'true')
 {
