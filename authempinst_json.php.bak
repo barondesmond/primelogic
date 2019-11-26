@@ -102,7 +102,7 @@ function check_note($db, $note, $dev = '')
 	{
 		$sql = "SELECT * FROM Service.dbo.Jobs$dev WHERE JobNotes LIKE '%" . $db[$note] . "%' and Name = '" . $db['Name'] . "'";
 	}
-	if ($sql)
+	if (isset($sql))
 	{
 		$res = mssql_query($sql);
 		$nt = mssql_fetch_assoc($res);
