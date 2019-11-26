@@ -344,7 +344,7 @@ foreach ($_REQUEST as $key=>$val)
 {
 	if ($val == 'undefined')
 	{
-		$_REQUEST[$key] = '';
+		unset($_REQUEST[$key]);
 	}
 }
 
