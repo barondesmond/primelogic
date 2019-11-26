@@ -342,7 +342,7 @@ return $error;
 }
 foreach ($_REQUEST as $key=>$val)
 {
-	if ($val == 'undefined')
+	if ($val == 'undefined' || $val == 'null')
 	{
 		unset($_REQUEST[$key]);
 	}

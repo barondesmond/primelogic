@@ -68,7 +68,7 @@ function note_query($db, $dev)
 		$error[] = mssql_get_last_message();
 		error_log(json_encode($error));
 	}		
-	if (isset($db2))
+	if (isset($db2) && isset($tcq))
 	{
 		$tcq = array_merge($db2, $tcq);
 	}
