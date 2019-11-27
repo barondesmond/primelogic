@@ -270,6 +270,12 @@ $db = mssql_fetch_array($res, MSSQL_ASSOC);
 			$db['note'] = $note;
 
 	}
+	if ($db['Name'] != '')
+	{
+		$pic = dispatch_picture_query($db['Name']);
+		$db['picture'] = $pic;
+	}
+
 	if ($db['Screen'] == 'Dispatch')
 	{
 		$loc = location_api($db['DispatchName']);
