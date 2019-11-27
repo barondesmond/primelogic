@@ -575,7 +575,7 @@ function dispatch_signature_query($dispatch)
 
 function dispatch_picture_query($Dispatch, $EmpNo = '')
 {
-	if ((!$EmpNo || $EmpNo == '') && isset($_REQUEST['EmpNo'])
+	if ((!$EmpNo || $EmpNo == '') && isset($_REQUEST['EmpNo']))
 	{
 		$EmpNo = $_REQUEST['EmpNo'];
 	}

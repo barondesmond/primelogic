@@ -573,17 +573,20 @@ function dispatch_signature_query($dispatch)
 	}
 }
 
-function dispatch_picture_query($dispatch)
+function dispatch_picture_query($Dispatch, $EmpNo = '')
 {
-
-
+	if ((!$EmpNo || $EmpNo == '') && isset($_REQUEST['EmpNo'])
+	{
+		$EmpNo = $_REQUEST['EmpNo'];
+	}
+	
 	$files = location_files();
 	foreach ($files as $id=>$file)
 	{
 		if ($lc = location_parse_file($file))
 		{
 
-			if ($lc['reference'] == $dispatch)
+			if ($lc['reference'] == $Dispatch && $lc['EmpNo'] == $EmpNo)
 			{
 				return $file;
 			}
