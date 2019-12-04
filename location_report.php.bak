@@ -32,19 +32,8 @@ else
 $html = location_basis($argv['3']);
 //echo $html;
 
-foreach ($sm as $emp => $emails)
-{
-	$day = '31';
-	$day2 = '60';
-	if (!isset($email))
-	{
-		$email_send = $emails;
-	}
-	else
-	{
-		$email_send = $email;
-	}
-	foreach ($email_send as $send)
+
+	foreach ($emails as $send)
 	{
 		//echo "Email = $send \n";
 		if (EMAIL_SEND == '' && LOCATION_ONLY== '')

@@ -41,7 +41,7 @@ $html = location_basis($argv['3']);
 			email_report($send, "Priority Location Invoice Email Need Fixing", $html);
 		}
 	}
-}
+
 if (EMAIL_SEND != '')
 {
 	email_report(EMAIL_SEND, "Priority Location Invoice Email Need Fixing", $html);
