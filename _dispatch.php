@@ -103,7 +103,7 @@ function dispatch_db($db, $dev='')
 	}
 	if ($db['Dispatch'] == 'null' || !$db['Dispatch'] || $db['Dispatch'] == '')
 	{
-		$error['error'] = 'invalid Dispatch';
+		$error['error'] = 'invalid Dispatch ' . $db['Dispatch'] . ' ' . $db['Screen'];
 		return $error;		
 	}
 	if ($db['Counter'] == 'null' || !$db['Counter'] || $db['Counter'] == '')
