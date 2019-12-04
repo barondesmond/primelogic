@@ -89,6 +89,7 @@ function email_report($email, $subject, $body, $filename='', $cid='', $name='', 
 	}	
 	if (email_unsubscribe($email))
 	{
+		echo "Email unsubscribed " . $email;
 		return true;
 	}
 	if (SPOOLWRITE=='write')
