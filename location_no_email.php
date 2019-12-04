@@ -65,10 +65,10 @@ if (EMAIL_SEND == '')
 {
 	foreach ($emails as $send)
 	{
-		//echo "Email = $send \n";
+		echo "Email = $send \n";
 		if (EMAIL_SEND == '' && LOCATION_ONLY== '')
 		{
-			email_report($send, "Priority Location Invoice Email Need Fixing", $html);
+			email_report($send, "Fix Location Email Report", $html);
 		}
 	}
 
