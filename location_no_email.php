@@ -63,24 +63,15 @@ $ll = location_logo();
 
 if (EMAIL_SEND == '')
 {
-	foreach ($sm as $emp => $emails)
+	foreach ($emails as $send)
 	{
-		$day = '31';
-		$day2 = '60';
-		if (!isset($email))
+		//echo "Email = $send \n";
+		if (EMAIL_SEND == '' && LOCATION_ONLY== '')
 		{
-			$email_send = $emails;
-		}
-		else
-		{
-			$email_send = $email;
-		}
-		foreach ($email_send as $send)
-		{
-			echo "Email = $send \n";
-			email_report($send, "Fix Location Email Report", $html);
+			email_report($send, "Priority Location Invoice Email Need Fixing", $html);
 		}
 	}
+
 }
 if (EMAIL_SEND != '')
 {

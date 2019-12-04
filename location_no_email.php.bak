@@ -2,6 +2,7 @@
 include("_db_config.php");
 include("_email.php");
 include("_report.php");
+define('SPOOLWRITE', 'write');
 
 /*
 LocationInactive 0
@@ -62,7 +63,7 @@ $ll = location_logo();
 
 if (EMAIL_SEND == '')
 {
-	foreach ($sm as $emp => $emails)
+	foreach ($sm as $emp => $email)
 	{
 		$day = '31';
 		$day2 = '60';
@@ -74,6 +75,9 @@ if (EMAIL_SEND == '')
 		{
 			$email_send = $email;
 		}
+			echo "Email = $send \n";
+			email_report($send, "Fix Location Email Report", $html);
+	}
 		foreach ($email_send as $send)
 		{
 			echo "Email = $send \n";

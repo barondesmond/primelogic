@@ -46,7 +46,7 @@ foreach ($sm as $emp => $emails)
 	}
 	foreach ($email_send as $send)
 	{
-		echo "Email = $send \n";
+		//echo "Email = $send \n";
 		if (EMAIL_SEND == '' && LOCATION_ONLY== '')
 		{
 			email_report($send, "Priority Location Invoice Email Need Fixing", $html);
