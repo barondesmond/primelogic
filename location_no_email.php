@@ -66,7 +66,7 @@ if (EMAIL_SEND == '')
 	foreach ($emails as $send)
 	{
 		echo "Email = $send \n";
-		if (EMAIL_SEND == '' && LOCATION_ONLY== '')
+		if (EMAIL_SEND == '')
 		{
 			email_report($send, "Fix Location Email Report", $html);
 		}
