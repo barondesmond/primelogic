@@ -294,7 +294,7 @@ function dispatch_hours($db, $dev = '')
 {
 	if ($db['Dispatch']!='')
 	{
-		$sql = "SELECT Status, DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech WHERE Dispatch = '" . $db['Dispatch'] . "' ";
+		$sql = "SELECT Status, DispTime, TimeOn, TimeOff FROM DispTech$dev as DispTech$dev WHERE Dispatch = '" . $db['Dispatch'] . "' ";
 		$res = mssql_query($sql);
 		$db['Working'] = 0;
 		$db['Traveling'] = 0;
@@ -602,18 +602,11 @@ function dispatch_query($ServiceMan = '', $dev='')
 	{
 		$sel = " and ServiceMan = '$ServiceMan'";
 	}
-	if ($dev == 'true')
-	{
-		$d = 'Dev';
-	}
-	else
-	{
-		$d = '';
-	}
+
 $js['title'] = 'Dispatch List';
 $js['description'] = 'Dispatch Name, Dispatch Location';
-$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, DispTech.Counter, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, Location.latitude, Location.longitude, ServiceMan, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, Location.Add1, Location.Add2, Location.City, Location.State,Location.Zip, Location.Phone1 FROM DispTech" . $d . " as DispTech
-INNER JOIN Dispatch" . $d . " as Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
+$sql = "SELECT TPromDate, DispTech.Priority, Dispatch.Dispatch, DispTech.Counter, Dispatch.Notes as DispatchNotes, Location.LocName as DispatchName, DispTech.Status, Location.latitude, Location.longitude, ServiceMan, CONCAT(Location.Add1, ',', Location.City, ',' , Location.State, ' ' , Location.Zip) as location, Location.Add1, Location.Add2, Location.City, Location.State,Location.Zip, Location.Phone1 FROM DispTech" . $dev . " as DispTech
+INNER JOIN Dispatch" . $dev . " as Dispatch ON DispTech.Dispatch = Dispatch.Dispatch
 LEFT JOIN Location ON Dispatch.CustNo = Location.CustNo and Dispatch.LocNo = Location.LocNo
 WHERE DispTech.Complete != 'Y' and (DispTech.Status = 'Traveling' or DispTech.Status = 'Working' or DispTech.Status = 'Pending')  $sel
 ORDER BY ServiceMan, DispTech.TPromDate DESC, DispTech.Priority ";
