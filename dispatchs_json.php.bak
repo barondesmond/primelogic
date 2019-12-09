@@ -17,7 +17,7 @@ include("_dispatch.php");
 
 
 //api app
-if (isset($_REQUEST['Dev']))
+if (isset($_REQUEST['Dev']) && $_REQUEST['Dev'] == 'Dev')
 {
 	$_REQUEST['dev'] = 'true';
 }
