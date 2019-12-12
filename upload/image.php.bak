@@ -1,5 +1,5 @@
 <?php
-include("_db_config.php");
+include("../_db_config.php");
 $dis = 'Dispatch:' . $_REQUEST['Dispatch'];
 
   $query = "select Image, Extension, ID from DocAttach where SourcText ='" . $dis . "'";

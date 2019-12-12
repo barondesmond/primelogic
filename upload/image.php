@@ -7,7 +7,7 @@ $dis = 'Dispatch:' . $_REQUEST['Dispatch'];
      $data = mssql_result($r, 0, 'Image');
      $ext = mssql_result($r, 0, 'Extension');
      $id = mssql_result($r, 0, 'ID');
-$filepath = '/var/www/html/upload/' . $id . $ext
+$filepath = '/var/www/html/upload/' . $id . $ext;
 	
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
