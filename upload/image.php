@@ -10,13 +10,15 @@ $dis = 'Dispatch:' . $_REQUEST['Dispatch'];
 $filepath = '/var/www/html/upload/' . $id . $ext;
 	$fp = file_put_contents($filepath, $data);
 
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($filepath));
-        flush(); // Flush system output buffer
+ 	$file_extension = strtolower(substr(strrchr($filepath,"."),1));
+
+	switch( $file_extension ) {
+	 case "gif": $ctype="image/gif"; break;
+	 case "png": $ctype="image/png"; break;
+	 case "jpeg":
+	 case "jpg": $ctype="image/jpeg"; break;
+	 default:
+	}
+	header('Content-type: ' . $ctype);
 		readfile($filepath);
 	exit;
