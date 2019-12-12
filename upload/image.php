@@ -1,8 +1,15 @@
 <?php
 include("../_db_config.php");
 $dis = 'Dispatch:' . $_REQUEST['Dispatch'];
-
-  $query = "select Document as Image, Extension, ID from DocAttach where SourceText ='" . $dis . "' and Extension = '.jpg'";
+if ($_REQUEST['ID'])
+{
+	$idd = " and ID = '" . $_REQUEST['id'] . "'"; 
+}
+else
+{
+	$idd = '';
+}
+  $query = "select Document as Image, Extension, ID from DocAttach where SourceText ='" . $dis . "' and Extension = '.jpg'" . $idd;
      $r = mssql_query($query);
      $data = mssql_result($r, 0, 'Image');
      $ext = mssql_result($r, 0, 'Extension');
