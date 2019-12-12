@@ -8,7 +8,8 @@ $dis = 'Dispatch:' . $_REQUEST['Dispatch'];
      $ext = mssql_result($r, 0, 'Extension');
      $id = mssql_result($r, 0, 'ID');
 $filepath = '/var/www/html/upload/' . $id . $ext;
-	
+	$fp = file_put_contents($filepath, $data);
+
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
@@ -17,5 +18,5 @@ $filepath = '/var/www/html/upload/' . $id . $ext;
         header('Pragma: public');
         header('Content-Length: ' . filesize($filepath));
         flush(); // Flush system output buffer
-	echo $data;
+		readfile($filepath);
 	exit;
