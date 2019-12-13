@@ -37,5 +37,7 @@ if (file_exists($loc))
 	$db['status'] = 'success';
 }
 echo json_encode($db);
-system("/usr/bin/php /var/www/html/primelogic/upload/eimage.php '$name' >/dev/null &");
-
+if ($db['Screen'] == 'DispatchCamera')
+{
+	system("/usr/bin/php /var/www/html/primelogic/upload/eimage.php '$name' >/dev/null &");
+}
