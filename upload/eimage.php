@@ -1,6 +1,7 @@
 <?php
 include("../_db_config.php");
 include("../_email.php");
+include("../_location_api.php");
 
 //$file =  $_REQUEST['file'];
 $send = 'barondesmond@gmail.com';
