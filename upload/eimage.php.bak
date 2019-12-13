@@ -9,7 +9,7 @@ $file = '/var/www/html/primelogic/upload/' . $argv[1];
 $db = location_parse_file($argv[1]);
 echo $file;
 $up = "https://" . HOST . "/primelogic/upload/" . $argv[1];
-$fl = "<A HREF='$up'>";
+$fl = "<A HREF='" . $up . "'>";
 if (file_exists($file))
 {
 	echo "sending file" . $file;
