@@ -12,6 +12,6 @@ if (file_exists($file))
 {
 	echo "sending file" . $file;
 	$html = "You can download image <A HREF=https://" . HOST . "/primelogic/upload/" . $argv[1] . ">here</a>";
-	$img[] = $file;
-	email_report($send, "Dispatch Image " . $db['reference'], $html, $img);
+	//$img[] = $file;
+	email_report($send, "Dispatch Image " . $db['reference'], $html);
 }
