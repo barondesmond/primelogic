@@ -14,7 +14,6 @@ if (file_exists($file))
 {
 	echo "sending file" . $file;
 	$html = "<P>You can download image " . $fl . "here</a>";
-	$html .= "<P><IMG SRC='" . $fl . "'>";
-	//$img[] = $file;
-	email_report($send, "Dispatch Image " . $db['reference'], $html);
+	$img[] = $file;
+	email_report($send, "Dispatch Image " . $db['reference'], $html, '' , '', '', $img);
 }
