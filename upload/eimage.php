@@ -9,7 +9,7 @@ $db = location_parse_file($argv[1]);
 
 if (file_exists($file))
 {
-	$html "You can download image <A HREF=https://" . HOST . "/primelogic/upload/" . $argv[1] . ">here</a>";
+	$html = "You can download image <A HREF=https://" . HOST . "/primelogic/upload/" . $argv[1] . ">here</a>";
 	$img[] = $file;
 	email_report($send, "Dispatch Image " . $db['reference'], $html, $img);
 }
