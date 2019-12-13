@@ -1,5 +1,6 @@
 <?php
 include("../_db_config.php");
+include("../_location_api.php");
 
 if ($_REQUEST['show'] && $_REQUEST['file'])
 {

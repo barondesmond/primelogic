@@ -40,7 +40,7 @@ if (file_exists($loc))
 echo json_encode($db);
 $db2 = location_parse_file($name);
 
-if ($db2['Screen'] == 'DispatchCamera')
+if (isset($db2) && isset($db2['Screen']) && $db2['Screen'] == 'DispatchCamera')
 {
 	system("/usr/bin/php /var/www/html/primelogic/upload/eimage.php '$name' >/dev/null &");
 }
