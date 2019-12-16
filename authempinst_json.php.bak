@@ -456,6 +456,8 @@ if (isset($error['error']))
 if (isset($db['authorized']) && $db['authorized'] == '1')
 {
 	$js2 = dispatch_query($_REQUEST['EmpNo'], $d);
+	error_log(json_encode($js2));
+
 	$db['dispatchs'] = $js2['dispatchs'];
 	if (!isset($_REQUEST['ServiceMan']))
 	{
