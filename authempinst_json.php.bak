@@ -403,7 +403,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 		}
 		if ($db['Screen'] == 'Dispatch' && $db['Dispatch'] == $_REQUEST['Dispatch'])
 		{
-			$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
+			//$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
 		}
 		$error = authempinst($_REQUEST, $d);
 		error_log(json_encode($error));
