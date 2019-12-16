@@ -401,7 +401,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 		{
 			$_REQUEST['event'] = 'Traveling';
 		}
-		if ($_REQUEST['Screen'] == 'Dispatch')
+		if ($db['Screen'] == 'Dispatch' && $db['Dispatch'] == $_REQUEST['Dispatch'])
 		{
 			$_REQUEST['Counter'] = dispatch_counter($_REQUEST['Dispatch'], $d);
 		}
