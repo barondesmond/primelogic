@@ -76,7 +76,7 @@ function timesheet_prhours($req, $PRHours, $dev='')
 		$v = substr($v, 0, strlen($v)-1);
 	if ($Hours > 0)
 	{
-	$sql = "INSERT INTO PRHours ($k) VALUES ($v)";
+	$sql = "INSERT INTO Time.dbo.PRHours ($k) VALUES ($v)";
 //	echo $sql;
 	$res = @mssql_query($sql);
 	$mes = mssql_get_last_message();
