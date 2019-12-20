@@ -42,9 +42,15 @@ if ($argv)
 }
 if ($argv)
 {
-	echo "emailed dispatch@plisolutions.com" . $_GET['Dispatch'];
 
-	email_report("dispatch@plisolutions.com", "Dispatch Ticket " . $_GET['Dispatch'] , "Dispatch Ticket Attached " . $_GET['Dispatch'], $ll['filename'], $ll['cid'], $ll['name'], $file);
+	if (email_report("dispatch@plisolutions.com", "Dispatch Ticket " . $_GET['Dispatch'] , "Dispatch Ticket Attached " . $_GET['Dispatch'], $ll['filename'], $ll['cid'], $ll['name'], $file))
+	{
+		echo "emailed dispatch@plisolutions.com" . $_GET['Dispatch'];
+	}
+	else
+	{
+		echo "error";
+	}
 }
 
 ?>

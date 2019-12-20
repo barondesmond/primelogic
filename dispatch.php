@@ -37,8 +37,7 @@ if (!$argv[1])
 
 if ($argv)
 {
-	echo "emailed barondesmond@gmail.com" . $_GET['Dispatch'];
-	email_report("barondesmond@gmail.com", "Dispatch Ticket " . $_GET['Dispatch'] , "Dispatch Ticket Attached " . $_GET['Dispatch'], $ll['filename'], $ll['cid'], $ll['name'], $file);
+	email_report("barondesmond@plisolutions.com", "Dispatch Ticket " . $_GET['Dispatch'] , "Dispatch Ticket Attached " . $_GET['Dispatch'], $ll['filename'], $ll['cid'], $ll['name'], $file);
 }
 if ($argv)
 {

@@ -14,7 +14,7 @@ if (file_exists($file))
 	echo "sending file" . $file;
 	$html = "<P>You can download image " . $fl . "here</a>";
 	$img[] = $file;
-$sa[] = 'barondesmond@gmail.com';
+$sa[] = 'barondesmond@plisolutions.com';
 $sa[] = 'dispatch@plisolutions.com';
 	foreach ($sa as $send)
 	{
