@@ -375,7 +375,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 	$sql = "SELECT *, TimeClockApp.installationID as installationId FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and EmpActive = '1'";
 	$res = mssql_query($sql);
 	$db = mssql_fetch_assoc($res);
-	if (isset($_REQUEST['event'] && isset($_REQUEST['Complete']) && isset($_REQUEST['customer']) && $_REQUEST['event'] == 'Complete' && $_REQUEST['Complete'] == 'Y')
+	if (isset($_REQUEST['event']) && isset($_REQUEST['Complete']) && isset($_REQUEST['customer']) && $_REQUEST['event'] == 'Complete' && $_REQUEST['Complete'] == 'Y')
 	{
 		$db['Complete'] = $_REQUEST['Complete'];
 		$db['Complete'] = $_REQUEST['Complete']
