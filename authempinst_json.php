@@ -378,7 +378,7 @@ if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' 
 	if (isset($_REQUEST['event']) && isset($_REQUEST['Complete']) && isset($_REQUEST['customer']) && $_REQUEST['event'] == 'Complete' && $_REQUEST['Complete'] == 'Y')
 	{
 		$db['Complete'] = $_REQUEST['Complete'];
-		$db['Complete'] = $_REQUEST['Complete'];
+		$db['customerimage'] = $_REQUEST['customerimage'];
 		$db['customer'] = $_REQUEST['customer'];
 	}
 	if (isset($db))
