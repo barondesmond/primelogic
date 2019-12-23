@@ -616,7 +616,7 @@ while ($db = mssql_fetch_assoc($res))
 		$db['longitude'] = $loc['longitude'];
 
 	}
-	if ($_REQUEST['latitude']!='null' && $_REQUEST['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
+	if (isset($_REQUEST['latitude']) && $_REQUEST['latitude']!='null' && $_REQUEST['latitude'] != '' &&  $db['latitude'] != '' && $db['latitude'] != 'null')
 	{
 		$db['distance'] = distance($_REQUEST['latitude'], $_REQUEST['longitude'], $db['latitude'], $db['longitude']);
 	}
