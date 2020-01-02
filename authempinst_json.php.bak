@@ -432,6 +432,7 @@ if (isset($_REQUEST['Screen']) && isset($_REQUEST['checkinStatus']) && $_REQUEST
 	error_log(json_encode($error));
 
 }
+/*
 if (isset($_REQUEST['Screen']) && $_REQUEST['checkinStatus'] != 'addNote')
 {
 	$note = 'add' . $_REQUEST['Screen'] . 'Note';
@@ -441,6 +442,7 @@ if (isset($_REQUEST['Screen']) && $_REQUEST['checkinStatus'] != 'addNote')
 		error_log($resp);
 	}
 }
+*/
 
 
 $db = TimeClockQuery($_REQUEST, $d);
