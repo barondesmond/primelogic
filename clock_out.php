@@ -1,4 +1,6 @@
 <?php
+include("_db_config.php");
+include("_timeclockapp.php");
 
 
 $sql = "SELECT TimeClockApp.* FROM Time.dbo.TimeCLockApp
