@@ -1,10 +1,8 @@
-$newdate = date("Y-m-d", time()) . ' 00:00:00';
-echo "the day is $newdate";
-$yestertime = strtotime($newdate)-60;
-$yesterdate = date("M d Y ", $yestertime) . '12:00:00:000AM';
-echo "\r\nYesterdate is " . $yesterdate;
+<?php
+
+
 $sql = "SELECT TimeClockApp.* FROM Time.dbo.TimeCLockApp
-WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
+WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and EmpNo = '" . $argv[1]  . "'  and EmpActive = '1'";
 echo $sql;
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
@@ -17,7 +15,7 @@ while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
 if ($db['Screen'] == 'Dispatch')
 {
 	$error = dispatch_db($db, $dev, $yestertime );
-	$error2 = timeclock_db($db, $yestertime);
+	$error2 = timeclock_db($db, time());
 	$error = array_merge($error, $error2);
 }
 else
