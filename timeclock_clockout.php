@@ -3,10 +3,7 @@ include("_db_config.php");
 include("_timeclockapp.php");
 
 
-if ($argv['1'])
-{
-	$dev = 'Dev';
-}
+
 
 echo "Jan 25 2019 12:00:00:000AM";
 
@@ -17,7 +14,7 @@ $yestertime = strtotime($newdate)-3600;
 $yesterdate = date("M d Y ", $yestertime) . '12:00:00:000AM';
 echo "\r\nYesterdate is " . $yesterdate;
 $sql = "SELECT TimeClockApp.* FROM Time.dbo.TimeCLockApp
-WHERE event IN ('Traveling', 'Working') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
+WHERE event IN ('Traveling', 'Working', 'Lunch') and TimeClockApp.EmpNo is Not Null and StartTime < '$yestertime' and EmpActive = '1'";
 echo $sql;
 $res = mssql_query($sql);
 while ($db = mssql_fetch_array($res, MSSQL_ASSOC))
