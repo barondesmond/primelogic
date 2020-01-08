@@ -13,7 +13,7 @@ echo "Jan 25 2019 12:00:00:000AM";
 
 $newdate = date("Y-m-d", time()) . ' 00:00:00';
 echo "the day is $newdate";
-$yestertime = strtotime($newdate)-3600;
+$yestertime = strtotime($newdate)-60;
 $yesterdate = date("M d Y ", $yestertime) . '12:00:00:000AM';
 echo "\r\nYesterdate is " . $yesterdate;
 $sql = "SELECT TimeClockApp.* FROM Time.dbo.TimeCLockApp
