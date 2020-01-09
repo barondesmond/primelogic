@@ -1,5 +1,18 @@
 <?php
 
+function employee_user()
+{
+
+	$sql = "SELECT UserAppAuth.EmpNo, UserAppAuth.installationID, Employee.EmpName, Employee.Email  FROM Time.dbo.UserAppAuth INNER JOIN Service.dbo.Employee ON UserAppAuth.EmpNo = Employee.EmpNo  WHERE UserAppAuth.authorized = '1'";
+	$res = mssql_query($sql);
+	while ($db = mssql_fetch_assoc($res))
+	{
+
+		$db['Start'] = date("Y-m-d H:i:s", $db['Start']);
+		$dbs[$db['EmpNo']] = $db;
+		
+	}
+
 function employees_query($dev='')
 {
 
