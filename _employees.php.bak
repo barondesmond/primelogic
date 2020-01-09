@@ -56,7 +56,7 @@ function jobgroupemployees_query($dev='', $ServiceMan='')
 	{
 		$sel = " WHERE ge.EmpNo != '' and je.Job != '' ";
 	}
-	$sel .= " and JobStatus = '100' and Inactive = '0' ";
+	$sel .= " and Jobs.JobStatus = '100' and Jobs.Inactive = '0' ";
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, EmpNo, Job';
