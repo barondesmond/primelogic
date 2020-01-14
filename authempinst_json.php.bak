@@ -11,7 +11,10 @@ include("dispatch_pdf.php");
 include("_job.php");
 include("_employees.php");
 
-$auth = UserAppAuth($_REQUEST);
+if (!isset($auth))
+{
+	$auth = UserAppAuth($_REQUEST);
+}
 if ($auth['authorized'] != '1')
 {
 	header('Content-Type: application/json');
