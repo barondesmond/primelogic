@@ -8,11 +8,12 @@ function employee_user()
 	while ($db = mssql_fetch_assoc($res))
 	{
 
-		$db['Start'] = date("Y-m-d H:i:s", $db['Start']);
 		$dbs[$db['EmpNo']] = $db;
 		
 	}
 
+return $dbs;
+}
 function employees_query($dev='')
 {
 

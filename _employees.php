@@ -74,8 +74,8 @@ function jobgroupemployees_query($dev='', $ServiceMan='')
 
 $js['title'] = 'Group List';
 $js['description'] = 'JobGroupID, EmpNo, Job';
-$sql = "SELECT ge.JobGroupID, Employee.EmpName, ge.EmpNo, je.Job, JobGroup, Location.LocName FROM JobGroupEmployee as ge INNER JOIN JobGroupEmployee as je ON ge.JobGroupID = je.JobGroupID
-INNER JOIN JobGroup ON je.JobGroupID = JobGroup.JobGroupID
+$sql = "SELECT ge.JobGroupID, Employee.EmpName, ge.EmpNo, je.Job, JobGroup, Location.LocName FROM Time.dbo.JobGroupEmployee as ge INNER JOIN Time.dbo.JobGroupEmployee as je ON ge.JobGroupID = je.JobGroupID
+INNER JOIN Time.dbo.JobGroup ON je.JobGroupID = JobGroup.JobGroupID
 INNER JOIN Jobs ON je.Job = Jobs.Name 
 INNER JOIN Location ON Jobs.CustNo = Location.CustNo and Jobs.Location = Location.LocNo
 INNER JOIN Employee ON ge.EmpNo = Employee.EmpNo
