@@ -6,3 +6,4 @@ $_REQUEST['EmpNo'] = $_REQUEST['timeclock']['EmpNo'];
 
 
 include("authempinst_json.php");
+?>
