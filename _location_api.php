@@ -146,7 +146,7 @@ function location_timeclock()
 {
 
 
-	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.installationID, TimeClockApp.Screen, Employee.EmpName, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.JobID, TimeClockApp.StartTime as Start FROM Time.dbo.TimeClockApp INNER JOIN Service.dbo.Employee ON TimeClockApp.EmpNo = Employee.EmpNo  WHERE EmpActive = '1'";
+	$sql = "SELECT TimeClockApp.EmpNo, TimeClockApp.installationID, TimeClockApp.Screen, Employee.EmpName, TimeClockApp.latitude, TimeClockApp.longitude, TimeClockApp.event, TimeClockApp.Dispatch, TimeClockApp.Counter, TimeClockApp.Name, TimeClockApp.JobID, TimeClockApp.StartTime as Start FROM Time.dbo.TimeClockApp INNER JOIN Service.dbo.Employee ON TimeClockApp.EmpNo = Employee.EmpNo  WHERE EmpActive = '1'";
 	$res = mssql_query($sql);
 	while ($db = mssql_fetch_assoc($res))
 	{
