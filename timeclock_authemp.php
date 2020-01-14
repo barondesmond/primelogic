@@ -3,7 +3,7 @@
 
 $_REQUEST['installationId'] = $_REQUEST['timeclock_installationId'];
 $_REQUEST['EmpNo'] = $_REQUEST['timeclock_EmpNo'];
-error_log(json_encode($_REQUEST);
+error_log(json_encode($_REQUEST));
 
 include("authempinst_json.php");
 ?>
