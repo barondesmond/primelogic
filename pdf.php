@@ -185,10 +185,10 @@ function pdf_input($invoice='')
 	$file = '/var/www/pdf/' . $invoice . '.pdf';
 	//echo $file;
 	//exit;
-	if (!file_exists($file))
-	{
+	//if (!file_exists($file))
+	//{
 		$file = pdf_output($arrays, $file);
-	}	
+	//}	
 return $file;
 
 }
