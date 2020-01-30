@@ -44,7 +44,7 @@ function disptech_create($sdb, $dev = '')
 	$sql2 = "SELECT * FROM DispTech$dev WHERE Dispatch = '" . $sdb['Dispatch'] . "' and ServiceMan = '" . $sdb['ServiceMan'] . "' and Status = 'Pending'";
 	$res2 = mssql_query($sql2);
 	$dp = mssql_fetch_assoc($res2);
-	if (isset($dp))
+	if (isset($dp) && isset($dp['Dispatch']))
 	{
 		$error['error'] = 'Disptech Pending exists ' . $sdb['Dispatch'] . ' ' ;
 		$error['error'] .= $sql2;
