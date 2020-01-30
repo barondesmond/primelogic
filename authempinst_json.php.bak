@@ -373,6 +373,10 @@ if (isset($_REQUEST['checkinStatus']) && ($_REQUEST['checkinStatus'] == 'Start' 
 		error_log(json_encode($error));
 
 }
+if ($_REQUEST['event'] == 'Complete' && !isset($_REQUEST['Complete']))
+{
+	$_REQUEST['Complete'] = 'Y';
+}
 if (isset($_REQUEST['checkinStatus']) && $_REQUEST['checkinStatus'] == 'Switch' && isset($_REQUEST['EmpNo']))
 {
 	$sql = "SELECT *, TimeClockApp.installationID as installationId FROM Time.dbo.TimeClockApp WHERE EmpNo = '" . $_REQUEST['EmpNo'] . "' and EmpActive = '1'";
