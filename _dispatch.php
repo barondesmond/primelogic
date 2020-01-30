@@ -48,6 +48,7 @@ function disptech_create($sdb, $dev = '')
 	{
 		$error['error'] = 'Disptech Pending exists ' . $sdb['Dispatch'] . ' ' ;
 		$error['error'] .= $sql2;
+		$error['error'] .= json_encode($dp);
 		return $error;
 	}
 		$array  = array('Dispatch', 'ServiceMan', 'Counter', 'Status', 'Dispatcher', 'PromDate', 'TPromDate', 'TPromTime', 'Zone', 'Priority', 'Terms', 'TechTime', 'SortDate', 'SortTime', 'Mobile', 'POReceived', 'TimeEntryCreated', 'HoursPayed');
