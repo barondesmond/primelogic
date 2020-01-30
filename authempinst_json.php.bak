@@ -488,6 +488,7 @@ $json =  json_encode($db);
 if (isset($db['error']))
 {
 	error_log($json);
+	error_log(json_encode($_REQUEST));
 	
 }
 echo $json;
