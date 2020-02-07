@@ -6,7 +6,7 @@ if ($argv[1])
 	$query = $argv[1];
 
 }
-if (isset($_REQUEST['query')])
+if (isset($_REQUEST['query'])
 {
 	$query = $_GET['query'];	
 	
