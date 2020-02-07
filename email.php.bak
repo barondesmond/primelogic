@@ -13,4 +13,4 @@ $cid = '';
 $name = '';
 $func = '';
 
-email_report($email, $subject, $body, $filename, $cid, $name=, $pdf, $func);
+email_report($email, $subject, $body, $filename, $cid, $name, $pdf, $func);
