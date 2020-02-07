@@ -22,10 +22,10 @@ if (isset($_REQUEST))
 		${$key} = $val;
 	}
 }
+	header('Content-Type: application/json');
 
 $db = email_report($email, $subject, $body, $filename, $cid, $name, $pdf, $func);
 
 $db['success'] = 1;
-	header('Content-Type: application/json');
 echo json_encode($db);
 ?>

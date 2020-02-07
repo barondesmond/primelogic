@@ -24,7 +24,7 @@ if (isset($_REQUEST))
 }
 	header('Content-Type: application/json');
 
-$db = email_report($email, $subject, $body, $filename, $cid, $name, $pdf, $func);
+email_report($email, $subject, $body, $filename, $cid, $name, $pdf, $func);
 
 $db['success'] = 1;
 echo json_encode($db);
